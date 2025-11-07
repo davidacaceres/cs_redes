@@ -1,0 +1,13 @@
+/Libro Network Science
+/Tarea 1
+/Tarea 2/python/real/data-raw/enron/email-Enron.txt.gz
+/Tarea 2/python/real/data-raw/hepth/ca-HepTh.txt.gz
+/Tarea 2/python/real/data-raw/polblogs/polblogs.gml
+/Tarea 2/python/real/data-raw/polblogs/polblogs.zip
+/Tarea 2/python/real/data-raw/reactome/reactome.homo_sapiens.interactions.psi-mitab.txt
+/Tarea 2/python/real/data-raw/twitter-higgs/higgs-social_network.edgelist.gz
+.idea
+.ipynb_checkpoints
+/Tarea 2/python/olds
+'Tarea 2/python/real/data-raw/reactome/' 
+'Tarea 2/python/real/data-raw/twitter-higgs/' 
