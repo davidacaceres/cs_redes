@@ -1,0 +1,69 @@
+[2025-11-07T09:45:15-03:00] Inicio experimento Fig3-ER (paralelo por procesos) | carpeta=run-e2r\N1000_251107-094515
+[2025-11-07T09:45:15-03:00] Procesos: deseados=18, usados=18, cpu_count=22
+[2025-11-07T09:45:15-03:00] Parámetros: N=1000, <k>=[5.2, 2.5], px1=[0.05, 0.1, 0.2], r_kk=[-0.5, 0.0, 0.5], ρ_kx=[np.float64(0.0), np.float64(0.07), np.float64(0.13), np.float64(0.2), np.float64(0.27), np.float64(0.33), np.float64(0.4), np.float64(0.47), np.float64(0.53), np.float64(0.6)], seed=12021974
+[2025-11-07T09:45:15-03:00] Generada red ER: N=1000, <k>_obj=5.20, p=0.005205, L=2603, tiempo=0.034s
+[2025-11-07T09:45:44-03:00] Rewire r_kk: objetivo=-0.50, alcanzado=-0.491, |Δ|=0.009, iters=2737, factor=10, tiempo=28.870s
+[2025-11-07T09:45:44-03:00] Iniciando tareas en paralelo... (processes=18)
+[2025-11-07T09:46:11-03:00] <k>=5.20, p=0.005205, px1=0.05, r_kk_obj=-0.50, r_kk_fin=-0.491, ρ_kx_obj=0.00, ρ_kx_fin=+0.010 -> frac=0.002 | t(attrs)=0.001s, t(frac)=0.002s
+[2025-11-07T09:46:11-03:00] <k>=5.20, p=0.005205, px1=0.05, r_kk_obj=-0.50, r_kk_fin=-0.491, ρ_kx_obj=0.07, ρ_kx_fin=+0.067 -> frac=0.007 | t(attrs)=0.008s, t(frac)=0.002s
+[2025-11-07T09:46:11-03:00] <k>=5.20, p=0.005205, px1=0.05, r_kk_obj=-0.50, r_kk_fin=-0.491, ρ_kx_obj=0.13, ρ_kx_fin=+0.124 -> frac=0.001 | t(attrs)=0.018s, t(frac)=0.004s
+[2025-11-07T09:46:11-03:00] <k>=5.20, p=0.005205, px1=0.05, r_kk_obj=-0.50, r_kk_fin=-0.491, ρ_kx_obj=0.20, ρ_kx_fin=+0.195 -> frac=0.013 | t(attrs)=0.020s, t(frac)=0.002s
+[2025-11-07T09:46:12-03:00] <k>=5.20, p=0.005205, px1=0.05, r_kk_obj=-0.50, r_kk_fin=-0.491, ρ_kx_obj=0.27, ρ_kx_fin=+0.258 -> frac=0.011 | t(attrs)=0.065s, t(frac)=0.003s
+[2025-11-07T09:46:12-03:00] <k>=5.20, p=0.005205, px1=0.05, r_kk_obj=-0.50, r_kk_fin=-0.491, ρ_kx_obj=0.33, ρ_kx_fin=+0.323 -> frac=0.019 | t(attrs)=0.106s, t(frac)=0.002s
+[2025-11-07T09:46:12-03:00] <k>=5.20, p=0.005205, px1=0.05, r_kk_obj=-0.50, r_kk_fin=-0.491, ρ_kx_obj=0.40, ρ_kx_fin=+0.391 -> frac=0.033 | t(attrs)=0.166s, t(frac)=0.003s
+[2025-11-07T09:46:12-03:00] <k>=5.20, p=0.005205, px1=0.05, r_kk_obj=-0.50, r_kk_fin=-0.491, ρ_kx_obj=0.60, ρ_kx_fin=+0.433 -> frac=0.037 | t(attrs)=0.219s, t(frac)=0.002s
+[2025-11-07T09:46:12-03:00] <k>=5.20, p=0.005205, px1=0.05, r_kk_obj=-0.50, r_kk_fin=-0.491, ρ_kx_obj=0.53, ρ_kx_fin=+0.446 -> frac=0.035 | t(attrs)=0.222s, t(frac)=0.002s
+[2025-11-07T09:46:12-03:00] <k>=5.20, p=0.005205, px1=0.05, r_kk_obj=-0.50, r_kk_fin=-0.491, ρ_kx_obj=0.47, ρ_kx_fin=+0.438 -> frac=0.038 | t(attrs)=0.232s, t(frac)=0.002s
+[2025-11-07T09:46:12-03:00] Tareas paralelas completadas.
+[2025-11-07T09:46:12-03:00] Rewire r_kk: objetivo=+0.00, alcanzado=-0.001, |Δ|=0.001, iters=0, factor=10, tiempo=0.007s
+[2025-11-07T09:46:12-03:00] Iniciando tareas en paralelo... (processes=18)
+[2025-11-07T09:46:36-03:00] <k>=5.20, p=0.005205, px1=0.05, r_kk_obj=+0.00, r_kk_fin=-0.001, ρ_kx_obj=0.00, ρ_kx_fin=-0.009 -> frac=0.000 | t(attrs)=0.006s, t(frac)=0.002s
+[2025-11-07T09:46:36-03:00] <k>=5.20, p=0.005205, px1=0.05, r_kk_obj=+0.00, r_kk_fin=-0.001, ρ_kx_obj=0.13, ρ_kx_fin=+0.126 -> frac=0.002 | t(attrs)=0.009s, t(frac)=0.001s
+[2025-11-07T09:46:36-03:00] <k>=5.20, p=0.005205, px1=0.05, r_kk_obj=+0.00, r_kk_fin=-0.001, ρ_kx_obj=0.07, ρ_kx_fin=+0.065 -> frac=0.005 | t(attrs)=0.009s, t(frac)=0.002s
+[2025-11-07T09:46:36-03:00] <k>=5.20, p=0.005205, px1=0.05, r_kk_obj=+0.00, r_kk_fin=-0.001, ρ_kx_obj=0.20, ρ_kx_fin=+0.197 -> frac=0.007 | t(attrs)=0.025s, t(frac)=0.004s
+[2025-11-07T09:46:36-03:00] <k>=5.20, p=0.005205, px1=0.05, r_kk_obj=+0.00, r_kk_fin=-0.001, ρ_kx_obj=0.27, ρ_kx_fin=+0.258 -> frac=0.006 | t(attrs)=0.057s, t(frac)=0.001s
+[2025-11-07T09:46:36-03:00] <k>=5.20, p=0.005205, px1=0.05, r_kk_obj=+0.00, r_kk_fin=-0.001, ρ_kx_obj=0.33, ρ_kx_fin=+0.323 -> frac=0.003 | t(attrs)=0.075s, t(frac)=0.003s
+[2025-11-07T09:46:36-03:00] <k>=5.20, p=0.005205, px1=0.05, r_kk_obj=+0.00, r_kk_fin=-0.001, ρ_kx_obj=0.40, ρ_kx_fin=+0.391 -> frac=0.008 | t(attrs)=0.119s, t(frac)=0.003s
+[2025-11-07T09:46:36-03:00] <k>=5.20, p=0.005205, px1=0.05, r_kk_obj=+0.00, r_kk_fin=-0.001, ρ_kx_obj=0.53, ρ_kx_fin=+0.415 -> frac=0.006 | t(attrs)=0.215s, t(frac)=0.002s
+[2025-11-07T09:46:36-03:00] <k>=5.20, p=0.005205, px1=0.05, r_kk_obj=+0.00, r_kk_fin=-0.001, ρ_kx_obj=0.47, ρ_kx_fin=+0.429 -> frac=0.007 | t(attrs)=0.221s, t(frac)=0.002s
+[2025-11-07T09:46:36-03:00] <k>=5.20, p=0.005205, px1=0.05, r_kk_obj=+0.00, r_kk_fin=-0.001, ρ_kx_obj=0.60, ρ_kx_fin=+0.405 -> frac=0.007 | t(attrs)=0.253s, t(frac)=0.001s
+[2025-11-07T09:46:36-03:00] Tareas paralelas completadas.
+[2025-11-07T09:47:04-03:00] Rewire r_kk: objetivo=+0.50, alcanzado=+0.490, |Δ|=0.010, iters=2476, factor=10, tiempo=27.737s
+[2025-11-07T09:47:04-03:00] Iniciando tareas en paralelo... (processes=18)
+[2025-11-07T09:47:30-03:00] <k>=5.20, p=0.005205, px1=0.05, r_kk_obj=+0.50, r_kk_fin=+0.490, ρ_kx_obj=0.00, ρ_kx_fin=+0.008 -> frac=0.002 | t(attrs)=0.001s, t(frac)=0.001s
+[2025-11-07T09:47:30-03:00] <k>=5.20, p=0.005205, px1=0.05, r_kk_obj=+0.50, r_kk_fin=+0.490, ρ_kx_obj=0.07, ρ_kx_fin=+0.063 -> frac=0.002 | t(attrs)=0.005s, t(frac)=0.002s
+[2025-11-07T09:47:30-03:00] <k>=5.20, p=0.005205, px1=0.05, r_kk_obj=+0.50, r_kk_fin=+0.490, ρ_kx_obj=0.13, ρ_kx_fin=+0.132 -> frac=0.004 | t(attrs)=0.021s, t(frac)=0.002s
+[2025-11-07T09:47:30-03:00] <k>=5.20, p=0.005205, px1=0.05, r_kk_obj=+0.50, r_kk_fin=+0.490, ρ_kx_obj=0.20, ρ_kx_fin=+0.191 -> frac=0.000 | t(attrs)=0.028s, t(frac)=0.003s
+[2025-11-07T09:47:30-03:00] <k>=5.20, p=0.005205, px1=0.05, r_kk_obj=+0.50, r_kk_fin=+0.490, ρ_kx_obj=0.27, ρ_kx_fin=+0.264 -> frac=0.001 | t(attrs)=0.084s, t(frac)=0.004s
+[2025-11-07T09:47:30-03:00] <k>=5.20, p=0.005205, px1=0.05, r_kk_obj=+0.50, r_kk_fin=+0.490, ρ_kx_obj=0.33, ρ_kx_fin=+0.323 -> frac=0.002 | t(attrs)=0.108s, t(frac)=0.002s
+[2025-11-07T09:47:30-03:00] <k>=5.20, p=0.005205, px1=0.05, r_kk_obj=+0.50, r_kk_fin=+0.490, ρ_kx_obj=0.53, ρ_kx_fin=+0.419 -> frac=0.004 | t(attrs)=0.205s, t(frac)=0.002s
+[2025-11-07T09:47:30-03:00] <k>=5.20, p=0.005205, px1=0.05, r_kk_obj=+0.50, r_kk_fin=+0.490, ρ_kx_obj=0.60, ρ_kx_fin=+0.438 -> frac=0.001 | t(attrs)=0.216s, t(frac)=0.004s
+[2025-11-07T09:47:30-03:00] <k>=5.20, p=0.005205, px1=0.05, r_kk_obj=+0.50, r_kk_fin=+0.490, ρ_kx_obj=0.40, ρ_kx_fin=+0.395 -> frac=0.002 | t(attrs)=0.230s, t(frac)=0.002s
+[2025-11-07T09:47:30-03:00] <k>=5.20, p=0.005205, px1=0.05, r_kk_obj=+0.50, r_kk_fin=+0.490, ρ_kx_obj=0.47, ρ_kx_fin=+0.419 -> frac=0.003 | t(attrs)=0.252s, t(frac)=0.002s
+[2025-11-07T09:47:30-03:00] Tareas paralelas completadas.
+[2025-11-07T09:48:01-03:00] Rewire r_kk: objetivo=-0.50, alcanzado=-0.491, |Δ|=0.009, iters=2737, factor=10, tiempo=31.033s
+[2025-11-07T09:48:01-03:00] Iniciando tareas en paralelo... (processes=18)
+[2025-11-07T09:48:27-03:00] <k>=5.20, p=0.005205, px1=0.10, r_kk_obj=-0.50, r_kk_fin=-0.491, ρ_kx_obj=0.00, ρ_kx_fin=+0.007 -> frac=0.010 | t(attrs)=0.001s, t(frac)=0.002s
+[2025-11-07T09:48:27-03:00] <k>=5.20, p=0.005205, px1=0.10, r_kk_obj=-0.50, r_kk_fin=-0.491, ρ_kx_obj=0.07, ρ_kx_fin=+0.061 -> frac=0.013 | t(attrs)=0.004s, t(frac)=0.002s
+[2025-11-07T09:48:27-03:00] <k>=5.20, p=0.005205, px1=0.10, r_kk_obj=-0.50, r_kk_fin=-0.491, ρ_kx_obj=0.13, ρ_kx_fin=+0.123 -> frac=0.023 | t(attrs)=0.014s, t(frac)=0.002s
+[2025-11-07T09:48:27-03:00] <k>=5.20, p=0.005205, px1=0.10, r_kk_obj=-0.50, r_kk_fin=-0.491, ρ_kx_obj=0.20, ρ_kx_fin=+0.192 -> frac=0.022 | t(attrs)=0.029s, t(frac)=0.004s
+[2025-11-07T09:48:27-03:00] <k>=5.20, p=0.005205, px1=0.10, r_kk_obj=-0.50, r_kk_fin=-0.491, ρ_kx_obj=0.27, ρ_kx_fin=+0.257 -> frac=0.034 | t(attrs)=0.046s, t(frac)=0.003s
+[2025-11-07T09:48:27-03:00] <k>=5.20, p=0.005205, px1=0.10, r_kk_obj=-0.50, r_kk_fin=-0.491, ρ_kx_obj=0.33, ρ_kx_fin=+0.329 -> frac=0.039 | t(attrs)=0.105s, t(frac)=0.003s
+[2025-11-07T09:48:27-03:00] <k>=5.20, p=0.005205, px1=0.10, r_kk_obj=-0.50, r_kk_fin=-0.491, ρ_kx_obj=0.40, ρ_kx_fin=+0.393 -> frac=0.057 | t(attrs)=0.147s, t(frac)=0.003s
+[2025-11-07T09:48:27-03:00] <k>=5.20, p=0.005205, px1=0.10, r_kk_obj=-0.50, r_kk_fin=-0.491, ρ_kx_obj=0.47, ρ_kx_fin=+0.462 -> frac=0.077 | t(attrs)=0.162s, t(frac)=0.002s
+[2025-11-07T09:48:27-03:00] <k>=5.20, p=0.005205, px1=0.10, r_kk_obj=-0.50, r_kk_fin=-0.491, ρ_kx_obj=0.60, ρ_kx_fin=+0.473 -> frac=0.071 | t(attrs)=0.242s, t(frac)=0.002s
+[2025-11-07T09:48:27-03:00] <k>=5.20, p=0.005205, px1=0.10, r_kk_obj=-0.50, r_kk_fin=-0.491, ρ_kx_obj=0.53, ρ_kx_fin=+0.502 -> frac=0.086 | t(attrs)=0.250s, t(frac)=0.002s
+[2025-11-07T09:48:27-03:00] Tareas paralelas completadas.
+[2025-11-07T09:48:27-03:00] Rewire r_kk: objetivo=+0.00, alcanzado=-0.001, |Δ|=0.001, iters=0, factor=10, tiempo=0.007s
+[2025-11-07T09:48:27-03:00] Iniciando tareas en paralelo... (processes=18)
+[2025-11-07T09:48:55-03:00] <k>=5.20, p=0.005205, px1=0.10, r_kk_obj=+0.00, r_kk_fin=-0.001, ρ_kx_obj=0.00, ρ_kx_fin=-0.007 -> frac=0.008 | t(attrs)=0.002s, t(frac)=0.002s
+[2025-11-07T09:48:55-03:00] <k>=5.20, p=0.005205, px1=0.10, r_kk_obj=+0.00, r_kk_fin=-0.001, ρ_kx_obj=0.07, ρ_kx_fin=+0.057 -> frac=0.014 | t(attrs)=0.007s, t(frac)=0.003s
+[2025-11-07T09:48:55-03:00] <k>=5.20, p=0.005205, px1=0.10, r_kk_obj=+0.00, r_kk_fin=-0.001, ρ_kx_obj=0.13, ρ_kx_fin=+0.123 -> frac=0.007 | t(attrs)=0.035s, t(frac)=0.002s
+[2025-11-07T09:48:55-03:00] <k>=5.20, p=0.005205, px1=0.10, r_kk_obj=+0.00, r_kk_fin=-0.001, ρ_kx_obj=0.20, ρ_kx_fin=+0.193 -> frac=0.019 | t(attrs)=0.042s, t(frac)=0.002s
+[2025-11-07T09:48:55-03:00] <k>=5.20, p=0.005205, px1=0.10, r_kk_obj=+0.00, r_kk_fin=-0.001, ρ_kx_obj=0.27, ρ_kx_fin=+0.257 -> frac=0.020 | t(attrs)=0.051s, t(frac)=0.002s
+[2025-11-07T09:48:55-03:00] <k>=5.20, p=0.005205, px1=0.10, r_kk_obj=+0.00, r_kk_fin=-0.001, ρ_kx_obj=0.40, ρ_kx_fin=+0.391 -> frac=0.030 | t(attrs)=0.092s, t(frac)=0.002s
+[2025-11-07T09:48:55-03:00] <k>=5.20, p=0.005205, px1=0.10, r_kk_obj=+0.00, r_kk_fin=-0.001, ρ_kx_obj=0.33, ρ_kx_fin=+0.325 -> frac=0.026 | t(attrs)=0.106s, t(frac)=0.002s
+[2025-11-07T09:48:55-03:00] <k>=5.20, p=0.005205, px1=0.10, r_kk_obj=+0.00, r_kk_fin=-0.001, ρ_kx_obj=0.47, ρ_kx_fin=+0.462 -> frac=0.030 | t(attrs)=0.159s, t(frac)=0.003s
+[2025-11-07T09:48:55-03:00] <k>=5.20, p=0.005205, px1=0.10, r_kk_obj=+0.00, r_kk_fin=-0.001, ρ_kx_obj=0.60, ρ_kx_fin=+0.486 -> frac=0.027 | t(attrs)=0.219s, t(frac)=0.003s
+[2025-11-07T09:48:55-03:00] <k>=5.20, p=0.005205, px1=0.10, r_kk_obj=+0.00, r_kk_fin=-0.001, ρ_kx_obj=0.53, ρ_kx_fin=+0.495 -> frac=0.030 | t(attrs)=0.245s, t(frac)=0.004s
+[2025-11-07T09:48:55-03:00] Tareas paralelas completadas.

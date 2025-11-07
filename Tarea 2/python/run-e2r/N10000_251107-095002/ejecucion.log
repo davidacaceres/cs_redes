@@ -1,0 +1,9 @@
+[2025-11-07T09:50:02-03:00] Inicio experimento Fig3-ER (paralelo por procesos) | carpeta=run-e2r\N10000_251107-095002
+[2025-11-07T09:50:02-03:00] Procesos: deseados=18, usados=18, cpu_count=22
+[2025-11-07T09:50:02-03:00] Parámetros: N=10000, <k>=[5.2, 2.5], px1=[0.05, 0.1, 0.2], r_kk=[-0.5, 0.0, 0.5], ρ_kx=[np.float64(0.0), np.float64(0.1), np.float64(0.2), np.float64(0.3), np.float64(0.4), np.float64(0.5), np.float64(0.6)], seed=12021974
+[2025-11-07T09:50:42-03:00] Curva lista: <k>=5.20, px1=0.20, r_kk_obj=+0.00, r_kk_fin=-0.002, p=0.000520
+[2025-11-07T09:50:42-03:00] Curva lista: <k>=5.20, px1=0.10, r_kk_obj=+0.00, r_kk_fin=-0.002, p=0.000520
+[2025-11-07T09:50:43-03:00] Curva lista: <k>=2.50, px1=0.20, r_kk_obj=+0.00, r_kk_fin=+0.002, p=0.000250
+[2025-11-07T09:50:44-03:00] Curva lista: <k>=2.50, px1=0.10, r_kk_obj=+0.00, r_kk_fin=+0.002, p=0.000250
+[2025-11-07T09:50:46-03:00] Curva lista: <k>=2.50, px1=0.05, r_kk_obj=+0.00, r_kk_fin=+0.002, p=0.000250
+[2025-11-07T09:50:47-03:00] Curva lista: <k>=5.20, px1=0.05, r_kk_obj=+0.00, r_kk_fin=-0.002, p=0.000520

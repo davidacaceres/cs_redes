@@ -1,0 +1,50 @@
+[2025-11-07T16:03:39-03:00] Ejecutando script: redes-reales.py | ruta=C:\Users\dcaceres\Documents\Magister\Trimestre 2\CS Redes\Tarea 2\python\redes-reales.py
+[2025-11-07T16:03:39-03:00] Inicio experimento Fig4-REAL (paralelo por procesos) | carpeta=run-real\251107-160339
+[2025-11-07T16:03:39-03:00] Procesos: usados=18, cpu_count=22
+[2025-11-07T16:03:39-03:00] Parámetros: PX1=[0.05, 0.1, 0.2, 0.3], ρ_kx_grid=[np.float64(0.0), np.float64(0.07), np.float64(0.13), np.float64(0.2), np.float64(0.27), np.float64(0.33), np.float64(0.4), np.float64(0.47), np.float64(0.53), np.float64(0.6)], seed=12021974
+[2025-11-07T16:03:50-03:00] Generada red REAL: EnronCSV, N=1798, L=2822, r_kk=-0.653, tiempo_carga=0.035s, tiempo_pre=0.001s
+[2025-11-07T16:03:50-03:00] red=EnronCSV, N=1798, L=2822, px1=0.05, r_kk=-0.653, ρ_kx_obj=0.00, ρ_kx_fin=-0.002 -> frac=0.041 | t(attrs)=0.001s, t(frac)=0.002s
+[2025-11-07T16:03:50-03:00] red=EnronCSV, N=1798, L=2822, px1=0.05, r_kk=-0.653, ρ_kx_obj=0.07, ρ_kx_fin=+0.061 -> frac=0.117 | t(attrs)=0.080s, t(frac)=0.004s
+[2025-11-07T16:03:50-03:00] red=EnronCSV, N=1798, L=2822, px1=0.05, r_kk=-0.653, ρ_kx_obj=0.13, ρ_kx_fin=+0.141 -> frac=0.228 | t(attrs)=0.098s, t(frac)=0.003s
+[2025-11-07T16:03:50-03:00] red=EnronCSV, N=1798, L=2822, px1=0.05, r_kk=-0.653, ρ_kx_obj=0.20, ρ_kx_fin=+0.197 -> frac=0.364 | t(attrs)=0.131s, t(frac)=0.004s
+[2025-11-07T16:03:50-03:00] red=EnronCSV, N=1798, L=2822, px1=0.05, r_kk=-0.653, ρ_kx_obj=0.27, ρ_kx_fin=+0.274 -> frac=0.489 | t(attrs)=0.323s, t(frac)=0.006s
+[2025-11-07T16:03:50-03:00] red=EnronCSV, N=1798, L=2822, px1=0.05, r_kk=-0.653, ρ_kx_obj=0.33, ρ_kx_fin=+0.324 -> frac=0.611 | t(attrs)=0.316s, t(frac)=0.005s
+[2025-11-07T16:03:50-03:00] red=EnronCSV, N=1798, L=2822, px1=0.05, r_kk=-0.653, ρ_kx_obj=0.40, ρ_kx_fin=+0.391 -> frac=0.726 | t(attrs)=0.633s, t(frac)=0.003s
+[2025-11-07T16:03:50-03:00] red=EnronCSV, N=1798, L=2822, px1=0.05, r_kk=-0.653, ρ_kx_obj=0.47, ρ_kx_fin=+0.460 -> frac=0.918 | t(attrs)=1.293s, t(frac)=0.002s
+[2025-11-07T16:03:50-03:00] red=EnronCSV, N=1798, L=2822, px1=0.05, r_kk=-0.653, ρ_kx_obj=0.53, ρ_kx_fin=+0.480 -> frac=0.964 | t(attrs)=1.994s, t(frac)=0.002s
+[2025-11-07T16:03:50-03:00] red=EnronCSV, N=1798, L=2822, px1=0.05, r_kk=-0.653, ρ_kx_obj=0.60, ρ_kx_fin=+0.497 -> frac=0.986 | t(attrs)=1.994s, t(frac)=0.002s
+[2025-11-07T16:03:52-03:00] Generada red REAL: EnronCSV, N=1798, L=2822, r_kk=-0.653, tiempo_carga=0.037s, tiempo_pre=0.001s
+[2025-11-07T16:03:52-03:00] red=EnronCSV, N=1798, L=2822, px1=0.10, r_kk=-0.653, ρ_kx_obj=0.00, ρ_kx_fin=+0.010 -> frac=0.127 | t(attrs)=0.046s, t(frac)=0.005s
+[2025-11-07T16:03:52-03:00] red=EnronCSV, N=1798, L=2822, px1=0.10, r_kk=-0.653, ρ_kx_obj=0.07, ρ_kx_fin=+0.076 -> frac=0.270 | t(attrs)=0.036s, t(frac)=0.004s
+[2025-11-07T16:03:52-03:00] red=EnronCSV, N=1798, L=2822, px1=0.10, r_kk=-0.653, ρ_kx_obj=0.13, ρ_kx_fin=+0.131 -> frac=0.318 | t(attrs)=0.376s, t(frac)=0.005s
+[2025-11-07T16:03:52-03:00] red=EnronCSV, N=1798, L=2822, px1=0.10, r_kk=-0.653, ρ_kx_obj=0.20, ρ_kx_fin=+0.210 -> frac=0.554 | t(attrs)=0.273s, t(frac)=0.003s
+[2025-11-07T16:03:52-03:00] red=EnronCSV, N=1798, L=2822, px1=0.10, r_kk=-0.653, ρ_kx_obj=0.27, ρ_kx_fin=+0.263 -> frac=0.699 | t(attrs)=0.324s, t(frac)=0.002s
+[2025-11-07T16:03:52-03:00] red=EnronCSV, N=1798, L=2822, px1=0.10, r_kk=-0.653, ρ_kx_obj=0.33, ρ_kx_fin=+0.323 -> frac=0.905 | t(attrs)=0.589s, t(frac)=0.004s
+[2025-11-07T16:03:52-03:00] red=EnronCSV, N=1798, L=2822, px1=0.10, r_kk=-0.653, ρ_kx_obj=0.40, ρ_kx_fin=+0.365 -> frac=0.989 | t(attrs)=2.082s, t(frac)=0.003s
+[2025-11-07T16:03:52-03:00] red=EnronCSV, N=1798, L=2822, px1=0.10, r_kk=-0.653, ρ_kx_obj=0.47, ρ_kx_fin=+0.352 -> frac=0.946 | t(attrs)=1.957s, t(frac)=0.003s
+[2025-11-07T16:03:52-03:00] red=EnronCSV, N=1798, L=2822, px1=0.10, r_kk=-0.653, ρ_kx_obj=0.53, ρ_kx_fin=+0.366 -> frac=0.988 | t(attrs)=1.885s, t(frac)=0.003s
+[2025-11-07T16:03:52-03:00] red=EnronCSV, N=1798, L=2822, px1=0.10, r_kk=-0.653, ρ_kx_obj=0.60, ρ_kx_fin=+0.365 -> frac=0.988 | t(attrs)=1.790s, t(frac)=0.003s
+[2025-11-07T16:03:54-03:00] Generada red REAL: EnronCSV, N=1798, L=2822, r_kk=-0.653, tiempo_carga=0.047s, tiempo_pre=0.001s
+[2025-11-07T16:03:54-03:00] red=EnronCSV, N=1798, L=2822, px1=0.20, r_kk=-0.653, ρ_kx_obj=0.00, ρ_kx_fin=-0.010 -> frac=0.090 | t(attrs)=0.028s, t(frac)=0.003s
+[2025-11-07T16:03:54-03:00] red=EnronCSV, N=1798, L=2822, px1=0.20, r_kk=-0.653, ρ_kx_obj=0.07, ρ_kx_fin=+0.063 -> frac=0.331 | t(attrs)=0.133s, t(frac)=0.003s
+[2025-11-07T16:03:54-03:00] red=EnronCSV, N=1798, L=2822, px1=0.20, r_kk=-0.653, ρ_kx_obj=0.13, ρ_kx_fin=+0.123 -> frac=0.508 | t(attrs)=0.311s, t(frac)=0.003s
+[2025-11-07T16:03:54-03:00] red=EnronCSV, N=1798, L=2822, px1=0.20, r_kk=-0.653, ρ_kx_obj=0.20, ρ_kx_fin=+0.195 -> frac=0.769 | t(attrs)=0.647s, t(frac)=0.005s
+[2025-11-07T16:03:54-03:00] red=EnronCSV, N=1798, L=2822, px1=0.20, r_kk=-0.653, ρ_kx_obj=0.27, ρ_kx_fin=+0.257 -> frac=0.990 | t(attrs)=0.875s, t(frac)=0.002s
+[2025-11-07T16:03:54-03:00] red=EnronCSV, N=1798, L=2822, px1=0.20, r_kk=-0.653, ρ_kx_obj=0.33, ρ_kx_fin=+0.263 -> frac=0.991 | t(attrs)=1.937s, t(frac)=0.004s
+[2025-11-07T16:03:54-03:00] red=EnronCSV, N=1798, L=2822, px1=0.20, r_kk=-0.653, ρ_kx_obj=0.40, ρ_kx_fin=+0.263 -> frac=0.991 | t(attrs)=2.151s, t(frac)=0.002s
+[2025-11-07T16:03:54-03:00] red=EnronCSV, N=1798, L=2822, px1=0.20, r_kk=-0.653, ρ_kx_obj=0.47, ρ_kx_fin=+0.263 -> frac=0.990 | t(attrs)=1.702s, t(frac)=0.004s
+[2025-11-07T16:03:54-03:00] red=EnronCSV, N=1798, L=2822, px1=0.20, r_kk=-0.653, ρ_kx_obj=0.53, ρ_kx_fin=+0.263 -> frac=0.991 | t(attrs)=1.754s, t(frac)=0.003s
+[2025-11-07T16:03:54-03:00] red=EnronCSV, N=1798, L=2822, px1=0.20, r_kk=-0.653, ρ_kx_obj=0.60, ρ_kx_fin=+0.263 -> frac=0.990 | t(attrs)=1.652s, t(frac)=0.002s
+[2025-11-07T16:03:56-03:00] Generada red REAL: EnronCSV, N=1798, L=2822, r_kk=-0.653, tiempo_carga=0.043s, tiempo_pre=0.001s
+[2025-11-07T16:03:56-03:00] red=EnronCSV, N=1798, L=2822, px1=0.30, r_kk=-0.653, ρ_kx_obj=0.00, ρ_kx_fin=+0.009 -> frac=0.289 | t(attrs)=0.030s, t(frac)=0.003s
+[2025-11-07T16:03:56-03:00] red=EnronCSV, N=1798, L=2822, px1=0.30, r_kk=-0.653, ρ_kx_obj=0.07, ρ_kx_fin=+0.058 -> frac=0.434 | t(attrs)=0.145s, t(frac)=0.005s
+[2025-11-07T16:03:56-03:00] red=EnronCSV, N=1798, L=2822, px1=0.30, r_kk=-0.653, ρ_kx_obj=0.13, ρ_kx_fin=+0.127 -> frac=0.700 | t(attrs)=0.372s, t(frac)=0.003s
+[2025-11-07T16:03:56-03:00] red=EnronCSV, N=1798, L=2822, px1=0.30, r_kk=-0.653, ρ_kx_obj=0.20, ρ_kx_fin=+0.198 -> frac=0.991 | t(attrs)=0.659s, t(frac)=0.003s
+[2025-11-07T16:03:56-03:00] red=EnronCSV, N=1798, L=2822, px1=0.30, r_kk=-0.653, ρ_kx_obj=0.27, ρ_kx_fin=+0.210 -> frac=0.994 | t(attrs)=2.038s, t(frac)=0.004s
+[2025-11-07T16:03:56-03:00] red=EnronCSV, N=1798, L=2822, px1=0.30, r_kk=-0.653, ρ_kx_obj=0.33, ρ_kx_fin=+0.211 -> frac=0.994 | t(attrs)=1.870s, t(frac)=0.006s
+[2025-11-07T16:03:56-03:00] red=EnronCSV, N=1798, L=2822, px1=0.30, r_kk=-0.653, ρ_kx_obj=0.40, ρ_kx_fin=+0.211 -> frac=0.994 | t(attrs)=2.013s, t(frac)=0.003s
+[2025-11-07T16:03:56-03:00] red=EnronCSV, N=1798, L=2822, px1=0.30, r_kk=-0.653, ρ_kx_obj=0.47, ρ_kx_fin=+0.211 -> frac=0.995 | t(attrs)=1.839s, t(frac)=0.003s
+[2025-11-07T16:03:56-03:00] red=EnronCSV, N=1798, L=2822, px1=0.30, r_kk=-0.653, ρ_kx_obj=0.53, ρ_kx_fin=+0.211 -> frac=0.994 | t(attrs)=1.731s, t(frac)=0.002s
+[2025-11-07T16:03:56-03:00] red=EnronCSV, N=1798, L=2822, px1=0.30, r_kk=-0.653, ρ_kx_obj=0.60, ρ_kx_fin=+0.211 -> frac=0.995 | t(attrs)=1.724s, t(frac)=0.003s
+[2025-11-07T16:03:57-03:00] Figuras guardadas en: run-real\251107-160339\fig4_real.png y run-real\251107-160339\fig4_real.pdf
+[2025-11-07T16:03:57-03:00] Fin experimento Fig4-REAL | tiempo total=17.22s (~0.29 min) | carpeta=run-real\251107-160339

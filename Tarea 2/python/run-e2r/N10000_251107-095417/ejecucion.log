@@ -1,0 +1,9 @@
+[2025-11-07T09:54:17-03:00] Inicio experimento Fig3-ER (paralelo por procesos) | carpeta=run-e2r\N10000_251107-095417
+[2025-11-07T09:54:17-03:00] Procesos: deseados=18, usados=18, cpu_count=22
+[2025-11-07T09:54:17-03:00] Parámetros: N=10000, <k>=[5.2, 2.5], px1=[0.05, 0.1, 0.2], r_kk=[-0.5, 0.0, 0.5], ρ_kx=[np.float64(0.0), np.float64(0.1), np.float64(0.2), np.float64(0.3), np.float64(0.4), np.float64(0.5), np.float64(0.6)], seed=12021974
+[2025-11-07T09:54:44-03:00] Curva lista: <k>=5.20, px1=0.20, r_kk_obj=+0.00, r_kk_fin=-0.002, p=0.000520, t_curva=22.64s (t_gen=6.51s, t_rew=0.24s, t_rho_total=15.88s; t_attrs=15.61s, t_frac=0.28s)
+[2025-11-07T09:54:44-03:00] Curva lista: <k>=2.50, px1=0.20, r_kk_obj=+0.00, r_kk_fin=+0.002, p=0.000250, t_curva=22.76s (t_gen=6.45s, t_rew=0.12s, t_rho_total=16.12s; t_attrs=15.90s, t_frac=0.22s)
+[2025-11-07T09:54:45-03:00] Curva lista: <k>=5.20, px1=0.10, r_kk_obj=+0.00, r_kk_fin=-0.002, p=0.000520, t_curva=23.46s (t_gen=6.44s, t_rew=0.22s, t_rho_total=16.79s; t_attrs=16.49s, t_frac=0.31s)
+[2025-11-07T09:54:45-03:00] Curva lista: <k>=2.50, px1=0.05, r_kk_obj=+0.00, r_kk_fin=+0.002, p=0.000250, t_curva=23.41s (t_gen=6.39s, t_rew=0.12s, t_rho_total=16.84s; t_attrs=16.63s, t_frac=0.21s)
+[2025-11-07T09:54:45-03:00] Curva lista: <k>=5.20, px1=0.05, r_kk_obj=+0.00, r_kk_fin=-0.002, p=0.000520, t_curva=24.34s (t_gen=6.49s, t_rew=0.22s, t_rho_total=17.62s; t_attrs=17.34s, t_frac=0.27s)
+[2025-11-07T09:54:45-03:00] Curva lista: <k>=2.50, px1=0.10, r_kk_obj=+0.00, r_kk_fin=+0.002, p=0.000250, t_curva=23.50s (t_gen=6.27s, t_rew=0.15s, t_rho_total=17.00s; t_attrs=16.76s, t_frac=0.24s)

@@ -1,0 +1,955 @@
+"C:\Users\dcaceres\Documents\Magister\Trimestre 2\CS Redes\Tarea 2\python\.venv\Scripts\python.exe" "C:\Users\dcaceres\Documents\Magister\Trimestre 2\CS Redes\Tarea 2\python\scale-free-v20-stable.py"
+[2025-11-07 01:40:48] Backend interactivo seleccionado: TkAgg
+[2025-11-07 01:40:48] Salidas se guardarán en: C:\Users\dcaceres\Documents\Magister\Trimestre 2\CS Redes\Tarea 2\python\run\N10000_251107-014048
+[2025-11-07 01:40:48] Parámetros: {'N': 10000, 'px1': 0.05, 'max_rewire_factor': 5, 'tol': 0.035, 'seed': 12021974, 'processes': 18, 'rho_min': 0.0, 'rho_max': 0.6, 'rho_steps': 8, 'no_show': False}
+[2025-11-07 01:40:48] Generando redes base...
+[2025-11-07 01:40:48][alpha=2.1] Generando red scale-free N=10000
+[2025-11-07 01:40:48][alpha=2.1] Red creada en 0.11s | N=10000 M=13738
+[2025-11-07 01:40:48][alpha=2.4] Generando red scale-free N=10000
+[2025-11-07 01:40:48][alpha=2.4] Red creada en 0.06s | N=10000 M=9578
+[2025-11-07 01:40:48][alpha=3.1] Generando red scale-free N=10000
+[2025-11-07 01:40:48][alpha=3.1] Red creada en 0.05s | N=10000 M=6342
+[2025-11-07 01:40:48] Iniciando experimentos en paralelo... (processes=18)
+
+[2025-11-07 01:40:51][alpha=2.1] Inicio experimento rkk=-0.35, rho_kx=0.0
+
+[2025-11-07 01:40:51][alpha=2.1] Inicio experimento rkk=-0.35, rho_kx=0.17142857142857143
+[2025-11-07 01:40:51][alpha=2.1] Iniciando rewiring rkk=0.0002 target=-0.35
+[2025-11-07 01:40:51][alpha=2.1] Iniciando rewiring rkk=0.0002 target=-0.35
+
+[2025-11-07 01:40:51][alpha=2.1] Inicio experimento rkk=-0.35, rho_kx=0.34285714285714286
+
+[2025-11-07 01:40:51][alpha=2.1] Inicio experimento rkk=-0.35, rho_kx=0.5142857142857142
+[2025-11-07 01:40:51][alpha=2.1] Iniciando rewiring rkk=0.0002 target=-0.35
+
+[2025-11-07 01:40:51][alpha=2.1] Inicio experimento rkk=-0.25, rho_kx=0.0
+[2025-11-07 01:40:51][alpha=2.1] Iniciando rewiring rkk=0.0002 target=-0.35
+[2025-11-07 01:40:51][alpha=2.1] Iniciando rewiring rkk=0.0002 target=-0.25
+
+[2025-11-07 01:40:52][alpha=2.1] Inicio experimento rkk=-0.25, rho_kx=0.17142857142857143
+
+[2025-11-07 01:40:52][alpha=2.1] Inicio experimento rkk=-0.25, rho_kx=0.34285714285714286
+
+[2025-11-07 01:40:52][alpha=2.1] Inicio experimento rkk=-0.25, rho_kx=0.5142857142857142
+
+[2025-11-07 01:40:52][alpha=2.1] Inicio experimento rkk=-0.15, rho_kx=0.0
+[2025-11-07 01:40:52][alpha=2.1] Iniciando rewiring rkk=0.0002 target=-0.25
+[2025-11-07 01:40:52][alpha=2.1] Iniciando rewiring rkk=0.0002 target=-0.25
+[2025-11-07 01:40:52][alpha=2.1] Iniciando rewiring rkk=0.0002 target=-0.25
+
+[2025-11-07 01:40:52][alpha=2.1] Inicio experimento rkk=-0.15, rho_kx=0.17142857142857143
+[2025-11-07 01:40:52][alpha=2.1] Iniciando rewiring rkk=0.0002 target=-0.15
+
+[2025-11-07 01:40:52][alpha=2.1] Inicio experimento rkk=-0.15, rho_kx=0.34285714285714286
+[2025-11-07 01:40:52][alpha=2.1] Iniciando rewiring rkk=0.0002 target=-0.15
+
+[2025-11-07 01:40:52][alpha=2.1] Inicio experimento rkk=-0.15, rho_kx=0.5142857142857142
+
+[2025-11-07 01:40:52][alpha=2.1] Inicio experimento rkk=-0.05, rho_kx=0.0
+
+[2025-11-07 01:40:52][alpha=2.1] Inicio experimento rkk=-0.05, rho_kx=0.17142857142857143
+
+[2025-11-07 01:40:52][alpha=2.1] Inicio experimento rkk=-0.05, rho_kx=0.34285714285714286
+[2025-11-07 01:40:52][alpha=2.1] Iniciando rewiring rkk=0.0002 target=-0.15
+
+[2025-11-07 01:40:52][alpha=2.4] Inicio experimento rkk=-0.2, rho_kx=0.0
+
+[2025-11-07 01:40:52][alpha=2.1] Inicio experimento rkk=-0.05, rho_kx=0.5142857142857142
+
+[2025-11-07 01:40:52][alpha=2.4] Inicio experimento rkk=-0.2, rho_kx=0.17142857142857143
+[2025-11-07 01:40:52][alpha=2.1] Iniciando rewiring rkk=0.0002 target=-0.15
+[2025-11-07 01:40:52][alpha=2.1] Iniciando rewiring rkk=0.0002 target=-0.05
+[2025-11-07 01:40:52][alpha=2.1] Iniciando rewiring rkk=0.0002 target=-0.05
+[2025-11-07 01:40:52][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=-0.2
+[2025-11-07 01:40:52][alpha=2.1] Iniciando rewiring rkk=0.0002 target=-0.05
+[2025-11-07 01:40:52][alpha=2.1] Iniciando rewiring rkk=0.0002 target=-0.05
+[2025-11-07 01:40:52][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=-0.2
+[2025-11-07 01:43:06][alpha=2.1] Rewiring final rkk=-0.0150 en 467 iter(s) y 134.08s
+[2025-11-07 01:43:06][alpha=2.1, rkk=-0.05] Ajustando atributos para rho_kx=0.5142857142857142
+[2025-11-07 01:43:06][alpha=2.1, rkk=-0.05] Asignación terminada en 0.01s con corr_diff=0.0073
+[2025-11-07 01:43:06][alpha=2.1, rkk=-0.05, rho_kx=0.5142857142857142] Calculando fracción espejismo
+[2025-11-07 01:43:06][alpha=2.1, rkk=-0.05, rho_kx=0.5142857142857142] Fracción: 0.244, tiempo 0.06s
+[2025-11-07 01:43:06][alpha=2.1] Resultado rkk=-0.05, rho_kx=0.5142857142857142 --> frac=0.244
+
+[2025-11-07 01:43:06][alpha=2.1] Inicio experimento rkk=-0.05, rho_kx=0.6
+[2025-11-07 01:43:07][alpha=2.1] Iniciando rewiring rkk=0.0002 target=-0.05
+[2025-11-07 01:43:31][alpha=2.1] Rewiring final rkk=-0.0152 en 545 iter(s) y 159.44s
+[2025-11-07 01:43:31][alpha=2.1, rkk=-0.05] Ajustando atributos para rho_kx=0.0
+[2025-11-07 01:43:31][alpha=2.1, rkk=-0.05] Asignación terminada en 0.03s con corr_diff=0.0068
+[2025-11-07 01:43:31][alpha=2.1, rkk=-0.05, rho_kx=0.0] Calculando fracción espejismo
+[2025-11-07 01:43:32][alpha=2.1, rkk=-0.05, rho_kx=0.0] Fracción: 0.037, tiempo 0.06s
+[2025-11-07 01:43:32][alpha=2.1] Resultado rkk=-0.05, rho_kx=0.0 --> frac=0.037
+
+[2025-11-07 01:43:32][alpha=2.1] Inicio experimento rkk=-0.05, rho_kx=0.08571428571428572
+[2025-11-07 01:43:32][alpha=2.1] Iniciando rewiring rkk=0.0002 target=-0.05
+[2025-11-07 01:43:45][alpha=2.1] Rewiring final rkk=-0.0153 en 577 iter(s) y 173.42s
+[2025-11-07 01:43:45][alpha=2.1, rkk=-0.05] Ajustando atributos para rho_kx=0.17142857142857143
+[2025-11-07 01:43:45][alpha=2.1, rkk=-0.05] Asignación terminada en 0.04s con corr_diff=0.0007
+[2025-11-07 01:43:45][alpha=2.1, rkk=-0.05, rho_kx=0.17142857142857143] Calculando fracción espejismo
+[2025-11-07 01:43:46][alpha=2.1, rkk=-0.05, rho_kx=0.17142857142857143] Fracción: 0.099, tiempo 0.04s
+[2025-11-07 01:43:46][alpha=2.1] Resultado rkk=-0.05, rho_kx=0.17142857142857143 --> frac=0.099
+
+[2025-11-07 01:43:46][alpha=2.1] Inicio experimento rkk=-0.05, rho_kx=0.2571428571428571
+[2025-11-07 01:43:46][alpha=2.1] Iniciando rewiring rkk=0.0002 target=-0.05
+[2025-11-07 01:43:46][alpha=2.1] Rewiring final rkk=-0.0152 en 602 iter(s) y 174.19s
+[2025-11-07 01:43:46][alpha=2.1, rkk=-0.05] Ajustando atributos para rho_kx=0.34285714285714286
+[2025-11-07 01:43:46][alpha=2.1, rkk=-0.05] Asignación terminada en 0.04s con corr_diff=0.0075
+[2025-11-07 01:43:46][alpha=2.1, rkk=-0.05, rho_kx=0.34285714285714286] Calculando fracción espejismo
+[2025-11-07 01:43:46][alpha=2.1, rkk=-0.05, rho_kx=0.34285714285714286] Fracción: 0.169, tiempo 0.06s
+[2025-11-07 01:43:46][alpha=2.1] Resultado rkk=-0.05, rho_kx=0.34285714285714286 --> frac=0.169
+
+[2025-11-07 01:43:46][alpha=2.1] Inicio experimento rkk=-0.05, rho_kx=0.4285714285714286
+[2025-11-07 01:43:47][alpha=2.1] Iniciando rewiring rkk=0.0002 target=-0.05
+[2025-11-07 01:45:18][alpha=2.1] Rewiring final rkk=-0.0151 en 437 iter(s) y 131.23s
+[2025-11-07 01:45:18][alpha=2.1, rkk=-0.05] Ajustando atributos para rho_kx=0.6
+[2025-11-07 01:45:18][alpha=2.1, rkk=-0.05] Asignación terminada en 0.17s con corr_diff=0.0489
+[2025-11-07 01:45:18][alpha=2.1, rkk=-0.05, rho_kx=0.6] Calculando fracción espejismo
+[2025-11-07 01:45:18][alpha=2.1, rkk=-0.05, rho_kx=0.6] Fracción: 0.258, tiempo 0.06s
+[2025-11-07 01:45:18][alpha=2.1] Resultado rkk=-0.05, rho_kx=0.6 --> frac=0.258
+
+[2025-11-07 01:45:18][alpha=2.4] Inicio experimento rkk=-0.2, rho_kx=0.34285714285714286
+[2025-11-07 01:45:19][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=-0.2
+[2025-11-07 01:45:43][alpha=2.1] Rewiring final rkk=-0.0151 en 380 iter(s) y 116.75s
+[2025-11-07 01:45:43][alpha=2.1, rkk=-0.05] Ajustando atributos para rho_kx=0.4285714285714286
+[2025-11-07 01:45:43][alpha=2.1, rkk=-0.05] Asignación terminada en 0.02s con corr_diff=0.0068
+[2025-11-07 01:45:43][alpha=2.1, rkk=-0.05, rho_kx=0.4285714285714286] Calculando fracción espejismo
+[2025-11-07 01:45:43][alpha=2.1, rkk=-0.05, rho_kx=0.4285714285714286] Fracción: 0.195, tiempo 0.04s
+[2025-11-07 01:45:43][alpha=2.1] Resultado rkk=-0.05, rho_kx=0.4285714285714286 --> frac=0.195
+
+[2025-11-07 01:45:43][alpha=2.4] Inicio experimento rkk=-0.2, rho_kx=0.5142857142857142
+[2025-11-07 01:45:44][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=-0.2
+[2025-11-07 01:45:58][alpha=2.1] Rewiring final rkk=-0.0151 en 482 iter(s) y 145.87s
+[2025-11-07 01:45:58][alpha=2.1, rkk=-0.05] Ajustando atributos para rho_kx=0.08571428571428572
+[2025-11-07 01:45:58][alpha=2.1, rkk=-0.05] Asignación terminada en 0.05s con corr_diff=0.0004
+[2025-11-07 01:45:58][alpha=2.1, rkk=-0.05, rho_kx=0.08571428571428572] Calculando fracción espejismo
+[2025-11-07 01:45:58][alpha=2.1, rkk=-0.05, rho_kx=0.08571428571428572] Fracción: 0.068, tiempo 0.09s
+[2025-11-07 01:45:58][alpha=2.1] Resultado rkk=-0.05, rho_kx=0.08571428571428572 --> frac=0.068
+
+[2025-11-07 01:45:58][alpha=2.4] Inicio experimento rkk=-0.1, rho_kx=0.0
+[2025-11-07 01:45:58][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=-0.1
+[2025-11-07 01:46:52][alpha=2.1] Rewiring final rkk=-0.0153 en 583 iter(s) y 185.81s
+[2025-11-07 01:46:52][alpha=2.1, rkk=-0.05] Ajustando atributos para rho_kx=0.2571428571428571
+[2025-11-07 01:46:52][alpha=2.1, rkk=-0.05] Asignación terminada en 0.03s con corr_diff=0.0066
+[2025-11-07 01:46:52][alpha=2.1, rkk=-0.05, rho_kx=0.2571428571428571] Calculando fracción espejismo
+[2025-11-07 01:46:52][alpha=2.1, rkk=-0.05, rho_kx=0.2571428571428571] Fracción: 0.134, tiempo 0.09s
+[2025-11-07 01:46:52][alpha=2.1] Resultado rkk=-0.05, rho_kx=0.2571428571428571 --> frac=0.134
+
+[2025-11-07 01:46:52][alpha=2.4] Inicio experimento rkk=-0.1, rho_kx=0.17142857142857143
+[2025-11-07 01:46:52][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=-0.1
+[2025-11-07 01:52:46][alpha=2.4] Rewiring final rkk=-0.0650 en 1542 iter(s) y 354.04s
+[2025-11-07 01:52:46][alpha=2.4, rkk=-0.1] Ajustando atributos para rho_kx=0.17142857142857143
+[2025-11-07 01:52:46][alpha=2.4, rkk=-0.1] Asignación terminada en 0.02s con corr_diff=0.0023
+[2025-11-07 01:52:46][alpha=2.4, rkk=-0.1, rho_kx=0.17142857142857143] Calculando fracción espejismo
+[2025-11-07 01:52:46][alpha=2.4, rkk=-0.1, rho_kx=0.17142857142857143] Fracción: 0.104, tiempo 0.02s
+[2025-11-07 01:52:46][alpha=2.4] Resultado rkk=-0.1, rho_kx=0.17142857142857143 --> frac=0.104
+
+[2025-11-07 01:52:46][alpha=2.4] Inicio experimento rkk=-0.1, rho_kx=0.2571428571428571
+[2025-11-07 01:52:46][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=-0.1
+[2025-11-07 01:53:50][alpha=2.4] Rewiring final rkk=-0.0650 en 1997 iter(s) y 472.29s
+[2025-11-07 01:53:50][alpha=2.4, rkk=-0.1] Ajustando atributos para rho_kx=0.0
+[2025-11-07 01:53:50][alpha=2.4, rkk=-0.1] Asignación terminada en 0.02s con corr_diff=0.0017
+[2025-11-07 01:53:50][alpha=2.4, rkk=-0.1, rho_kx=0.0] Calculando fracción espejismo
+[2025-11-07 01:53:50][alpha=2.4, rkk=-0.1, rho_kx=0.0] Fracción: 0.035, tiempo 0.03s
+[2025-11-07 01:53:50][alpha=2.4] Resultado rkk=-0.1, rho_kx=0.0 --> frac=0.035
+
+[2025-11-07 01:53:51][alpha=2.4] Inicio experimento rkk=-0.1, rho_kx=0.08571428571428572
+[2025-11-07 01:53:51][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=-0.1
+[2025-11-07 02:00:12][alpha=2.4] Rewiring final rkk=-0.0651 en 1651 iter(s) y 445.58s
+[2025-11-07 02:00:12][alpha=2.4, rkk=-0.1] Ajustando atributos para rho_kx=0.2571428571428571
+[2025-11-07 02:00:12][alpha=2.4, rkk=-0.1] Asignación terminada en 0.01s con corr_diff=0.0049
+[2025-11-07 02:00:12][alpha=2.4, rkk=-0.1, rho_kx=0.2571428571428571] Calculando fracción espejismo
+[2025-11-07 02:00:12][alpha=2.4, rkk=-0.1, rho_kx=0.2571428571428571] Fracción: 0.132, tiempo 0.03s
+[2025-11-07 02:00:12][alpha=2.4] Resultado rkk=-0.1, rho_kx=0.2571428571428571 --> frac=0.132
+
+[2025-11-07 02:00:12][alpha=2.4] Inicio experimento rkk=-0.1, rho_kx=0.34285714285714286
+[2025-11-07 02:00:12][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=-0.1
+[2025-11-07 02:01:47][alpha=2.1] Rewiring final rkk=-0.1151 en 4358 iter(s) y 1254.55s
+[2025-11-07 02:01:47][alpha=2.1, rkk=-0.15] Ajustando atributos para rho_kx=0.5142857142857142
+[2025-11-07 02:01:47][alpha=2.1, rkk=-0.15] Asignación terminada en 0.01s con corr_diff=0.0022
+[2025-11-07 02:01:47][alpha=2.1, rkk=-0.15, rho_kx=0.5142857142857142] Calculando fracción espejismo
+[2025-11-07 02:01:47][alpha=2.1, rkk=-0.15, rho_kx=0.5142857142857142] Fracción: 0.295, tiempo 0.05s
+[2025-11-07 02:01:47][alpha=2.1] Resultado rkk=-0.15, rho_kx=0.5142857142857142 --> frac=0.295
+
+[2025-11-07 02:01:47][alpha=2.1] Inicio experimento rkk=-0.15, rho_kx=0.6
+[2025-11-07 02:01:47][alpha=2.1] Iniciando rewiring rkk=0.0002 target=-0.15
+[2025-11-07 02:02:02][alpha=2.4] Rewiring final rkk=-0.0660 en 1974 iter(s) y 491.15s
+[2025-11-07 02:02:02][alpha=2.4, rkk=-0.1] Ajustando atributos para rho_kx=0.08571428571428572
+[2025-11-07 02:02:02][alpha=2.4, rkk=-0.1] Asignación terminada en 0.02s con corr_diff=0.0064
+[2025-11-07 02:02:02][alpha=2.4, rkk=-0.1, rho_kx=0.08571428571428572] Calculando fracción espejismo
+[2025-11-07 02:02:02][alpha=2.4, rkk=-0.1, rho_kx=0.08571428571428572] Fracción: 0.071, tiempo 0.04s
+[2025-11-07 02:02:02][alpha=2.4] Resultado rkk=-0.1, rho_kx=0.08571428571428572 --> frac=0.071
+
+[2025-11-07 02:02:02][alpha=2.4] Inicio experimento rkk=-0.1, rho_kx=0.5142857142857142
+[2025-11-07 02:02:02][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=-0.1
+[2025-11-07 02:02:25][alpha=2.1] Rewiring final rkk=-0.1151 en 4531 iter(s) y 1292.86s
+[2025-11-07 02:02:25][alpha=2.1, rkk=-0.15] Ajustando atributos para rho_kx=0.0
+[2025-11-07 02:02:25][alpha=2.1, rkk=-0.15] Asignación terminada en 0.02s con corr_diff=0.0002
+[2025-11-07 02:02:25][alpha=2.1, rkk=-0.15, rho_kx=0.0] Calculando fracción espejismo
+[2025-11-07 02:02:25][alpha=2.1, rkk=-0.15, rho_kx=0.0] Fracción: 0.033, tiempo 0.03s
+[2025-11-07 02:02:25][alpha=2.1] Resultado rkk=-0.15, rho_kx=0.0 --> frac=0.033
+
+[2025-11-07 02:02:25][alpha=2.1] Inicio experimento rkk=-0.15, rho_kx=0.08571428571428572
+[2025-11-07 02:02:25][alpha=2.1] Iniciando rewiring rkk=0.0002 target=-0.15
+[2025-11-07 02:02:28][alpha=2.1] Rewiring final rkk=-0.1153 en 4579 iter(s) y 1295.78s
+[2025-11-07 02:02:28][alpha=2.1, rkk=-0.15] Ajustando atributos para rho_kx=0.17142857142857143
+[2025-11-07 02:02:28][alpha=2.1, rkk=-0.15] Asignación terminada en 0.02s con corr_diff=0.0027
+[2025-11-07 02:02:28][alpha=2.1, rkk=-0.15, rho_kx=0.17142857142857143] Calculando fracción espejismo
+[2025-11-07 02:02:28][alpha=2.1, rkk=-0.15, rho_kx=0.17142857142857143] Fracción: 0.113, tiempo 0.05s
+[2025-11-07 02:02:28][alpha=2.1] Resultado rkk=-0.15, rho_kx=0.17142857142857143 --> frac=0.113
+
+[2025-11-07 02:02:28][alpha=2.1] Inicio experimento rkk=-0.15, rho_kx=0.2571428571428571
+[2025-11-07 02:02:28][alpha=2.1] Iniciando rewiring rkk=0.0002 target=-0.15
+[2025-11-07 02:05:33][alpha=2.1] Rewiring final rkk=-0.1150 en 5226 iter(s) y 1481.13s
+[2025-11-07 02:05:33][alpha=2.1, rkk=-0.15] Ajustando atributos para rho_kx=0.34285714285714286
+[2025-11-07 02:05:33][alpha=2.1, rkk=-0.15] Asignación terminada en 0.02s con corr_diff=0.0056
+[2025-11-07 02:05:33][alpha=2.1, rkk=-0.15, rho_kx=0.34285714285714286] Calculando fracción espejismo
+[2025-11-07 02:05:33][alpha=2.1, rkk=-0.15, rho_kx=0.34285714285714286] Fracción: 0.197, tiempo 0.05s
+[2025-11-07 02:05:33][alpha=2.1] Resultado rkk=-0.15, rho_kx=0.34285714285714286 --> frac=0.197
+
+[2025-11-07 02:05:33][alpha=2.1] Inicio experimento rkk=-0.15, rho_kx=0.4285714285714286
+[2025-11-07 02:05:33][alpha=2.1] Iniciando rewiring rkk=0.0002 target=-0.15
+[2025-11-07 02:07:27][alpha=2.4] Rewiring final rkk=-0.0657 en 2046 iter(s) y 434.85s
+[2025-11-07 02:07:27][alpha=2.4, rkk=-0.1] Ajustando atributos para rho_kx=0.34285714285714286
+[2025-11-07 02:07:27][alpha=2.4, rkk=-0.1] Asignación terminada en 0.03s con corr_diff=0.0055
+[2025-11-07 02:07:27][alpha=2.4, rkk=-0.1, rho_kx=0.34285714285714286] Calculando fracción espejismo
+[2025-11-07 02:07:27][alpha=2.4, rkk=-0.1, rho_kx=0.34285714285714286] Fracción: 0.170, tiempo 0.04s
+[2025-11-07 02:07:27][alpha=2.4] Resultado rkk=-0.1, rho_kx=0.34285714285714286 --> frac=0.170
+
+[2025-11-07 02:07:27][alpha=2.4] Inicio experimento rkk=-0.1, rho_kx=0.4285714285714286
+[2025-11-07 02:07:27][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=-0.1
+[2025-11-07 02:08:16][alpha=2.4] Rewiring final rkk=-0.0650 en 1744 iter(s) y 374.15s
+[2025-11-07 02:08:16][alpha=2.4, rkk=-0.1] Ajustando atributos para rho_kx=0.5142857142857142
+[2025-11-07 02:08:16][alpha=2.4, rkk=-0.1] Asignación terminada en 0.02s con corr_diff=0.0058
+[2025-11-07 02:08:16][alpha=2.4, rkk=-0.1, rho_kx=0.5142857142857142] Calculando fracción espejismo
+[2025-11-07 02:08:16][alpha=2.4, rkk=-0.1, rho_kx=0.5142857142857142] Fracción: 0.226, tiempo 0.04s
+[2025-11-07 02:08:16][alpha=2.4] Resultado rkk=-0.1, rho_kx=0.5142857142857142 --> frac=0.226
+
+[2025-11-07 02:08:17][alpha=2.4] Inicio experimento rkk=-0.1, rho_kx=0.6
+[2025-11-07 02:08:17][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=-0.1
+[2025-11-07 02:12:52][alpha=2.4] Rewiring final rkk=-0.0651 en 1530 iter(s) y 324.43s
+[2025-11-07 02:12:52][alpha=2.4, rkk=-0.1] Ajustando atributos para rho_kx=0.4285714285714286
+[2025-11-07 02:12:52][alpha=2.4, rkk=-0.1] Asignación terminada en 0.02s con corr_diff=0.0052
+[2025-11-07 02:12:52][alpha=2.4, rkk=-0.1, rho_kx=0.4285714285714286] Calculando fracción espejismo
+[2025-11-07 02:12:52][alpha=2.4, rkk=-0.1, rho_kx=0.4285714285714286] Fracción: 0.195, tiempo 0.03s
+[2025-11-07 02:12:52][alpha=2.4] Resultado rkk=-0.1, rho_kx=0.4285714285714286 --> frac=0.195
+
+[2025-11-07 02:12:52][alpha=2.4] Inicio experimento rkk=0.0, rho_kx=0.0
+[2025-11-07 02:12:52][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=0.0
+[2025-11-07 02:12:52][alpha=2.4] Rewiring final rkk=-0.0216 en 0 iter(s) y 0.01s
+[2025-11-07 02:12:52][alpha=2.4, rkk=0.0] Ajustando atributos para rho_kx=0.0
+[2025-11-07 02:12:52][alpha=2.4, rkk=0.0] Asignación terminada en 0.02s con corr_diff=0.0070
+[2025-11-07 02:12:52][alpha=2.4, rkk=0.0, rho_kx=0.0] Calculando fracción espejismo
+[2025-11-07 02:12:52][alpha=2.4, rkk=0.0, rho_kx=0.0] Fracción: 0.036, tiempo 0.03s
+[2025-11-07 02:12:52][alpha=2.4] Resultado rkk=0.0, rho_kx=0.0 --> frac=0.036
+
+[2025-11-07 02:12:52][alpha=2.4] Inicio experimento rkk=0.0, rho_kx=0.08571428571428572
+[2025-11-07 02:12:52][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=0.0
+[2025-11-07 02:12:52][alpha=2.4] Rewiring final rkk=-0.0216 en 0 iter(s) y 0.02s
+[2025-11-07 02:12:52][alpha=2.4, rkk=0.0] Ajustando atributos para rho_kx=0.08571428571428572
+[2025-11-07 02:12:52][alpha=2.4, rkk=0.0] Asignación terminada en 0.02s con corr_diff=0.0060
+[2025-11-07 02:12:52][alpha=2.4, rkk=0.0, rho_kx=0.08571428571428572] Calculando fracción espejismo
+[2025-11-07 02:12:52][alpha=2.4, rkk=0.0, rho_kx=0.08571428571428572] Fracción: 0.065, tiempo 0.03s
+[2025-11-07 02:12:52][alpha=2.4] Resultado rkk=0.0, rho_kx=0.08571428571428572 --> frac=0.065
+
+[2025-11-07 02:12:52][alpha=2.4] Inicio experimento rkk=0.0, rho_kx=0.17142857142857143
+[2025-11-07 02:12:52][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=0.0
+[2025-11-07 02:12:53][alpha=2.4] Rewiring final rkk=-0.0216 en 0 iter(s) y 0.01s
+[2025-11-07 02:12:53][alpha=2.4, rkk=0.0] Ajustando atributos para rho_kx=0.17142857142857143
+[2025-11-07 02:12:53][alpha=2.4, rkk=0.0] Asignación terminada en 0.02s con corr_diff=0.0006
+[2025-11-07 02:12:53][alpha=2.4, rkk=0.0, rho_kx=0.17142857142857143] Calculando fracción espejismo
+[2025-11-07 02:12:53][alpha=2.4, rkk=0.0, rho_kx=0.17142857142857143] Fracción: 0.090, tiempo 0.03s
+[2025-11-07 02:12:53][alpha=2.4] Resultado rkk=0.0, rho_kx=0.17142857142857143 --> frac=0.090
+
+[2025-11-07 02:12:53][alpha=2.4] Inicio experimento rkk=0.0, rho_kx=0.2571428571428571
+[2025-11-07 02:12:53][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=0.0
+[2025-11-07 02:12:53][alpha=2.4] Rewiring final rkk=-0.0216 en 0 iter(s) y 0.01s
+[2025-11-07 02:12:53][alpha=2.4, rkk=0.0] Ajustando atributos para rho_kx=0.2571428571428571
+[2025-11-07 02:12:53][alpha=2.4, rkk=0.0] Asignación terminada en 0.02s con corr_diff=0.0060
+[2025-11-07 02:12:53][alpha=2.4, rkk=0.0, rho_kx=0.2571428571428571] Calculando fracción espejismo
+[2025-11-07 02:12:53][alpha=2.4, rkk=0.0, rho_kx=0.2571428571428571] Fracción: 0.120, tiempo 0.03s
+[2025-11-07 02:12:53][alpha=2.4] Resultado rkk=0.0, rho_kx=0.2571428571428571 --> frac=0.120
+
+[2025-11-07 02:12:53][alpha=2.4] Inicio experimento rkk=0.0, rho_kx=0.34285714285714286
+[2025-11-07 02:12:53][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=0.0
+[2025-11-07 02:12:53][alpha=2.4] Rewiring final rkk=-0.0216 en 0 iter(s) y 0.01s
+[2025-11-07 02:12:53][alpha=2.4, rkk=0.0] Ajustando atributos para rho_kx=0.34285714285714286
+[2025-11-07 02:12:53][alpha=2.4, rkk=0.0] Asignación terminada en 0.02s con corr_diff=0.0005
+[2025-11-07 02:12:53][alpha=2.4, rkk=0.0, rho_kx=0.34285714285714286] Calculando fracción espejismo
+[2025-11-07 02:12:53][alpha=2.4, rkk=0.0, rho_kx=0.34285714285714286] Fracción: 0.149, tiempo 0.03s
+[2025-11-07 02:12:53][alpha=2.4] Resultado rkk=0.0, rho_kx=0.34285714285714286 --> frac=0.149
+
+[2025-11-07 02:12:53][alpha=2.4] Inicio experimento rkk=0.0, rho_kx=0.4285714285714286
+[2025-11-07 02:12:53][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=0.0
+[2025-11-07 02:12:53][alpha=2.4] Rewiring final rkk=-0.0216 en 0 iter(s) y 0.01s
+[2025-11-07 02:12:54][alpha=2.4, rkk=0.0] Ajustando atributos para rho_kx=0.4285714285714286
+[2025-11-07 02:12:54][alpha=2.4, rkk=0.0] Asignación terminada en 0.03s con corr_diff=0.0022
+[2025-11-07 02:12:54][alpha=2.4, rkk=0.0, rho_kx=0.4285714285714286] Calculando fracción espejismo
+[2025-11-07 02:12:54][alpha=2.4, rkk=0.0, rho_kx=0.4285714285714286] Fracción: 0.176, tiempo 0.04s
+[2025-11-07 02:12:54][alpha=2.4] Resultado rkk=0.0, rho_kx=0.4285714285714286 --> frac=0.176
+
+[2025-11-07 02:12:54][alpha=2.4] Inicio experimento rkk=0.0, rho_kx=0.5142857142857142
+[2025-11-07 02:12:54][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=0.0
+[2025-11-07 02:12:54][alpha=2.4] Rewiring final rkk=-0.0216 en 0 iter(s) y 0.02s
+[2025-11-07 02:12:54][alpha=2.4, rkk=0.0] Ajustando atributos para rho_kx=0.5142857142857142
+[2025-11-07 02:12:54][alpha=2.4, rkk=0.0] Asignación terminada en 0.07s con corr_diff=0.0094
+[2025-11-07 02:12:54][alpha=2.4, rkk=0.0, rho_kx=0.5142857142857142] Calculando fracción espejismo
+[2025-11-07 02:12:54][alpha=2.4, rkk=0.0, rho_kx=0.5142857142857142] Fracción: 0.205, tiempo 0.03s
+[2025-11-07 02:12:54][alpha=2.4] Resultado rkk=0.0, rho_kx=0.5142857142857142 --> frac=0.205
+
+[2025-11-07 02:12:54][alpha=2.4] Inicio experimento rkk=0.0, rho_kx=0.6
+[2025-11-07 02:12:54][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=0.0
+[2025-11-07 02:12:54][alpha=2.4] Rewiring final rkk=-0.0216 en 0 iter(s) y 0.01s
+[2025-11-07 02:12:54][alpha=2.4, rkk=0.0] Ajustando atributos para rho_kx=0.6
+[2025-11-07 02:12:54][alpha=2.4, rkk=0.0] Asignación terminada en 0.09s con corr_diff=0.0967
+[2025-11-07 02:12:54][alpha=2.4, rkk=0.0, rho_kx=0.6] Calculando fracción espejismo
+[2025-11-07 02:12:54][alpha=2.4, rkk=0.0, rho_kx=0.6] Fracción: 0.203, tiempo 0.03s
+[2025-11-07 02:12:54][alpha=2.4] Resultado rkk=0.0, rho_kx=0.6 --> frac=0.203
+
+[2025-11-07 02:12:54][alpha=2.4] Inicio experimento rkk=0.1, rho_kx=0.0
+[2025-11-07 02:12:54][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=0.1
+[2025-11-07 02:14:37][alpha=2.4] Rewiring final rkk=-0.1651 en 8760 iter(s) y 2024.68s
+[2025-11-07 02:14:37][alpha=2.4, rkk=-0.2] Ajustando atributos para rho_kx=0.0
+[2025-11-07 02:14:37][alpha=2.4, rkk=-0.2] Asignación terminada en 0.03s con corr_diff=0.0017
+[2025-11-07 02:14:37][alpha=2.4, rkk=-0.2, rho_kx=0.0] Calculando fracción espejismo
+[2025-11-07 02:14:37][alpha=2.4, rkk=-0.2, rho_kx=0.0] Fracción: 0.040, tiempo 0.04s
+[2025-11-07 02:14:37][alpha=2.4] Resultado rkk=-0.2, rho_kx=0.0 --> frac=0.040
+
+[2025-11-07 02:14:37][alpha=2.4] Inicio experimento rkk=-0.2, rho_kx=0.08571428571428572
+[2025-11-07 02:14:37][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=-0.2
+[2025-11-07 02:14:56][alpha=2.4] Rewiring final rkk=-0.1650 en 8842 iter(s) y 2044.38s
+[2025-11-07 02:14:56][alpha=2.4, rkk=-0.2] Ajustando atributos para rho_kx=0.17142857142857143
+[2025-11-07 02:14:56][alpha=2.4, rkk=-0.2] Asignación terminada en 0.02s con corr_diff=0.0062
+[2025-11-07 02:14:56][alpha=2.4, rkk=-0.2, rho_kx=0.17142857142857143] Calculando fracción espejismo
+[2025-11-07 02:14:56][alpha=2.4, rkk=-0.2, rho_kx=0.17142857142857143] Fracción: 0.120, tiempo 0.03s
+[2025-11-07 02:14:56][alpha=2.4] Resultado rkk=-0.2, rho_kx=0.17142857142857143 --> frac=0.120
+
+[2025-11-07 02:14:57][alpha=2.4] Inicio experimento rkk=-0.2, rho_kx=0.2571428571428571
+[2025-11-07 02:14:57][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=-0.2
+[2025-11-07 02:15:18][alpha=2.4] Rewiring final rkk=-0.0659 en 1949 iter(s) y 421.57s
+[2025-11-07 02:15:18][alpha=2.4, rkk=-0.1] Ajustando atributos para rho_kx=0.6
+[2025-11-07 02:15:18][alpha=2.4, rkk=-0.1] Asignación terminada en 0.10s con corr_diff=0.0959
+[2025-11-07 02:15:18][alpha=2.4, rkk=-0.1, rho_kx=0.6] Calculando fracción espejismo
+[2025-11-07 02:15:18][alpha=2.4, rkk=-0.1, rho_kx=0.6] Fracción: 0.228, tiempo 0.04s
+[2025-11-07 02:15:18][alpha=2.4] Resultado rkk=-0.1, rho_kx=0.6 --> frac=0.228
+
+[2025-11-07 02:15:18][alpha=2.4] Inicio experimento rkk=0.1, rho_kx=0.17142857142857143
+[2025-11-07 02:15:19][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=0.1
+[2025-11-07 02:17:26][alpha=2.4] Rewiring final rkk=-0.1652 en 8475 iter(s) y 1927.74s
+[2025-11-07 02:17:26][alpha=2.4, rkk=-0.2] Ajustando atributos para rho_kx=0.34285714285714286
+[2025-11-07 02:17:26][alpha=2.4, rkk=-0.2] Asignación terminada en 0.02s con corr_diff=0.0062
+[2025-11-07 02:17:26][alpha=2.4, rkk=-0.2, rho_kx=0.34285714285714286] Calculando fracción espejismo
+[2025-11-07 02:17:26][alpha=2.4, rkk=-0.2, rho_kx=0.34285714285714286] Fracción: 0.205, tiempo 0.03s
+[2025-11-07 02:17:26][alpha=2.4] Resultado rkk=-0.2, rho_kx=0.34285714285714286 --> frac=0.205
+
+[2025-11-07 02:17:27][alpha=2.4] Inicio experimento rkk=-0.2, rho_kx=0.4285714285714286
+[2025-11-07 02:17:27][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=-0.2
+[2025-11-07 02:18:29][alpha=2.4] Rewiring final rkk=-0.1651 en 8642 iter(s) y 1965.01s
+[2025-11-07 02:18:29][alpha=2.4, rkk=-0.2] Ajustando atributos para rho_kx=0.5142857142857142
+[2025-11-07 02:18:29][alpha=2.4, rkk=-0.2] Asignación terminada en 0.08s con corr_diff=0.0140
+[2025-11-07 02:18:29][alpha=2.4, rkk=-0.2, rho_kx=0.5142857142857142] Calculando fracción espejismo
+[2025-11-07 02:18:29][alpha=2.4, rkk=-0.2, rho_kx=0.5142857142857142] Fracción: 0.288, tiempo 0.03s
+[2025-11-07 02:18:29][alpha=2.4] Resultado rkk=-0.2, rho_kx=0.5142857142857142 --> frac=0.288
+
+[2025-11-07 02:18:29][alpha=2.4] Inicio experimento rkk=-0.2, rho_kx=0.6
+[2025-11-07 02:18:29][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=-0.2
+[2025-11-07 02:20:29][alpha=2.1] Rewiring final rkk=-0.1151 en 4571 iter(s) y 1121.77s
+[2025-11-07 02:20:29][alpha=2.1, rkk=-0.15] Ajustando atributos para rho_kx=0.6
+[2025-11-07 02:20:29][alpha=2.1, rkk=-0.15] Asignación terminada en 0.07s con corr_diff=0.0463
+[2025-11-07 02:20:29][alpha=2.1, rkk=-0.15, rho_kx=0.6] Calculando fracción espejismo
+[2025-11-07 02:20:29][alpha=2.1, rkk=-0.15, rho_kx=0.6] Fracción: 0.309, tiempo 0.04s
+[2025-11-07 02:20:29][alpha=2.1] Resultado rkk=-0.15, rho_kx=0.6 --> frac=0.309
+
+[2025-11-07 02:20:29][alpha=2.4] Inicio experimento rkk=0.1, rho_kx=0.34285714285714286
+[2025-11-07 02:20:29][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=0.1
+[2025-11-07 02:20:35][alpha=2.1] Rewiring final rkk=-0.1150 en 4382 iter(s) y 1087.47s
+[2025-11-07 02:20:35][alpha=2.1, rkk=-0.15] Ajustando atributos para rho_kx=0.2571428571428571
+[2025-11-07 02:20:35][alpha=2.1, rkk=-0.15] Asignación terminada en 0.02s con corr_diff=0.0069
+[2025-11-07 02:20:35][alpha=2.1, rkk=-0.15, rho_kx=0.2571428571428571] Calculando fracción espejismo
+[2025-11-07 02:20:35][alpha=2.1, rkk=-0.15, rho_kx=0.2571428571428571] Fracción: 0.149, tiempo 0.04s
+[2025-11-07 02:20:35][alpha=2.1] Resultado rkk=-0.15, rho_kx=0.2571428571428571 --> frac=0.149
+
+[2025-11-07 02:20:36][alpha=2.4] Inicio experimento rkk=0.1, rho_kx=0.5142857142857142
+[2025-11-07 02:20:36][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=0.1
+[2025-11-07 02:21:17][alpha=2.1] Rewiring final rkk=-0.1158 en 4517 iter(s) y 1132.39s
+[2025-11-07 02:21:17][alpha=2.1, rkk=-0.15] Ajustando atributos para rho_kx=0.08571428571428572
+[2025-11-07 02:21:17][alpha=2.1, rkk=-0.15] Asignación terminada en 0.03s con corr_diff=0.0097
+[2025-11-07 02:21:17][alpha=2.1, rkk=-0.15, rho_kx=0.08571428571428572] Calculando fracción espejismo
+[2025-11-07 02:21:17][alpha=2.1, rkk=-0.15, rho_kx=0.08571428571428572] Fracción: 0.070, tiempo 0.05s
+[2025-11-07 02:21:17][alpha=2.1] Resultado rkk=-0.15, rho_kx=0.08571428571428572 --> frac=0.070
+
+[2025-11-07 02:21:17][alpha=2.4] Inicio experimento rkk=0.2, rho_kx=0.0
+[2025-11-07 02:21:18][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=0.2
+[2025-11-07 02:22:51][alpha=2.1] Rewiring final rkk=-0.1152 en 4207 iter(s) y 1037.19s
+[2025-11-07 02:22:51][alpha=2.1, rkk=-0.15] Ajustando atributos para rho_kx=0.4285714285714286
+[2025-11-07 02:22:51][alpha=2.1, rkk=-0.15] Asignación terminada en 0.03s con corr_diff=0.0056
+[2025-11-07 02:22:51][alpha=2.1, rkk=-0.15, rho_kx=0.4285714285714286] Calculando fracción espejismo
+[2025-11-07 02:22:51][alpha=2.1, rkk=-0.15, rho_kx=0.4285714285714286] Fracción: 0.240, tiempo 0.05s
+[2025-11-07 02:22:51][alpha=2.1] Resultado rkk=-0.15, rho_kx=0.4285714285714286 --> frac=0.240
+
+[2025-11-07 02:22:51][alpha=2.4] Inicio experimento rkk=0.2, rho_kx=0.17142857142857143
+[2025-11-07 02:22:51][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=0.2
+[2025-11-07 02:24:40][alpha=2.4] Rewiring final rkk=0.0651 en 3318 iter(s) y 705.83s
+[2025-11-07 02:24:40][alpha=2.4, rkk=0.1] Ajustando atributos para rho_kx=0.0
+[2025-11-07 02:24:40][alpha=2.4, rkk=0.1] Asignación terminada en 0.03s con corr_diff=0.0031
+[2025-11-07 02:24:40][alpha=2.4, rkk=0.1, rho_kx=0.0] Calculando fracción espejismo
+[2025-11-07 02:24:40][alpha=2.4, rkk=0.1, rho_kx=0.0] Fracción: 0.035, tiempo 0.04s
+[2025-11-07 02:24:40][alpha=2.4] Resultado rkk=0.1, rho_kx=0.0 --> frac=0.035
+
+[2025-11-07 02:24:40][alpha=2.4] Inicio experimento rkk=0.1, rho_kx=0.08571428571428572
+[2025-11-07 02:24:41][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=0.1
+[2025-11-07 02:24:41][alpha=2.1] Rewiring final rkk=-0.2150 en 9932 iter(s) y 2629.16s
+[2025-11-07 02:24:41][alpha=2.1, rkk=-0.25] Ajustando atributos para rho_kx=0.17142857142857143
+[2025-11-07 02:24:41][alpha=2.1, rkk=-0.25] Asignación terminada en 0.03s con corr_diff=0.0087
+[2025-11-07 02:24:41][alpha=2.1, rkk=-0.25, rho_kx=0.17142857142857143] Calculando fracción espejismo
+[2025-11-07 02:24:41][alpha=2.1, rkk=-0.25, rho_kx=0.17142857142857143] Fracción: 0.139, tiempo 0.05s
+[2025-11-07 02:24:41][alpha=2.1] Resultado rkk=-0.25, rho_kx=0.17142857142857143 --> frac=0.139
+
+[2025-11-07 02:24:41][alpha=2.1] Inicio experimento rkk=-0.25, rho_kx=0.2571428571428571
+[2025-11-07 02:24:41][alpha=2.1] Iniciando rewiring rkk=0.0002 target=-0.25
+[2025-11-07 02:27:21][alpha=2.4] Rewiring final rkk=0.0651 en 3361 iter(s) y 721.98s
+[2025-11-07 02:27:21][alpha=2.4, rkk=0.1] Ajustando atributos para rho_kx=0.17142857142857143
+[2025-11-07 02:27:21][alpha=2.4, rkk=0.1] Asignación terminada en 0.02s con corr_diff=0.0029
+[2025-11-07 02:27:21][alpha=2.4, rkk=0.1, rho_kx=0.17142857142857143] Calculando fracción espejismo
+[2025-11-07 02:27:21][alpha=2.4, rkk=0.1, rho_kx=0.17142857142857143] Fracción: 0.075, tiempo 0.04s
+[2025-11-07 02:27:21][alpha=2.4] Resultado rkk=0.1, rho_kx=0.17142857142857143 --> frac=0.075
+
+[2025-11-07 02:27:21][alpha=2.4] Inicio experimento rkk=0.1, rho_kx=0.2571428571428571
+[2025-11-07 02:27:21][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=0.1
+[2025-11-07 02:29:15][alpha=2.1] Rewiring final rkk=-0.2154 en 11004 iter(s) y 2903.35s
+[2025-11-07 02:29:15][alpha=2.1, rkk=-0.25] Ajustando atributos para rho_kx=0.5142857142857142
+[2025-11-07 02:29:15][alpha=2.1, rkk=-0.25] Asignación terminada en 0.01s con corr_diff=0.0071
+[2025-11-07 02:29:15][alpha=2.1, rkk=-0.25, rho_kx=0.5142857142857142] Calculando fracción espejismo
+[2025-11-07 02:29:15][alpha=2.1, rkk=-0.25, rho_kx=0.5142857142857142] Fracción: 0.341, tiempo 0.04s
+[2025-11-07 02:29:15][alpha=2.1] Resultado rkk=-0.25, rho_kx=0.5142857142857142 --> frac=0.341
+
+[2025-11-07 02:29:15][alpha=2.1] Inicio experimento rkk=-0.25, rho_kx=0.6
+[2025-11-07 02:29:15][alpha=2.1] Iniciando rewiring rkk=0.0002 target=-0.25
+[2025-11-07 02:29:24][alpha=2.1] Rewiring final rkk=-0.2151 en 11039 iter(s) y 2913.17s
+[2025-11-07 02:29:24][alpha=2.1, rkk=-0.25] Ajustando atributos para rho_kx=0.0
+[2025-11-07 02:29:24][alpha=2.1, rkk=-0.25] Asignación terminada en 0.02s con corr_diff=0.0070
+[2025-11-07 02:29:24][alpha=2.1, rkk=-0.25, rho_kx=0.0] Calculando fracción espejismo
+[2025-11-07 02:29:24][alpha=2.1, rkk=-0.25, rho_kx=0.0] Fracción: 0.030, tiempo 0.04s
+[2025-11-07 02:29:24][alpha=2.1] Resultado rkk=-0.25, rho_kx=0.0 --> frac=0.030
+
+[2025-11-07 02:29:25][alpha=2.1] Inicio experimento rkk=-0.25, rho_kx=0.08571428571428572
+[2025-11-07 02:29:25][alpha=2.1] Iniciando rewiring rkk=0.0002 target=-0.25
+[2025-11-07 02:30:45][alpha=2.1] Rewiring final rkk=-0.2151 en 11522 iter(s) y 2993.76s
+[2025-11-07 02:30:45][alpha=2.1, rkk=-0.25] Ajustando atributos para rho_kx=0.34285714285714286
+[2025-11-07 02:30:45][alpha=2.1, rkk=-0.25] Asignación terminada en 0.03s con corr_diff=0.0030
+[2025-11-07 02:30:45][alpha=2.1, rkk=-0.25, rho_kx=0.34285714285714286] Calculando fracción espejismo
+[2025-11-07 02:30:46][alpha=2.1, rkk=-0.25, rho_kx=0.34285714285714286] Fracción: 0.235, tiempo 0.05s
+[2025-11-07 02:30:46][alpha=2.1] Resultado rkk=-0.25, rho_kx=0.34285714285714286 --> frac=0.235
+
+[2025-11-07 02:30:46][alpha=2.1] Inicio experimento rkk=-0.25, rho_kx=0.4285714285714286
+[2025-11-07 02:30:46][alpha=2.1] Iniciando rewiring rkk=0.0002 target=-0.25
+[2025-11-07 02:31:55][alpha=2.4] Rewiring final rkk=0.0651 en 3220 iter(s) y 679.42s
+[2025-11-07 02:31:55][alpha=2.4, rkk=0.1] Ajustando atributos para rho_kx=0.5142857142857142
+[2025-11-07 02:31:55][alpha=2.4, rkk=0.1] Asignación terminada en 0.06s con corr_diff=0.0055
+[2025-11-07 02:31:55][alpha=2.4, rkk=0.1, rho_kx=0.5142857142857142] Calculando fracción espejismo
+[2025-11-07 02:31:55][alpha=2.4, rkk=0.1, rho_kx=0.5142857142857142] Fracción: 0.161, tiempo 0.04s
+[2025-11-07 02:31:55][alpha=2.4] Resultado rkk=0.1, rho_kx=0.5142857142857142 --> frac=0.161
+
+[2025-11-07 02:31:56][alpha=2.4] Inicio experimento rkk=0.1, rho_kx=0.6
+[2025-11-07 02:31:56][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=0.1
+[2025-11-07 02:33:28][alpha=2.4] Rewiring final rkk=0.0653 en 3709 iter(s) y 779.49s
+[2025-11-07 02:33:28][alpha=2.4, rkk=0.1] Ajustando atributos para rho_kx=0.34285714285714286
+[2025-11-07 02:33:28][alpha=2.4, rkk=0.1] Asignación terminada en 0.02s con corr_diff=0.0037
+[2025-11-07 02:33:28][alpha=2.4, rkk=0.1, rho_kx=0.34285714285714286] Calculando fracción espejismo
+[2025-11-07 02:33:28][alpha=2.4, rkk=0.1, rho_kx=0.34285714285714286] Fracción: 0.112, tiempo 0.04s
+[2025-11-07 02:33:28][alpha=2.4] Resultado rkk=0.1, rho_kx=0.34285714285714286 --> frac=0.112
+
+[2025-11-07 02:33:29][alpha=2.4] Inicio experimento rkk=0.1, rho_kx=0.4285714285714286
+[2025-11-07 02:33:29][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=0.1
+[2025-11-07 02:37:47][alpha=2.4] Rewiring final rkk=0.0650 en 3727 iter(s) y 786.18s
+[2025-11-07 02:37:47][alpha=2.4, rkk=0.1] Ajustando atributos para rho_kx=0.08571428571428572
+[2025-11-07 02:37:47][alpha=2.4, rkk=0.1] Asignación terminada en 0.02s con corr_diff=0.0014
+[2025-11-07 02:37:47][alpha=2.4, rkk=0.1, rho_kx=0.08571428571428572] Calculando fracción espejismo
+[2025-11-07 02:37:47][alpha=2.4, rkk=0.1, rho_kx=0.08571428571428572] Fracción: 0.053, tiempo 0.03s
+[2025-11-07 02:37:47][alpha=2.4] Resultado rkk=0.1, rho_kx=0.08571428571428572 --> frac=0.053
+
+[2025-11-07 02:37:47][alpha=2.4] Inicio experimento rkk=0.2, rho_kx=0.34285714285714286
+[2025-11-07 02:37:47][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=0.2
+[2025-11-07 02:39:26][alpha=2.4] Rewiring final rkk=0.0650 en 3395 iter(s) y 724.95s
+[2025-11-07 02:39:26][alpha=2.4, rkk=0.1] Ajustando atributos para rho_kx=0.2571428571428571
+[2025-11-07 02:39:26][alpha=2.4, rkk=0.1] Asignación terminada en 0.01s con corr_diff=0.0022
+[2025-11-07 02:39:26][alpha=2.4, rkk=0.1, rho_kx=0.2571428571428571] Calculando fracción espejismo
+[2025-11-07 02:39:26][alpha=2.4, rkk=0.1, rho_kx=0.2571428571428571] Fracción: 0.095, tiempo 0.03s
+[2025-11-07 02:39:26][alpha=2.4] Resultado rkk=0.1, rho_kx=0.2571428571428571 --> frac=0.095
+
+[2025-11-07 02:39:26][alpha=2.4] Inicio experimento rkk=0.2, rho_kx=0.5142857142857142
+[2025-11-07 02:39:26][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=0.2
+[2025-11-07 02:41:29][alpha=2.4] Rewiring final rkk=0.0651 en 2725 iter(s) y 573.69s
+[2025-11-07 02:41:29][alpha=2.4, rkk=0.1] Ajustando atributos para rho_kx=0.6
+[2025-11-07 02:41:29][alpha=2.4, rkk=0.1] Asignación terminada en 0.08s con corr_diff=0.0935
+[2025-11-07 02:41:29][alpha=2.4, rkk=0.1, rho_kx=0.6] Calculando fracción espejismo
+[2025-11-07 02:41:29][alpha=2.4, rkk=0.1, rho_kx=0.6] Fracción: 0.169, tiempo 0.04s
+[2025-11-07 02:41:29][alpha=2.4] Resultado rkk=0.1, rho_kx=0.6 --> frac=0.169
+
+[2025-11-07 02:41:30][alpha=3.1] Inicio experimento rkk=-0.15, rho_kx=0.0
+[2025-11-07 02:41:30][alpha=3.1] Iniciando rewiring rkk=0.0014 target=-0.15
+[2025-11-07 02:44:58][alpha=2.4] Rewiring final rkk=0.0651 en 3295 iter(s) y 688.82s
+[2025-11-07 02:44:58][alpha=2.4, rkk=0.1] Ajustando atributos para rho_kx=0.4285714285714286
+[2025-11-07 02:44:58][alpha=2.4, rkk=0.1] Asignación terminada en 0.02s con corr_diff=0.0010
+[2025-11-07 02:44:58][alpha=2.4, rkk=0.1, rho_kx=0.4285714285714286] Calculando fracción espejismo
+[2025-11-07 02:44:58][alpha=2.4, rkk=0.1, rho_kx=0.4285714285714286] Fracción: 0.141, tiempo 0.04s
+[2025-11-07 02:44:58][alpha=2.4] Resultado rkk=0.1, rho_kx=0.4285714285714286 --> frac=0.141
+
+[2025-11-07 02:44:58][alpha=3.1] Inicio experimento rkk=-0.15, rho_kx=0.17142857142857143
+[2025-11-07 02:44:58][alpha=3.1] Iniciando rewiring rkk=0.0014 target=-0.15
+[2025-11-07 02:45:04][alpha=2.4] Rewiring final rkk=-0.1650 en 8529 iter(s) y 1807.50s
+[2025-11-07 02:45:04][alpha=2.4, rkk=-0.2] Ajustando atributos para rho_kx=0.2571428571428571
+[2025-11-07 02:45:04][alpha=2.4, rkk=-0.2] Asignación terminada en 0.03s con corr_diff=0.0001
+[2025-11-07 02:45:04][alpha=2.4, rkk=-0.2, rho_kx=0.2571428571428571] Calculando fracción espejismo
+[2025-11-07 02:45:04][alpha=2.4, rkk=-0.2, rho_kx=0.2571428571428571] Fracción: 0.168, tiempo 0.04s
+[2025-11-07 02:45:04][alpha=2.4] Resultado rkk=-0.2, rho_kx=0.2571428571428571 --> frac=0.168
+
+[2025-11-07 02:45:04][alpha=3.1] Inicio experimento rkk=-0.15, rho_kx=0.34285714285714286
+[2025-11-07 02:45:04][alpha=3.1] Iniciando rewiring rkk=0.0014 target=-0.15
+[2025-11-07 02:47:32][alpha=2.4] Rewiring final rkk=-0.1650 en 9419 iter(s) y 1975.23s
+[2025-11-07 02:47:32][alpha=2.4, rkk=-0.2] Ajustando atributos para rho_kx=0.08571428571428572
+[2025-11-07 02:47:32][alpha=2.4, rkk=-0.2] Asignación terminada en 0.02s con corr_diff=0.0052
+[2025-11-07 02:47:32][alpha=2.4, rkk=-0.2, rho_kx=0.08571428571428572] Calculando fracción espejismo
+[2025-11-07 02:47:32][alpha=2.4, rkk=-0.2, rho_kx=0.08571428571428572] Fracción: 0.074, tiempo 0.04s
+[2025-11-07 02:47:32][alpha=2.4] Resultado rkk=-0.2, rho_kx=0.08571428571428572 --> frac=0.074
+
+[2025-11-07 02:47:32][alpha=3.1] Inicio experimento rkk=-0.15, rho_kx=0.5142857142857142
+[2025-11-07 02:47:32][alpha=3.1] Iniciando rewiring rkk=0.0014 target=-0.15
+[2025-11-07 02:50:20][alpha=2.4] Rewiring final rkk=-0.1650 en 8955 iter(s) y 1910.70s
+[2025-11-07 02:50:20][alpha=2.4, rkk=-0.2] Ajustando atributos para rho_kx=0.6
+[2025-11-07 02:50:20][alpha=2.4, rkk=-0.2] Asignación terminada en 0.06s con corr_diff=0.0935
+[2025-11-07 02:50:20][alpha=2.4, rkk=-0.2, rho_kx=0.6] Calculando fracción espejismo
+[2025-11-07 02:50:20][alpha=2.4, rkk=-0.2, rho_kx=0.6] Fracción: 0.294, tiempo 0.03s
+[2025-11-07 02:50:20][alpha=2.4] Resultado rkk=-0.2, rho_kx=0.6 --> frac=0.294
+
+[2025-11-07 02:50:20][alpha=3.1] Inicio experimento rkk=-0.05, rho_kx=0.0
+[2025-11-07 02:50:20][alpha=3.1] Iniciando rewiring rkk=0.0014 target=-0.05
+[2025-11-07 02:50:28][alpha=2.4] Rewiring final rkk=0.1651 en 8196 iter(s) y 1750.34s
+[2025-11-07 02:50:28][alpha=2.4, rkk=0.2] Ajustando atributos para rho_kx=0.0
+[2025-11-07 02:50:28][alpha=2.4, rkk=0.2] Asignación terminada en 0.02s con corr_diff=0.0095
+[2025-11-07 02:50:28][alpha=2.4, rkk=0.2, rho_kx=0.0] Calculando fracción espejismo
+[2025-11-07 02:50:28][alpha=2.4, rkk=0.2, rho_kx=0.0] Fracción: 0.038, tiempo 0.03s
+[2025-11-07 02:50:28][alpha=2.4] Resultado rkk=0.2, rho_kx=0.0 --> frac=0.038
+
+[2025-11-07 02:50:28][alpha=2.4] Inicio experimento rkk=0.2, rho_kx=0.08571428571428572
+[2025-11-07 02:50:28][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=0.2
+[2025-11-07 02:52:24][alpha=3.1] Rewiring final rkk=-0.0151 en 680 iter(s) y 124.27s
+[2025-11-07 02:52:24][alpha=3.1, rkk=-0.05] Ajustando atributos para rho_kx=0.0
+[2025-11-07 02:52:24][alpha=3.1, rkk=-0.05] Asignación terminada en 0.03s con corr_diff=0.0075
+[2025-11-07 02:52:24][alpha=3.1, rkk=-0.05, rho_kx=0.0] Calculando fracción espejismo
+[2025-11-07 02:52:24][alpha=3.1, rkk=-0.05, rho_kx=0.0] Fracción: 0.043, tiempo 0.03s
+[2025-11-07 02:52:24][alpha=3.1] Resultado rkk=-0.05, rho_kx=0.0 --> frac=0.043
+
+[2025-11-07 02:52:24][alpha=3.1] Inicio experimento rkk=-0.05, rho_kx=0.08571428571428572
+[2025-11-07 02:52:24][alpha=3.1] Iniciando rewiring rkk=0.0014 target=-0.05
+[2025-11-07 02:54:17][alpha=2.4] Rewiring final rkk=0.1650 en 8982 iter(s) y 1886.16s
+[2025-11-07 02:54:17][alpha=2.4, rkk=0.2] Ajustando atributos para rho_kx=0.17142857142857143
+[2025-11-07 02:54:17][alpha=2.4, rkk=0.2] Asignación terminada en 0.01s con corr_diff=0.0069
+[2025-11-07 02:54:17][alpha=2.4, rkk=0.2, rho_kx=0.17142857142857143] Calculando fracción espejismo
+[2025-11-07 02:54:17][alpha=2.4, rkk=0.2, rho_kx=0.17142857142857143] Fracción: 0.060, tiempo 0.03s
+[2025-11-07 02:54:17][alpha=2.4] Resultado rkk=0.2, rho_kx=0.17142857142857143 --> frac=0.060
+
+[2025-11-07 02:54:17][alpha=2.4] Inicio experimento rkk=0.2, rho_kx=0.2571428571428571
+[2025-11-07 02:54:17][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=0.2
+[2025-11-07 02:54:28][alpha=3.1] Rewiring final rkk=-0.0154 en 671 iter(s) y 123.45s
+[2025-11-07 02:54:28][alpha=3.1, rkk=-0.05] Ajustando atributos para rho_kx=0.08571428571428572
+[2025-11-07 02:54:28][alpha=3.1, rkk=-0.05] Asignación terminada en 0.01s con corr_diff=0.0073
+[2025-11-07 02:54:28][alpha=3.1, rkk=-0.05, rho_kx=0.08571428571428572] Calculando fracción espejismo
+[2025-11-07 02:54:28][alpha=3.1, rkk=-0.05, rho_kx=0.08571428571428572] Fracción: 0.055, tiempo 0.03s
+[2025-11-07 02:54:28][alpha=3.1] Resultado rkk=-0.05, rho_kx=0.08571428571428572 --> frac=0.055
+
+[2025-11-07 02:54:28][alpha=3.1] Inicio experimento rkk=-0.05, rho_kx=0.17142857142857143
+[2025-11-07 02:54:28][alpha=3.1] Iniciando rewiring rkk=0.0014 target=-0.05
+[2025-11-07 02:54:33][alpha=2.4] Rewiring final rkk=-0.1651 en 10482 iter(s) y 2225.80s
+[2025-11-07 02:54:33][alpha=2.4, rkk=-0.2] Ajustando atributos para rho_kx=0.4285714285714286
+[2025-11-07 02:54:33][alpha=2.4, rkk=-0.2] Asignación terminada en 0.01s con corr_diff=0.0098
+[2025-11-07 02:54:33][alpha=2.4, rkk=-0.2, rho_kx=0.4285714285714286] Calculando fracción espejismo
+[2025-11-07 02:54:33][alpha=2.4, rkk=-0.2, rho_kx=0.4285714285714286] Fracción: 0.256, tiempo 0.03s
+[2025-11-07 02:54:33][alpha=2.4] Resultado rkk=-0.2, rho_kx=0.4285714285714286 --> frac=0.256
+
+[2025-11-07 02:54:33][alpha=3.1] Inicio experimento rkk=-0.05, rho_kx=0.34285714285714286
+[2025-11-07 02:54:33][alpha=3.1] Iniciando rewiring rkk=0.0014 target=-0.05
+[2025-11-07 02:56:14][alpha=3.1] Rewiring final rkk=-0.0207 en 557 iter(s) y 101.12s
+[2025-11-07 02:56:14][alpha=3.1, rkk=-0.05] Ajustando atributos para rho_kx=0.34285714285714286
+[2025-11-07 02:56:14][alpha=3.1, rkk=-0.05] Asignación terminada en 0.07s con corr_diff=0.1574
+[2025-11-07 02:56:14][alpha=3.1, rkk=-0.05, rho_kx=0.34285714285714286] Calculando fracción espejismo
+[2025-11-07 02:56:14][alpha=3.1, rkk=-0.05, rho_kx=0.34285714285714286] Fracción: 0.075, tiempo 0.03s
+[2025-11-07 02:56:14][alpha=3.1] Resultado rkk=-0.05, rho_kx=0.34285714285714286 --> frac=0.075
+
+[2025-11-07 02:56:14][alpha=3.1] Inicio experimento rkk=-0.05, rho_kx=0.4285714285714286
+[2025-11-07 02:56:14][alpha=3.1] Iniciando rewiring rkk=0.0014 target=-0.05
+[2025-11-07 02:57:14][alpha=3.1] Rewiring final rkk=-0.0150 en 911 iter(s) y 166.23s
+[2025-11-07 02:57:14][alpha=3.1, rkk=-0.05] Ajustando atributos para rho_kx=0.17142857142857143
+[2025-11-07 02:57:14][alpha=3.1, rkk=-0.05] Asignación terminada en 0.01s con corr_diff=0.0096
+[2025-11-07 02:57:14][alpha=3.1, rkk=-0.05, rho_kx=0.17142857142857143] Calculando fracción espejismo
+[2025-11-07 02:57:14][alpha=3.1, rkk=-0.05, rho_kx=0.17142857142857143] Fracción: 0.069, tiempo 0.03s
+[2025-11-07 02:57:14][alpha=3.1] Resultado rkk=-0.05, rho_kx=0.17142857142857143 --> frac=0.069
+
+[2025-11-07 02:57:14][alpha=3.1] Inicio experimento rkk=-0.05, rho_kx=0.2571428571428571
+[2025-11-07 02:57:15][alpha=3.1] Iniciando rewiring rkk=0.0014 target=-0.05
+[2025-11-07 02:59:11][alpha=3.1] Rewiring final rkk=-0.0150 en 639 iter(s) y 116.60s
+[2025-11-07 02:59:11][alpha=3.1, rkk=-0.05] Ajustando atributos para rho_kx=0.2571428571428571
+[2025-11-07 02:59:11][alpha=3.1, rkk=-0.05] Asignación terminada en 0.08s con corr_diff=0.0771
+[2025-11-07 02:59:11][alpha=3.1, rkk=-0.05, rho_kx=0.2571428571428571] Calculando fracción espejismo
+[2025-11-07 02:59:11][alpha=3.1, rkk=-0.05, rho_kx=0.2571428571428571] Fracción: 0.073, tiempo 0.04s
+[2025-11-07 02:59:11][alpha=3.1] Resultado rkk=-0.05, rho_kx=0.2571428571428571 --> frac=0.073
+
+[2025-11-07 02:59:11][alpha=3.1] Inicio experimento rkk=-0.05, rho_kx=0.5142857142857142
+[2025-11-07 02:59:11][alpha=3.1] Iniciando rewiring rkk=0.0014 target=-0.05
+[2025-11-07 02:59:13][alpha=3.1] Rewiring final rkk=-0.0176 en 985 iter(s) y 179.12s
+[2025-11-07 02:59:13][alpha=3.1, rkk=-0.05] Ajustando atributos para rho_kx=0.4285714285714286
+[2025-11-07 02:59:13][alpha=3.1, rkk=-0.05] Asignación terminada en 0.09s con corr_diff=0.2481
+[2025-11-07 02:59:13][alpha=3.1, rkk=-0.05, rho_kx=0.4285714285714286] Calculando fracción espejismo
+[2025-11-07 02:59:13][alpha=3.1, rkk=-0.05, rho_kx=0.4285714285714286] Fracción: 0.075, tiempo 0.03s
+[2025-11-07 02:59:13][alpha=3.1] Resultado rkk=-0.05, rho_kx=0.4285714285714286 --> frac=0.075
+
+[2025-11-07 02:59:13][alpha=3.1] Inicio experimento rkk=0.0, rho_kx=0.0
+[2025-11-07 02:59:14][alpha=3.1] Iniciando rewiring rkk=0.0014 target=0.0
+[2025-11-07 02:59:14][alpha=3.1] Rewiring final rkk=0.0014 en 0 iter(s) y 0.01s
+[2025-11-07 02:59:14][alpha=3.1, rkk=0.0] Ajustando atributos para rho_kx=0.0
+[2025-11-07 02:59:14][alpha=3.1, rkk=0.0] Asignación terminada en 0.02s con corr_diff=0.0054
+[2025-11-07 02:59:14][alpha=3.1, rkk=0.0, rho_kx=0.0] Calculando fracción espejismo
+[2025-11-07 02:59:14][alpha=3.1, rkk=0.0, rho_kx=0.0] Fracción: 0.042, tiempo 0.02s
+[2025-11-07 02:59:14][alpha=3.1] Resultado rkk=0.0, rho_kx=0.0 --> frac=0.042
+
+[2025-11-07 02:59:14][alpha=3.1] Inicio experimento rkk=0.0, rho_kx=0.08571428571428572
+[2025-11-07 02:59:14][alpha=3.1] Iniciando rewiring rkk=0.0014 target=0.0
+[2025-11-07 02:59:14][alpha=3.1] Rewiring final rkk=0.0014 en 0 iter(s) y 0.01s
+[2025-11-07 02:59:14][alpha=3.1, rkk=0.0] Ajustando atributos para rho_kx=0.08571428571428572
+[2025-11-07 02:59:14][alpha=3.1, rkk=0.0] Asignación terminada en 0.01s con corr_diff=0.0016
+[2025-11-07 02:59:14][alpha=3.1, rkk=0.0, rho_kx=0.08571428571428572] Calculando fracción espejismo
+[2025-11-07 02:59:14][alpha=3.1, rkk=0.0, rho_kx=0.08571428571428572] Fracción: 0.058, tiempo 0.02s
+[2025-11-07 02:59:14][alpha=3.1] Resultado rkk=0.0, rho_kx=0.08571428571428572 --> frac=0.058
+
+[2025-11-07 02:59:14][alpha=3.1] Inicio experimento rkk=0.0, rho_kx=0.17142857142857143
+[2025-11-07 02:59:14][alpha=3.1] Iniciando rewiring rkk=0.0014 target=0.0
+[2025-11-07 02:59:14][alpha=3.1] Rewiring final rkk=0.0014 en 0 iter(s) y 0.01s
+[2025-11-07 02:59:14][alpha=3.1, rkk=0.0] Ajustando atributos para rho_kx=0.17142857142857143
+[2025-11-07 02:59:14][alpha=3.1, rkk=0.0] Asignación terminada en 0.01s con corr_diff=0.0083
+[2025-11-07 02:59:14][alpha=3.1, rkk=0.0, rho_kx=0.17142857142857143] Calculando fracción espejismo
+[2025-11-07 02:59:14][alpha=3.1, rkk=0.0, rho_kx=0.17142857142857143] Fracción: 0.067, tiempo 0.03s
+[2025-11-07 02:59:14][alpha=3.1] Resultado rkk=0.0, rho_kx=0.17142857142857143 --> frac=0.067
+
+[2025-11-07 02:59:14][alpha=3.1] Inicio experimento rkk=0.0, rho_kx=0.2571428571428571
+[2025-11-07 02:59:14][alpha=3.1] Iniciando rewiring rkk=0.0014 target=0.0
+[2025-11-07 02:59:14][alpha=3.1] Rewiring final rkk=0.0014 en 0 iter(s) y 0.01s
+[2025-11-07 02:59:14][alpha=3.1, rkk=0.0] Ajustando atributos para rho_kx=0.2571428571428571
+[2025-11-07 02:59:14][alpha=3.1, rkk=0.0] Asignación terminada en 0.08s con corr_diff=0.0731
+[2025-11-07 02:59:14][alpha=3.1, rkk=0.0, rho_kx=0.2571428571428571] Calculando fracción espejismo
+[2025-11-07 02:59:14][alpha=3.1, rkk=0.0, rho_kx=0.2571428571428571] Fracción: 0.071, tiempo 0.02s
+[2025-11-07 02:59:14][alpha=3.1] Resultado rkk=0.0, rho_kx=0.2571428571428571 --> frac=0.071
+
+[2025-11-07 02:59:15][alpha=3.1] Inicio experimento rkk=0.0, rho_kx=0.34285714285714286
+[2025-11-07 02:59:15][alpha=3.1] Iniciando rewiring rkk=0.0014 target=0.0
+[2025-11-07 02:59:15][alpha=3.1] Rewiring final rkk=0.0014 en 0 iter(s) y 0.01s
+[2025-11-07 02:59:15][alpha=3.1, rkk=0.0] Ajustando atributos para rho_kx=0.34285714285714286
+[2025-11-07 02:59:15][alpha=3.1, rkk=0.0] Asignación terminada en 0.09s con corr_diff=0.1490
+[2025-11-07 02:59:15][alpha=3.1, rkk=0.0, rho_kx=0.34285714285714286] Calculando fracción espejismo
+[2025-11-07 02:59:15][alpha=3.1, rkk=0.0, rho_kx=0.34285714285714286] Fracción: 0.074, tiempo 0.02s
+[2025-11-07 02:59:15][alpha=3.1] Resultado rkk=0.0, rho_kx=0.34285714285714286 --> frac=0.074
+
+[2025-11-07 02:59:15][alpha=3.1] Inicio experimento rkk=0.0, rho_kx=0.4285714285714286
+[2025-11-07 02:59:15][alpha=3.1] Iniciando rewiring rkk=0.0014 target=0.0
+[2025-11-07 02:59:15][alpha=3.1] Rewiring final rkk=0.0014 en 0 iter(s) y 0.01s
+[2025-11-07 02:59:15][alpha=3.1, rkk=0.0] Ajustando atributos para rho_kx=0.4285714285714286
+[2025-11-07 02:59:15][alpha=3.1, rkk=0.0] Asignación terminada en 0.10s con corr_diff=0.2525
+[2025-11-07 02:59:15][alpha=3.1, rkk=0.0, rho_kx=0.4285714285714286] Calculando fracción espejismo
+[2025-11-07 02:59:15][alpha=3.1, rkk=0.0, rho_kx=0.4285714285714286] Fracción: 0.069, tiempo 0.03s
+[2025-11-07 02:59:15][alpha=3.1] Resultado rkk=0.0, rho_kx=0.4285714285714286 --> frac=0.069
+
+[2025-11-07 02:59:15][alpha=3.1] Inicio experimento rkk=0.0, rho_kx=0.5142857142857142
+[2025-11-07 02:59:15][alpha=3.1] Iniciando rewiring rkk=0.0014 target=0.0
+[2025-11-07 02:59:15][alpha=3.1] Rewiring final rkk=0.0014 en 0 iter(s) y 0.01s
+[2025-11-07 02:59:15][alpha=3.1, rkk=0.0] Ajustando atributos para rho_kx=0.5142857142857142
+[2025-11-07 02:59:15][alpha=3.1, rkk=0.0] Asignación terminada en 0.09s con corr_diff=0.3266
+[2025-11-07 02:59:15][alpha=3.1, rkk=0.0, rho_kx=0.5142857142857142] Calculando fracción espejismo
+[2025-11-07 02:59:16][alpha=3.1, rkk=0.0, rho_kx=0.5142857142857142] Fracción: 0.074, tiempo 0.03s
+[2025-11-07 02:59:16][alpha=3.1] Resultado rkk=0.0, rho_kx=0.5142857142857142 --> frac=0.074
+
+[2025-11-07 02:59:16][alpha=3.1] Inicio experimento rkk=0.0, rho_kx=0.6
+[2025-11-07 02:59:16][alpha=3.1] Iniciando rewiring rkk=0.0014 target=0.0
+[2025-11-07 02:59:16][alpha=3.1] Rewiring final rkk=0.0014 en 0 iter(s) y 0.01s
+[2025-11-07 02:59:16][alpha=3.1, rkk=0.0] Ajustando atributos para rho_kx=0.6
+[2025-11-07 02:59:16][alpha=3.1, rkk=0.0] Asignación terminada en 0.07s con corr_diff=0.4186
+[2025-11-07 02:59:16][alpha=3.1, rkk=0.0, rho_kx=0.6] Calculando fracción espejismo
+[2025-11-07 02:59:16][alpha=3.1, rkk=0.0, rho_kx=0.6] Fracción: 0.072, tiempo 0.03s
+[2025-11-07 02:59:16][alpha=3.1] Resultado rkk=0.0, rho_kx=0.6 --> frac=0.072
+
+[2025-11-07 02:59:16][alpha=3.1] Inicio experimento rkk=0.3, rho_kx=0.0
+[2025-11-07 02:59:16][alpha=3.1] Iniciando rewiring rkk=0.0014 target=0.3
+[2025-11-07 03:00:08][alpha=3.1] Rewiring final rkk=-0.0150 en 311 iter(s) y 56.59s
+[2025-11-07 03:00:08][alpha=3.1, rkk=-0.05] Ajustando atributos para rho_kx=0.5142857142857142
+[2025-11-07 03:00:08][alpha=3.1, rkk=-0.05] Asignación terminada en 0.05s con corr_diff=0.2994
+[2025-11-07 03:00:08][alpha=3.1, rkk=-0.05, rho_kx=0.5142857142857142] Calculando fracción espejismo
+[2025-11-07 03:00:08][alpha=3.1, rkk=-0.05, rho_kx=0.5142857142857142] Fracción: 0.077, tiempo 0.03s
+[2025-11-07 03:00:08][alpha=3.1] Resultado rkk=-0.05, rho_kx=0.5142857142857142 --> frac=0.077
+
+[2025-11-07 03:00:08][alpha=3.1] Inicio experimento rkk=-0.05, rho_kx=0.6
+[2025-11-07 03:00:08][alpha=3.1] Iniciando rewiring rkk=0.0014 target=-0.05
+[2025-11-07 03:02:30][alpha=3.1] Rewiring final rkk=-0.0152 en 776 iter(s) y 141.50s
+[2025-11-07 03:02:30][alpha=3.1, rkk=-0.05] Ajustando atributos para rho_kx=0.6
+[2025-11-07 03:02:30][alpha=3.1, rkk=-0.05] Asignación terminada en 0.06s con corr_diff=0.3985
+[2025-11-07 03:02:30][alpha=3.1, rkk=-0.05, rho_kx=0.6] Calculando fracción espejismo
+[2025-11-07 03:02:30][alpha=3.1, rkk=-0.05, rho_kx=0.6] Fracción: 0.077, tiempo 0.03s
+[2025-11-07 03:02:30][alpha=3.1] Resultado rkk=-0.05, rho_kx=0.6 --> frac=0.077
+
+[2025-11-07 03:02:30][alpha=3.1] Inicio experimento rkk=0.3, rho_kx=0.17142857142857143
+[2025-11-07 03:02:30][alpha=3.1] Iniciando rewiring rkk=0.0014 target=0.3
+[2025-11-07 03:07:48][alpha=2.4] Rewiring final rkk=0.1651 en 8524 iter(s) y 1800.81s
+[2025-11-07 03:07:48][alpha=2.4, rkk=0.2] Ajustando atributos para rho_kx=0.34285714285714286
+[2025-11-07 03:07:48][alpha=2.4, rkk=0.2] Asignación terminada en 0.02s con corr_diff=0.0055
+[2025-11-07 03:07:48][alpha=2.4, rkk=0.2, rho_kx=0.34285714285714286] Calculando fracción espejismo
+[2025-11-07 03:07:48][alpha=2.4, rkk=0.2, rho_kx=0.34285714285714286] Fracción: 0.088, tiempo 0.04s
+[2025-11-07 03:07:48][alpha=2.4] Resultado rkk=0.2, rho_kx=0.34285714285714286 --> frac=0.088
+
+[2025-11-07 03:07:48][alpha=2.4] Inicio experimento rkk=0.2, rho_kx=0.4285714285714286
+[2025-11-07 03:07:48][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=0.2
+[2025-11-07 03:08:04][alpha=2.4] Rewiring final rkk=0.1650 en 8030 iter(s) y 1717.64s
+[2025-11-07 03:08:04][alpha=2.4, rkk=0.2] Ajustando atributos para rho_kx=0.5142857142857142
+[2025-11-07 03:08:04][alpha=2.4, rkk=0.2] Asignación terminada en 0.05s con corr_diff=0.0006
+[2025-11-07 03:08:04][alpha=2.4, rkk=0.2, rho_kx=0.5142857142857142] Calculando fracción espejismo
+[2025-11-07 03:08:04][alpha=2.4, rkk=0.2, rho_kx=0.5142857142857142] Fracción: 0.126, tiempo 0.04s
+[2025-11-07 03:08:04][alpha=2.4] Resultado rkk=0.2, rho_kx=0.5142857142857142 --> frac=0.126
+
+[2025-11-07 03:08:04][alpha=2.4] Inicio experimento rkk=0.2, rho_kx=0.6
+[2025-11-07 03:08:04][alpha=2.4] Iniciando rewiring rkk=-0.0216 target=0.2
+[2025-11-07 03:08:39][alpha=2.1] Rewiring final rkk=-0.2156 en 10696 iter(s) y 2637.24s
+[2025-11-07 03:08:39][alpha=2.1, rkk=-0.25] Ajustando atributos para rho_kx=0.2571428571428571
+[2025-11-07 03:08:39][alpha=2.1, rkk=-0.25] Asignación terminada en 0.03s con corr_diff=0.0011
+[2025-11-07 03:08:39][alpha=2.1, rkk=-0.25, rho_kx=0.2571428571428571] Calculando fracción espejismo
+[2025-11-07 03:08:39][alpha=2.1, rkk=-0.25, rho_kx=0.2571428571428571] Fracción: 0.189, tiempo 0.05s
+[2025-11-07 03:08:39][alpha=2.1] Resultado rkk=-0.25, rho_kx=0.2571428571428571 --> frac=0.189
+
+[2025-11-07 03:08:39][alpha=3.1] Inicio experimento rkk=0.3, rho_kx=0.34285714285714286
+[2025-11-07 03:08:39][alpha=3.1] Iniciando rewiring rkk=0.0014 target=0.3
+[2025-11-07 03:09:12][alpha=2.1] Rewiring final rkk=-0.2151 en 9680 iter(s) y 2386.92s
+[2025-11-07 03:09:12][alpha=2.1, rkk=-0.25] Ajustando atributos para rho_kx=0.08571428571428572
+[2025-11-07 03:09:12][alpha=2.1, rkk=-0.25] Asignación terminada en 0.02s con corr_diff=0.0052
+[2025-11-07 03:09:12][alpha=2.1, rkk=-0.25, rho_kx=0.08571428571428572] Calculando fracción espejismo
+[2025-11-07 03:09:12][alpha=2.1, rkk=-0.25, rho_kx=0.08571428571428572] Fracción: 0.083, tiempo 0.05s
+[2025-11-07 03:09:12][alpha=2.1] Resultado rkk=-0.25, rho_kx=0.08571428571428572 --> frac=0.083
+
+[2025-11-07 03:09:12][alpha=3.1] Inicio experimento rkk=0.3, rho_kx=0.5142857142857142
+[2025-11-07 03:09:12][alpha=3.1] Iniciando rewiring rkk=0.0014 target=0.3
+[2025-11-07 03:12:02][alpha=2.1] Rewiring final rkk=-0.2150 en 10423 iter(s) y 2566.41s
+[2025-11-07 03:12:02][alpha=2.1, rkk=-0.25] Ajustando atributos para rho_kx=0.6
+[2025-11-07 03:12:02][alpha=2.1, rkk=-0.25] Asignación terminada en 0.10s con corr_diff=0.0550
+[2025-11-07 03:12:02][alpha=2.1, rkk=-0.25, rho_kx=0.6] Calculando fracción espejismo
+[2025-11-07 03:12:02][alpha=2.1, rkk=-0.25, rho_kx=0.6] Fracción: 0.359, tiempo 0.06s
+[2025-11-07 03:12:02][alpha=2.1] Resultado rkk=-0.25, rho_kx=0.6 --> frac=0.359
+[2025-11-07 03:12:07][alpha=2.1] Rewiring final rkk=-0.3152 en 21581 iter(s) y 5476.30s
+[2025-11-07 03:12:07][alpha=2.1, rkk=-0.35] Ajustando atributos para rho_kx=0.0
+[2025-11-07 03:12:07][alpha=2.1, rkk=-0.35] Asignación terminada en 0.03s con corr_diff=0.0010
+[2025-11-07 03:12:07][alpha=2.1, rkk=-0.35, rho_kx=0.0] Calculando fracción espejismo
+[2025-11-07 03:12:07][alpha=2.1, rkk=-0.35, rho_kx=0.0] Fracción: 0.033, tiempo 0.05s
+[2025-11-07 03:12:07][alpha=2.1] Resultado rkk=-0.35, rho_kx=0.0 --> frac=0.033
+
+[2025-11-07 03:12:08][alpha=2.1] Inicio experimento rkk=-0.35, rho_kx=0.08571428571428572
+[2025-11-07 03:12:08][alpha=2.1] Iniciando rewiring rkk=0.0002 target=-0.35
+[2025-11-07 03:13:09][alpha=2.1] Rewiring final rkk=-0.2150 en 10449 iter(s) y 2543.39s
+[2025-11-07 03:13:09][alpha=2.1, rkk=-0.25] Ajustando atributos para rho_kx=0.4285714285714286
+[2025-11-07 03:13:09][alpha=2.1, rkk=-0.25] Asignación terminada en 0.01s con corr_diff=0.0059
+[2025-11-07 03:13:09][alpha=2.1, rkk=-0.25, rho_kx=0.4285714285714286] Calculando fracción espejismo
+[2025-11-07 03:13:09][alpha=2.1, rkk=-0.25, rho_kx=0.4285714285714286] Fracción: 0.287, tiempo 0.04s
+[2025-11-07 03:13:09][alpha=2.1] Resultado rkk=-0.25, rho_kx=0.4285714285714286 --> frac=0.287
+[2025-11-07 03:14:02][alpha=2.1] Rewiring final rkk=-0.3150 en 21979 iter(s) y 5590.72s
+[2025-11-07 03:14:02][alpha=2.1, rkk=-0.35] Ajustando atributos para rho_kx=0.5142857142857142
+[2025-11-07 03:14:02][alpha=2.1, rkk=-0.35] Asignación terminada en 0.00s con corr_diff=0.0073
+[2025-11-07 03:14:02][alpha=2.1, rkk=-0.35, rho_kx=0.5142857142857142] Calculando fracción espejismo
+[2025-11-07 03:14:02][alpha=2.1, rkk=-0.35, rho_kx=0.5142857142857142] Fracción: 0.408, tiempo 0.02s
+[2025-11-07 03:14:02][alpha=2.1] Resultado rkk=-0.35, rho_kx=0.5142857142857142 --> frac=0.408
+
+[2025-11-07 03:14:02][alpha=2.1] Inicio experimento rkk=-0.35, rho_kx=0.6
+[2025-11-07 03:14:02][alpha=2.1] Iniciando rewiring rkk=0.0002 target=-0.35
+[2025-11-07 03:15:27][alpha=2.1] Rewiring final rkk=-0.3150 en 22481 iter(s) y 5675.58s
+[2025-11-07 03:15:27][alpha=2.1, rkk=-0.35] Ajustando atributos para rho_kx=0.34285714285714286
+[2025-11-07 03:15:27][alpha=2.1, rkk=-0.35] Asignación terminada en 0.01s con corr_diff=0.0005
+[2025-11-07 03:15:27][alpha=2.1, rkk=-0.35, rho_kx=0.34285714285714286] Calculando fracción espejismo
+[2025-11-07 03:15:27][alpha=2.1, rkk=-0.35, rho_kx=0.34285714285714286] Fracción: 0.287, tiempo 0.04s
+[2025-11-07 03:15:27][alpha=2.1] Resultado rkk=-0.35, rho_kx=0.34285714285714286 --> frac=0.287
+
+[2025-11-07 03:15:27][alpha=2.1] Inicio experimento rkk=-0.35, rho_kx=0.4285714285714286
+[2025-11-07 03:15:27][alpha=2.1] Iniciando rewiring rkk=0.0002 target=-0.35
+[2025-11-07 03:16:02][alpha=2.1] Rewiring final rkk=-0.3150 en 22478 iter(s) y 5711.01s
+[2025-11-07 03:16:02][alpha=2.1, rkk=-0.35] Ajustando atributos para rho_kx=0.17142857142857143
+[2025-11-07 03:16:02][alpha=2.1, rkk=-0.35] Asignación terminada en 0.03s con corr_diff=0.0049
+[2025-11-07 03:16:02][alpha=2.1, rkk=-0.35, rho_kx=0.17142857142857143] Calculando fracción espejismo
+[2025-11-07 03:16:02][alpha=2.1, rkk=-0.35, rho_kx=0.17142857142857143] Fracción: 0.164, tiempo 0.05s
+[2025-11-07 03:16:02][alpha=2.1] Resultado rkk=-0.35, rho_kx=0.17142857142857143 --> frac=0.164
+
+[2025-11-07 03:16:02][alpha=2.1] Inicio experimento rkk=-0.35, rho_kx=0.2571428571428571
+[2025-11-07 03:16:02][alpha=2.1] Iniciando rewiring rkk=0.0002 target=-0.35
+[2025-11-07 03:20:56][alpha=2.4] Rewiring final rkk=0.1652 en 8665 iter(s) y 1828.16s
+[2025-11-07 03:20:56][alpha=2.4, rkk=0.2] Ajustando atributos para rho_kx=0.08571428571428572
+[2025-11-07 03:20:56][alpha=2.4, rkk=0.2] Asignación terminada en 0.02s con corr_diff=0.0097
+[2025-11-07 03:20:56][alpha=2.4, rkk=0.2, rho_kx=0.08571428571428572] Calculando fracción espejismo
+[2025-11-07 03:20:56][alpha=2.4, rkk=0.2, rho_kx=0.08571428571428572] Fracción: 0.049, tiempo 0.03s
+[2025-11-07 03:20:56][alpha=2.4] Resultado rkk=0.2, rho_kx=0.08571428571428572 --> frac=0.049
+[2025-11-07 03:24:22][alpha=2.4] Rewiring final rkk=0.1650 en 8749 iter(s) y 1804.52s
+[2025-11-07 03:24:22][alpha=2.4, rkk=0.2] Ajustando atributos para rho_kx=0.2571428571428571
+[2025-11-07 03:24:22][alpha=2.4, rkk=0.2] Asignación terminada en 0.02s con corr_diff=0.0071
+[2025-11-07 03:24:22][alpha=2.4, rkk=0.2, rho_kx=0.2571428571428571] Calculando fracción espejismo
+[2025-11-07 03:24:22][alpha=2.4, rkk=0.2, rho_kx=0.2571428571428571] Fracción: 0.077, tiempo 0.03s
+[2025-11-07 03:24:22][alpha=2.4] Resultado rkk=0.2, rho_kx=0.2571428571428571 --> frac=0.077
+[2025-11-07 03:33:43][alpha=2.4] Rewiring final rkk=0.1651 en 7791 iter(s) y 1539.28s
+[2025-11-07 03:33:43][alpha=2.4, rkk=0.2] Ajustando atributos para rho_kx=0.6
+[2025-11-07 03:33:43][alpha=2.4, rkk=0.2] Asignación terminada en 0.07s con corr_diff=0.0868
+[2025-11-07 03:33:43][alpha=2.4, rkk=0.2, rho_kx=0.6] Calculando fracción espejismo
+[2025-11-07 03:33:43][alpha=2.4, rkk=0.2, rho_kx=0.6] Fracción: 0.127, tiempo 0.04s
+[2025-11-07 03:33:43][alpha=2.4] Resultado rkk=0.2, rho_kx=0.6 --> frac=0.127
+[2025-11-07 03:34:39][alpha=2.4] Rewiring final rkk=0.1655 en 8243 iter(s) y 1611.12s
+[2025-11-07 03:34:39][alpha=2.4, rkk=0.2] Ajustando atributos para rho_kx=0.4285714285714286
+[2025-11-07 03:34:39][alpha=2.4, rkk=0.2] Asignación terminada en 0.01s con corr_diff=0.0002
+[2025-11-07 03:34:39][alpha=2.4, rkk=0.2, rho_kx=0.4285714285714286] Calculando fracción espejismo
+[2025-11-07 03:34:39][alpha=2.4, rkk=0.2, rho_kx=0.4285714285714286] Fracción: 0.107, tiempo 0.03s
+[2025-11-07 03:34:39][alpha=2.4] Resultado rkk=0.2, rho_kx=0.4285714285714286 --> frac=0.107
+[2025-11-07 03:43:38][alpha=3.1] Rewiring final rkk=0.2652 en 14867 iter(s) y 2468.09s
+[2025-11-07 03:43:38][alpha=3.1, rkk=0.3] Ajustando atributos para rho_kx=0.17142857142857143
+[2025-11-07 03:43:38][alpha=3.1, rkk=0.3] Asignación terminada en 0.01s con corr_diff=0.0011
+[2025-11-07 03:43:38][alpha=3.1, rkk=0.3, rho_kx=0.17142857142857143] Calculando fracción espejismo
+[2025-11-07 03:43:38][alpha=3.1, rkk=0.3, rho_kx=0.17142857142857143] Fracción: 0.048, tiempo 0.03s
+[2025-11-07 03:43:38][alpha=3.1] Resultado rkk=0.3, rho_kx=0.17142857142857143 --> frac=0.048
+
+[2025-11-07 03:43:38][alpha=3.1] Inicio experimento rkk=0.3, rho_kx=0.2571428571428571
+[2025-11-07 03:43:38][alpha=3.1] Iniciando rewiring rkk=0.0014 target=0.3
+[2025-11-07 03:49:08][alpha=3.1] Rewiring final rkk=0.2650 en 18346 iter(s) y 2991.97s
+[2025-11-07 03:49:08][alpha=3.1, rkk=0.3] Ajustando atributos para rho_kx=0.0
+[2025-11-07 03:49:08][alpha=3.1, rkk=0.3] Asignación terminada en 0.01s con corr_diff=0.0030
+[2025-11-07 03:49:08][alpha=3.1, rkk=0.3, rho_kx=0.0] Calculando fracción espejismo
+[2025-11-07 03:49:08][alpha=3.1, rkk=0.3, rho_kx=0.0] Fracción: 0.043, tiempo 0.03s
+[2025-11-07 03:49:08][alpha=3.1] Resultado rkk=0.3, rho_kx=0.0 --> frac=0.043
+
+[2025-11-07 03:49:08][alpha=3.1] Inicio experimento rkk=0.3, rho_kx=0.08571428571428572
+[2025-11-07 03:49:08][alpha=3.1] Iniciando rewiring rkk=0.0014 target=0.3
+[2025-11-07 03:55:44][alpha=3.1] Rewiring final rkk=0.2652 en 17886 iter(s) y 2824.96s
+[2025-11-07 03:55:44][alpha=3.1, rkk=0.3] Ajustando atributos para rho_kx=0.34285714285714286
+[2025-11-07 03:55:44][alpha=3.1, rkk=0.3] Asignación terminada en 0.08s con corr_diff=0.1668
+[2025-11-07 03:55:44][alpha=3.1, rkk=0.3, rho_kx=0.34285714285714286] Calculando fracción espejismo
+[2025-11-07 03:55:44][alpha=3.1, rkk=0.3, rho_kx=0.34285714285714286] Fracción: 0.047, tiempo 0.01s
+[2025-11-07 03:55:44][alpha=3.1] Resultado rkk=0.3, rho_kx=0.34285714285714286 --> frac=0.047
+
+[2025-11-07 03:55:44][alpha=3.1] Inicio experimento rkk=0.3, rho_kx=0.4285714285714286
+[2025-11-07 03:55:44][alpha=3.1] Iniciando rewiring rkk=0.0014 target=0.3
+[2025-11-07 04:00:12][alpha=3.1] Rewiring final rkk=0.2690 en 19359 iter(s) y 3059.42s
+[2025-11-07 04:00:12][alpha=3.1, rkk=0.3] Ajustando atributos para rho_kx=0.5142857142857142
+[2025-11-07 04:00:12][alpha=3.1, rkk=0.3] Asignación terminada en 0.05s con corr_diff=0.3204
+[2025-11-07 04:00:12][alpha=3.1, rkk=0.3, rho_kx=0.5142857142857142] Calculando fracción espejismo
+[2025-11-07 04:00:12][alpha=3.1, rkk=0.3, rho_kx=0.5142857142857142] Fracción: 0.046, tiempo 0.02s
+[2025-11-07 04:00:12][alpha=3.1] Resultado rkk=0.3, rho_kx=0.5142857142857142 --> frac=0.046
+
+[2025-11-07 04:00:12][alpha=3.1] Inicio experimento rkk=0.3, rho_kx=0.6
+[2025-11-07 04:00:12][alpha=3.1] Iniciando rewiring rkk=0.0014 target=0.3
+[2025-11-07 04:07:01][alpha=3.1] Rewiring final rkk=-0.1104 en 31710 iter(s) y 5131.16s
+[2025-11-07 04:07:01][alpha=3.1, rkk=-0.15] Ajustando atributos para rho_kx=0.0
+[2025-11-07 04:07:01][alpha=3.1, rkk=-0.15] Asignación terminada en 0.02s con corr_diff=0.0001
+[2025-11-07 04:07:01][alpha=3.1, rkk=-0.15, rho_kx=0.0] Calculando fracción espejismo
+[2025-11-07 04:07:01][alpha=3.1, rkk=-0.15, rho_kx=0.0] Fracción: 0.046, tiempo 0.02s
+[2025-11-07 04:07:01][alpha=3.1] Resultado rkk=-0.15, rho_kx=0.0 --> frac=0.046
+
+[2025-11-07 04:07:01][alpha=3.1] Inicio experimento rkk=-0.15, rho_kx=0.08571428571428572
+[2025-11-07 04:07:01][alpha=3.1] Iniciando rewiring rkk=0.0014 target=-0.15
+[2025-11-07 04:10:09][alpha=3.1] Rewiring final rkk=-0.1101 en 31710 iter(s) y 5111.55s
+[2025-11-07 04:10:09][alpha=3.1, rkk=-0.15] Ajustando atributos para rho_kx=0.17142857142857143
+[2025-11-07 04:10:09][alpha=3.1, rkk=-0.15] Asignación terminada en 0.02s con corr_diff=0.0095
+[2025-11-07 04:10:09][alpha=3.1, rkk=-0.15, rho_kx=0.17142857142857143] Calculando fracción espejismo
+[2025-11-07 04:10:09][alpha=3.1, rkk=-0.15, rho_kx=0.17142857142857143] Fracción: 0.087, tiempo 0.02s
+[2025-11-07 04:10:09][alpha=3.1] Resultado rkk=-0.15, rho_kx=0.17142857142857143 --> frac=0.087
+
+[2025-11-07 04:10:09][alpha=3.1] Inicio experimento rkk=-0.15, rho_kx=0.2571428571428571
+[2025-11-07 04:10:10][alpha=3.1] Iniciando rewiring rkk=0.0014 target=-0.15
+[2025-11-07 04:10:29][alpha=3.1] Rewiring final rkk=-0.1100 en 31710 iter(s) y 5124.97s
+[2025-11-07 04:10:29][alpha=3.1, rkk=-0.15] Ajustando atributos para rho_kx=0.34285714285714286
+[2025-11-07 04:10:29][alpha=3.1, rkk=-0.15] Asignación terminada en 0.06s con corr_diff=0.1392
+[2025-11-07 04:10:29][alpha=3.1, rkk=-0.15, rho_kx=0.34285714285714286] Calculando fracción espejismo
+[2025-11-07 04:10:30][alpha=3.1, rkk=-0.15, rho_kx=0.34285714285714286] Fracción: 0.094, tiempo 0.02s
+[2025-11-07 04:10:30][alpha=3.1] Resultado rkk=-0.15, rho_kx=0.34285714285714286 --> frac=0.094
+
+[2025-11-07 04:10:30][alpha=3.1] Inicio experimento rkk=-0.15, rho_kx=0.4285714285714286
+[2025-11-07 04:10:30][alpha=3.1] Iniciando rewiring rkk=0.0014 target=-0.15
+[2025-11-07 04:12:00][alpha=3.1] Rewiring final rkk=-0.1101 en 31710 iter(s) y 5067.91s
+[2025-11-07 04:12:00][alpha=3.1, rkk=-0.15] Ajustando atributos para rho_kx=0.5142857142857142
+[2025-11-07 04:12:00][alpha=3.1, rkk=-0.15] Asignación terminada en 0.06s con corr_diff=0.3213
+[2025-11-07 04:12:00][alpha=3.1, rkk=-0.15, rho_kx=0.5142857142857142] Calculando fracción espejismo
+[2025-11-07 04:12:00][alpha=3.1, rkk=-0.15, rho_kx=0.5142857142857142] Fracción: 0.090, tiempo 0.03s
+[2025-11-07 04:12:00][alpha=3.1] Resultado rkk=-0.15, rho_kx=0.5142857142857142 --> frac=0.090
+
+[2025-11-07 04:12:01][alpha=3.1] Inicio experimento rkk=-0.15, rho_kx=0.6
+[2025-11-07 04:12:01][alpha=3.1] Iniciando rewiring rkk=0.0014 target=-0.15
+[2025-11-07 04:24:06][alpha=2.1] Rewiring final rkk=-0.3151 en 21197 iter(s) y 4318.47s
+[2025-11-07 04:24:06][alpha=2.1, rkk=-0.35] Ajustando atributos para rho_kx=0.08571428571428572
+[2025-11-07 04:24:06][alpha=2.1, rkk=-0.35] Asignación terminada en 0.03s con corr_diff=0.0016
+[2025-11-07 04:24:06][alpha=2.1, rkk=-0.35, rho_kx=0.08571428571428572] Calculando fracción espejismo
+[2025-11-07 04:24:06][alpha=2.1, rkk=-0.35, rho_kx=0.08571428571428572] Fracción: 0.094, tiempo 0.05s
+[2025-11-07 04:24:06][alpha=2.1] Resultado rkk=-0.35, rho_kx=0.08571428571428572 --> frac=0.094
+[2025-11-07 04:29:37][alpha=2.1] Rewiring final rkk=-0.3150 en 21662 iter(s) y 4414.46s
+[2025-11-07 04:29:37][alpha=2.1, rkk=-0.35] Ajustando atributos para rho_kx=0.2571428571428571
+[2025-11-07 04:29:37][alpha=2.1, rkk=-0.35] Asignación terminada en 0.01s con corr_diff=0.0055
+[2025-11-07 04:29:37][alpha=2.1, rkk=-0.35, rho_kx=0.2571428571428571] Calculando fracción espejismo
+[2025-11-07 04:29:37][alpha=2.1, rkk=-0.35, rho_kx=0.2571428571428571] Fracción: 0.221, tiempo 0.02s
+[2025-11-07 04:29:37][alpha=2.1] Resultado rkk=-0.35, rho_kx=0.2571428571428571 --> frac=0.221
+[2025-11-07 04:29:38][alpha=2.1] Rewiring final rkk=-0.3151 en 22487 iter(s) y 4536.19s
+[2025-11-07 04:29:38][alpha=2.1, rkk=-0.35] Ajustando atributos para rho_kx=0.6
+[2025-11-07 04:29:38][alpha=2.1, rkk=-0.35] Asignación terminada en 0.06s con corr_diff=0.0492
+[2025-11-07 04:29:38][alpha=2.1, rkk=-0.35, rho_kx=0.6] Calculando fracción espejismo
+[2025-11-07 04:29:38][alpha=2.1, rkk=-0.35, rho_kx=0.6] Fracción: 0.441, tiempo 0.04s
+[2025-11-07 04:29:38][alpha=2.1] Resultado rkk=-0.35, rho_kx=0.6 --> frac=0.441
+[2025-11-07 04:30:18][alpha=2.1] Rewiring final rkk=-0.3150 en 22227 iter(s) y 4490.73s
+[2025-11-07 04:30:18][alpha=2.1, rkk=-0.35] Ajustando atributos para rho_kx=0.4285714285714286
+[2025-11-07 04:30:18][alpha=2.1, rkk=-0.35] Asignación terminada en 0.01s con corr_diff=0.0095
+[2025-11-07 04:30:18][alpha=2.1, rkk=-0.35, rho_kx=0.4285714285714286] Calculando fracción espejismo
+[2025-11-07 04:30:18][alpha=2.1, rkk=-0.35, rho_kx=0.4285714285714286] Fracción: 0.356, tiempo 0.03s
+[2025-11-07 04:30:18][alpha=2.1] Resultado rkk=-0.35, rho_kx=0.4285714285714286 --> frac=0.356
+[2025-11-07 04:30:43][alpha=3.1] Rewiring final rkk=0.2651 en 17246 iter(s) y 2494.41s
+[2025-11-07 04:30:43][alpha=3.1, rkk=0.3] Ajustando atributos para rho_kx=0.08571428571428572
+[2025-11-07 04:30:43][alpha=3.1, rkk=0.3] Asignación terminada en 0.00s con corr_diff=0.0073
+[2025-11-07 04:30:43][alpha=3.1, rkk=0.3, rho_kx=0.08571428571428572] Calculando fracción espejismo
+[2025-11-07 04:30:43][alpha=3.1, rkk=0.3, rho_kx=0.08571428571428572] Fracción: 0.043, tiempo 0.02s
+[2025-11-07 04:30:43][alpha=3.1] Resultado rkk=0.3, rho_kx=0.08571428571428572 --> frac=0.043
+[2025-11-07 04:33:24][alpha=3.1] Rewiring final rkk=0.2669 en 20774 iter(s) y 2985.32s
+[2025-11-07 04:33:24][alpha=3.1, rkk=0.3] Ajustando atributos para rho_kx=0.2571428571428571
+[2025-11-07 04:33:24][alpha=3.1, rkk=0.3] Asignación terminada en 0.06s con corr_diff=0.0526
+[2025-11-07 04:33:24][alpha=3.1, rkk=0.3, rho_kx=0.2571428571428571] Calculando fracción espejismo
+[2025-11-07 04:33:24][alpha=3.1, rkk=0.3, rho_kx=0.2571428571428571] Fracción: 0.049, tiempo 0.02s
+[2025-11-07 04:33:24][alpha=3.1] Resultado rkk=0.3, rho_kx=0.2571428571428571 --> frac=0.049
+[2025-11-07 04:37:59][alpha=3.1] Rewiring final rkk=0.2651 en 18682 iter(s) y 2535.01s
+[2025-11-07 04:37:59][alpha=3.1, rkk=0.3] Ajustando atributos para rho_kx=0.4285714285714286
+[2025-11-07 04:37:59][alpha=3.1, rkk=0.3] Asignación terminada en 0.04s con corr_diff=0.2387
+[2025-11-07 04:37:59][alpha=3.1, rkk=0.3, rho_kx=0.4285714285714286] Calculando fracción espejismo
+[2025-11-07 04:37:59][alpha=3.1, rkk=0.3, rho_kx=0.4285714285714286] Fracción: 0.050, tiempo 0.01s
+[2025-11-07 04:37:59][alpha=3.1] Resultado rkk=0.3, rho_kx=0.4285714285714286 --> frac=0.050
+[2025-11-07 04:40:10][alpha=3.1] Rewiring final rkk=0.2651 en 18128 iter(s) y 2398.44s
+[2025-11-07 04:40:10][alpha=3.1, rkk=0.3] Ajustando atributos para rho_kx=0.6
+[2025-11-07 04:40:10][alpha=3.1, rkk=0.3] Asignación terminada en 0.03s con corr_diff=0.4066
+[2025-11-07 04:40:10][alpha=3.1, rkk=0.3, rho_kx=0.6] Calculando fracción espejismo
+[2025-11-07 04:40:10][alpha=3.1, rkk=0.3, rho_kx=0.6] Fracción: 0.047, tiempo 0.01s
+[2025-11-07 04:40:10][alpha=3.1] Resultado rkk=0.3, rho_kx=0.6 --> frac=0.047
+[2025-11-07 05:02:35][alpha=3.1] Rewiring final rkk=-0.1103 en 31710 iter(s) y 3334.37s
+[2025-11-07 05:02:35][alpha=3.1, rkk=-0.15] Ajustando atributos para rho_kx=0.08571428571428572
+[2025-11-07 05:02:35][alpha=3.1, rkk=-0.15] Asignación terminada en 0.01s con corr_diff=0.0074
+[2025-11-07 05:02:35][alpha=3.1, rkk=-0.15, rho_kx=0.08571428571428572] Calculando fracción espejismo
+[2025-11-07 05:02:35][alpha=3.1, rkk=-0.15, rho_kx=0.08571428571428572] Fracción: 0.067, tiempo 0.02s
+[2025-11-07 05:02:35][alpha=3.1] Resultado rkk=-0.15, rho_kx=0.08571428571428572 --> frac=0.067
+[2025-11-07 05:04:46][alpha=3.1] Rewiring final rkk=-0.1096 en 31710 iter(s) y 3276.54s
+[2025-11-07 05:04:46][alpha=3.1, rkk=-0.15] Ajustando atributos para rho_kx=0.2571428571428571
+[2025-11-07 05:04:46][alpha=3.1, rkk=-0.15] Asignación terminada en 0.03s con corr_diff=0.0789
+[2025-11-07 05:04:46][alpha=3.1, rkk=-0.15, rho_kx=0.2571428571428571] Calculando fracción espejismo
+[2025-11-07 05:04:46][alpha=3.1, rkk=-0.15, rho_kx=0.2571428571428571] Fracción: 0.088, tiempo 0.01s
+[2025-11-07 05:04:46][alpha=3.1] Resultado rkk=-0.15, rho_kx=0.2571428571428571 --> frac=0.088
+[2025-11-07 05:04:53][alpha=3.1] Rewiring final rkk=-0.1103 en 31710 iter(s) y 3263.17s
+[2025-11-07 05:04:53][alpha=3.1, rkk=-0.15] Ajustando atributos para rho_kx=0.4285714285714286
+[2025-11-07 05:04:53][alpha=3.1, rkk=-0.15] Asignación terminada en 0.03s con corr_diff=0.2405
+[2025-11-07 05:04:53][alpha=3.1, rkk=-0.15, rho_kx=0.4285714285714286] Calculando fracción espejismo
+[2025-11-07 05:04:53][alpha=3.1, rkk=-0.15, rho_kx=0.4285714285714286] Fracción: 0.090, tiempo 0.01s
+[2025-11-07 05:04:53][alpha=3.1] Resultado rkk=-0.15, rho_kx=0.4285714285714286 --> frac=0.090
+[2025-11-07 05:05:17][alpha=3.1] Rewiring final rkk=-0.1103 en 31710 iter(s) y 3196.54s
+[2025-11-07 05:05:17][alpha=3.1, rkk=-0.15] Ajustando atributos para rho_kx=0.6
+[2025-11-07 05:05:17][alpha=3.1, rkk=-0.15] Asignación terminada en 0.03s con corr_diff=0.4030
+[2025-11-07 05:05:17][alpha=3.1, rkk=-0.15, rho_kx=0.6] Calculando fracción espejismo
+[2025-11-07 05:05:17][alpha=3.1, rkk=-0.15, rho_kx=0.6] Fracción: 0.093, tiempo 0.01s
+[2025-11-07 05:05:17][alpha=3.1] Resultado rkk=-0.15, rho_kx=0.6 --> frac=0.093
+[2025-11-07 05:05:17] Experimentos completados.
+[2025-11-07 05:05:17] Resultados guardados en: C:\Users\dcaceres\Documents\Magister\Trimestre 2\CS Redes\Tarea 2\python\run\N10000_251107-014048\resultados_majority_illusion.csv
+[2025-11-07 05:05:18] Figura guardada en: C:\Users\dcaceres\Documents\Magister\Trimestre 2\CS Redes\Tarea 2\python\run\N10000_251107-014048\majority_illusion_plot.png
+[2025-11-07 05:05:18] Tiempo total de ejecución: 12269.95s (~204.50 min)
+[2025-11-07 07:22:16] ¡Listo!
+
+Process finished with exit code 0
