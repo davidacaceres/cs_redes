@@ -1,0 +1,10 @@
+{
+  "dataset": "Political Blogs (download Newman, colapsado no dirigido)",
+  "source": "data-raw\\polblogs\\polblogs.gml",
+  "n_raw_directed": 1224,
+  "l_raw_directed": 19022,
+  "n_gcc": 1222,
+  "l_gcc": 16714,
+  "avg_k": 27.355155482815057,
+  "r_kk": -0.22132872301192266
+}

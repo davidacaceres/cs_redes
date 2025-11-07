@@ -1,0 +1,9 @@
+{
+  "dataset": "Twitter\u2013Higgs (SNAP) followers (MUTUOS)",
+  "n_raw_directed": 456626,
+  "l_raw_directed": 14855842,
+  "n_gcc": 325904,
+  "l_gcc": 2337919,
+  "avg_k": 14.347286317443173,
+  "r_kk": 0.15878185421472682
+}

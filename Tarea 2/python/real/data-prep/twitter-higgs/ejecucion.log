@@ -1,0 +1,4 @@
+[2025-11-07T19:01:02] prep_fig4_datasets.py | Twitter–Higgs | preparando (mutuos followers)...
+[2025-11-07T19:01:02] Descargando: https://snap.stanford.edu/data/higgs-social_network.edgelist.gz
+[2025-11-07T19:01:45] Descarga OK → data-raw\twitter-higgs\higgs-social_network.edgelist.gz (54597265 bytes) en 42.96s
+[2025-11-07T19:03:23] Listo Twitter–Higgs | N_raw_dir=456626, L_raw_dir=14855842, N_GCC=325904, L_GCC=2337919, r_kk=+0.159, t_total=141.80s

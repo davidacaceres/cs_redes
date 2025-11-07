@@ -1,0 +1,4 @@
+[2025-11-07T19:03:26] prep_fig4_datasets.py | Reactome (download) | preparando...
+[2025-11-07T19:03:26] Descargando: https://reactome.org/download/current/interactors/reactome.homo_sapiens.interactions.psi-mitab.txt
+[2025-11-07T19:03:29] Descarga OK → data-raw\reactome\reactome.homo_sapiens.interactions.psi-mitab.txt (181951508 bytes) en 3.06s
+[2025-11-07T19:03:30] Listo Reactome (download) | N_raw=9018, L_raw=36904, N_GCC=7799, L_GCC=35803, r_kk=-0.055, t_total=3.95s

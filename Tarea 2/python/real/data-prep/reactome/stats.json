@@ -1,0 +1,10 @@
+{
+  "dataset": "Reactome PPI (human, PSI-MITAB)",
+  "source": "data-raw\\reactome\\reactome.homo_sapiens.interactions.psi-mitab.txt",
+  "n_raw": 9018,
+  "l_raw": 36904,
+  "n_gcc": 7799,
+  "l_gcc": 35803,
+  "avg_k": 9.18143351711758,
+  "r_kk": -0.05480125958272307
+}
