@@ -135,7 +135,22 @@ def assign_attributes_with_rho_from_degrees(degrees, px1, target_rho_kx, max_swa
     N = len(degrees)
     attrs = np.zeros(N, dtype=int)
     attrs[np.random.choice(N, int(round(px1 * N)), replace=False)] = 1
-    def corr(arr): return pearsonr(degrees, arr)[0]
+
+    def corr(arr):
+        # Evitar ValueError de pearsonr y divisiones por cero
+        if N < 2:
+            return 0.0
+        a = degrees.astype(float)
+        b = arr.astype(float)
+        va = a.var()
+        vb = b.var()
+        if va == 0.0 or vb == 0.0:
+            return 0.0
+        # Usar pearsonr solo cuando es seguro
+        return float(pearsonr(a, b)[0])
+
+
+    #def corr(arr): return pearsonr(degrees, arr)[0]
     rho = corr(attrs); swaps = 0
     ones_idx = np.where(attrs == 1)[0]; zeros_idx = np.where(attrs == 0)[0]
     while abs(rho - target_rho_kx) > 0.01 and swaps < max_swaps and len(ones_idx)>0 and len(zeros_idx)>0:
@@ -180,10 +195,26 @@ def worker_curve(task):
         G = to_undirected_mutual(G_in) if mutual_only else nx.Graph(G_in)
     else:
         G = G_in
+
     G = largest_cc_simple(G)
     t_load = perf_counter() - t_load0
 
     N = G.number_of_nodes(); L = G.number_of_edges(); rkk = nx.degree_assortativity_coefficient(G)
+
+    # Normalizar r_kk si sale NaN por varianzas cero
+    if not np.isfinite(rkk):
+        rkk = 0.0
+
+    # Si la red quedó degenerada, la omitimos con logs legibles
+    if N < 2 or L == 0:
+        return {
+            "name": name, "N": N, "L": L, "rkk": rkk, "px1": px1,
+            "rows_csv": [],
+            "rho_logs": [f"red={name} OMITIDA: N={N}, L={L} (después de mutuos/GCC)"],
+            "series": [],
+            "t_load": float(t_load), "t_pre": 0.0,
+            "t_attr_sum": 0.0, "t_maj_sum": 0.0
+        }
 
     # (2) Precompute
     t_pre0 = perf_counter()
@@ -240,10 +271,10 @@ def build_tasks(args):
     if args.hepth:   nets.append(("HepTh",   args.hepth,   False, False))
     if args.reactome:nets.append(("Reactome",args.reactome,False, False))
     if args.digg:    nets.append(("Digg",    args.digg,    True,  True if args.mutual_digg   else False))
-    if args.twitter: nets.append(("Twitter", args.twitter, True,  True if args.mutual_twitter else False))
+    if args.twitter: nets.append(("Twitter", args.twitter, True,  False))
     if args.enron:   nets.append(("Enron",   args.enron,   False, False))
     if args.enron_csv: nets.append(("EnronCSV", args.enron_csv, False, False))
-    if args.blogs:   nets.append(("Blogs",   args.blogs,   True,  False if args.blogs_all else True))
+    if args.blogs:   nets.append(("Blogs",   args.blogs,   True, True))
     # Tareas: (name, path, directed, mutual_only, px1, rho_grid, seed, max_swaps)
     tasks = []
     for (name, path, directed, mutual_only) in nets:
@@ -253,18 +284,26 @@ def build_tasks(args):
 
 def get_args():
     ap = argparse.ArgumentParser(description="Fig.4 — Ilusión de Mayoría en redes reales (paths locales)")
-    ap.add_argument("--hepth",   type=str, default="real/data-prep/hepth/edges_all.txt", help="Ruta edge list HepTh (undirected)")
-    ap.add_argument("--reactome",type=str, default="real/data-prep/reactome/edges_all.txt", help="Ruta edge list Reactome PPI (undirected)")
-    ap.add_argument("--digg",    type=str, default="", help="Ruta edge list Digg (directed followers)")
+    ap.add_argument("--hepth",   type=str, default="", help="Ruta edge list HepTh (undirected)")
+    ap.add_argument("--reactome",type=str, default="", help="Ruta edge list Reactome PPI (undirected)")
+    ap.add_argument("--digg",    type=str, default="", help="Ruta edge list Digg (directed followers)") # problema
+#    ap.add_argument("--twitter", type=str, default="", help="Ruta edge list Twitter (directed followers)") # problema
+    ap.add_argument("--enron",   type=str, default="", help="email-Enron.txt.gz Ruta edge list Enron (undirected)")
+    ap.add_argument("--blogs",   type=str, default="", help="Ruta edge list Political Blogs (directed)")
+
+#    ap.add_argument("--hepth",   type=str, default="real/data-prep/hepth/edges_all.txt", help="Ruta edge list HepTh (undirected)")
+#    ap.add_argument("--reactome",type=str, default="real/data-prep/reactome/edges_all.txt", help="Ruta edge list Reactome PPI (undirected)")
+#    ap.add_argument("--digg",    type=str, default="real/data-prep/digg/edges_mutual.txt", help="Ruta edge list Digg (directed followers)")
     ap.add_argument("--twitter", type=str, default="real/data-prep/twitter-higgs/edges_mutual.txt", help="Ruta edge list Twitter (directed followers)")
-    ap.add_argument("--enron",   type=str, default="real/data-prep/enron/edges_all.txt", help="email-Enron.txt.gz Ruta edge list Enron (undirected)")
+#    ap.add_argument("--enron",   type=str, default="real/data-prep/enron/edges_all.txt", help="email-Enron.txt.gz Ruta edge list Enron (undirected)")
+ #   ap.add_argument("--blogs",   type=str, default="real/data-prep/polblogs/edges_all.txt", help="Ruta edge list Political Blogs (directed)")
+
     ap.add_argument("--enron-csv", type=str, default="" , help="Ruta CSV Enron (source,target[,weight])")
-    ap.add_argument("--blogs",   type=str, default="real/data-prep/polblogs/edges_all.txt", help="Ruta edge list Political Blogs (directed)")
     ap.add_argument("--mutual-digg",    dest="mutual_digg",    action="store_true",  help="Usar SOLO mutuos en Digg (default: True)")
     ap.add_argument("--no-mutual-digg", dest="mutual_digg",    action="store_false", help="No exigir mutuos en Digg")
     ap.add_argument("--mutual-twitter", dest="mutual_twitter", action="store_true",  help="Usar SOLO mutuos en Twitter (default: True)")
-    ap.add_argument("--no-mutual-twitter", dest="mutual_twitter", action="store_false", help="No exigir mutuos en Twitter")
-    ap.add_argument("--blogs-all", action="store_true", help="Para Blogs: colapsar direcciones (no solo mutuos). Por defecto usa mutuos si NO pasas esta bandera.")
+    ap.add_argument("--no-mutual-twitter", dest="mutual_twitter", default=True, action="store_false", help="No exigir mutuos en Twitter")
+#    ap.add_argument("--blogs-all", action="store_true", default=True, help="Para Blogs: colapsar direcciones (no solo mutuos). Por defecto usa mutuos si NO pasas esta bandera.")
     ap.set_defaults(mutual_digg=True, mutual_twitter=True)
 
     ap.add_argument("--rho", type=parse_rho_grid, default="0:0.6:10",                    help="Grid de rho_kx: 'a:b:n' (linspace) o lista '0,0.1,0.2'")
