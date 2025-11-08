@@ -1,0 +1,234 @@
+[2025-11-08T00:28:25-03:00] Ejecutando script: Real-Networks-v16.py | ruta=C:\Users\dcaceres\Documents\Magister\Trimestre 2\CS Redes\Tarea 2\python\Real-Networks-v16.py
+[2025-11-08T00:28:25-03:00] Inicio experimento Fig4-REAL (paralelo por procesos) | carpeta=run-real\251108-002825
+[2025-11-08T00:28:25-03:00] Procesos: usados=18, cpu_count=22
+[2025-11-08T00:28:25-03:00] Parámetros: PX1=[0.05, 0.1, 0.2, 0.3], ρ_kx_grid=[np.float64(0.0), np.float64(0.07), np.float64(0.13), np.float64(0.2), np.float64(0.27), np.float64(0.33), np.float64(0.4), np.float64(0.47), np.float64(0.53), np.float64(0.6)], seed=12021974
+[2025-11-08T00:29:10-03:00] Generada red REAL: HepTh, N=8638, L=24806, r_kk=+0.239, tiempo_carga=0.634s, tiempo_pre=0.017s
+[2025-11-08T00:29:10-03:00] red=HepTh, N=8638, L=24806, px1=0.05, r_kk=+0.239, ρ_kx_obj=0.00, ρ_kx_fin=+0.009 -> frac=0.008 | t(attrs)=0.060s, t(frac)=0.054s
+[2025-11-08T00:29:10-03:00] red=HepTh, N=8638, L=24806, px1=0.05, r_kk=+0.239, ρ_kx_obj=0.07, ρ_kx_fin=+0.057 -> frac=0.013 | t(attrs)=0.188s, t(frac)=0.064s
+[2025-11-08T00:29:10-03:00] red=HepTh, N=8638, L=24806, px1=0.05, r_kk=+0.239, ρ_kx_obj=0.13, ρ_kx_fin=+0.123 -> frac=0.019 | t(attrs)=0.809s, t(frac)=0.044s
+[2025-11-08T00:29:10-03:00] red=HepTh, N=8638, L=24806, px1=0.05, r_kk=+0.239, ρ_kx_obj=0.20, ρ_kx_fin=+0.190 -> frac=0.018 | t(attrs)=1.343s, t(frac)=0.049s
+[2025-11-08T00:29:10-03:00] red=HepTh, N=8638, L=24806, px1=0.05, r_kk=+0.239, ρ_kx_obj=0.27, ρ_kx_fin=+0.257 -> frac=0.026 | t(attrs)=2.305s, t(frac)=0.038s
+[2025-11-08T00:29:10-03:00] red=HepTh, N=8638, L=24806, px1=0.05, r_kk=+0.239, ρ_kx_obj=0.33, ρ_kx_fin=+0.323 -> frac=0.031 | t(attrs)=3.268s, t(frac)=0.046s
+[2025-11-08T00:29:10-03:00] red=HepTh, N=8638, L=24806, px1=0.05, r_kk=+0.239, ρ_kx_obj=0.40, ρ_kx_fin=+0.391 -> frac=0.033 | t(attrs)=3.931s, t(frac)=0.055s
+[2025-11-08T00:29:10-03:00] red=HepTh, N=8638, L=24806, px1=0.05, r_kk=+0.239, ρ_kx_obj=0.47, ρ_kx_fin=+0.457 -> frac=0.038 | t(attrs)=6.384s, t(frac)=0.052s
+[2025-11-08T00:29:10-03:00] red=HepTh, N=8638, L=24806, px1=0.05, r_kk=+0.239, ρ_kx_obj=0.53, ρ_kx_fin=+0.524 -> frac=0.047 | t(attrs)=7.867s, t(frac)=0.119s
+[2025-11-08T00:29:10-03:00] red=HepTh, N=8638, L=24806, px1=0.05, r_kk=+0.239, ρ_kx_obj=0.60, ρ_kx_fin=+0.586 -> frac=0.054 | t(attrs)=10.910s, t(frac)=0.062s
+[2025-11-08T00:29:14-03:00] Generada red REAL: HepTh, N=8638, L=24806, r_kk=+0.239, tiempo_carga=0.670s, tiempo_pre=0.012s
+[2025-11-08T00:29:14-03:00] red=HepTh, N=8638, L=24806, px1=0.10, r_kk=+0.239, ρ_kx_obj=0.00, ρ_kx_fin=+0.010 -> frac=0.023 | t(attrs)=0.021s, t(frac)=0.054s
+[2025-11-08T00:29:14-03:00] red=HepTh, N=8638, L=24806, px1=0.10, r_kk=+0.239, ρ_kx_obj=0.07, ρ_kx_fin=+0.057 -> frac=0.030 | t(attrs)=0.386s, t(frac)=0.067s
+[2025-11-08T00:29:14-03:00] red=HepTh, N=8638, L=24806, px1=0.10, r_kk=+0.239, ρ_kx_obj=0.13, ρ_kx_fin=+0.123 -> frac=0.038 | t(attrs)=1.339s, t(frac)=0.082s
+[2025-11-08T00:29:14-03:00] red=HepTh, N=8638, L=24806, px1=0.10, r_kk=+0.239, ρ_kx_obj=0.20, ρ_kx_fin=+0.192 -> frac=0.046 | t(attrs)=1.279s, t(frac)=0.040s
+[2025-11-08T00:29:14-03:00] red=HepTh, N=8638, L=24806, px1=0.10, r_kk=+0.239, ρ_kx_obj=0.27, ρ_kx_fin=+0.257 -> frac=0.056 | t(attrs)=2.473s, t(frac)=0.056s
+[2025-11-08T00:29:14-03:00] red=HepTh, N=8638, L=24806, px1=0.10, r_kk=+0.239, ρ_kx_obj=0.33, ρ_kx_fin=+0.324 -> frac=0.067 | t(attrs)=3.265s, t(frac)=0.051s
+[2025-11-08T00:29:14-03:00] red=HepTh, N=8638, L=24806, px1=0.10, r_kk=+0.239, ρ_kx_obj=0.40, ρ_kx_fin=+0.391 -> frac=0.075 | t(attrs)=4.311s, t(frac)=0.049s
+[2025-11-08T00:29:14-03:00] red=HepTh, N=8638, L=24806, px1=0.10, r_kk=+0.239, ρ_kx_obj=0.47, ρ_kx_fin=+0.457 -> frac=0.092 | t(attrs)=7.529s, t(frac)=0.060s
+[2025-11-08T00:29:14-03:00] red=HepTh, N=8638, L=24806, px1=0.10, r_kk=+0.239, ρ_kx_obj=0.53, ρ_kx_fin=+0.523 -> frac=0.104 | t(attrs)=8.970s, t(frac)=0.062s
+[2025-11-08T00:29:14-03:00] red=HepTh, N=8638, L=24806, px1=0.10, r_kk=+0.239, ρ_kx_obj=0.60, ρ_kx_fin=+0.579 -> frac=0.130 | t(attrs)=11.255s, t(frac)=0.059s
+[2025-11-08T00:29:35-03:00] Generada red REAL: Reactome, N=7799, L=35803, r_kk=-0.055, tiempo_carga=0.810s, tiempo_pre=0.014s
+[2025-11-08T00:29:35-03:00] red=Reactome, N=7799, L=35803, px1=0.05, r_kk=-0.055, ρ_kx_obj=0.00, ρ_kx_fin=-0.010 -> frac=0.009 | t(attrs)=0.008s, t(frac)=0.063s
+[2025-11-08T00:29:35-03:00] red=Reactome, N=7799, L=35803, px1=0.05, r_kk=-0.055, ρ_kx_obj=0.07, ρ_kx_fin=+0.057 -> frac=0.020 | t(attrs)=0.417s, t(frac)=0.090s
+[2025-11-08T00:29:35-03:00] red=Reactome, N=7799, L=35803, px1=0.05, r_kk=-0.055, ρ_kx_obj=0.13, ρ_kx_fin=+0.125 -> frac=0.025 | t(attrs)=1.328s, t(frac)=0.051s
+[2025-11-08T00:29:35-03:00] red=Reactome, N=7799, L=35803, px1=0.05, r_kk=-0.055, ρ_kx_obj=0.20, ρ_kx_fin=+0.192 -> frac=0.034 | t(attrs)=2.421s, t(frac)=0.045s
+[2025-11-08T00:29:35-03:00] red=Reactome, N=7799, L=35803, px1=0.05, r_kk=-0.055, ρ_kx_obj=0.27, ρ_kx_fin=+0.257 -> frac=0.049 | t(attrs)=3.609s, t(frac)=0.061s
+[2025-11-08T00:29:35-03:00] red=Reactome, N=7799, L=35803, px1=0.05, r_kk=-0.055, ρ_kx_obj=0.33, ρ_kx_fin=+0.326 -> frac=0.076 | t(attrs)=8.615s, t(frac)=0.058s
+[2025-11-08T00:29:35-03:00] red=Reactome, N=7799, L=35803, px1=0.05, r_kk=-0.055, ρ_kx_obj=0.40, ρ_kx_fin=+0.390 -> frac=0.123 | t(attrs)=8.399s, t(frac)=0.034s
+[2025-11-08T00:29:35-03:00] red=Reactome, N=7799, L=35803, px1=0.05, r_kk=-0.055, ρ_kx_obj=0.47, ρ_kx_fin=+0.426 -> frac=0.142 | t(attrs)=11.139s, t(frac)=0.073s
+[2025-11-08T00:29:35-03:00] red=Reactome, N=7799, L=35803, px1=0.05, r_kk=-0.055, ρ_kx_obj=0.53, ρ_kx_fin=+0.412 -> frac=0.141 | t(attrs)=12.936s, t(frac)=0.064s
+[2025-11-08T00:29:35-03:00] red=Reactome, N=7799, L=35803, px1=0.05, r_kk=-0.055, ρ_kx_obj=0.60, ρ_kx_fin=+0.418 -> frac=0.137 | t(attrs)=11.938s, t(frac)=0.055s
+[2025-11-08T00:29:35-03:00] Generada red REAL: Blogs, N=0, L=0, r_kk=+0.000, tiempo_carga=0.112s, tiempo_pre=0.000s
+[2025-11-08T00:29:35-03:00] red=Blogs OMITIDA: N=0, L=0 (después de mutuos/GCC)
+[2025-11-08T00:29:35-03:00] Generada red REAL: Blogs, N=0, L=0, r_kk=+0.000, tiempo_carga=0.053s, tiempo_pre=0.000s
+[2025-11-08T00:29:35-03:00] red=Blogs OMITIDA: N=0, L=0 (después de mutuos/GCC)
+[2025-11-08T00:29:35-03:00] Generada red REAL: Blogs, N=0, L=0, r_kk=+0.000, tiempo_carga=0.090s, tiempo_pre=0.000s
+[2025-11-08T00:29:35-03:00] red=Blogs OMITIDA: N=0, L=0 (después de mutuos/GCC)
+[2025-11-08T00:29:35-03:00] Generada red REAL: Blogs, N=0, L=0, r_kk=+0.000, tiempo_carga=0.066s, tiempo_pre=0.000s
+[2025-11-08T00:29:35-03:00] red=Blogs OMITIDA: N=0, L=0 (después de mutuos/GCC)
+[2025-11-08T00:29:39-03:00] Generada red REAL: Reactome, N=7799, L=35803, r_kk=-0.055, tiempo_carga=0.802s, tiempo_pre=0.013s
+[2025-11-08T00:29:39-03:00] red=Reactome, N=7799, L=35803, px1=0.10, r_kk=-0.055, ρ_kx_obj=0.00, ρ_kx_fin=+0.001 -> frac=0.029 | t(attrs)=0.002s, t(frac)=0.052s
+[2025-11-08T00:29:39-03:00] red=Reactome, N=7799, L=35803, px1=0.10, r_kk=-0.055, ρ_kx_obj=0.07, ρ_kx_fin=+0.057 -> frac=0.037 | t(attrs)=0.736s, t(frac)=0.069s
+[2025-11-08T00:29:39-03:00] red=Reactome, N=7799, L=35803, px1=0.10, r_kk=-0.055, ρ_kx_obj=0.13, ρ_kx_fin=+0.127 -> frac=0.066 | t(attrs)=1.891s, t(frac)=0.055s
+[2025-11-08T00:29:39-03:00] red=Reactome, N=7799, L=35803, px1=0.10, r_kk=-0.055, ρ_kx_obj=0.20, ρ_kx_fin=+0.190 -> frac=0.071 | t(attrs)=3.430s, t(frac)=0.059s
+[2025-11-08T00:29:39-03:00] red=Reactome, N=7799, L=35803, px1=0.10, r_kk=-0.055, ρ_kx_obj=0.27, ρ_kx_fin=+0.257 -> frac=0.132 | t(attrs)=3.939s, t(frac)=0.124s
+[2025-11-08T00:29:39-03:00] red=Reactome, N=7799, L=35803, px1=0.10, r_kk=-0.055, ρ_kx_obj=0.33, ρ_kx_fin=+0.327 -> frac=0.198 | t(attrs)=8.630s, t(frac)=0.059s
+[2025-11-08T00:29:39-03:00] red=Reactome, N=7799, L=35803, px1=0.10, r_kk=-0.055, ρ_kx_obj=0.40, ρ_kx_fin=+0.392 -> frac=0.280 | t(attrs)=10.501s, t(frac)=0.104s
+[2025-11-08T00:29:39-03:00] red=Reactome, N=7799, L=35803, px1=0.10, r_kk=-0.055, ρ_kx_obj=0.47, ρ_kx_fin=+0.381 -> frac=0.257 | t(attrs)=11.136s, t(frac)=0.055s
+[2025-11-08T00:29:39-03:00] red=Reactome, N=7799, L=35803, px1=0.10, r_kk=-0.055, ρ_kx_obj=0.53, ρ_kx_fin=+0.378 -> frac=0.256 | t(attrs)=12.351s, t(frac)=0.071s
+[2025-11-08T00:29:39-03:00] red=Reactome, N=7799, L=35803, px1=0.10, r_kk=-0.055, ρ_kx_obj=0.60, ρ_kx_fin=+0.394 -> frac=0.273 | t(attrs)=11.753s, t(frac)=0.083s
+[2025-11-08T00:29:45-03:00] Generada red REAL: HepTh, N=8638, L=24806, r_kk=+0.239, tiempo_carga=0.648s, tiempo_pre=0.011s
+[2025-11-08T00:29:45-03:00] red=HepTh, N=8638, L=24806, px1=0.20, r_kk=+0.239, ρ_kx_obj=0.00, ρ_kx_fin=+0.008 -> frac=0.069 | t(attrs)=0.002s, t(frac)=0.049s
+[2025-11-08T00:29:45-03:00] red=HepTh, N=8638, L=24806, px1=0.20, r_kk=+0.239, ρ_kx_obj=0.07, ρ_kx_fin=+0.058 -> frac=0.076 | t(attrs)=0.376s, t(frac)=0.060s
+[2025-11-08T00:29:45-03:00] red=HepTh, N=8638, L=24806, px1=0.20, r_kk=+0.239, ρ_kx_obj=0.13, ρ_kx_fin=+0.125 -> frac=0.097 | t(attrs)=1.641s, t(frac)=0.075s
+[2025-11-08T00:29:45-03:00] red=HepTh, N=8638, L=24806, px1=0.20, r_kk=+0.239, ρ_kx_obj=0.20, ρ_kx_fin=+0.191 -> frac=0.121 | t(attrs)=2.885s, t(frac)=0.163s
+[2025-11-08T00:29:45-03:00] red=HepTh, N=8638, L=24806, px1=0.20, r_kk=+0.239, ρ_kx_obj=0.27, ρ_kx_fin=+0.257 -> frac=0.153 | t(attrs)=4.401s, t(frac)=0.173s
+[2025-11-08T00:29:45-03:00] red=HepTh, N=8638, L=24806, px1=0.20, r_kk=+0.239, ρ_kx_obj=0.33, ρ_kx_fin=+0.323 -> frac=0.174 | t(attrs)=6.910s, t(frac)=0.043s
+[2025-11-08T00:29:45-03:00] red=HepTh, N=8638, L=24806, px1=0.20, r_kk=+0.239, ρ_kx_obj=0.40, ρ_kx_fin=+0.390 -> frac=0.210 | t(attrs)=9.979s, t(frac)=0.049s
+[2025-11-08T00:29:45-03:00] red=HepTh, N=8638, L=24806, px1=0.20, r_kk=+0.239, ρ_kx_obj=0.47, ρ_kx_fin=+0.457 -> frac=0.246 | t(attrs)=11.005s, t(frac)=0.137s
+[2025-11-08T00:29:45-03:00] red=HepTh, N=8638, L=24806, px1=0.20, r_kk=+0.239, ρ_kx_obj=0.53, ρ_kx_fin=+0.523 -> frac=0.279 | t(attrs)=17.080s, t(frac)=0.052s
+[2025-11-08T00:29:45-03:00] red=HepTh, N=8638, L=24806, px1=0.20, r_kk=+0.239, ρ_kx_obj=0.60, ρ_kx_fin=+0.547 -> frac=0.299 | t(attrs)=16.819s, t(frac)=0.075s
+[2025-11-08T00:29:53-03:00] Generada red REAL: HepTh, N=8638, L=24806, r_kk=+0.239, tiempo_carga=0.629s, tiempo_pre=0.015s
+[2025-11-08T00:29:53-03:00] red=HepTh, N=8638, L=24806, px1=0.30, r_kk=+0.239, ρ_kx_obj=0.00, ρ_kx_fin=-0.010 -> frac=0.138 | t(attrs)=0.103s, t(frac)=0.065s
+[2025-11-08T00:29:53-03:00] red=HepTh, N=8638, L=24806, px1=0.30, r_kk=+0.239, ρ_kx_obj=0.07, ρ_kx_fin=+0.057 -> frac=0.174 | t(attrs)=0.987s, t(frac)=0.055s
+[2025-11-08T00:29:53-03:00] red=HepTh, N=8638, L=24806, px1=0.30, r_kk=+0.239, ρ_kx_obj=0.13, ρ_kx_fin=+0.124 -> frac=0.201 | t(attrs)=1.833s, t(frac)=0.087s
+[2025-11-08T00:29:53-03:00] red=HepTh, N=8638, L=24806, px1=0.30, r_kk=+0.239, ρ_kx_obj=0.20, ρ_kx_fin=+0.191 -> frac=0.243 | t(attrs)=3.184s, t(frac)=0.062s
+[2025-11-08T00:29:53-03:00] red=HepTh, N=8638, L=24806, px1=0.30, r_kk=+0.239, ρ_kx_obj=0.27, ρ_kx_fin=+0.257 -> frac=0.284 | t(attrs)=5.150s, t(frac)=0.050s
+[2025-11-08T00:29:53-03:00] red=HepTh, N=8638, L=24806, px1=0.30, r_kk=+0.239, ρ_kx_obj=0.33, ρ_kx_fin=+0.323 -> frac=0.337 | t(attrs)=8.008s, t(frac)=0.094s
+[2025-11-08T00:29:53-03:00] red=HepTh, N=8638, L=24806, px1=0.30, r_kk=+0.239, ρ_kx_obj=0.40, ρ_kx_fin=+0.390 -> frac=0.374 | t(attrs)=8.994s, t(frac)=0.052s
+[2025-11-08T00:29:53-03:00] red=HepTh, N=8638, L=24806, px1=0.30, r_kk=+0.239, ρ_kx_obj=0.47, ρ_kx_fin=+0.457 -> frac=0.443 | t(attrs)=11.984s, t(frac)=0.053s
+[2025-11-08T00:29:53-03:00] red=HepTh, N=8638, L=24806, px1=0.30, r_kk=+0.239, ρ_kx_obj=0.53, ρ_kx_fin=+0.492 -> frac=0.458 | t(attrs)=20.669s, t(frac)=0.055s
+[2025-11-08T00:29:53-03:00] red=HepTh, N=8638, L=24806, px1=0.30, r_kk=+0.239, ρ_kx_obj=0.60, ρ_kx_fin=+0.517 -> frac=0.474 | t(attrs)=17.810s, t(frac)=0.109s
+[2025-11-08T00:29:56-03:00] Generada red REAL: Reactome, N=7799, L=35803, r_kk=-0.055, tiempo_carga=0.840s, tiempo_pre=0.013s
+[2025-11-08T00:29:56-03:00] red=Reactome, N=7799, L=35803, px1=0.30, r_kk=-0.055, ρ_kx_obj=0.00, ρ_kx_fin=-0.006 -> frac=0.143 | t(attrs)=0.003s, t(frac)=0.055s
+[2025-11-08T00:29:56-03:00] red=Reactome, N=7799, L=35803, px1=0.30, r_kk=-0.055, ρ_kx_obj=0.07, ρ_kx_fin=+0.057 -> frac=0.196 | t(attrs)=1.182s, t(frac)=0.058s
+[2025-11-08T00:29:56-03:00] red=Reactome, N=7799, L=35803, px1=0.30, r_kk=-0.055, ρ_kx_obj=0.13, ρ_kx_fin=+0.123 -> frac=0.312 | t(attrs)=2.838s, t(frac)=0.049s
+[2025-11-08T00:29:56-03:00] red=Reactome, N=7799, L=35803, px1=0.30, r_kk=-0.055, ρ_kx_obj=0.20, ρ_kx_fin=+0.191 -> frac=0.446 | t(attrs)=5.161s, t(frac)=0.058s
+[2025-11-08T00:29:56-03:00] red=Reactome, N=7799, L=35803, px1=0.30, r_kk=-0.055, ρ_kx_obj=0.27, ρ_kx_fin=+0.257 -> frac=0.529 | t(attrs)=9.855s, t(frac)=0.053s
+[2025-11-08T00:29:56-03:00] red=Reactome, N=7799, L=35803, px1=0.30, r_kk=-0.055, ρ_kx_obj=0.33, ρ_kx_fin=+0.313 -> frac=0.616 | t(attrs)=11.458s, t(frac)=0.077s
+[2025-11-08T00:29:56-03:00] red=Reactome, N=7799, L=35803, px1=0.30, r_kk=-0.055, ρ_kx_obj=0.40, ρ_kx_fin=+0.307 -> frac=0.620 | t(attrs)=11.104s, t(frac)=0.076s
+[2025-11-08T00:29:56-03:00] red=Reactome, N=7799, L=35803, px1=0.30, r_kk=-0.055, ρ_kx_obj=0.47, ρ_kx_fin=+0.311 -> frac=0.619 | t(attrs)=13.444s, t(frac)=0.131s
+[2025-11-08T00:29:56-03:00] red=Reactome, N=7799, L=35803, px1=0.30, r_kk=-0.055, ρ_kx_obj=0.53, ρ_kx_fin=+0.313 -> frac=0.612 | t(attrs)=12.071s, t(frac)=0.050s
+[2025-11-08T00:29:56-03:00] red=Reactome, N=7799, L=35803, px1=0.30, r_kk=-0.055, ρ_kx_obj=0.60, ρ_kx_fin=+0.305 -> frac=0.595 | t(attrs)=14.333s, t(frac)=0.059s
+[2025-11-08T00:30:26-03:00] Generada red REAL: Reactome, N=7799, L=35803, r_kk=-0.055, tiempo_carga=0.953s, tiempo_pre=0.016s
+[2025-11-08T00:30:26-03:00] red=Reactome, N=7799, L=35803, px1=0.20, r_kk=-0.055, ρ_kx_obj=0.00, ρ_kx_fin=-0.010 -> frac=0.064 | t(attrs)=0.036s, t(frac)=0.111s
+[2025-11-08T00:30:26-03:00] red=Reactome, N=7799, L=35803, px1=0.20, r_kk=-0.055, ρ_kx_obj=0.07, ρ_kx_fin=+0.057 -> frac=0.100 | t(attrs)=1.827s, t(frac)=0.058s
+[2025-11-08T00:30:26-03:00] red=Reactome, N=7799, L=35803, px1=0.20, r_kk=-0.055, ρ_kx_obj=0.13, ρ_kx_fin=+0.124 -> frac=0.146 | t(attrs)=2.439s, t(frac)=0.063s
+[2025-11-08T00:30:26-03:00] red=Reactome, N=7799, L=35803, px1=0.20, r_kk=-0.055, ρ_kx_obj=0.20, ρ_kx_fin=+0.190 -> frac=0.228 | t(attrs)=6.320s, t(frac)=0.096s
+[2025-11-08T00:30:26-03:00] red=Reactome, N=7799, L=35803, px1=0.20, r_kk=-0.055, ρ_kx_obj=0.27, ρ_kx_fin=+0.257 -> frac=0.336 | t(attrs)=11.268s, t(frac)=0.060s
+[2025-11-08T00:30:26-03:00] red=Reactome, N=7799, L=35803, px1=0.20, r_kk=-0.055, ρ_kx_obj=0.33, ρ_kx_fin=+0.323 -> frac=0.449 | t(attrs)=13.361s, t(frac)=0.051s
+[2025-11-08T00:30:26-03:00] red=Reactome, N=7799, L=35803, px1=0.20, r_kk=-0.055, ρ_kx_obj=0.40, ρ_kx_fin=+0.335 -> frac=0.447 | t(attrs)=18.798s, t(frac)=0.111s
+[2025-11-08T00:30:26-03:00] red=Reactome, N=7799, L=35803, px1=0.20, r_kk=-0.055, ρ_kx_obj=0.47, ρ_kx_fin=+0.334 -> frac=0.466 | t(attrs)=16.370s, t(frac)=0.053s
+[2025-11-08T00:30:26-03:00] red=Reactome, N=7799, L=35803, px1=0.20, r_kk=-0.055, ρ_kx_obj=0.53, ρ_kx_fin=+0.324 -> frac=0.437 | t(attrs)=19.344s, t(frac)=0.151s
+[2025-11-08T00:30:26-03:00] red=Reactome, N=7799, L=35803, px1=0.20, r_kk=-0.055, ρ_kx_obj=0.60, ρ_kx_fin=+0.323 -> frac=0.429 | t(attrs)=20.956s, t(frac)=0.123s
+[2025-11-08T00:31:13-03:00] Generada red REAL: Digg, N=27567, L=175892, r_kk=+0.166, tiempo_carga=5.661s, tiempo_pre=0.387s
+[2025-11-08T00:31:13-03:00] red=Digg, N=27567, L=175892, px1=0.05, r_kk=+0.166, ρ_kx_obj=0.00, ρ_kx_fin=+0.009 -> frac=0.019 | t(attrs)=0.015s, t(frac)=0.257s
+[2025-11-08T00:31:13-03:00] red=Digg, N=27567, L=175892, px1=0.05, r_kk=+0.166, ρ_kx_obj=0.07, ρ_kx_fin=+0.057 -> frac=0.027 | t(attrs)=2.221s, t(frac)=0.237s
+[2025-11-08T00:31:13-03:00] red=Digg, N=27567, L=175892, px1=0.05, r_kk=+0.166, ρ_kx_obj=0.13, ρ_kx_fin=+0.123 -> frac=0.034 | t(attrs)=6.752s, t(frac)=0.249s
+[2025-11-08T00:31:13-03:00] red=Digg, N=27567, L=175892, px1=0.05, r_kk=+0.166, ρ_kx_obj=0.20, ρ_kx_fin=+0.190 -> frac=0.037 | t(attrs)=9.031s, t(frac)=0.242s
+[2025-11-08T00:31:13-03:00] red=Digg, N=27567, L=175892, px1=0.05, r_kk=+0.166, ρ_kx_obj=0.27, ρ_kx_fin=+0.257 -> frac=0.047 | t(attrs)=12.677s, t(frac)=0.275s
+[2025-11-08T00:31:13-03:00] red=Digg, N=27567, L=175892, px1=0.05, r_kk=+0.166, ρ_kx_obj=0.33, ρ_kx_fin=+0.324 -> frac=0.054 | t(attrs)=19.379s, t(frac)=0.225s
+[2025-11-08T00:31:13-03:00] red=Digg, N=27567, L=175892, px1=0.05, r_kk=+0.166, ρ_kx_obj=0.40, ρ_kx_fin=+0.335 -> frac=0.060 | t(attrs)=21.523s, t(frac)=0.376s
+[2025-11-08T00:31:13-03:00] red=Digg, N=27567, L=175892, px1=0.05, r_kk=+0.166, ρ_kx_obj=0.47, ρ_kx_fin=+0.319 -> frac=0.052 | t(attrs)=34.362s, t(frac)=0.283s
+[2025-11-08T00:31:13-03:00] red=Digg, N=27567, L=175892, px1=0.05, r_kk=+0.166, ρ_kx_obj=0.53, ρ_kx_fin=+0.316 -> frac=0.059 | t(attrs)=23.358s, t(frac)=0.254s
+[2025-11-08T00:31:13-03:00] red=Digg, N=27567, L=175892, px1=0.05, r_kk=+0.166, ρ_kx_obj=0.60, ρ_kx_fin=+0.330 -> frac=0.055 | t(attrs)=21.059s, t(frac)=0.247s
+[2025-11-08T00:31:23-03:00] Generada red REAL: Twitter, N=25848, L=62565, r_kk=-0.346, tiempo_carga=2.485s, tiempo_pre=0.045s
+[2025-11-08T00:31:23-03:00] red=Twitter, N=25848, L=62565, px1=0.05, r_kk=-0.346, ρ_kx_obj=0.00, ρ_kx_fin=-0.001 -> frac=0.030 | t(attrs)=0.003s, t(frac)=0.147s
+[2025-11-08T00:31:23-03:00] red=Twitter, N=25848, L=62565, px1=0.05, r_kk=-0.346, ρ_kx_obj=0.07, ρ_kx_fin=+0.057 -> frac=0.106 | t(attrs)=3.643s, t(frac)=0.135s
+[2025-11-08T00:31:23-03:00] red=Twitter, N=25848, L=62565, px1=0.05, r_kk=-0.346, ρ_kx_obj=0.13, ρ_kx_fin=+0.124 -> frac=0.145 | t(attrs)=8.209s, t(frac)=0.172s
+[2025-11-08T00:31:23-03:00] red=Twitter, N=25848, L=62565, px1=0.05, r_kk=-0.346, ρ_kx_obj=0.20, ρ_kx_fin=+0.182 -> frac=0.227 | t(attrs)=18.117s, t(frac)=0.177s
+[2025-11-08T00:31:23-03:00] red=Twitter, N=25848, L=62565, px1=0.05, r_kk=-0.346, ρ_kx_obj=0.27, ρ_kx_fin=+0.210 -> frac=0.266 | t(attrs)=18.992s, t(frac)=0.187s
+[2025-11-08T00:31:23-03:00] red=Twitter, N=25848, L=62565, px1=0.05, r_kk=-0.346, ρ_kx_obj=0.33, ρ_kx_fin=+0.210 -> frac=0.259 | t(attrs)=18.829s, t(frac)=0.175s
+[2025-11-08T00:31:23-03:00] red=Twitter, N=25848, L=62565, px1=0.05, r_kk=-0.346, ρ_kx_obj=0.40, ρ_kx_fin=+0.210 -> frac=0.247 | t(attrs)=33.164s, t(frac)=0.210s
+[2025-11-08T00:31:23-03:00] red=Twitter, N=25848, L=62565, px1=0.05, r_kk=-0.346, ρ_kx_obj=0.47, ρ_kx_fin=+0.196 -> frac=0.257 | t(attrs)=23.540s, t(frac)=0.179s
+[2025-11-08T00:31:23-03:00] red=Twitter, N=25848, L=62565, px1=0.05, r_kk=-0.346, ρ_kx_obj=0.53, ρ_kx_fin=+0.206 -> frac=0.274 | t(attrs)=21.647s, t(frac)=0.134s
+[2025-11-08T00:31:23-03:00] red=Twitter, N=25848, L=62565, px1=0.05, r_kk=-0.346, ρ_kx_obj=0.60, ρ_kx_fin=+0.201 -> frac=0.255 | t(attrs)=18.826s, t(frac)=0.160s
+[2025-11-08T00:31:23-03:00] Generada red REAL: Digg, N=27567, L=175892, r_kk=+0.166, tiempo_carga=5.709s, tiempo_pre=0.357s
+[2025-11-08T00:31:23-03:00] red=Digg, N=27567, L=175892, px1=0.10, r_kk=+0.166, ρ_kx_obj=0.00, ρ_kx_fin=-0.001 -> frac=0.040 | t(attrs)=0.005s, t(frac)=0.274s
+[2025-11-08T00:31:23-03:00] red=Digg, N=27567, L=175892, px1=0.10, r_kk=+0.166, ρ_kx_obj=0.07, ρ_kx_fin=+0.057 -> frac=0.052 | t(attrs)=2.420s, t(frac)=0.210s
+[2025-11-08T00:31:23-03:00] red=Digg, N=27567, L=175892, px1=0.10, r_kk=+0.166, ρ_kx_obj=0.13, ρ_kx_fin=+0.124 -> frac=0.061 | t(attrs)=7.130s, t(frac)=0.230s
+[2025-11-08T00:31:23-03:00] red=Digg, N=27567, L=175892, px1=0.10, r_kk=+0.166, ρ_kx_obj=0.20, ρ_kx_fin=+0.190 -> frac=0.080 | t(attrs)=11.055s, t(frac)=0.260s
+[2025-11-08T00:31:23-03:00] red=Digg, N=27567, L=175892, px1=0.10, r_kk=+0.166, ρ_kx_obj=0.27, ρ_kx_fin=+0.257 -> frac=0.098 | t(attrs)=18.390s, t(frac)=0.366s
+[2025-11-08T00:31:23-03:00] red=Digg, N=27567, L=175892, px1=0.10, r_kk=+0.166, ρ_kx_obj=0.33, ρ_kx_fin=+0.263 -> frac=0.090 | t(attrs)=20.578s, t(frac)=0.191s
+[2025-11-08T00:31:23-03:00] red=Digg, N=27567, L=175892, px1=0.10, r_kk=+0.166, ρ_kx_obj=0.40, ρ_kx_fin=+0.265 -> frac=0.097 | t(attrs)=32.305s, t(frac)=0.356s
+[2025-11-08T00:31:23-03:00] red=Digg, N=27567, L=175892, px1=0.10, r_kk=+0.166, ρ_kx_obj=0.47, ρ_kx_fin=+0.267 -> frac=0.096 | t(attrs)=25.370s, t(frac)=0.287s
+[2025-11-08T00:31:23-03:00] red=Digg, N=27567, L=175892, px1=0.10, r_kk=+0.166, ρ_kx_obj=0.53, ρ_kx_fin=+0.275 -> frac=0.102 | t(attrs)=22.887s, t(frac)=0.293s
+[2025-11-08T00:31:23-03:00] red=Digg, N=27567, L=175892, px1=0.10, r_kk=+0.166, ρ_kx_obj=0.60, ρ_kx_fin=+0.277 -> frac=0.101 | t(attrs)=19.950s, t(frac)=0.217s
+[2025-11-08T00:31:38-03:00] Generada red REAL: Digg, N=27567, L=175892, r_kk=+0.166, tiempo_carga=6.317s, tiempo_pre=0.324s
+[2025-11-08T00:31:38-03:00] red=Digg, N=27567, L=175892, px1=0.30, r_kk=+0.166, ρ_kx_obj=0.00, ρ_kx_fin=+0.000 -> frac=0.160 | t(attrs)=0.006s, t(frac)=0.281s
+[2025-11-08T00:31:38-03:00] red=Digg, N=27567, L=175892, px1=0.30, r_kk=+0.166, ρ_kx_obj=0.07, ρ_kx_fin=+0.057 -> frac=0.194 | t(attrs)=4.390s, t(frac)=0.268s
+[2025-11-08T00:31:38-03:00] red=Digg, N=27567, L=175892, px1=0.30, r_kk=+0.166, ρ_kx_obj=0.13, ρ_kx_fin=+0.123 -> frac=0.271 | t(attrs)=11.617s, t(frac)=0.235s
+[2025-11-08T00:31:38-03:00] red=Digg, N=27567, L=175892, px1=0.30, r_kk=+0.166, ρ_kx_obj=0.20, ρ_kx_fin=+0.184 -> frac=0.377 | t(attrs)=20.251s, t(frac)=0.255s
+[2025-11-08T00:31:38-03:00] red=Digg, N=27567, L=175892, px1=0.30, r_kk=+0.166, ρ_kx_obj=0.27, ρ_kx_fin=+0.181 -> frac=0.370 | t(attrs)=19.067s, t(frac)=0.251s
+[2025-11-08T00:31:38-03:00] red=Digg, N=27567, L=175892, px1=0.30, r_kk=+0.166, ρ_kx_obj=0.33, ρ_kx_fin=+0.189 -> frac=0.381 | t(attrs)=26.749s, t(frac)=0.559s
+[2025-11-08T00:31:38-03:00] red=Digg, N=27567, L=175892, px1=0.30, r_kk=+0.166, ρ_kx_obj=0.40, ρ_kx_fin=+0.190 -> frac=0.390 | t(attrs)=30.575s, t(frac)=0.250s
+[2025-11-08T00:31:38-03:00] red=Digg, N=27567, L=175892, px1=0.30, r_kk=+0.166, ρ_kx_obj=0.47, ρ_kx_fin=+0.191 -> frac=0.391 | t(attrs)=22.436s, t(frac)=0.353s
+[2025-11-08T00:31:38-03:00] red=Digg, N=27567, L=175892, px1=0.30, r_kk=+0.166, ρ_kx_obj=0.53, ρ_kx_fin=+0.194 -> frac=0.392 | t(attrs)=21.091s, t(frac)=0.243s
+[2025-11-08T00:31:38-03:00] red=Digg, N=27567, L=175892, px1=0.30, r_kk=+0.166, ρ_kx_obj=0.60, ρ_kx_fin=+0.186 -> frac=0.381 | t(attrs)=17.473s, t(frac)=0.232s
+[2025-11-08T00:31:58-03:00] Generada red REAL: Twitter, N=25848, L=62565, r_kk=-0.346, tiempo_carga=3.402s, tiempo_pre=0.055s
+[2025-11-08T00:31:58-03:00] red=Twitter, N=25848, L=62565, px1=0.10, r_kk=-0.346, ρ_kx_obj=0.00, ρ_kx_fin=+0.006 -> frac=0.071 | t(attrs)=0.003s, t(frac)=0.174s
+[2025-11-08T00:31:58-03:00] red=Twitter, N=25848, L=62565, px1=0.10, r_kk=-0.346, ρ_kx_obj=0.07, ρ_kx_fin=+0.060 -> frac=0.142 | t(attrs)=9.907s, t(frac)=0.489s
+[2025-11-08T00:31:58-03:00] red=Twitter, N=25848, L=62565, px1=0.10, r_kk=-0.346, ρ_kx_obj=0.13, ρ_kx_fin=+0.123 -> frac=0.244 | t(attrs)=18.383s, t(frac)=0.465s
+[2025-11-08T00:31:58-03:00] red=Twitter, N=25848, L=62565, px1=0.10, r_kk=-0.346, ρ_kx_obj=0.20, ρ_kx_fin=+0.158 -> frac=0.309 | t(attrs)=31.846s, t(frac)=0.227s
+[2025-11-08T00:31:58-03:00] red=Twitter, N=25848, L=62565, px1=0.10, r_kk=-0.346, ρ_kx_obj=0.27, ρ_kx_fin=+0.142 -> frac=0.271 | t(attrs)=32.517s, t(frac)=0.352s
+[2025-11-08T00:31:58-03:00] red=Twitter, N=25848, L=62565, px1=0.10, r_kk=-0.346, ρ_kx_obj=0.33, ρ_kx_fin=+0.170 -> frac=0.368 | t(attrs)=26.699s, t(frac)=0.185s
+[2025-11-08T00:31:58-03:00] red=Twitter, N=25848, L=62565, px1=0.10, r_kk=-0.346, ρ_kx_obj=0.40, ρ_kx_fin=+0.152 -> frac=0.280 | t(attrs)=23.721s, t(frac)=0.177s
+[2025-11-08T00:31:58-03:00] red=Twitter, N=25848, L=62565, px1=0.10, r_kk=-0.346, ρ_kx_obj=0.47, ρ_kx_fin=+0.159 -> frac=0.327 | t(attrs)=20.283s, t(frac)=0.171s
+[2025-11-08T00:31:58-03:00] red=Twitter, N=25848, L=62565, px1=0.10, r_kk=-0.346, ρ_kx_obj=0.53, ρ_kx_fin=+0.176 -> frac=0.342 | t(attrs)=17.651s, t(frac)=0.136s
+[2025-11-08T00:31:58-03:00] red=Twitter, N=25848, L=62565, px1=0.10, r_kk=-0.346, ρ_kx_obj=0.60, ρ_kx_fin=+0.154 -> frac=0.324 | t(attrs)=16.549s, t(frac)=0.133s
+[2025-11-08T00:31:58-03:00] Generada red REAL: Digg, N=27567, L=175892, r_kk=+0.166, tiempo_carga=7.200s, tiempo_pre=0.497s
+[2025-11-08T00:31:58-03:00] red=Digg, N=27567, L=175892, px1=0.20, r_kk=+0.166, ρ_kx_obj=0.00, ρ_kx_fin=+0.010 -> frac=0.093 | t(attrs)=0.136s, t(frac)=0.361s
+[2025-11-08T00:31:58-03:00] red=Digg, N=27567, L=175892, px1=0.20, r_kk=+0.166, ρ_kx_obj=0.07, ρ_kx_fin=+0.057 -> frac=0.115 | t(attrs)=8.681s, t(frac)=0.387s
+[2025-11-08T00:31:58-03:00] red=Digg, N=27567, L=175892, px1=0.20, r_kk=+0.166, ρ_kx_obj=0.13, ρ_kx_fin=+0.123 -> frac=0.139 | t(attrs)=15.065s, t(frac)=0.413s
+[2025-11-08T00:31:58-03:00] red=Digg, N=27567, L=175892, px1=0.20, r_kk=+0.166, ρ_kx_obj=0.20, ρ_kx_fin=+0.190 -> frac=0.177 | t(attrs)=23.895s, t(frac)=0.362s
+[2025-11-08T00:31:58-03:00] red=Digg, N=27567, L=175892, px1=0.20, r_kk=+0.166, ρ_kx_obj=0.27, ρ_kx_fin=+0.220 -> frac=0.209 | t(attrs)=30.109s, t(frac)=0.455s
+[2025-11-08T00:31:58-03:00] red=Digg, N=27567, L=175892, px1=0.20, r_kk=+0.166, ρ_kx_obj=0.33, ρ_kx_fin=+0.235 -> frac=0.225 | t(attrs)=33.156s, t(frac)=0.274s
+[2025-11-08T00:31:58-03:00] red=Digg, N=27567, L=175892, px1=0.20, r_kk=+0.166, ρ_kx_obj=0.40, ρ_kx_fin=+0.213 -> frac=0.210 | t(attrs)=23.960s, t(frac)=0.297s
+[2025-11-08T00:31:58-03:00] red=Digg, N=27567, L=175892, px1=0.20, r_kk=+0.166, ρ_kx_obj=0.47, ρ_kx_fin=+0.214 -> frac=0.198 | t(attrs)=21.718s, t(frac)=0.253s
+[2025-11-08T00:31:58-03:00] red=Digg, N=27567, L=175892, px1=0.20, r_kk=+0.166, ρ_kx_obj=0.53, ρ_kx_fin=+0.232 -> frac=0.226 | t(attrs)=18.324s, t(frac)=0.217s
+[2025-11-08T00:31:58-03:00] red=Digg, N=27567, L=175892, px1=0.20, r_kk=+0.166, ρ_kx_obj=0.60, ρ_kx_fin=+0.206 -> frac=0.198 | t(attrs)=17.355s, t(frac)=0.190s
+[2025-11-08T00:31:59-03:00] Generada red REAL: Twitter, N=25848, L=62565, r_kk=-0.346, tiempo_carga=2.934s, tiempo_pre=0.043s
+[2025-11-08T00:31:59-03:00] red=Twitter, N=25848, L=62565, px1=0.20, r_kk=-0.346, ρ_kx_obj=0.00, ρ_kx_fin=+0.006 -> frac=0.168 | t(attrs)=0.004s, t(frac)=0.160s
+[2025-11-08T00:31:59-03:00] red=Twitter, N=25848, L=62565, px1=0.20, r_kk=-0.346, ρ_kx_obj=0.07, ρ_kx_fin=+0.057 -> frac=0.252 | t(attrs)=11.843s, t(frac)=0.268s
+[2025-11-08T00:31:59-03:00] red=Twitter, N=25848, L=62565, px1=0.20, r_kk=-0.346, ρ_kx_obj=0.13, ρ_kx_fin=+0.122 -> frac=0.436 | t(attrs)=26.610s, t(frac)=0.433s
+[2025-11-08T00:31:59-03:00] red=Twitter, N=25848, L=62565, px1=0.20, r_kk=-0.346, ρ_kx_obj=0.20, ρ_kx_fin=+0.119 -> frac=0.401 | t(attrs)=25.871s, t(frac)=0.182s
+[2025-11-08T00:31:59-03:00] red=Twitter, N=25848, L=62565, px1=0.20, r_kk=-0.346, ρ_kx_obj=0.27, ρ_kx_fin=+0.115 -> frac=0.410 | t(attrs)=33.705s, t(frac)=0.217s
+[2025-11-08T00:31:59-03:00] red=Twitter, N=25848, L=62565, px1=0.20, r_kk=-0.346, ρ_kx_obj=0.33, ρ_kx_fin=+0.116 -> frac=0.394 | t(attrs)=24.966s, t(frac)=0.190s
+[2025-11-08T00:31:59-03:00] red=Twitter, N=25848, L=62565, px1=0.20, r_kk=-0.346, ρ_kx_obj=0.40, ρ_kx_fin=+0.116 -> frac=0.392 | t(attrs)=22.868s, t(frac)=0.199s
+[2025-11-08T00:31:59-03:00] red=Twitter, N=25848, L=62565, px1=0.20, r_kk=-0.346, ρ_kx_obj=0.47, ρ_kx_fin=+0.120 -> frac=0.401 | t(attrs)=19.802s, t(frac)=0.153s
+[2025-11-08T00:31:59-03:00] red=Twitter, N=25848, L=62565, px1=0.20, r_kk=-0.346, ρ_kx_obj=0.53, ρ_kx_fin=+0.120 -> frac=0.408 | t(attrs)=17.280s, t(frac)=0.150s
+[2025-11-08T00:31:59-03:00] red=Twitter, N=25848, L=62565, px1=0.20, r_kk=-0.346, ρ_kx_obj=0.60, ρ_kx_fin=+0.133 -> frac=0.462 | t(attrs)=16.398s, t(frac)=0.107s
+[2025-11-08T00:32:02-03:00] Generada red REAL: Twitter, N=25848, L=62565, r_kk=-0.346, tiempo_carga=3.651s, tiempo_pre=0.033s
+[2025-11-08T00:32:02-03:00] red=Twitter, N=25848, L=62565, px1=0.30, r_kk=-0.346, ρ_kx_obj=0.00, ρ_kx_fin=+0.007 -> frac=0.249 | t(attrs)=0.003s, t(frac)=0.165s
+[2025-11-08T00:32:02-03:00] red=Twitter, N=25848, L=62565, px1=0.30, r_kk=-0.346, ρ_kx_obj=0.07, ρ_kx_fin=+0.057 -> frac=0.380 | t(attrs)=14.451s, t(frac)=0.221s
+[2025-11-08T00:32:02-03:00] red=Twitter, N=25848, L=62565, px1=0.30, r_kk=-0.346, ρ_kx_obj=0.13, ρ_kx_fin=+0.112 -> frac=0.567 | t(attrs)=28.975s, t(frac)=0.150s
+[2025-11-08T00:32:02-03:00] red=Twitter, N=25848, L=62565, px1=0.30, r_kk=-0.346, ρ_kx_obj=0.20, ρ_kx_fin=+0.105 -> frac=0.552 | t(attrs)=26.761s, t(frac)=0.223s
+[2025-11-08T00:32:02-03:00] red=Twitter, N=25848, L=62565, px1=0.30, r_kk=-0.346, ρ_kx_obj=0.27, ρ_kx_fin=+0.104 -> frac=0.545 | t(attrs)=33.619s, t(frac)=0.234s
+[2025-11-08T00:32:02-03:00] red=Twitter, N=25848, L=62565, px1=0.30, r_kk=-0.346, ρ_kx_obj=0.33, ρ_kx_fin=+0.108 -> frac=0.552 | t(attrs)=23.423s, t(frac)=0.186s
+[2025-11-08T00:32:02-03:00] red=Twitter, N=25848, L=62565, px1=0.30, r_kk=-0.346, ρ_kx_obj=0.40, ρ_kx_fin=+0.106 -> frac=0.564 | t(attrs)=22.702s, t(frac)=0.179s
+[2025-11-08T00:32:02-03:00] red=Twitter, N=25848, L=62565, px1=0.30, r_kk=-0.346, ρ_kx_obj=0.47, ρ_kx_fin=+0.103 -> frac=0.536 | t(attrs)=19.012s, t(frac)=0.178s
+[2025-11-08T00:32:02-03:00] red=Twitter, N=25848, L=62565, px1=0.30, r_kk=-0.346, ρ_kx_obj=0.53, ρ_kx_fin=+0.112 -> frac=0.597 | t(attrs)=17.126s, t(frac)=0.139s
+[2025-11-08T00:32:02-03:00] red=Twitter, N=25848, L=62565, px1=0.30, r_kk=-0.346, ρ_kx_obj=0.60, ρ_kx_fin=+0.115 -> frac=0.574 | t(attrs)=16.013s, t(frac)=0.117s
+[2025-11-08T00:32:13-03:00] Generada red REAL: Enron, N=33696, L=180811, r_kk=-0.116, tiempo_carga=7.479s, tiempo_pre=0.185s
+[2025-11-08T00:32:13-03:00] red=Enron, N=33696, L=180811, px1=0.05, r_kk=-0.116, ρ_kx_obj=0.00, ρ_kx_fin=-0.001 -> frac=0.015 | t(attrs)=0.009s, t(frac)=0.312s
+[2025-11-08T00:32:13-03:00] red=Enron, N=33696, L=180811, px1=0.05, r_kk=-0.116, ρ_kx_obj=0.07, ρ_kx_fin=+0.057 -> frac=0.034 | t(attrs)=8.702s, t(frac)=0.535s
+[2025-11-08T00:32:13-03:00] red=Enron, N=33696, L=180811, px1=0.05, r_kk=-0.116, ρ_kx_obj=0.13, ρ_kx_fin=+0.125 -> frac=0.052 | t(attrs)=16.818s, t(frac)=0.228s
+[2025-11-08T00:32:13-03:00] red=Enron, N=33696, L=180811, px1=0.05, r_kk=-0.116, ρ_kx_obj=0.20, ρ_kx_fin=+0.190 -> frac=0.113 | t(attrs)=30.921s, t(frac)=0.266s
+[2025-11-08T00:32:13-03:00] red=Enron, N=33696, L=180811, px1=0.05, r_kk=-0.116, ρ_kx_obj=0.27, ρ_kx_fin=+0.199 -> frac=0.129 | t(attrs)=38.254s, t(frac)=0.388s
+[2025-11-08T00:32:13-03:00] red=Enron, N=33696, L=180811, px1=0.05, r_kk=-0.116, ρ_kx_obj=0.33, ρ_kx_fin=+0.195 -> frac=0.093 | t(attrs)=28.420s, t(frac)=0.345s
+[2025-11-08T00:32:13-03:00] red=Enron, N=33696, L=180811, px1=0.05, r_kk=-0.116, ρ_kx_obj=0.40, ρ_kx_fin=+0.202 -> frac=0.103 | t(attrs)=26.011s, t(frac)=0.227s
+[2025-11-08T00:32:13-03:00] red=Enron, N=33696, L=180811, px1=0.05, r_kk=-0.116, ρ_kx_obj=0.47, ρ_kx_fin=+0.186 -> frac=0.076 | t(attrs)=21.480s, t(frac)=0.335s
+[2025-11-08T00:32:13-03:00] red=Enron, N=33696, L=180811, px1=0.05, r_kk=-0.116, ρ_kx_obj=0.53, ρ_kx_fin=+0.189 -> frac=0.092 | t(attrs)=19.841s, t(frac)=0.235s
+[2025-11-08T00:32:13-03:00] red=Enron, N=33696, L=180811, px1=0.05, r_kk=-0.116, ρ_kx_obj=0.60, ρ_kx_fin=+0.200 -> frac=0.095 | t(attrs)=15.697s, t(frac)=0.195s
+[2025-11-08T00:32:17-03:00] Generada red REAL: Enron, N=33696, L=180811, r_kk=-0.116, tiempo_carga=6.600s, tiempo_pre=0.063s
+[2025-11-08T00:32:17-03:00] red=Enron, N=33696, L=180811, px1=0.10, r_kk=-0.116, ρ_kx_obj=0.00, ρ_kx_fin=-0.010 -> frac=0.027 | t(attrs)=0.145s, t(frac)=0.444s
+[2025-11-08T00:32:17-03:00] red=Enron, N=33696, L=180811, px1=0.10, r_kk=-0.116, ρ_kx_obj=0.07, ρ_kx_fin=+0.057 -> frac=0.098 | t(attrs)=8.969s, t(frac)=0.523s
+[2025-11-08T00:32:17-03:00] red=Enron, N=33696, L=180811, px1=0.10, r_kk=-0.116, ρ_kx_obj=0.13, ρ_kx_fin=+0.123 -> frac=0.103 | t(attrs)=21.822s, t(frac)=0.353s
+[2025-11-08T00:32:17-03:00] red=Enron, N=33696, L=180811, px1=0.10, r_kk=-0.116, ρ_kx_obj=0.20, ρ_kx_fin=+0.151 -> frac=0.143 | t(attrs)=35.073s, t(frac)=0.456s
+[2025-11-08T00:32:17-03:00] red=Enron, N=33696, L=180811, px1=0.10, r_kk=-0.116, ρ_kx_obj=0.27, ρ_kx_fin=+0.154 -> frac=0.154 | t(attrs)=37.569s, t(frac)=0.302s
+[2025-11-08T00:32:17-03:00] red=Enron, N=33696, L=180811, px1=0.10, r_kk=-0.116, ρ_kx_obj=0.33, ρ_kx_fin=+0.150 -> frac=0.103 | t(attrs)=27.854s, t(frac)=0.338s
+[2025-11-08T00:32:17-03:00] red=Enron, N=33696, L=180811, px1=0.10, r_kk=-0.116, ρ_kx_obj=0.40, ρ_kx_fin=+0.163 -> frac=0.150 | t(attrs)=24.720s, t(frac)=0.293s
+[2025-11-08T00:32:17-03:00] red=Enron, N=33696, L=180811, px1=0.10, r_kk=-0.116, ρ_kx_obj=0.47, ρ_kx_fin=+0.157 -> frac=0.157 | t(attrs)=20.488s, t(frac)=0.207s
+[2025-11-08T00:32:17-03:00] red=Enron, N=33696, L=180811, px1=0.10, r_kk=-0.116, ρ_kx_obj=0.53, ρ_kx_fin=+0.159 -> frac=0.163 | t(attrs)=18.968s, t(frac)=0.203s
+[2025-11-08T00:32:17-03:00] red=Enron, N=33696, L=180811, px1=0.10, r_kk=-0.116, ρ_kx_obj=0.60, ρ_kx_fin=+0.163 -> frac=0.143 | t(attrs)=15.031s, t(frac)=0.163s
+[2025-11-08T00:32:28-03:00] Generada red REAL: Enron, N=33696, L=180811, r_kk=-0.116, tiempo_carga=5.220s, tiempo_pre=0.310s
+[2025-11-08T00:32:28-03:00] red=Enron, N=33696, L=180811, px1=0.20, r_kk=-0.116, ρ_kx_obj=0.00, ρ_kx_fin=+0.003 -> frac=0.075 | t(attrs)=0.004s, t(frac)=0.243s
+[2025-11-08T00:32:28-03:00] red=Enron, N=33696, L=180811, px1=0.20, r_kk=-0.116, ρ_kx_obj=0.07, ρ_kx_fin=+0.057 -> frac=0.154 | t(attrs)=11.818s, t(frac)=0.469s
+[2025-11-08T00:32:28-03:00] red=Enron, N=33696, L=180811, px1=0.20, r_kk=-0.116, ρ_kx_obj=0.13, ρ_kx_fin=+0.113 -> frac=0.190 | t(attrs)=24.398s, t(frac)=0.418s
+[2025-11-08T00:32:28-03:00] red=Enron, N=33696, L=180811, px1=0.20, r_kk=-0.116, ρ_kx_obj=0.20, ρ_kx_fin=+0.119 -> frac=0.226 | t(attrs)=36.259s, t(frac)=0.299s
+[2025-11-08T00:32:28-03:00] red=Enron, N=33696, L=180811, px1=0.20, r_kk=-0.116, ρ_kx_obj=0.27, ρ_kx_fin=+0.128 -> frac=0.272 | t(attrs)=26.979s, t(frac)=0.323s
+[2025-11-08T00:32:28-03:00] red=Enron, N=33696, L=180811, px1=0.20, r_kk=-0.116, ρ_kx_obj=0.33, ρ_kx_fin=+0.117 -> frac=0.256 | t(attrs)=23.561s, t(frac)=0.236s
+[2025-11-08T00:32:28-03:00] red=Enron, N=33696, L=180811, px1=0.20, r_kk=-0.116, ρ_kx_obj=0.40, ρ_kx_fin=+0.127 -> frac=0.259 | t(attrs)=19.929s, t(frac)=0.217s
+[2025-11-08T00:32:28-03:00] red=Enron, N=33696, L=180811, px1=0.20, r_kk=-0.116, ρ_kx_obj=0.47, ρ_kx_fin=+0.133 -> frac=0.285 | t(attrs)=19.045s, t(frac)=0.180s
+[2025-11-08T00:32:28-03:00] red=Enron, N=33696, L=180811, px1=0.20, r_kk=-0.116, ρ_kx_obj=0.53, ρ_kx_fin=+0.110 -> frac=0.221 | t(attrs)=15.242s, t(frac)=0.171s
+[2025-11-08T00:32:28-03:00] red=Enron, N=33696, L=180811, px1=0.20, r_kk=-0.116, ρ_kx_obj=0.60, ρ_kx_fin=+0.120 -> frac=0.210 | t(attrs)=11.043s, t(frac)=0.106s
+[2025-11-08T00:32:30-03:00] Generada red REAL: Enron, N=33696, L=180811, r_kk=-0.116, tiempo_carga=5.531s, tiempo_pre=0.345s
+[2025-11-08T00:32:30-03:00] red=Enron, N=33696, L=180811, px1=0.30, r_kk=-0.116, ρ_kx_obj=0.00, ρ_kx_fin=-0.005 -> frac=0.142 | t(attrs)=0.004s, t(frac)=0.373s
+[2025-11-08T00:32:30-03:00] red=Enron, N=33696, L=180811, px1=0.30, r_kk=-0.116, ρ_kx_obj=0.07, ρ_kx_fin=+0.057 -> frac=0.252 | t(attrs)=11.731s, t(frac)=0.224s
+[2025-11-08T00:32:30-03:00] red=Enron, N=33696, L=180811, px1=0.30, r_kk=-0.116, ρ_kx_obj=0.13, ρ_kx_fin=+0.106 -> frac=0.400 | t(attrs)=27.310s, t(frac)=0.399s
+[2025-11-08T00:32:30-03:00] red=Enron, N=33696, L=180811, px1=0.30, r_kk=-0.116, ρ_kx_obj=0.20, ρ_kx_fin=+0.099 -> frac=0.356 | t(attrs)=35.748s, t(frac)=0.285s
+[2025-11-08T00:32:30-03:00] red=Enron, N=33696, L=180811, px1=0.30, r_kk=-0.116, ρ_kx_obj=0.27, ρ_kx_fin=+0.105 -> frac=0.366 | t(attrs)=26.207s, t(frac)=0.247s
+[2025-11-08T00:32:30-03:00] red=Enron, N=33696, L=180811, px1=0.30, r_kk=-0.116, ρ_kx_obj=0.33, ρ_kx_fin=+0.104 -> frac=0.361 | t(attrs)=22.355s, t(frac)=0.241s
+[2025-11-08T00:32:30-03:00] red=Enron, N=33696, L=180811, px1=0.30, r_kk=-0.116, ρ_kx_obj=0.40, ρ_kx_fin=+0.098 -> frac=0.360 | t(attrs)=19.204s, t(frac)=0.252s
+[2025-11-08T00:32:30-03:00] red=Enron, N=33696, L=180811, px1=0.30, r_kk=-0.116, ρ_kx_obj=0.47, ρ_kx_fin=+0.109 -> frac=0.437 | t(attrs)=18.690s, t(frac)=0.179s
+[2025-11-08T00:32:30-03:00] red=Enron, N=33696, L=180811, px1=0.30, r_kk=-0.116, ρ_kx_obj=0.53, ρ_kx_fin=+0.108 -> frac=0.417 | t(attrs)=14.919s, t(frac)=0.164s
+[2025-11-08T00:32:30-03:00] red=Enron, N=33696, L=180811, px1=0.30, r_kk=-0.116, ρ_kx_obj=0.60, ρ_kx_fin=+0.102 -> frac=0.365 | t(attrs)=9.528s, t(frac)=0.086s
+[2025-11-08T00:32:32-03:00] Figuras guardadas en: run-real\251108-002825\fig4_real.png y run-real\251108-002825\fig4_real.pdf
+[2025-11-08T00:32:32-03:00] Fin experimento Fig4-REAL | tiempo total=247.08s (~4.12 min) | carpeta=run-real\251108-002825

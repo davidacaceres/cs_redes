@@ -1,0 +1,14 @@
+[2025-11-07T23:23:05-03:00] Ejecutando script: Real-Networks-v16.py | ruta=C:\Users\dcaceres\Documents\Magister\Trimestre 2\CS Redes\Tarea 2\python\Real-Networks-v16.py
+[2025-11-07T23:23:05-03:00] Inicio experimento Fig4-REAL (paralelo por procesos) | carpeta=run-real\251107-232305
+[2025-11-07T23:23:05-03:00] Procesos: usados=18, cpu_count=22
+[2025-11-07T23:23:05-03:00] Parámetros: PX1=[0.05, 0.1, 0.2, 0.3], ρ_kx_grid=[np.float64(0.0), np.float64(0.07), np.float64(0.13), np.float64(0.2), np.float64(0.27), np.float64(0.33), np.float64(0.4), np.float64(0.47), np.float64(0.53), np.float64(0.6)], seed=12021974
+[2025-11-07T23:23:16-03:00] Generada red REAL: Twitter, N=0, L=0, r_kk=+0.000, tiempo_carga=7.685s, tiempo_pre=0.000s
+[2025-11-07T23:23:16-03:00] red=Twitter OMITIDA: N=0, L=0 (después de mutuos/GCC)
+[2025-11-07T23:23:16-03:00] Generada red REAL: Twitter, N=0, L=0, r_kk=+0.000, tiempo_carga=7.658s, tiempo_pre=0.000s
+[2025-11-07T23:23:16-03:00] red=Twitter OMITIDA: N=0, L=0 (después de mutuos/GCC)
+[2025-11-07T23:23:16-03:00] Generada red REAL: Twitter, N=0, L=0, r_kk=+0.000, tiempo_carga=7.590s, tiempo_pre=0.000s
+[2025-11-07T23:23:16-03:00] red=Twitter OMITIDA: N=0, L=0 (después de mutuos/GCC)
+[2025-11-07T23:23:16-03:00] Generada red REAL: Twitter, N=0, L=0, r_kk=+0.000, tiempo_carga=7.779s, tiempo_pre=0.000s
+[2025-11-07T23:23:16-03:00] red=Twitter OMITIDA: N=0, L=0 (después de mutuos/GCC)
+[2025-11-07T23:23:17-03:00] Figuras guardadas en: run-real\251107-232305\fig4_real.png y run-real\251107-232305\fig4_real.pdf
+[2025-11-07T23:23:17-03:00] Fin experimento Fig4-REAL | tiempo total=12.36s (~0.21 min) | carpeta=run-real\251107-232305

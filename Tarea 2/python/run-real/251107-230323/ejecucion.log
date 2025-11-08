@@ -1,0 +1,50 @@
+[2025-11-07T23:03:23-03:00] Ejecutando script: Real-Networks-v16.py | ruta=C:\Users\dcaceres\Documents\Magister\Trimestre 2\CS Redes\Tarea 2\python\Real-Networks-v16.py
+[2025-11-07T23:03:23-03:00] Inicio experimento Fig4-REAL (paralelo por procesos) | carpeta=run-real\251107-230323
+[2025-11-07T23:03:23-03:00] Procesos: usados=18, cpu_count=22
+[2025-11-07T23:03:23-03:00] Parámetros: PX1=[0.05, 0.1, 0.2, 0.3], ρ_kx_grid=[np.float64(0.0), np.float64(0.07), np.float64(0.13), np.float64(0.2), np.float64(0.27), np.float64(0.33), np.float64(0.4), np.float64(0.47), np.float64(0.53), np.float64(0.6)], seed=12021974
+[2025-11-07T23:04:06-03:00] Generada red REAL: Enron, N=33696, L=180811, r_kk=-0.116, tiempo_carga=1.679s, tiempo_pre=0.017s
+[2025-11-07T23:04:06-03:00] red=Enron, N=33696, L=180811, px1=0.05, r_kk=-0.116, ρ_kx_obj=0.00, ρ_kx_fin=-0.001 -> frac=0.015 | t(attrs)=0.002s, t(frac)=0.079s
+[2025-11-07T23:04:06-03:00] red=Enron, N=33696, L=180811, px1=0.05, r_kk=-0.116, ρ_kx_obj=0.07, ρ_kx_fin=+0.057 -> frac=0.034 | t(attrs)=1.317s, t(frac)=0.091s
+[2025-11-07T23:04:06-03:00] red=Enron, N=33696, L=180811, px1=0.05, r_kk=-0.116, ρ_kx_obj=0.13, ρ_kx_fin=+0.125 -> frac=0.052 | t(attrs)=2.753s, t(frac)=0.109s
+[2025-11-07T23:04:06-03:00] red=Enron, N=33696, L=180811, px1=0.05, r_kk=-0.116, ρ_kx_obj=0.20, ρ_kx_fin=+0.190 -> frac=0.113 | t(attrs)=4.483s, t(frac)=0.109s
+[2025-11-07T23:04:06-03:00] red=Enron, N=33696, L=180811, px1=0.05, r_kk=-0.116, ρ_kx_obj=0.27, ρ_kx_fin=+0.199 -> frac=0.129 | t(attrs)=4.556s, t(frac)=0.088s
+[2025-11-07T23:04:06-03:00] red=Enron, N=33696, L=180811, px1=0.05, r_kk=-0.116, ρ_kx_obj=0.33, ρ_kx_fin=+0.195 -> frac=0.093 | t(attrs)=4.639s, t(frac)=0.089s
+[2025-11-07T23:04:06-03:00] red=Enron, N=33696, L=180811, px1=0.05, r_kk=-0.116, ρ_kx_obj=0.40, ρ_kx_fin=+0.202 -> frac=0.103 | t(attrs)=4.659s, t(frac)=0.099s
+[2025-11-07T23:04:06-03:00] red=Enron, N=33696, L=180811, px1=0.05, r_kk=-0.116, ρ_kx_obj=0.47, ρ_kx_fin=+0.186 -> frac=0.076 | t(attrs)=4.788s, t(frac)=0.087s
+[2025-11-07T23:04:06-03:00] red=Enron, N=33696, L=180811, px1=0.05, r_kk=-0.116, ρ_kx_obj=0.53, ρ_kx_fin=+0.189 -> frac=0.092 | t(attrs)=4.655s, t(frac)=0.080s
+[2025-11-07T23:04:06-03:00] red=Enron, N=33696, L=180811, px1=0.05, r_kk=-0.116, ρ_kx_obj=0.60, ρ_kx_fin=+0.200 -> frac=0.095 | t(attrs)=4.908s, t(frac)=0.096s
+[2025-11-07T23:04:08-03:00] Generada red REAL: Enron, N=33696, L=180811, r_kk=-0.116, tiempo_carga=1.672s, tiempo_pre=0.017s
+[2025-11-07T23:04:08-03:00] red=Enron, N=33696, L=180811, px1=0.10, r_kk=-0.116, ρ_kx_obj=0.00, ρ_kx_fin=-0.010 -> frac=0.027 | t(attrs)=0.043s, t(frac)=0.090s
+[2025-11-07T23:04:08-03:00] red=Enron, N=33696, L=180811, px1=0.10, r_kk=-0.116, ρ_kx_obj=0.07, ρ_kx_fin=+0.057 -> frac=0.098 | t(attrs)=1.251s, t(frac)=0.098s
+[2025-11-07T23:04:08-03:00] red=Enron, N=33696, L=180811, px1=0.10, r_kk=-0.116, ρ_kx_obj=0.13, ρ_kx_fin=+0.123 -> frac=0.103 | t(attrs)=4.087s, t(frac)=0.112s
+[2025-11-07T23:04:08-03:00] red=Enron, N=33696, L=180811, px1=0.10, r_kk=-0.116, ρ_kx_obj=0.20, ρ_kx_fin=+0.151 -> frac=0.143 | t(attrs)=4.975s, t(frac)=0.096s
+[2025-11-07T23:04:08-03:00] red=Enron, N=33696, L=180811, px1=0.10, r_kk=-0.116, ρ_kx_obj=0.27, ρ_kx_fin=+0.154 -> frac=0.154 | t(attrs)=4.478s, t(frac)=0.074s
+[2025-11-07T23:04:08-03:00] red=Enron, N=33696, L=180811, px1=0.10, r_kk=-0.116, ρ_kx_obj=0.33, ρ_kx_fin=+0.150 -> frac=0.103 | t(attrs)=4.480s, t(frac)=0.093s
+[2025-11-07T23:04:08-03:00] red=Enron, N=33696, L=180811, px1=0.10, r_kk=-0.116, ρ_kx_obj=0.40, ρ_kx_fin=+0.163 -> frac=0.150 | t(attrs)=4.676s, t(frac)=0.078s
+[2025-11-07T23:04:08-03:00] red=Enron, N=33696, L=180811, px1=0.10, r_kk=-0.116, ρ_kx_obj=0.47, ρ_kx_fin=+0.157 -> frac=0.157 | t(attrs)=4.762s, t(frac)=0.078s
+[2025-11-07T23:04:08-03:00] red=Enron, N=33696, L=180811, px1=0.10, r_kk=-0.116, ρ_kx_obj=0.53, ρ_kx_fin=+0.159 -> frac=0.163 | t(attrs)=4.873s, t(frac)=0.077s
+[2025-11-07T23:04:08-03:00] red=Enron, N=33696, L=180811, px1=0.10, r_kk=-0.116, ρ_kx_obj=0.60, ρ_kx_fin=+0.163 -> frac=0.143 | t(attrs)=4.783s, t(frac)=0.085s
+[2025-11-07T23:04:10-03:00] Generada red REAL: Enron, N=33696, L=180811, r_kk=-0.116, tiempo_carga=1.573s, tiempo_pre=0.029s
+[2025-11-07T23:04:10-03:00] red=Enron, N=33696, L=180811, px1=0.20, r_kk=-0.116, ρ_kx_obj=0.00, ρ_kx_fin=+0.003 -> frac=0.075 | t(attrs)=0.003s, t(frac)=0.075s
+[2025-11-07T23:04:10-03:00] red=Enron, N=33696, L=180811, px1=0.20, r_kk=-0.116, ρ_kx_obj=0.07, ρ_kx_fin=+0.057 -> frac=0.154 | t(attrs)=2.565s, t(frac)=0.105s
+[2025-11-07T23:04:10-03:00] red=Enron, N=33696, L=180811, px1=0.20, r_kk=-0.116, ρ_kx_obj=0.13, ρ_kx_fin=+0.113 -> frac=0.190 | t(attrs)=4.943s, t(frac)=0.112s
+[2025-11-07T23:04:10-03:00] red=Enron, N=33696, L=180811, px1=0.20, r_kk=-0.116, ρ_kx_obj=0.20, ρ_kx_fin=+0.119 -> frac=0.226 | t(attrs)=4.619s, t(frac)=0.117s
+[2025-11-07T23:04:10-03:00] red=Enron, N=33696, L=180811, px1=0.20, r_kk=-0.116, ρ_kx_obj=0.27, ρ_kx_fin=+0.128 -> frac=0.272 | t(attrs)=4.611s, t(frac)=0.090s
+[2025-11-07T23:04:10-03:00] red=Enron, N=33696, L=180811, px1=0.20, r_kk=-0.116, ρ_kx_obj=0.33, ρ_kx_fin=+0.117 -> frac=0.256 | t(attrs)=4.701s, t(frac)=0.106s
+[2025-11-07T23:04:10-03:00] red=Enron, N=33696, L=180811, px1=0.20, r_kk=-0.116, ρ_kx_obj=0.40, ρ_kx_fin=+0.127 -> frac=0.259 | t(attrs)=4.663s, t(frac)=0.087s
+[2025-11-07T23:04:10-03:00] red=Enron, N=33696, L=180811, px1=0.20, r_kk=-0.116, ρ_kx_obj=0.47, ρ_kx_fin=+0.133 -> frac=0.285 | t(attrs)=4.552s, t(frac)=0.074s
+[2025-11-07T23:04:10-03:00] red=Enron, N=33696, L=180811, px1=0.20, r_kk=-0.116, ρ_kx_obj=0.53, ρ_kx_fin=+0.110 -> frac=0.221 | t(attrs)=5.059s, t(frac)=0.106s
+[2025-11-07T23:04:10-03:00] red=Enron, N=33696, L=180811, px1=0.20, r_kk=-0.116, ρ_kx_obj=0.60, ρ_kx_fin=+0.120 -> frac=0.210 | t(attrs)=4.306s, t(frac)=0.087s
+[2025-11-07T23:04:10-03:00] Generada red REAL: Enron, N=33696, L=180811, r_kk=-0.116, tiempo_carga=1.535s, tiempo_pre=0.017s
+[2025-11-07T23:04:10-03:00] red=Enron, N=33696, L=180811, px1=0.30, r_kk=-0.116, ρ_kx_obj=0.00, ρ_kx_fin=-0.005 -> frac=0.142 | t(attrs)=0.002s, t(frac)=0.089s
+[2025-11-07T23:04:10-03:00] red=Enron, N=33696, L=180811, px1=0.30, r_kk=-0.116, ρ_kx_obj=0.07, ρ_kx_fin=+0.057 -> frac=0.252 | t(attrs)=2.496s, t(frac)=0.116s
+[2025-11-07T23:04:10-03:00] red=Enron, N=33696, L=180811, px1=0.30, r_kk=-0.116, ρ_kx_obj=0.13, ρ_kx_fin=+0.106 -> frac=0.400 | t(attrs)=4.844s, t(frac)=0.109s
+[2025-11-07T23:04:10-03:00] red=Enron, N=33696, L=180811, px1=0.30, r_kk=-0.116, ρ_kx_obj=0.20, ρ_kx_fin=+0.099 -> frac=0.356 | t(attrs)=4.882s, t(frac)=0.078s
+[2025-11-07T23:04:10-03:00] red=Enron, N=33696, L=180811, px1=0.30, r_kk=-0.116, ρ_kx_obj=0.27, ρ_kx_fin=+0.105 -> frac=0.366 | t(attrs)=4.588s, t(frac)=0.084s
+[2025-11-07T23:04:10-03:00] red=Enron, N=33696, L=180811, px1=0.30, r_kk=-0.116, ρ_kx_obj=0.33, ρ_kx_fin=+0.104 -> frac=0.361 | t(attrs)=4.807s, t(frac)=0.071s
+[2025-11-07T23:04:10-03:00] red=Enron, N=33696, L=180811, px1=0.30, r_kk=-0.116, ρ_kx_obj=0.40, ρ_kx_fin=+0.098 -> frac=0.360 | t(attrs)=4.658s, t(frac)=0.097s
+[2025-11-07T23:04:10-03:00] red=Enron, N=33696, L=180811, px1=0.30, r_kk=-0.116, ρ_kx_obj=0.47, ρ_kx_fin=+0.109 -> frac=0.437 | t(attrs)=4.512s, t(frac)=0.131s
+[2025-11-07T23:04:10-03:00] red=Enron, N=33696, L=180811, px1=0.30, r_kk=-0.116, ρ_kx_obj=0.53, ρ_kx_fin=+0.108 -> frac=0.417 | t(attrs)=4.911s, t(frac)=0.084s
+[2025-11-07T23:04:10-03:00] red=Enron, N=33696, L=180811, px1=0.30, r_kk=-0.116, ρ_kx_obj=0.60, ρ_kx_fin=+0.102 -> frac=0.365 | t(attrs)=4.484s, t(frac)=0.079s
+[2025-11-07T23:04:11-03:00] Figuras guardadas en: run-real\251107-230323\fig4_real.png y run-real\251107-230323\fig4_real.pdf
+[2025-11-07T23:04:11-03:00] Fin experimento Fig4-REAL | tiempo total=47.86s (~0.80 min) | carpeta=run-real\251107-230323

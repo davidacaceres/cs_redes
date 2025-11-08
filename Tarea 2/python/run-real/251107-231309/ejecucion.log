@@ -1,0 +1,14 @@
+[2025-11-07T23:13:09-03:00] Ejecutando script: Real-Networks-v16.py | ruta=C:\Users\dcaceres\Documents\Magister\Trimestre 2\CS Redes\Tarea 2\python\Real-Networks-v16.py
+[2025-11-07T23:13:09-03:00] Inicio experimento Fig4-REAL (paralelo por procesos) | carpeta=run-real\251107-231309
+[2025-11-07T23:13:09-03:00] Procesos: usados=18, cpu_count=22
+[2025-11-07T23:13:09-03:00] Parámetros: PX1=[0.05, 0.1, 0.2, 0.3], ρ_kx_grid=[np.float64(0.0), np.float64(0.07), np.float64(0.13), np.float64(0.2), np.float64(0.27), np.float64(0.33), np.float64(0.4), np.float64(0.47), np.float64(0.53), np.float64(0.6)], seed=12021974
+[2025-11-07T23:13:13-03:00] Generada red REAL: Blogs, N=0, L=0, r_kk=+0.000, tiempo_carga=0.035s, tiempo_pre=0.000s
+[2025-11-07T23:13:13-03:00] red=Blogs OMITIDA: N=0, L=0 (después de mutuos/GCC)
+[2025-11-07T23:13:13-03:00] Generada red REAL: Blogs, N=0, L=0, r_kk=+0.000, tiempo_carga=0.031s, tiempo_pre=0.000s
+[2025-11-07T23:13:13-03:00] red=Blogs OMITIDA: N=0, L=0 (después de mutuos/GCC)
+[2025-11-07T23:13:13-03:00] Generada red REAL: Blogs, N=0, L=0, r_kk=+0.000, tiempo_carga=0.037s, tiempo_pre=0.000s
+[2025-11-07T23:13:13-03:00] red=Blogs OMITIDA: N=0, L=0 (después de mutuos/GCC)
+[2025-11-07T23:13:13-03:00] Generada red REAL: Blogs, N=0, L=0, r_kk=+0.000, tiempo_carga=0.089s, tiempo_pre=0.000s
+[2025-11-07T23:13:13-03:00] red=Blogs OMITIDA: N=0, L=0 (después de mutuos/GCC)
+[2025-11-07T23:13:14-03:00] Figuras guardadas en: run-real\251107-231309\fig4_real.png y run-real\251107-231309\fig4_real.pdf
+[2025-11-07T23:13:14-03:00] Fin experimento Fig4-REAL | tiempo total=5.06s (~0.08 min) | carpeta=run-real\251107-231309

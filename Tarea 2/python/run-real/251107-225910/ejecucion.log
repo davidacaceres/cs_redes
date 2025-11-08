@@ -1,0 +1,50 @@
+[2025-11-07T22:59:10-03:00] Ejecutando script: Real-Networks-v16.py | ruta=C:\Users\dcaceres\Documents\Magister\Trimestre 2\CS Redes\Tarea 2\python\Real-Networks-v16.py
+[2025-11-07T22:59:10-03:00] Inicio experimento Fig4-REAL (paralelo por procesos) | carpeta=run-real\251107-225910
+[2025-11-07T22:59:10-03:00] Procesos: usados=18, cpu_count=22
+[2025-11-07T22:59:10-03:00] Parámetros: PX1=[0.05, 0.1, 0.2, 0.3], ρ_kx_grid=[np.float64(0.0), np.float64(0.07), np.float64(0.13), np.float64(0.2), np.float64(0.27), np.float64(0.33), np.float64(0.4), np.float64(0.47), np.float64(0.53), np.float64(0.6)], seed=12021974
+[2025-11-07T22:59:22-03:00] Generada red REAL: HepTh, N=8638, L=24806, r_kk=+0.239, tiempo_carga=0.241s, tiempo_pre=0.005s
+[2025-11-07T22:59:22-03:00] red=HepTh, N=8638, L=24806, px1=0.05, r_kk=+0.239, ρ_kx_obj=0.00, ρ_kx_fin=+0.009 -> frac=0.008 | t(attrs)=0.020s, t(frac)=0.023s
+[2025-11-07T22:59:22-03:00] red=HepTh, N=8638, L=24806, px1=0.05, r_kk=+0.239, ρ_kx_obj=0.07, ρ_kx_fin=+0.057 -> frac=0.013 | t(attrs)=0.056s, t(frac)=0.022s
+[2025-11-07T22:59:22-03:00] red=HepTh, N=8638, L=24806, px1=0.05, r_kk=+0.239, ρ_kx_obj=0.13, ρ_kx_fin=+0.123 -> frac=0.019 | t(attrs)=0.253s, t(frac)=0.032s
+[2025-11-07T22:59:22-03:00] red=HepTh, N=8638, L=24806, px1=0.05, r_kk=+0.239, ρ_kx_obj=0.20, ρ_kx_fin=+0.190 -> frac=0.018 | t(attrs)=0.309s, t(frac)=0.017s
+[2025-11-07T22:59:22-03:00] red=HepTh, N=8638, L=24806, px1=0.05, r_kk=+0.239, ρ_kx_obj=0.27, ρ_kx_fin=+0.257 -> frac=0.026 | t(attrs)=0.461s, t(frac)=0.019s
+[2025-11-07T22:59:22-03:00] red=HepTh, N=8638, L=24806, px1=0.05, r_kk=+0.239, ρ_kx_obj=0.33, ρ_kx_fin=+0.323 -> frac=0.031 | t(attrs)=0.852s, t(frac)=0.021s
+[2025-11-07T22:59:22-03:00] red=HepTh, N=8638, L=24806, px1=0.05, r_kk=+0.239, ρ_kx_obj=0.40, ρ_kx_fin=+0.391 -> frac=0.033 | t(attrs)=1.063s, t(frac)=0.027s
+[2025-11-07T22:59:22-03:00] red=HepTh, N=8638, L=24806, px1=0.05, r_kk=+0.239, ρ_kx_obj=0.47, ρ_kx_fin=+0.457 -> frac=0.038 | t(attrs)=1.356s, t(frac)=0.013s
+[2025-11-07T22:59:22-03:00] red=HepTh, N=8638, L=24806, px1=0.05, r_kk=+0.239, ρ_kx_obj=0.53, ρ_kx_fin=+0.524 -> frac=0.047 | t(attrs)=1.638s, t(frac)=0.015s
+[2025-11-07T22:59:22-03:00] red=HepTh, N=8638, L=24806, px1=0.05, r_kk=+0.239, ρ_kx_obj=0.60, ρ_kx_fin=+0.586 -> frac=0.054 | t(attrs)=2.476s, t(frac)=0.014s
+[2025-11-07T22:59:23-03:00] Generada red REAL: HepTh, N=8638, L=24806, r_kk=+0.239, tiempo_carga=0.296s, tiempo_pre=0.007s
+[2025-11-07T22:59:23-03:00] red=HepTh, N=8638, L=24806, px1=0.10, r_kk=+0.239, ρ_kx_obj=0.00, ρ_kx_fin=+0.010 -> frac=0.023 | t(attrs)=0.006s, t(frac)=0.035s
+[2025-11-07T22:59:23-03:00] red=HepTh, N=8638, L=24806, px1=0.10, r_kk=+0.239, ρ_kx_obj=0.07, ρ_kx_fin=+0.057 -> frac=0.030 | t(attrs)=0.120s, t(frac)=0.025s
+[2025-11-07T22:59:23-03:00] red=HepTh, N=8638, L=24806, px1=0.10, r_kk=+0.239, ρ_kx_obj=0.13, ρ_kx_fin=+0.123 -> frac=0.038 | t(attrs)=0.208s, t(frac)=0.016s
+[2025-11-07T22:59:23-03:00] red=HepTh, N=8638, L=24806, px1=0.10, r_kk=+0.239, ρ_kx_obj=0.20, ρ_kx_fin=+0.192 -> frac=0.046 | t(attrs)=0.311s, t(frac)=0.017s
+[2025-11-07T22:59:23-03:00] red=HepTh, N=8638, L=24806, px1=0.10, r_kk=+0.239, ρ_kx_obj=0.27, ρ_kx_fin=+0.257 -> frac=0.056 | t(attrs)=0.568s, t(frac)=0.015s
+[2025-11-07T22:59:23-03:00] red=HepTh, N=8638, L=24806, px1=0.10, r_kk=+0.239, ρ_kx_obj=0.33, ρ_kx_fin=+0.324 -> frac=0.067 | t(attrs)=0.707s, t(frac)=0.025s
+[2025-11-07T22:59:23-03:00] red=HepTh, N=8638, L=24806, px1=0.10, r_kk=+0.239, ρ_kx_obj=0.40, ρ_kx_fin=+0.391 -> frac=0.075 | t(attrs)=1.009s, t(frac)=0.017s
+[2025-11-07T22:59:23-03:00] red=HepTh, N=8638, L=24806, px1=0.10, r_kk=+0.239, ρ_kx_obj=0.47, ρ_kx_fin=+0.457 -> frac=0.092 | t(attrs)=1.534s, t(frac)=0.016s
+[2025-11-07T22:59:23-03:00] red=HepTh, N=8638, L=24806, px1=0.10, r_kk=+0.239, ρ_kx_obj=0.53, ρ_kx_fin=+0.523 -> frac=0.104 | t(attrs)=1.927s, t(frac)=0.015s
+[2025-11-07T22:59:23-03:00] red=HepTh, N=8638, L=24806, px1=0.10, r_kk=+0.239, ρ_kx_obj=0.60, ρ_kx_fin=+0.579 -> frac=0.130 | t(attrs)=2.295s, t(frac)=0.015s
+[2025-11-07T22:59:25-03:00] Generada red REAL: HepTh, N=8638, L=24806, r_kk=+0.239, tiempo_carga=0.271s, tiempo_pre=0.006s
+[2025-11-07T22:59:25-03:00] red=HepTh, N=8638, L=24806, px1=0.20, r_kk=+0.239, ρ_kx_obj=0.00, ρ_kx_fin=+0.008 -> frac=0.069 | t(attrs)=0.001s, t(frac)=0.017s
+[2025-11-07T22:59:25-03:00] red=HepTh, N=8638, L=24806, px1=0.20, r_kk=+0.239, ρ_kx_obj=0.07, ρ_kx_fin=+0.058 -> frac=0.076 | t(attrs)=0.163s, t(frac)=0.021s
+[2025-11-07T22:59:25-03:00] red=HepTh, N=8638, L=24806, px1=0.20, r_kk=+0.239, ρ_kx_obj=0.13, ρ_kx_fin=+0.125 -> frac=0.097 | t(attrs)=0.377s, t(frac)=0.015s
+[2025-11-07T22:59:25-03:00] red=HepTh, N=8638, L=24806, px1=0.20, r_kk=+0.239, ρ_kx_obj=0.20, ρ_kx_fin=+0.191 -> frac=0.121 | t(attrs)=0.456s, t(frac)=0.023s
+[2025-11-07T22:59:25-03:00] red=HepTh, N=8638, L=24806, px1=0.20, r_kk=+0.239, ρ_kx_obj=0.27, ρ_kx_fin=+0.257 -> frac=0.153 | t(attrs)=0.731s, t(frac)=0.019s
+[2025-11-07T22:59:25-03:00] red=HepTh, N=8638, L=24806, px1=0.20, r_kk=+0.239, ρ_kx_obj=0.33, ρ_kx_fin=+0.323 -> frac=0.174 | t(attrs)=0.988s, t(frac)=0.017s
+[2025-11-07T22:59:25-03:00] red=HepTh, N=8638, L=24806, px1=0.20, r_kk=+0.239, ρ_kx_obj=0.40, ρ_kx_fin=+0.390 -> frac=0.210 | t(attrs)=1.510s, t(frac)=0.017s
+[2025-11-07T22:59:25-03:00] red=HepTh, N=8638, L=24806, px1=0.20, r_kk=+0.239, ρ_kx_obj=0.47, ρ_kx_fin=+0.457 -> frac=0.246 | t(attrs)=1.850s, t(frac)=0.017s
+[2025-11-07T22:59:25-03:00] red=HepTh, N=8638, L=24806, px1=0.20, r_kk=+0.239, ρ_kx_obj=0.53, ρ_kx_fin=+0.523 -> frac=0.279 | t(attrs)=2.188s, t(frac)=0.014s
+[2025-11-07T22:59:25-03:00] red=HepTh, N=8638, L=24806, px1=0.20, r_kk=+0.239, ρ_kx_obj=0.60, ρ_kx_fin=+0.547 -> frac=0.299 | t(attrs)=2.118s, t(frac)=0.014s
+[2025-11-07T22:59:25-03:00] Generada red REAL: HepTh, N=8638, L=24806, r_kk=+0.239, tiempo_carga=0.310s, tiempo_pre=0.008s
+[2025-11-07T22:59:26-03:00] red=HepTh, N=8638, L=24806, px1=0.30, r_kk=+0.239, ρ_kx_obj=0.00, ρ_kx_fin=-0.010 -> frac=0.138 | t(attrs)=0.049s, t(frac)=0.016s
+[2025-11-07T22:59:26-03:00] red=HepTh, N=8638, L=24806, px1=0.30, r_kk=+0.239, ρ_kx_obj=0.07, ρ_kx_fin=+0.057 -> frac=0.174 | t(attrs)=0.159s, t(frac)=0.015s
+[2025-11-07T22:59:26-03:00] red=HepTh, N=8638, L=24806, px1=0.30, r_kk=+0.239, ρ_kx_obj=0.13, ρ_kx_fin=+0.124 -> frac=0.201 | t(attrs)=0.245s, t(frac)=0.016s
+[2025-11-07T22:59:26-03:00] red=HepTh, N=8638, L=24806, px1=0.30, r_kk=+0.239, ρ_kx_obj=0.20, ρ_kx_fin=+0.191 -> frac=0.243 | t(attrs)=0.547s, t(frac)=0.013s
+[2025-11-07T22:59:26-03:00] red=HepTh, N=8638, L=24806, px1=0.30, r_kk=+0.239, ρ_kx_obj=0.27, ρ_kx_fin=+0.257 -> frac=0.284 | t(attrs)=0.686s, t(frac)=0.018s
+[2025-11-07T22:59:26-03:00] red=HepTh, N=8638, L=24806, px1=0.30, r_kk=+0.239, ρ_kx_obj=0.33, ρ_kx_fin=+0.323 -> frac=0.337 | t(attrs)=1.267s, t(frac)=0.018s
+[2025-11-07T22:59:26-03:00] red=HepTh, N=8638, L=24806, px1=0.30, r_kk=+0.239, ρ_kx_obj=0.40, ρ_kx_fin=+0.390 -> frac=0.374 | t(attrs)=1.629s, t(frac)=0.023s
+[2025-11-07T22:59:26-03:00] red=HepTh, N=8638, L=24806, px1=0.30, r_kk=+0.239, ρ_kx_obj=0.47, ρ_kx_fin=+0.457 -> frac=0.443 | t(attrs)=2.084s, t(frac)=0.022s
+[2025-11-07T22:59:26-03:00] red=HepTh, N=8638, L=24806, px1=0.30, r_kk=+0.239, ρ_kx_obj=0.53, ρ_kx_fin=+0.492 -> frac=0.458 | t(attrs)=2.459s, t(frac)=0.015s
+[2025-11-07T22:59:26-03:00] red=HepTh, N=8638, L=24806, px1=0.30, r_kk=+0.239, ρ_kx_obj=0.60, ρ_kx_fin=+0.517 -> frac=0.474 | t(attrs)=2.116s, t(frac)=0.017s
+[2025-11-07T22:59:27-03:00] Figuras guardadas en: run-real\251107-225910\fig4_real.png y run-real\251107-225910\fig4_real.pdf
+[2025-11-07T22:59:27-03:00] Fin experimento Fig4-REAL | tiempo total=16.64s (~0.28 min) | carpeta=run-real\251107-225910

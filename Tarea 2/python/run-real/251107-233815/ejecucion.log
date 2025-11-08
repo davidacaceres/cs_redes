@@ -1,0 +1,50 @@
+[2025-11-07T23:38:15-03:00] Ejecutando script: Real-Networks-v16.py | ruta=C:\Users\dcaceres\Documents\Magister\Trimestre 2\CS Redes\Tarea 2\python\Real-Networks-v16.py
+[2025-11-07T23:38:15-03:00] Inicio experimento Fig4-REAL (paralelo por procesos) | carpeta=run-real\251107-233815
+[2025-11-07T23:38:15-03:00] Procesos: usados=18, cpu_count=22
+[2025-11-07T23:38:15-03:00] Parámetros: PX1=[0.05, 0.1, 0.2, 0.3], ρ_kx_grid=[np.float64(0.0), np.float64(0.07), np.float64(0.13), np.float64(0.2), np.float64(0.27), np.float64(0.33), np.float64(0.4), np.float64(0.47), np.float64(0.53), np.float64(0.6)], seed=12021974
+[2025-11-07T23:38:26-03:00] Generada red REAL: Twitter, N=755, L=999, r_kk=-0.638, tiempo_carga=0.022s, tiempo_pre=0.001s
+[2025-11-07T23:38:26-03:00] red=Twitter, N=755, L=999, px1=0.05, r_kk=-0.638, ρ_kx_obj=0.00, ρ_kx_fin=+0.000 -> frac=0.017 | t(attrs)=0.001s, t(frac)=0.002s
+[2025-11-07T23:38:26-03:00] red=Twitter, N=755, L=999, px1=0.05, r_kk=-0.638, ρ_kx_obj=0.07, ρ_kx_fin=+0.075 -> frac=0.207 | t(attrs)=0.036s, t(frac)=0.001s
+[2025-11-07T23:38:26-03:00] red=Twitter, N=755, L=999, px1=0.05, r_kk=-0.638, ρ_kx_obj=0.13, ρ_kx_fin=+0.139 -> frac=0.294 | t(attrs)=0.025s, t(frac)=0.001s
+[2025-11-07T23:38:26-03:00] red=Twitter, N=755, L=999, px1=0.05, r_kk=-0.638, ρ_kx_obj=0.20, ρ_kx_fin=+0.195 -> frac=0.400 | t(attrs)=0.074s, t(frac)=0.001s
+[2025-11-07T23:38:26-03:00] red=Twitter, N=755, L=999, px1=0.05, r_kk=-0.638, ρ_kx_obj=0.27, ρ_kx_fin=+0.257 -> frac=0.566 | t(attrs)=0.118s, t(frac)=0.002s
+[2025-11-07T23:38:26-03:00] red=Twitter, N=755, L=999, px1=0.05, r_kk=-0.638, ρ_kx_obj=0.33, ρ_kx_fin=+0.327 -> frac=0.764 | t(attrs)=0.140s, t(frac)=0.002s
+[2025-11-07T23:38:26-03:00] red=Twitter, N=755, L=999, px1=0.05, r_kk=-0.638, ρ_kx_obj=0.40, ρ_kx_fin=+0.402 -> frac=0.934 | t(attrs)=0.227s, t(frac)=0.002s
+[2025-11-07T23:38:26-03:00] red=Twitter, N=755, L=999, px1=0.05, r_kk=-0.638, ρ_kx_obj=0.47, ρ_kx_fin=+0.442 -> frac=0.984 | t(attrs)=2.536s, t(frac)=0.001s
+[2025-11-07T23:38:26-03:00] red=Twitter, N=755, L=999, px1=0.05, r_kk=-0.638, ρ_kx_obj=0.53, ρ_kx_fin=+0.441 -> frac=0.984 | t(attrs)=2.343s, t(frac)=0.002s
+[2025-11-07T23:38:26-03:00] red=Twitter, N=755, L=999, px1=0.05, r_kk=-0.638, ρ_kx_obj=0.60, ρ_kx_fin=+0.442 -> frac=0.984 | t(attrs)=2.253s, t(frac)=0.001s
+[2025-11-07T23:38:31-03:00] Generada red REAL: Twitter, N=755, L=999, r_kk=-0.638, tiempo_carga=0.021s, tiempo_pre=0.000s
+[2025-11-07T23:38:31-03:00] red=Twitter, N=755, L=999, px1=0.10, r_kk=-0.638, ρ_kx_obj=0.00, ρ_kx_fin=-0.010 -> frac=0.054 | t(attrs)=0.017s, t(frac)=0.002s
+[2025-11-07T23:38:31-03:00] red=Twitter, N=755, L=999, px1=0.10, r_kk=-0.638, ρ_kx_obj=0.07, ρ_kx_fin=+0.057 -> frac=0.220 | t(attrs)=0.008s, t(frac)=0.002s
+[2025-11-07T23:38:31-03:00] red=Twitter, N=755, L=999, px1=0.10, r_kk=-0.638, ρ_kx_obj=0.13, ρ_kx_fin=+0.125 -> frac=0.376 | t(attrs)=0.163s, t(frac)=0.002s
+[2025-11-07T23:38:31-03:00] red=Twitter, N=755, L=999, px1=0.10, r_kk=-0.638, ρ_kx_obj=0.20, ρ_kx_fin=+0.207 -> frac=0.678 | t(attrs)=0.169s, t(frac)=0.002s
+[2025-11-07T23:38:31-03:00] red=Twitter, N=755, L=999, px1=0.10, r_kk=-0.638, ρ_kx_obj=0.27, ρ_kx_fin=+0.257 -> frac=0.770 | t(attrs)=0.381s, t(frac)=0.001s
+[2025-11-07T23:38:31-03:00] red=Twitter, N=755, L=999, px1=0.10, r_kk=-0.638, ρ_kx_obj=0.33, ρ_kx_fin=+0.321 -> frac=0.987 | t(attrs)=2.560s, t(frac)=0.002s
+[2025-11-07T23:38:31-03:00] red=Twitter, N=755, L=999, px1=0.10, r_kk=-0.638, ρ_kx_obj=0.40, ρ_kx_fin=+0.322 -> frac=0.987 | t(attrs)=2.383s, t(frac)=0.001s
+[2025-11-07T23:38:31-03:00] red=Twitter, N=755, L=999, px1=0.10, r_kk=-0.638, ρ_kx_obj=0.47, ρ_kx_fin=+0.321 -> frac=0.987 | t(attrs)=2.336s, t(frac)=0.001s
+[2025-11-07T23:38:31-03:00] red=Twitter, N=755, L=999, px1=0.10, r_kk=-0.638, ρ_kx_obj=0.53, ρ_kx_fin=+0.321 -> frac=0.987 | t(attrs)=2.086s, t(frac)=0.001s
+[2025-11-07T23:38:31-03:00] red=Twitter, N=755, L=999, px1=0.10, r_kk=-0.638, ρ_kx_obj=0.60, ρ_kx_fin=+0.321 -> frac=0.987 | t(attrs)=2.285s, t(frac)=0.001s
+[2025-11-07T23:38:33-03:00] Generada red REAL: Twitter, N=755, L=999, r_kk=-0.638, tiempo_carga=0.015s, tiempo_pre=0.001s
+[2025-11-07T23:38:33-03:00] red=Twitter, N=755, L=999, px1=0.20, r_kk=-0.638, ρ_kx_obj=0.00, ρ_kx_fin=-0.010 -> frac=0.077 | t(attrs)=0.148s, t(frac)=0.002s
+[2025-11-07T23:38:33-03:00] red=Twitter, N=755, L=999, px1=0.20, r_kk=-0.638, ρ_kx_obj=0.07, ρ_kx_fin=+0.059 -> frac=0.328 | t(attrs)=0.117s, t(frac)=0.001s
+[2025-11-07T23:38:33-03:00] red=Twitter, N=755, L=999, px1=0.20, r_kk=-0.638, ρ_kx_obj=0.13, ρ_kx_fin=+0.143 -> frac=0.645 | t(attrs)=0.414s, t(frac)=0.002s
+[2025-11-07T23:38:33-03:00] red=Twitter, N=755, L=999, px1=0.20, r_kk=-0.638, ρ_kx_obj=0.20, ρ_kx_fin=+0.193 -> frac=0.913 | t(attrs)=0.237s, t(frac)=0.001s
+[2025-11-07T23:38:33-03:00] red=Twitter, N=755, L=999, px1=0.20, r_kk=-0.638, ρ_kx_obj=0.27, ρ_kx_fin=+0.229 -> frac=0.991 | t(attrs)=2.567s, t(frac)=0.002s
+[2025-11-07T23:38:33-03:00] red=Twitter, N=755, L=999, px1=0.20, r_kk=-0.638, ρ_kx_obj=0.33, ρ_kx_fin=+0.229 -> frac=0.991 | t(attrs)=2.389s, t(frac)=0.001s
+[2025-11-07T23:38:33-03:00] red=Twitter, N=755, L=999, px1=0.20, r_kk=-0.638, ρ_kx_obj=0.40, ρ_kx_fin=+0.228 -> frac=0.991 | t(attrs)=2.439s, t(frac)=0.001s
+[2025-11-07T23:38:33-03:00] red=Twitter, N=755, L=999, px1=0.20, r_kk=-0.638, ρ_kx_obj=0.47, ρ_kx_fin=+0.229 -> frac=0.991 | t(attrs)=2.073s, t(frac)=0.001s
+[2025-11-07T23:38:33-03:00] red=Twitter, N=755, L=999, px1=0.20, r_kk=-0.638, ρ_kx_obj=0.53, ρ_kx_fin=+0.229 -> frac=0.992 | t(attrs)=2.227s, t(frac)=0.001s
+[2025-11-07T23:38:33-03:00] red=Twitter, N=755, L=999, px1=0.20, r_kk=-0.638, ρ_kx_obj=0.60, ρ_kx_fin=+0.230 -> frac=0.991 | t(attrs)=2.043s, t(frac)=0.001s
+[2025-11-07T23:38:37-03:00] Generada red REAL: Twitter, N=755, L=999, r_kk=-0.638, tiempo_carga=0.023s, tiempo_pre=0.001s
+[2025-11-07T23:38:37-03:00] red=Twitter, N=755, L=999, px1=0.30, r_kk=-0.638, ρ_kx_obj=0.00, ρ_kx_fin=+0.015 -> frac=0.426 | t(attrs)=2.577s, t(frac)=0.001s
+[2025-11-07T23:38:37-03:00] red=Twitter, N=755, L=999, px1=0.30, r_kk=-0.638, ρ_kx_obj=0.07, ρ_kx_fin=+0.076 -> frac=0.583 | t(attrs)=0.101s, t(frac)=0.001s
+[2025-11-07T23:38:37-03:00] red=Twitter, N=755, L=999, px1=0.30, r_kk=-0.638, ρ_kx_obj=0.13, ρ_kx_fin=+0.135 -> frac=0.875 | t(attrs)=0.117s, t(frac)=0.001s
+[2025-11-07T23:38:37-03:00] red=Twitter, N=755, L=999, px1=0.30, r_kk=-0.638, ρ_kx_obj=0.20, ρ_kx_fin=+0.178 -> frac=0.991 | t(attrs)=2.423s, t(frac)=0.001s
+[2025-11-07T23:38:37-03:00] red=Twitter, N=755, L=999, px1=0.30, r_kk=-0.638, ρ_kx_obj=0.27, ρ_kx_fin=+0.178 -> frac=0.992 | t(attrs)=2.293s, t(frac)=0.001s
+[2025-11-07T23:38:37-03:00] red=Twitter, N=755, L=999, px1=0.30, r_kk=-0.638, ρ_kx_obj=0.33, ρ_kx_fin=+0.178 -> frac=0.991 | t(attrs)=2.132s, t(frac)=0.001s
+[2025-11-07T23:38:37-03:00] red=Twitter, N=755, L=999, px1=0.30, r_kk=-0.638, ρ_kx_obj=0.40, ρ_kx_fin=+0.177 -> frac=0.992 | t(attrs)=2.169s, t(frac)=0.001s
+[2025-11-07T23:38:37-03:00] red=Twitter, N=755, L=999, px1=0.30, r_kk=-0.638, ρ_kx_obj=0.47, ρ_kx_fin=+0.178 -> frac=0.991 | t(attrs)=2.125s, t(frac)=0.001s
+[2025-11-07T23:38:37-03:00] red=Twitter, N=755, L=999, px1=0.30, r_kk=-0.638, ρ_kx_obj=0.53, ρ_kx_fin=+0.177 -> frac=0.991 | t(attrs)=1.944s, t(frac)=0.002s
+[2025-11-07T23:38:37-03:00] red=Twitter, N=755, L=999, px1=0.30, r_kk=-0.638, ρ_kx_obj=0.60, ρ_kx_fin=+0.178 -> frac=0.991 | t(attrs)=1.957s, t(frac)=0.001s
+[2025-11-07T23:38:38-03:00] Figuras guardadas en: run-real\251107-233815\fig4_real.png y run-real\251107-233815\fig4_real.pdf
+[2025-11-07T23:38:38-03:00] Fin experimento Fig4-REAL | tiempo total=23.06s (~0.38 min) | carpeta=run-real\251107-233815
