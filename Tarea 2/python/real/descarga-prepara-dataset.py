@@ -51,6 +51,13 @@ from pathlib import Path
 from typing import Optional, Tuple, Iterable
 import re
 import networkx as nx
+from urllib.parse import urljoin
+
+
+import re, json, time, gzip, zipfile
+from urllib.parse import urljoin, urlparse, parse_qs
+import networkx as nx
+
 
 # Evita sobre-suscripción cuando networkx usa BLAS (si existiera)
 os.environ.setdefault("OMP_NUM_THREADS", "1")
@@ -59,10 +66,21 @@ os.environ.setdefault("MKL_NUM_THREADS", "1")
 os.environ.setdefault("VECLIB_MAXIMUM_THREADS", "1")
 os.environ.setdefault("NUMEXPR_NUM_THREADS", "1")
 
+DIGG_DOWNLOADS_INDEX = "https://www.isi.edu/people-lerman/research/downloads/"
+DIGG_OLD_PAGE = "https://www.isi.edu/~lerman/downloads/digg2009.html"
+
+BROWSER_HEADERS = {
+    "User-Agent": ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                   "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"),
+    "Accept": "*/*", "Accept-Language": "en-US,en;q=0.9"
+}
+DIGG_FILE_RE = r'(friend|fan|follow|friendship|followers).*\.(txt|csv|tsv|gz|zip)$'
+
 try:
     import requests
 except Exception:
     requests = None
+
 
 
 # ============================ Utilidades de logging ============================
@@ -78,6 +96,14 @@ def log(logfile: Path, msg: str):
     with logfile.open("a", encoding="utf-8") as f:
         f.write(line + "\n")
 
+def _get_text_following_403(url, timeout=180):
+    r = requests.get(url, timeout=timeout, headers=BROWSER_HEADERS, allow_redirects=True)
+    if r.status_code == 403 and url.startswith("https://"):
+        alt = "http://" + url[len("https://"):]
+        r = requests.get(alt, timeout=timeout, headers=BROWSER_HEADERS, allow_redirects=True)
+    r.raise_for_status()
+    return r.text, r.url
+
 # ================================ Descargas ===================================
 
 ENRON_URL   = "https://snap.stanford.edu/data/email-Enron.txt.gz"
@@ -88,13 +114,126 @@ POLBLOGS_URLS = [
     "https://websites.umich.edu/~mejn/netdata/polblogs.zip",  # Newman (oficial) :contentReference[oaicite:0]{index=0}
     "http://www-personal.umich.edu/~mejn/netdata/polblogs.zip"  # Alias legacy :contentReference[oaicite:1]{index=1}
 ]
-def http_get(url: str, dest: Path, logfile: Path, chunk=1<<20):
+# Fallbacks directos (mirrors). NRVIS/networkrepository:
+DIGG_FRIENDS_DIRECT_URLS = [
+    "https://nrvis.com/download/data/dynamic/digg-friends.zip",
+    # puedes agregar otros mirrors aquí si quieres
+]
+DIGG_FRIEND_HREF_RE = r'(friend|fan|follow).*\.(txt|gz|zip)$'
+
+def _find_digg_friend_file_from_official(rawdir, logfile):
+    """
+    1) Abre página 'Downloads' oficial y encuentra el botón 'Download Digg 2009 data set'.
+    2) Ese botón apunta a un loader con ?src=old_page. Extraemos 'src' y la descargamos.
+    3) En la old_page buscamos un link con DIGG_FILE_RE. Descargamos ese archivo a rawdir.
+    Retorna Path al archivo descargado.
+    """
+    # Paso 1: página de Downloads
+    log(logfile, f"Buscando enlace oficial en {DIGG_DOWNLOADS_INDEX} ...")
+    html, _ = _get_text_following_403(DIGG_DOWNLOADS_INDEX)
+
+    # Buscar el href del botón "Download Digg 2009 data set"
+    m = re.search(r'href=[\'"]([^\'"]+)[\'"][^>]*>\s*Download\s+Digg\s+2009\s+data\s+set\s*<', html, re.I)
+    if not m:
+        raise RuntimeError("No se encontró el botón 'Download Digg 2009 data set' en la página oficial.")
+
+    loader_url = m.group(1)  # suele ser https://usc-isi-i2.github.io/home/?src=...
+    # Paso 2: extraer ?src= con la old_page
+    parsed = urlparse(loader_url)
+    qs = parse_qs(parsed.query or "")
+    src_page = (qs.get("src") or [DIGG_OLD_PAGE])[0]
+
+    # Descargar old_page (con headers + fallback)
+    log(logfile, f"Abrir página histórica: {src_page}")
+    old_html, final_src = _get_text_following_403(src_page)
+
+    # Paso 3: buscar link del archivo de amistades
+    # Permitimos relativos; luego hacemos urljoin.
+    hrefs = re.findall(r'href=[\'"]([^\'"]+)[\'"]', old_html, flags=re.I)
+    cand = next((h for h in hrefs if re.search(DIGG_FILE_RE, h, re.I)), None)
+    if not cand:
+        raise RuntimeError("No se encontró enlace de amistades en la página oficial.")
+
+    file_url = urljoin(final_src, cand)
+    fname = file_url.split("/")[-1]
+    dest = rawdir / fname
+    http_get(file_url, dest, logfile, headers=BROWSER_HEADERS)
+    return dest
+
+def _extract_edgefile_from_zip(zpath, logfile):
+    import zipfile, re
+    with zipfile.ZipFile(zpath, "r") as zf:
+        # 1) prioriza nombres con friend/fan/follow/friendship
+        pri = [m for m in zf.namelist() if re.search(r'(friend|fan|follow|friendship)', m, re.I)]
+        # 2) si no, busca extensiones típicas de edgelist
+        if not pri:
+            pri = [m for m in zf.namelist() if re.search(r'\.(txt|csv|tsv|edges)$', m, re.I)]
+        if not pri:
+            raise RuntimeError("ZIP sin archivo de aristas detectable.")
+        member = pri[0]
+        out = zpath.parent / Path(member).name
+        with zf.open(member) as src, open(out, "wb") as dst:
+            dst.write(src.read())
+        log(logfile, f"Extraído {member} -> {out}")
+        return out
+
+
+
+def _extract_friend_like_from_zip(zpath, logfile):
+    with zipfile.ZipFile(zpath, "r") as zf:
+        members = [m for m in zf.namelist() if re.search(r'(friend|fan|follow|friendship)', m, re.I)]
+        if not members:
+            raise RuntimeError("ZIP de Digg sin archivo de amistades detectable.")
+        member = members[0]
+        out = zpath.parent / Path(member).name
+        with zf.open(member) as src, open(out, "wb") as dst:
+            dst.write(src.read())
+        log(logfile, f"Extraído {member} -> {out}")
+        return out
+
+def _read_pairs_two_cols(path, directed=True):
+    G = nx.DiGraph() if directed else nx.Graph()
+    opener = gzip.open if path.suffix.lower() == ".gz" else open
+    with opener(path, "rt", encoding="utf-8", errors="ignore") as f:
+        for line in f:
+            if not line or line.startswith("#"): continue
+            parts = re.split(r"[,\s]+", line.strip())
+            if len(parts) >= 2 and parts[0] and parts[1] and parts[0] != parts[1]:
+                G.add_edge(parts[0], parts[1])
+    return G
+
+
+def http_get_first_matching_from_page(page_url: str, rawdir: Path, logfile: Path, href_regex=DIGG_FRIEND_HREF_RE) -> Path:
+    if requests is None:
+        raise RuntimeError("El módulo 'requests' es requerido para descargar Digg 2009.")
+    log(logfile, f"Explorando {page_url} ...")
+    r = requests.get(page_url, timeout=180, headers=BROWSER_HEADERS, allow_redirects=True)
+    if r.status_code == 403 and page_url.startswith("https://"):
+        alt = "http://" + page_url[len("https://"):]
+        r = requests.get(alt, timeout=180, headers=BROWSER_HEADERS, allow_redirects=True)
+    r.raise_for_status()
+    hrefs = re.findall(r'href=[\'"]([^\'"]+)[\'"]', r.text, flags=re.I)
+    cand = next((h for h in hrefs if re.search(href_regex, h, flags=re.I)), None)
+    if not cand:
+        raise RuntimeError("No se encontró enlace de amistades en la página oficial.")
+    url = urljoin(page_url, cand)
+    fname = url.split("/")[-1]
+    dest = rawdir / fname
+    http_get(url, dest, logfile)
+    return dest
+
+def http_get(url, dest, logfile, headers=None, chunk=1<<20):
     if requests is None:
         raise RuntimeError("El módulo 'requests' no está disponible. Instálalo con: pip install requests")
+    hdrs = headers or BROWSER_HEADERS
     t0 = time.perf_counter()
     log(logfile, f"Descargando: {url}")
     dest.parent.mkdir(parents=True, exist_ok=True)
-    with requests.get(url, timeout=180, allow_redirects=True, stream=True) as r:
+    with requests.get(url, timeout=600, headers=hdrs, allow_redirects=True, stream=True) as r:
+        # fallback a http si 403 con https
+        if r.status_code == 403 and url.startswith("https://"):
+            alt = "http://" + url[len("https://"):]
+            r = requests.get(alt, timeout=600, headers=hdrs, allow_redirects=True, stream=True)
         r.raise_for_status()
         with open(dest, "wb") as f:
             for part in r.iter_content(chunk_size=chunk):
@@ -102,6 +241,9 @@ def http_get(url: str, dest: Path, logfile: Path, chunk=1<<20):
                     f.write(part)
     dt = time.perf_counter() - t0
     log(logfile, f"Descarga OK → {dest} ({dest.stat().st_size} bytes) en {dt:.2f}s")
+
+
+
 
 def http_get_try(urls: list[str], dest: Path, logfile: Path):
     last_err = None
@@ -381,6 +523,72 @@ class PrepResult:
     out_mut: Optional[Path]
     t_total_s: float
 
+def prep_digg(rawdir: Path, outdir: Path, logfile: Path) -> PrepResult:
+    rawdir.mkdir(parents=True, exist_ok=True)
+
+    # 0) ¿ya hay archivo local?
+    existing = (list(rawdir.glob("*friend*.*")) + list(rawdir.glob("*fan*.*")) +
+                list(rawdir.glob("*follow*.*")) + list(rawdir.glob("*friendship*.*")) +
+                list(rawdir.glob("digg*.*")))
+    if existing:
+        src = sorted(existing)[0]
+        log(logfile, f"Usando archivo local existente: {src}")
+    else:
+        # 1) Intento oficial (si lo tienes implementado; si no, puedes saltarlo)
+        try:
+            # ... tu lógica de scraping de la página oficial si existe ...
+            # si funcionara: src = archivo_descargado
+            raise RuntimeError("Sin enlace directo en la página oficial (loader/JS).")
+        except Exception as e:
+            log(logfile, f"Oficial no disponible: {e}. Probando mirrors...")
+
+        # 2) Fallback directo: NRVIS
+        last_err = None
+        for u in DIGG_FRIENDS_DIRECT_URLS:
+            try:
+                fname = u.rsplit("/", 1)[-1]
+                cand = rawdir / fname
+                http_get(u, cand, logfile, headers=BROWSER_HEADERS)
+                src = cand
+                break
+            except Exception as ex:
+                last_err = ex
+                log(logfile, f"Falló {u}: {ex}")
+        if 'src' not in locals():
+            raise RuntimeError(f"No se pudo descargar Digg desde mirrors. Último error: {last_err}")
+
+    # 3) Si es ZIP, extrae archivo con aristas
+    if str(src).lower().endswith(".zip"):
+        src = _extract_edgefile_from_zip(src, logfile)
+
+    # 4) Dirigido -> MUTUOS A<->B -> no dirigido -> GCC -> relabel
+    Gd = _read_pairs_two_cols(src, directed=True)
+    n_raw, l_raw = Gd.number_of_nodes(), Gd.number_of_edges()
+
+    Gm = mutual_undirected(Gd)         # usa tus helpers existentes
+    Gm = remove_selfloops_and_multi(Gm)
+    Gm = graph_gcc_simple(Gm)
+    Gm = nx.convert_node_labels_to_integers(Gm)
+
+    outdir.mkdir(parents=True, exist_ok=True)
+    out_mut = outdir / "edges_mutual.txt"
+    write_edgelist_txt(Gm, out_mut)
+    st = stats_json(Gm)
+
+    (outdir / "stats.json").write_text(json.dumps({
+        "dataset": "Digg 2009 (amistades, MUTUOS)",
+        "official_page": DIGG_OLD_PAGE,
+        "download_source": str(src),   # quedará NRVIS si vino de mirror
+        "n_raw_directed": n_raw, "l_raw_directed": l_raw,
+        "n_gcc": st["N"], "l_gcc": st["L"], "avg_k": st["avg_k"], "r_kk": st["r_kk"]
+    }, indent=2), encoding="utf-8")
+
+    return PrepResult("Digg2009", n_raw, l_raw, st["N"], st["L"], st["r_kk"], None, out_mut, 0.0)
+
+
+
+
+
 def prep_enron(rawdir: Path, outdir: Path, logfile: Path) -> PrepResult:
     """Enron (SNAP): no dirigido; limpieza + GCC."""
     gz = rawdir / "email-Enron.txt.gz"
@@ -515,6 +723,7 @@ def parse_args():
     ap.add_argument("--reactome-src-col", type=str, default="", help="Nombre de columna fuente (si CSV/TSV).")
     ap.add_argument("--reactome-tgt-col", type=str, default="", help="Nombre de columna destino (si CSV/TSV).")
     ap.add_argument("--reactome-download", action="store_true", help="Descargar y preparar Reactome PPI humano (PSI-MITAB).")
+    ap.add_argument("--digg", action="store_true", help="Descargar+preprocesar Digg 2009 (amistades; MUTUOS).")
     return ap.parse_args()
 
 def main():
@@ -537,6 +746,7 @@ def main():
         bool(args.polblogs),
         bool(args.reactome),
         args.reactome_download,
+        args.digg
     ])
     do_all = args.all or not selected
 
@@ -549,6 +759,7 @@ def main():
         # Para Political Blogs: si no entregaron ruta local, activamos descarga
         if not args.polblogs:
             args.polblogs = "__AUTO__"
+        args.digg = True
 
     if args.enron:
         name = "enron"
@@ -641,6 +852,19 @@ def main():
                          f"N_GCC={res.n_gcc}, L_GCC={res.l_gcc}, r_kk={res.rkk:+.3f}, t_total={dt:.2f}s")
         except Exception as e:
             log(logfile, f"ERROR Reactome (download): {e}")
+    if args.digg:
+        name = "digg"
+        outdir = out_root / name
+        logfile = outdir / "ejecucion.log"
+        t0 = time.perf_counter()
+        try:
+            log(logfile, f"{Path(sys.argv[0]).name} | Digg (download) | preparando...")
+            res = prep_digg(raw_root / name, outdir, logfile)
+            dt = time.perf_counter() - t0
+            log(logfile, f"Listo Digg | N_raw_dir={res.n_raw}, L_raw_dir={res.l_raw}, "
+                         f"N_GCC={res.n_gcc}, L_GCC={res.l_gcc}, r_kk={res.rkk:+.3f}, t_total={dt:.2f}s")
+        except Exception as e:
+            log(logfile, f"ERROR Digg: {e}")
 
     log(log_all, f"{script_name} | fin")
 
