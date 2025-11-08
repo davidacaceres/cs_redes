@@ -2,3 +2,5 @@
 [2025-11-07T19:00:59] Descargando: https://snap.stanford.edu/data/ca-HepTh.txt.gz
 [2025-11-07T19:01:01] Descarga OK → data-raw\hepth\ca-HepTh.txt.gz (210596 bytes) en 2.58s
 [2025-11-07T19:01:02] Listo HepTh | N_raw=9877, L_raw=25998, N_GCC=8638, L_GCC=24806, r_kk=+0.239, t_total=2.88s
+[2025-11-07T20:30:03] descarga-prepara-dataset.py | HepTh | preparando...
+[2025-11-07T20:30:03] Listo HepTh | N_raw=9877, L_raw=25998, N_GCC=8638, L_GCC=24806, r_kk=+0.239, t_total=0.42s

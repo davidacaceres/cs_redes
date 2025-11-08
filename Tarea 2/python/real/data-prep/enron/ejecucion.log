@@ -2,3 +2,5 @@
 [2025-11-07T19:00:43] Descargando: https://snap.stanford.edu/data/email-Enron.txt.gz
 [2025-11-07T19:00:56] Descarga OK → data-raw\enron\email-Enron.txt.gz (1055993 bytes) en 13.43s
 [2025-11-07T19:00:59] Listo Enron | N_raw=36692, L_raw=183831, N_GCC=33696, L_GCC=180811, r_kk=-0.116, t_total=15.74s
+[2025-11-07T20:30:00] descarga-prepara-dataset.py | Enron | preparando...
+[2025-11-07T20:30:03] Listo Enron | N_raw=36692, L_raw=183831, N_GCC=33696, L_GCC=180811, r_kk=-0.116, t_total=3.25s
