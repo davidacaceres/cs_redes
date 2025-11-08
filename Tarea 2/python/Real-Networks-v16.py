@@ -270,11 +270,11 @@ def build_tasks(args):
     nets = []
     if args.hepth:   nets.append(("HepTh",   args.hepth,   False, False))
     if args.reactome:nets.append(("Reactome",args.reactome,False, False))
-    if args.digg:    nets.append(("Digg",    args.digg,    True,  True if args.mutual_digg   else False))
+    if args.digg:    nets.append(("Digg",    args.digg,    True,  False ))
     if args.twitter: nets.append(("Twitter", args.twitter, True,  False))
     if args.enron:   nets.append(("Enron",   args.enron,   False, False))
     if args.enron_csv: nets.append(("EnronCSV", args.enron_csv, False, False))
-    if args.blogs:   nets.append(("Blogs",   args.blogs,   True, True))
+    if args.blogs:   nets.append(("Blogs",   args.blogs,   True, False))
     # Tareas: (name, path, directed, mutual_only, px1, rho_grid, seed, max_swaps)
     tasks = []
     for (name, path, directed, mutual_only) in nets:
@@ -284,26 +284,17 @@ def build_tasks(args):
 
 def get_args():
     ap = argparse.ArgumentParser(description="Fig.4 — Ilusión de Mayoría en redes reales (paths locales)")
-    ap.add_argument("--hepth",   type=str, default="", help="Ruta edge list HepTh (undirected)")
-    ap.add_argument("--reactome",type=str, default="", help="Ruta edge list Reactome PPI (undirected)")
-    ap.add_argument("--digg",    type=str, default="", help="Ruta edge list Digg (directed followers)") # problema
-#    ap.add_argument("--twitter", type=str, default="", help="Ruta edge list Twitter (directed followers)") # problema
-    ap.add_argument("--enron",   type=str, default="", help="email-Enron.txt.gz Ruta edge list Enron (undirected)")
-    ap.add_argument("--blogs",   type=str, default="", help="Ruta edge list Political Blogs (directed)")
 
-#    ap.add_argument("--hepth",   type=str, default="real/data-prep/hepth/edges_all.txt", help="Ruta edge list HepTh (undirected)")
-#    ap.add_argument("--reactome",type=str, default="real/data-prep/reactome/edges_all.txt", help="Ruta edge list Reactome PPI (undirected)")
-#    ap.add_argument("--digg",    type=str, default="real/data-prep/digg/edges_mutual.txt", help="Ruta edge list Digg (directed followers)")
+    ap.add_argument("--hepth",   type=str, default="real/data-prep/hepth/edges_all.txt", help="Ruta edge list HepTh (undirected)")
+    ap.add_argument("--reactome",type=str, default="real/data-prep/reactome/edges_all.txt", help="Ruta edge list Reactome PPI (undirected)")
+    ap.add_argument("--digg",    type=str, default="real/data-prep/digg/edges_mutual.txt", help="Ruta edge list Digg (directed followers)")
     ap.add_argument("--twitter", type=str, default="real/data-prep/twitter-higgs/edges_mutual.txt", help="Ruta edge list Twitter (directed followers)")
-#    ap.add_argument("--enron",   type=str, default="real/data-prep/enron/edges_all.txt", help="email-Enron.txt.gz Ruta edge list Enron (undirected)")
- #   ap.add_argument("--blogs",   type=str, default="real/data-prep/polblogs/edges_all.txt", help="Ruta edge list Political Blogs (directed)")
+    ap.add_argument("--enron",   type=str, default="real/data-prep/enron/edges_all.txt", help="email-Enron.txt.gz Ruta edge list Enron (undirected)")
+    ap.add_argument("--blogs",   type=str, default="real/data-prep/polblogs/edges_all.txt", help="Ruta edge list Political Blogs (directed)")
 
     ap.add_argument("--enron-csv", type=str, default="" , help="Ruta CSV Enron (source,target[,weight])")
-    ap.add_argument("--mutual-digg",    dest="mutual_digg",    action="store_true",  help="Usar SOLO mutuos en Digg (default: True)")
-    ap.add_argument("--no-mutual-digg", dest="mutual_digg",    action="store_false", help="No exigir mutuos en Digg")
     ap.add_argument("--mutual-twitter", dest="mutual_twitter", action="store_true",  help="Usar SOLO mutuos en Twitter (default: True)")
     ap.add_argument("--no-mutual-twitter", dest="mutual_twitter", default=True, action="store_false", help="No exigir mutuos en Twitter")
-#    ap.add_argument("--blogs-all", action="store_true", default=True, help="Para Blogs: colapsar direcciones (no solo mutuos). Por defecto usa mutuos si NO pasas esta bandera.")
     ap.set_defaults(mutual_digg=True, mutual_twitter=True)
 
     ap.add_argument("--rho", type=parse_rho_grid, default="0:0.6:10",                    help="Grid de rho_kx: 'a:b:n' (linspace) o lista '0,0.1,0.2'")
@@ -385,13 +376,13 @@ def main():
             xs = [x for x, _ in series]; ys = [y for _, y in series]
             ax.plot(xs, ys, marker=markers.get(px1, "o"), linewidth=1.5,
                     color=colors.get(px1, None), label=rf"$P(x=1)={px1:.2f}$")
-        ax.set_title(f"{name}  (r_kk={rkk:+.2f})")
+        ax.set_title(rf"{name}  ($r_{{kk}}$={rkk:+.2f})")
         ax.grid(True, alpha=0.3)
         if i == 1: ax.set_xlabel(r"Correlación grado–atributo $\rho_{kx}$")
         if j == 0: ax.set_ylabel("Fracción nodos en mayoría activa")
         ax.legend(fontsize=9)
     plt.tight_layout()
-    plt.suptitle("Ilusión de Mayoría en redes reales (Fig. 4)", y=1.02)
+    plt.suptitle("Ilusión de Mayoría en redes reales", y=1.02)
     fig_path_png = outdir / "fig4_real.png"
     fig_path_pdf = outdir / "fig4_real.pdf"
     plt.savefig(fig_path_png, dpi=180, bbox_inches="tight")

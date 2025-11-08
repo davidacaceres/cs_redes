@@ -123,7 +123,6 @@ def strong_rewire(G, target_rkk, max_iter_factor=10, tol=0.01, alpha=None):
             continue
         u, v = e1
         x, y = e2
-        # Propuestas de swap (evitar multiaristas)
         if u == y or x == v or G.has_edge(u, y) or G.has_edge(x, v):
             iter_count += 1
             continue
