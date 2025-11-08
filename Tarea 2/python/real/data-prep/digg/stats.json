@@ -1,0 +1,11 @@
+{
+  "dataset": "Digg 2009 (amistades, MUTUOS)",
+  "official_page": "https://www.isi.edu/~lerman/downloads/digg2009.html",
+  "download_source": "data-raw\\digg\\digg-friends.edges",
+  "n_raw_directed": 279632,
+  "l_raw_directed": 1731654,
+  "n_gcc": 27567,
+  "l_gcc": 175892,
+  "avg_k": 12.761054884463308,
+  "r_kk": 0.16598612784606384
+}
