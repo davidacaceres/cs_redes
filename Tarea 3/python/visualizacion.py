@@ -382,22 +382,32 @@ def generar_mapa_geografico(
     
     print(f"[INFO] Encontradas {len(lats)} estaciones con coordenadas")
     
-    # Crear figura
-    fig, ax = plt.subplots(figsize=(12, 10))
+    # Crear figura usando API orientada a objetos (Thread-Safe)
+    from matplotlib.figure import Figure
+    from matplotlib.backends.backend_agg import FigureCanvasAgg
+    
+    fig = Figure(figsize=(12, 10))
+    FigureCanvasAgg(fig) # Adjuntar canvas Agg
+    ax = fig.add_subplot(111)
     
     # Plotear líneas primero (para que queden detrás)
     print(f"[INFO] Dibujando conexiones...")
+    from matplotlib.collections import LineCollection
+    segmentos = []
     lineas_dibujadas = 0
     for u, v in grafo.aristas():
         u_attrs = grafo.atributos_nodos.get(u, {})
         v_attrs = grafo.atributos_nodos.get(v, {})
         if 'lat' in u_attrs and 'lat' in v_attrs and 'lon' in u_attrs and 'lon' in v_attrs:
-            ax.plot(
-                [u_attrs['lon'], v_attrs['lon']],
-                [u_attrs['lat'], v_attrs['lat']],
-                'b-', alpha=0.3, linewidth=0.8, zorder=1
-            )
+            segmentos.append([
+                (u_attrs['lon'], u_attrs['lat']),
+                (v_attrs['lon'], v_attrs['lat'])
+            ])
             lineas_dibujadas += 1
+            
+    if segmentos:
+        lc = LineCollection(segmentos, colors='blue', alpha=0.3, linewidths=0.8, zorder=1)
+        ax.add_collection(lc)
     
     print(f"[INFO] Dibujadas {lineas_dibujadas} conexiones")
     
@@ -428,7 +438,7 @@ def generar_mapa_geografico(
         ax.set_xlim(min(lons) - lon_margin, max(lons) + lon_margin)
         ax.set_ylim(min(lats) - lat_margin, max(lats) + lat_margin)
     
-    plt.tight_layout()
+    fig.tight_layout()
     
     if ruta_salida:
         print(f"[INFO] Guardando mapa en: {ruta_salida}")
@@ -532,7 +542,7 @@ def guardar_resultados_red(
         fig = generar_mapa_geografico(grafo, ruta_mapa)
         if fig is not None:
             archivos_generados['mapa'] = ruta_mapa
-            plt.close(fig)  # Liberar memoria
+            # plt.close(fig) no es necesario con API orientada a objetos
     
     # 2. Guardar métricas en JSON
     ruta_json = directorio_salida / "datos" / "metricas.json"

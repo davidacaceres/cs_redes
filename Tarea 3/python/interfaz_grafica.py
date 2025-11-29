@@ -267,7 +267,7 @@ class VentanaPrincipal:
         # --- SECCIÓN IZQUIERDA (Estado y Controles) ---
         
         # 1. Label de Estado
-        self.label_estado = ttk.Label(self.frame_estado, text="Listo", width=25)
+        self.label_estado = ttk.Label(self.frame_estado, text="Listo", width=50)
         self.label_estado.pack(side=tk.LEFT, padx=(5, 10))
         
         # 2. Barra de progreso personalizada (Canvas)
@@ -737,15 +737,21 @@ class VentanaPrincipal:
                     lons.append(attrs['lon'])
             
             # Plotear líneas (conexiones)
+            # Plotear líneas (conexiones) usando LineCollection para rendimiento
+            from matplotlib.collections import LineCollection
+            segmentos = []
             for u, v in grafo.aristas():
                 u_attrs = grafo.atributos_nodos.get(u, {})
                 v_attrs = grafo.atributos_nodos.get(v, {})
                 if 'lat' in u_attrs and 'lat' in v_attrs and 'lon' in u_attrs and 'lon' in v_attrs:
-                    ax.plot(
-                        [u_attrs['lon'], v_attrs['lon']],
-                        [u_attrs['lat'], v_attrs['lat']],
-                        'b-', alpha=0.3, linewidth=0.8, zorder=1
-                    )
+                    segmentos.append([
+                        (u_attrs['lon'], u_attrs['lat']),
+                        (v_attrs['lon'], v_attrs['lat'])
+                    ])
+            
+            if segmentos:
+                lc = LineCollection(segmentos, colors='blue', alpha=0.3, linewidths=0.8, zorder=1)
+                ax.add_collection(lc)
             
             # Plotear estaciones
             ax.scatter(lons, lats, c='red', s=60, alpha=0.7, zorder=2, 
