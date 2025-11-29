@@ -769,26 +769,33 @@ class VentanaPrincipal:
                 ax.set_xlim(min(lons) - lon_margin, max(lons) + lon_margin)
                 ax.set_ylim(min(lats) - lat_margin, max(lats) + lat_margin)
             
-            plt.tight_layout()
+            # Agregar mapa base de OpenStreetMap
+            try:
+                import contextily as cx
+                # crs=4326 indica que nuestros datos están en lat/lon
+                cx.add_basemap(ax, crs=4326, source=cx.providers.OpenStreetMap.Mapnik)
+            except Exception as e:
+                print(f"[ADVERTENCIA] No se pudo agregar mapa base en UI: {e}")
             
-            # Embeber en tkinter con barra de herramientas
+            fig.tight_layout()
+            
+            # Crear canvas de matplotlib para tkinter
             canvas = FigureCanvasTkAgg(fig, master=self.frame_canvas_mapa)
             canvas.draw()
+            canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
             
-            # Agregar barra de herramientas (zoom, pan, etc.)
+            # Barra de herramientas de navegación
             toolbar = NavigationToolbar2Tk(canvas, self.frame_canvas_mapa)
             toolbar.update()
+            canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
             
-            # Empaquetar widgets
-            canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=True)
-            
+            self.figura_mapa = fig
         else:
-            # No hay datos geográficos
-            label = ttk.Label(self.frame_canvas_mapa, 
-                            text=f"No hay datos geográficos para\n{grafo.nombre}",
-                            font=("Arial", 12))
-            label.pack(expand=True)
-    
+            self.label_mapa = ttk.Label(self.frame_canvas_mapa, 
+                                         text="No hay datos geográficos disponibles para esta red", 
+                                         font=("Arial", 12))
+            self.label_mapa.pack(expand=True)
+
     def actualizar_tab_info(self, metricas):
         """Actualiza el tab de información general."""
         # Limpiar tree

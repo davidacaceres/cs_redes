@@ -438,6 +438,16 @@ def generar_mapa_geografico(
         ax.set_xlim(min(lons) - lon_margin, max(lons) + lon_margin)
         ax.set_ylim(min(lats) - lat_margin, max(lats) + lat_margin)
     
+    # Agregar mapa base de OpenStreetMap
+    try:
+        import contextily as cx
+        print("[INFO] Agregando mapa base OpenStreetMap...")
+        # crs=4326 indica que nuestros datos (puntos/líneas) están en lat/lon (WGS84)
+        # contextily transformará automáticamente los tiles para coincidir
+        cx.add_basemap(ax, crs=4326, source=cx.providers.OpenStreetMap.Mapnik)
+    except Exception as e:
+        print(f"[ADVERTENCIA] No se pudo agregar mapa base: {e}")
+
     fig.tight_layout()
     
     if ruta_salida:
