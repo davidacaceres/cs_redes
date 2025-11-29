@@ -73,6 +73,10 @@ class VentanaPrincipal:
         # Cola para comunicación con threads
         self.cola_resultados = queue.Queue()
         
+        # Flag para cancelar procesamiento
+        self.cancelar_procesamiento = False
+        self.thread_actual = None
+        
         # Crear ventana
         self.ventana = tk.Tk()
         self.ventana.title("Análisis de Redes de Transporte Público")
@@ -130,10 +134,13 @@ class VentanaPrincipal:
         self.cargar_lista_ciudades()
     
     def crear_paneles(self, parent):
-        """Crea los paneles de mapa y tabs."""
+        """Crea los paneles de mapa y tabs con divisor redimensionable."""
+        # Crear PanedWindow para permitir redimensionamiento
+        paned = ttk.PanedWindow(parent, orient=tk.HORIZONTAL)
+        paned.grid(row=1, column=0, columnspan=2, sticky=(tk.W, tk.E, tk.N, tk.S))
+        
         # Panel izquierdo: Mapa
-        frame_mapa = ttk.LabelFrame(parent, text="Mapa Geográfico", padding="10")
-        frame_mapa.grid(row=1, column=0, sticky=(tk.W, tk.E, tk.N, tk.S), padx=(0, 5))
+        frame_mapa = ttk.LabelFrame(paned, text="Mapa Geográfico", padding="10")
         frame_mapa.columnconfigure(0, weight=1)
         frame_mapa.rowconfigure(0, weight=1)
         
@@ -147,14 +154,17 @@ class VentanaPrincipal:
         self.label_mapa.pack(expand=True)
         
         # Panel derecho: Tabs
-        frame_tabs = ttk.LabelFrame(parent, text="Análisis", padding="10")
-        frame_tabs.grid(row=1, column=1, sticky=(tk.W, tk.E, tk.N, tk.S))
+        frame_tabs = ttk.LabelFrame(paned, text="Análisis", padding="10")
         frame_tabs.columnconfigure(0, weight=1)
         frame_tabs.rowconfigure(0, weight=1)
         
         # Notebook (tabs)
         self.notebook = ttk.Notebook(frame_tabs)
         self.notebook.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
+        
+        # Agregar paneles al PanedWindow
+        paned.add(frame_mapa, weight=1)
+        paned.add(frame_tabs, weight=1)
         
         # Tab 1: Información General
         self.crear_tab_info()
@@ -242,7 +252,7 @@ class VentanaPrincipal:
         self.label_directorio.pack(pady=10)
     
     def crear_barra_progreso(self, parent):
-        """Crea la barra de progreso."""
+        """Crea la barra de progreso con botón de cancelar."""
         frame_progreso = ttk.Frame(parent, padding="5")
         frame_progreso.grid(row=2, column=0, columnspan=2, sticky=(tk.W, tk.E), pady=(10, 0))
         
@@ -251,6 +261,12 @@ class VentanaPrincipal:
         
         self.progreso = ttk.Progressbar(frame_progreso, mode='indeterminate')
         self.progreso.grid(row=1, column=0, sticky=(tk.W, tk.E), pady=5)
+        
+        # Botón de cancelar (inicialmente oculto)
+        self.boton_cancelar = ttk.Button(frame_progreso, text="Cancelar", 
+                                         command=self.cancelar_analisis,
+                                         state='disabled')
+        self.boton_cancelar.grid(row=1, column=1, padx=(10, 0))
         
         frame_progreso.columnconfigure(0, weight=1)
     
@@ -292,18 +308,32 @@ class VentanaPrincipal:
             messagebox.showwarning("Advertencia", "Por favor seleccione una ciudad/red válida")
             return
         
-        # Deshabilitar botón y mostrar progreso
+        # Resetear flag de cancelación
+        self.cancelar_procesamiento = False
+        
+        # Deshabilitar controles
         self.boton_generar.config(state='disabled')
+        self.combo_dataset.config(state='disabled')
+        self.combo_ciudad.config(state='disabled')
+        self.boton_cancelar.config(state='normal')
+        
+        # Mostrar progreso
         self.label_estado.config(text=f"Procesando {ciudad}...")
         self.progreso.start()
         
         # Ejecutar en thread separado
-        thread = threading.Thread(
+        self.thread_actual = threading.Thread(
             target=self.procesar_red_thread,
             args=(ciudad,),
             daemon=True
         )
-        thread.start()
+        self.thread_actual.start()
+    
+    def cancelar_analisis(self):
+        """Cancela el análisis en curso."""
+        self.cancelar_procesamiento = True
+        self.label_estado.config(text="Cancelando...")
+        self.boton_cancelar.config(state='disabled')
     
     def procesar_red_thread(self, nombre_ciudad: str):
         """Procesa la red en un thread separado (no bloquea UI)."""
@@ -311,6 +341,10 @@ class VentanaPrincipal:
             dataset = self.combo_dataset.get()
             
             # 1. Cargar grafo
+            if self.cancelar_procesamiento:
+                self.cola_resultados.put(('cancelado', 'Operación cancelada por el usuario'))
+                return
+            
             self.cola_resultados.put(('estado', 'Cargando grafo...'))
             
             if dataset == "Kujala":
@@ -332,18 +366,48 @@ class VentanaPrincipal:
                     raise ValueError(f"No se pudo cargar {nombre_ciudad}")
             
             # 2. Calcular métricas
+            if self.cancelar_procesamiento:
+                self.cola_resultados.put(('cancelado', 'Operación cancelada por el usuario'))
+                return
+            
             self.cola_resultados.put(('estado', 'Calculando métricas...'))
             metricas = procesar_redes.calcular_metricas_basicas(grafo)
+            
+            if self.cancelar_procesamiento:
+                self.cola_resultados.put(('cancelado', 'Operación cancelada por el usuario'))
+                return
+            
             metricas['r_T'] = procesar_redes.indicador_robustez_rT(grafo)
+            
+            if self.cancelar_procesamiento:
+                self.cola_resultados.put(('cancelado', 'Operación cancelada por el usuario'))
+                return
+            
             metricas['C_G'] = procesar_redes.conductancia_efectiva_grafo_CG(grafo)
+            
+            if self.cancelar_procesamiento:
+                self.cola_resultados.put(('cancelado', 'Operación cancelada por el usuario'))
+                return
+            
+            self.cola_resultados.put(('estado', 'Calculando robustez por grado...'))
             metricas['robustez_grado_20pct'] = procesar_redes.indice_robustez_simple(
                 grafo, fraccion_remover=0.2, estrategia="grado"
             )
+            
+            if self.cancelar_procesamiento:
+                self.cola_resultados.put(('cancelado', 'Operación cancelada por el usuario'))
+                return
+            
+            self.cola_resultados.put(('estado', 'Calculando robustez aleatoria...'))
             metricas['robustez_aleatorio_20pct'] = procesar_redes.indice_robustez_simple(
                 grafo, fraccion_remover=0.2, estrategia="aleatorio", semilla=42
             )
             
             # 3. Guardar resultados
+            if self.cancelar_procesamiento:
+                self.cola_resultados.put(('cancelado', 'Operación cancelada por el usuario'))
+                return
+            
             self.cola_resultados.put(('estado', 'Guardando resultados...'))
             dir_salida = visualizacion.crear_directorio_salida(
                 f"{dataset[0]}_{nombre_ciudad}",
@@ -371,19 +435,66 @@ class VentanaPrincipal:
                     self.actualizar_ui_con_resultados(grafo, metricas, dir_salida)
                     self.progreso.stop()
                     self.boton_generar.config(state='normal')
+                    self.combo_dataset.config(state='readonly')
+                    self.combo_ciudad.config(state='readonly')
+                    self.boton_cancelar.config(state='disabled')
                     self.label_estado.config(text="Análisis completado")
                     messagebox.showinfo("Éxito", f"Análisis completado\\nResultados guardados en:\\n{dir_salida}")
                 
                 elif resultado[0] == 'error':
                     self.progreso.stop()
                     self.boton_generar.config(state='normal')
+                    self.combo_dataset.config(state='readonly')
+                    self.combo_ciudad.config(state='readonly')
+                    self.boton_cancelar.config(state='disabled')
                     self.label_estado.config(text="Error en el análisis")
                     messagebox.showerror("Error", f"Error al procesar la red:\\n{resultado[1]}")
+                
+                elif resultado[0] == 'cancelado':
+                    self.limpiar_paneles()  # Limpiar paneles al cancelar
+                    self.progreso.stop()
+                    self.boton_generar.config(state='normal')
+                    self.combo_dataset.config(state='readonly')
+                    self.combo_ciudad.config(state='readonly')
+                    self.boton_cancelar.config(state='disabled')
+                    self.label_estado.config(text="Listo")
+                    messagebox.showinfo("Cancelado", resultado[1])
         
         except queue.Empty:
             pass
         finally:
             self.ventana.after(100, self.verificar_cola)
+    
+    def limpiar_paneles(self):
+        """Limpia los paneles de mapa y análisis volviendo al estado inicial."""
+        # Limpiar panel de mapa
+        for widget in self.frame_canvas_mapa.winfo_children():
+            widget.destroy()
+        
+        # Restaurar label inicial del mapa
+        self.label_mapa = ttk.Label(self.frame_canvas_mapa, 
+                                     text="Seleccione una red y presione 'Generar Análisis'", 
+                                     font=("Arial", 12))
+        self.label_mapa.pack(expand=True)
+        
+        # Limpiar tab de info
+        for item in self.tree_info.get_children():
+            self.tree_info.delete(item)
+        
+        # Limpiar tab de robustez
+        for widget in self.frame_canvas_robustez.winfo_children():
+            widget.destroy()
+        
+        # Limpiar tab de componentes
+        for widget in self.frame_canvas_componentes.winfo_children():
+            widget.destroy()
+        
+        # Limpiar label de directorio en tab exportar
+        self.label_directorio.config(text="")
+        
+        # Resetear variables de estado
+        self.grafo_actual = None
+        self.metricas_actuales = None
     
     def actualizar_ui_con_resultados(self, grafo, metricas, dir_salida):
         """Actualiza la UI con los resultados del análisis."""
@@ -596,106 +707,6 @@ class VentanaPrincipal:
         
         # Embeber en tkinter
         canvas = FigureCanvasTkAgg(fig, master=self.frame_canvas_robustez)
-        canvas.draw()
-        canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
-    
-    
-    def actualizar_tab_componentes(self, grafo):
-        """Actualiza el tab de componentes con gráficos."""
-        # Limpiar canvas anterior
-        for widget in self.frame_canvas_componentes.winfo_children():
-            widget.destroy()
-        
-        componentes = grafo.componentes_conectados()
-        
-        # Crear figura con subplots
-        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))
-        fig.suptitle('Análisis de Componentes Conectados', fontsize=16, fontweight='bold')
-        
-        if componentes:
-            # Ordenar por tamaño
-            componentes_ordenados = sorted(componentes, key=len, reverse=True)
-            
-            # 1. Gráfico de barras (top 10 componentes)
-            top_n = min(10, len(componentes_ordenados))
-            tamanos = [len(comp) for comp in componentes_ordenados[:top_n]]
-            etiquetas = [f'C{i+1}' for i in range(top_n)]
-            colores = plt.cm.viridis(np.linspace(0, 0.9, top_n))
-            
-            bars = ax1.barh(etiquetas[::-1], tamanos[::-1], color=colores[::-1], 
-                           alpha=0.8, edgecolor='black')
-            ax1.set_xlabel('Número de nodos', fontsize=11)
-            ax1.set_ylabel('Componente', fontsize=11)
-            ax1.set_title(f'Top {top_n} Componentes por Tamaño', fontsize=12, fontweight='bold')
-            ax1.grid(axis='x', alpha=0.3)
-            
-            # Agregar valores en las barras
-            for i, (bar, tam) in enumerate(zip(bars, tamanos[::-1])):
-                porcentaje = tam / grafo.numero_de_nodos() * 100
-                ax1.text(tam, bar.get_y() + bar.get_height()/2,
-                        f' {tam} ({porcentaje:.1f}%)',
-                        va='center', fontsize=9)
-            
-            # 2. Gráfico de pastel (distribución)
-            if len(componentes_ordenados) > 1:
-                # Mostrar top 5 + "otros"
-                top_5 = min(5, len(componentes_ordenados))
-                tamanos_pie = [len(comp) for comp in componentes_ordenados[:top_5]]
-                labels_pie = [f'Componente {i+1}\n({len(comp)} nodos)' 
-                             for i, comp in enumerate(componentes_ordenados[:top_5])]
-                
-                if len(componentes_ordenados) > top_5:
-                    otros = sum(len(comp) for comp in componentes_ordenados[top_5:])
-                    tamanos_pie.append(otros)
-                    labels_pie.append(f'Otros ({len(componentes_ordenados) - top_5})\n({otros} nodos)')
-                
-                colores_pie = plt.cm.Set3(np.linspace(0, 1, len(tamanos_pie)))
-                
-                wedges, texts, autotexts = ax2.pie(tamanos_pie, labels=labels_pie, 
-                                                    autopct='%1.1f%%',
-                                                    colors=colores_pie,
-                                                    startangle=90,
-                                                    textprops={'fontsize': 9})
-                
-                # Mejorar legibilidad de porcentajes
-                for autotext in autotexts:
-                    autotext.set_color('white')
-                    autotext.set_fontweight('bold')
-                    autotext.set_fontsize(10)
-                
-                ax2.set_title('Distribución de Nodos', fontsize=12, fontweight='bold')
-            else:
-                # Solo un componente
-                ax2.text(0.5, 0.5, f'Red completamente conectada\n{grafo.numero_de_nodos()} nodos',
-                        ha='center', va='center', transform=ax2.transAxes,
-                        fontsize=14, fontweight='bold',
-                        bbox=dict(boxstyle='round', facecolor='lightgreen', alpha=0.5))
-                ax2.set_title('Distribución de Nodos', fontsize=12, fontweight='bold')
-            
-            # Información adicional
-            info_text = f"Total de componentes: {len(componentes)}\n"
-            info_text += f"Red conectada: {'Sí' if grafo.esta_conectado() else 'No'}\n"
-            info_text += f"Componente gigante: {len(componentes_ordenados[0])} nodos "
-            info_text += f"({len(componentes_ordenados[0])/grafo.numero_de_nodos()*100:.1f}%)"
-            
-            fig.text(0.5, 0.02, info_text, ha='center', fontsize=10,
-                    bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
-        else:
-            # No hay componentes
-            ax1.text(0.5, 0.5, 'No hay componentes\nen el grafo',
-                    ha='center', va='center', transform=ax1.transAxes,
-                    fontsize=14)
-            ax2.text(0.5, 0.5, 'No hay componentes\nen el grafo',
-                    ha='center', va='center', transform=ax2.transAxes,
-                    fontsize=14)
-        
-        plt.tight_layout(rect=[0, 0.05, 1, 0.96])
-        
-        # Embeber en tkinter
-        canvas = FigureCanvasTkAgg(fig, master=self.frame_canvas_componentes)
-        canvas.draw()
-        canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
-    
     def exportar_mapa(self):
         """Exporta el mapa como PNG."""
         if self.grafo_actual is None:
