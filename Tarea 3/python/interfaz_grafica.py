@@ -252,23 +252,56 @@ class VentanaPrincipal:
         self.label_directorio.pack(pady=10)
     
     def crear_barra_progreso(self, parent):
-        """Crea la barra de progreso con botón de cancelar."""
-        frame_progreso = ttk.Frame(parent, padding="5")
-        frame_progreso.grid(row=2, column=0, columnspan=2, sticky=(tk.W, tk.E), pady=(10, 0))
+        """Crea el panel de estado inferior completo."""
+        # Frame principal del panel de estado
+        frame_estado = ttk.LabelFrame(parent, text="Estado del Sistema", padding="10")
+        frame_estado.grid(row=2, column=0, columnspan=2, sticky=(tk.W, tk.E), pady=(10, 0))
         
-        self.label_estado = ttk.Label(frame_progreso, text="Listo")
-        self.label_estado.grid(row=0, column=0, sticky=tk.W)
+        # Configurar grid
+        frame_estado.columnconfigure(0, weight=1)
         
-        self.progreso = ttk.Progressbar(frame_progreso, mode='indeterminate')
-        self.progreso.grid(row=1, column=0, sticky=(tk.W, tk.E), pady=5)
+        # Fila 1: Estado actual y botón cancelar
+        frame_fila1 = ttk.Frame(frame_estado)
+        frame_fila1.grid(row=0, column=0, sticky=(tk.W, tk.E), pady=(0, 5))
+        frame_fila1.columnconfigure(1, weight=1)
         
-        # Botón de cancelar (inicialmente oculto)
-        self.boton_cancelar = ttk.Button(frame_progreso, text="Cancelar", 
+        ttk.Label(frame_fila1, text="Estado:", font=("Arial", 9, "bold")).grid(row=0, column=0, sticky=tk.W, padx=(0, 5))
+        self.label_estado = ttk.Label(frame_fila1, text="Listo", foreground="green")
+        self.label_estado.grid(row=0, column=1, sticky=tk.W)
+        
+        self.boton_cancelar = ttk.Button(frame_fila1, text="⏹ Cancelar", 
                                          command=self.cancelar_analisis,
-                                         state='disabled')
-        self.boton_cancelar.grid(row=1, column=1, padx=(10, 0))
+                                         state='disabled', width=12)
+        self.boton_cancelar.grid(row=0, column=2, padx=(10, 0))
         
-        frame_progreso.columnconfigure(0, weight=1)
+        # Fila 2: Barra de progreso
+        self.progreso = ttk.Progressbar(frame_estado, mode='indeterminate')
+        self.progreso.grid(row=1, column=0, sticky=(tk.W, tk.E), pady=(0, 5))
+        
+        # Fila 3: Información de la red (en 3 columnas)
+        frame_info = ttk.Frame(frame_estado)
+        frame_info.grid(row=2, column=0, sticky=(tk.W, tk.E))
+        
+        # Columna 1: Nodos
+        frame_nodos = ttk.Frame(frame_info)
+        frame_nodos.pack(side=tk.LEFT, padx=(0, 20))
+        ttk.Label(frame_nodos, text="Nodos:", font=("Arial", 8)).pack(side=tk.LEFT, padx=(0, 5))
+        self.label_nodos = ttk.Label(frame_nodos, text="—", font=("Arial", 8, "bold"))
+        self.label_nodos.pack(side=tk.LEFT)
+        
+        # Columna 2: Aristas
+        frame_aristas = ttk.Frame(frame_info)
+        frame_aristas.pack(side=tk.LEFT, padx=(0, 20))
+        ttk.Label(frame_aristas, text="Aristas:", font=("Arial", 8)).pack(side=tk.LEFT, padx=(0, 5))
+        self.label_aristas = ttk.Label(frame_aristas, text="—", font=("Arial", 8, "bold"))
+        self.label_aristas.pack(side=tk.LEFT)
+        
+        # Columna 3: Red actual
+        frame_red = ttk.Frame(frame_info)
+        frame_red.pack(side=tk.LEFT)
+        ttk.Label(frame_red, text="Red:", font=("Arial", 8)).pack(side=tk.LEFT, padx=(0, 5))
+        self.label_red_actual = ttk.Label(frame_red, text="—", font=("Arial", 8, "bold"))
+        self.label_red_actual.pack(side=tk.LEFT)
     
     def cargar_lista_ciudades(self):
         """Carga la lista de ciudades disponibles según el dataset seleccionado."""
@@ -433,6 +466,12 @@ class VentanaPrincipal:
                 elif resultado[0] == 'exito':
                     _, grafo, metricas, dir_salida = resultado
                     self.actualizar_ui_con_resultados(grafo, metricas, dir_salida)
+                    
+                    # Actualizar panel de estado con información de la red
+                    self.label_nodos.config(text=str(grafo.numero_de_nodos()))
+                    self.label_aristas.config(text=str(grafo.numero_de_aristas()))
+                    self.label_red_actual.config(text=grafo.nombre)
+                    
                     self.progreso.stop()
                     self.boton_generar.config(state='normal')
                     self.combo_dataset.config(state='readonly')
