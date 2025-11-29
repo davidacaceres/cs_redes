@@ -32,6 +32,8 @@ from pathlib import Path
 from typing import Dict, Optional, List
 import threading
 import queue
+import time
+import os
 
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
@@ -302,6 +304,31 @@ class VentanaPrincipal:
         ttk.Label(frame_red, text="Red:", font=("Arial", 8)).pack(side=tk.LEFT, padx=(0, 5))
         self.label_red_actual = ttk.Label(frame_red, text="—", font=("Arial", 8, "bold"))
         self.label_red_actual.pack(side=tk.LEFT)
+        
+        # Columna 4: Tiempo
+        frame_tiempo = ttk.Frame(frame_info)
+        frame_tiempo.pack(side=tk.LEFT, padx=(20, 0))
+        ttk.Label(frame_tiempo, text="Tiempo:", font=("Arial", 8)).pack(side=tk.LEFT, padx=(0, 5))
+        self.label_tiempo = ttk.Label(frame_tiempo, text="—", font=("Arial", 8, "bold"))
+        self.label_tiempo.pack(side=tk.LEFT)
+        
+        # Fila 4: Ruta del archivo
+        frame_ruta = ttk.Frame(frame_estado)
+        frame_ruta.grid(row=3, column=0, sticky=(tk.W, tk.E), pady=(5, 0))
+        ttk.Label(frame_ruta, text="Archivo:", font=("Arial", 8)).pack(side=tk.LEFT, padx=(0, 5))
+        self.label_ruta = ttk.Label(frame_ruta, text="—", font=("Arial", 8, "underline"), 
+                                   foreground="blue", cursor="hand2", wraplength=800)
+        self.label_ruta.pack(side=tk.LEFT, fill=tk.X, expand=True)
+        self.label_ruta.bind("<Button-1>", self.abrir_archivo)
+
+    def abrir_archivo(self, event):
+        """Abre el archivo o directorio mostrado en el label de ruta."""
+        ruta = self.label_ruta.cget("text")
+        if ruta and ruta != "—" and os.path.exists(ruta):
+            try:
+                os.startfile(ruta)
+            except Exception as e:
+                messagebox.showerror("Error", f"No se pudo abrir el archivo:\n{e}")
     
     def cargar_lista_ciudades(self):
         """Carga la lista de ciudades disponibles según el dataset seleccionado."""
@@ -371,7 +398,9 @@ class VentanaPrincipal:
     def procesar_red_thread(self, nombre_ciudad: str):
         """Procesa la red en un thread separado (no bloquea UI)."""
         try:
+            inicio = time.time()
             dataset = self.combo_dataset.get()
+            ruta_archivo = ""
             
             # 1. Cargar grafo
             if self.cancelar_procesamiento:
@@ -382,6 +411,18 @@ class VentanaPrincipal:
             
             if dataset == "Kujala":
                 directorio_ciudad = self.directorio_datos / "kujala" / "procesado" / nombre_ciudad
+                
+                # Intentar apuntar a un archivo específico
+                archivo_combined = directorio_ciudad / "network_combined.csv"
+                archivo_nodes = directorio_ciudad / "network_nodes.csv"
+                
+                if archivo_combined.exists():
+                    ruta_archivo = str(archivo_combined)
+                elif archivo_nodes.exists():
+                    ruta_archivo = str(archivo_nodes)
+                else:
+                    ruta_archivo = str(directorio_ciudad)
+                    
                 grafo, _ = preparar_redes.construir_grafo_desde_ciudad_kujala(directorio_ciudad)
             else:  # Metro51
                 # Buscar archivo JSON
@@ -389,6 +430,7 @@ class VentanaPrincipal:
                 if not archivos:
                     raise FileNotFoundError(f"No se encontró {nombre_ciudad}.json")
                 
+                ruta_archivo = str(archivos[0])
                 # Cargar usando la función de metros
                 grafos, _ = preparar_redes.cargar_metros_desde_carpeta(
                     archivos[0].parent,
@@ -449,7 +491,8 @@ class VentanaPrincipal:
             visualizacion.guardar_resultados_red(grafo, metricas, dir_salida)
             
             # 4. Enviar resultados a UI
-            self.cola_resultados.put(('exito', grafo, metricas, dir_salida))
+            tiempo_total = time.time() - inicio
+            self.cola_resultados.put(('exito', grafo, metricas, dir_salida, tiempo_total, ruta_archivo))
             
         except Exception as e:
             self.cola_resultados.put(('error', str(e)))
@@ -464,13 +507,15 @@ class VentanaPrincipal:
                     self.label_estado.config(text=resultado[1])
                 
                 elif resultado[0] == 'exito':
-                    _, grafo, metricas, dir_salida = resultado
+                    _, grafo, metricas, dir_salida, tiempo_total, ruta_archivo = resultado
                     self.actualizar_ui_con_resultados(grafo, metricas, dir_salida)
                     
                     # Actualizar panel de estado con información de la red
                     self.label_nodos.config(text=str(grafo.numero_de_nodos()))
                     self.label_aristas.config(text=str(grafo.numero_de_aristas()))
                     self.label_red_actual.config(text=grafo.nombre)
+                    self.label_tiempo.config(text=f"{tiempo_total:.2f} s")
+                    self.label_ruta.config(text=ruta_archivo)
                     
                     self.progreso.stop()
                     self.boton_generar.config(state='normal')
