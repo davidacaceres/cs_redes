@@ -79,6 +79,11 @@ class VentanaPrincipal:
         self.cancelar_procesamiento = False
         self.thread_actual = None
         
+        # Variables para tiempo transcurrido
+        self.tiempo_inicio_analisis = 0.0
+        self.mensaje_estado_actual = "Listo"
+        self.evento_stop_timer = threading.Event()
+        
         # Crear ventana
         self.ventana = tk.Tk()
         self.ventana.title("Análisis de Redes de Transporte Público")
@@ -254,72 +259,79 @@ class VentanaPrincipal:
         self.label_directorio.pack(pady=10)
     
     def crear_barra_progreso(self, parent):
-        """Crea el panel de estado inferior completo."""
-        # Frame principal del panel de estado
-        frame_estado = ttk.LabelFrame(parent, text="Estado del Sistema", padding="10")
-        frame_estado.grid(row=2, column=0, columnspan=2, sticky=(tk.W, tk.E), pady=(10, 0))
+        """Crea la barra de estado estilo IDE (una sola línea)."""
+        # Frame principal de la barra de estado con borde hundido
+        self.frame_estado = ttk.Frame(parent, relief=tk.SUNKEN, padding="2")
+        self.frame_estado.grid(row=2, column=0, columnspan=2, sticky=(tk.W, tk.E, tk.S), pady=(5, 0))
         
-        # Configurar grid
-        frame_estado.columnconfigure(0, weight=1)
+        # --- SECCIÓN IZQUIERDA (Estado y Controles) ---
         
-        # Fila 1: Estado actual y botón cancelar
-        frame_fila1 = ttk.Frame(frame_estado)
-        frame_fila1.grid(row=0, column=0, sticky=(tk.W, tk.E), pady=(0, 5))
-        frame_fila1.columnconfigure(1, weight=1)
+        # 1. Label de Estado
+        self.label_estado = ttk.Label(self.frame_estado, text="Listo", width=25)
+        self.label_estado.pack(side=tk.LEFT, padx=(5, 10))
         
-        ttk.Label(frame_fila1, text="Estado:", font=("Arial", 9, "bold")).grid(row=0, column=0, sticky=tk.W, padx=(0, 5))
-        self.label_estado = ttk.Label(frame_fila1, text="Listo", foreground="green")
-        self.label_estado.grid(row=0, column=1, sticky=tk.W)
+        # 2. Barra de progreso personalizada (Canvas)
+        self.canvas_progreso = tk.Canvas(self.frame_estado, height=20, bg="#f0f0f0", highlightthickness=0)
+        # self.canvas_progreso.pack(side=tk.LEFT, padx=(0, 5), fill=tk.X, expand=True) <-- Se mostrará al iniciar
         
-        self.boton_cancelar = ttk.Button(frame_fila1, text="⏹ Cancelar", 
+        # Variables para animación
+        self.progreso_animando = False
+        self.progreso_x = 0
+        self.progreso_direction = 1
+        self.progreso_width = 60
+        self.progreso_timer_id = None
+        
+        # 3. Botón cancelar (compacto, inicialmente oculto)
+        self.boton_cancelar = ttk.Button(self.frame_estado, text="⏹", width=3,
                                          command=self.cancelar_analisis,
-                                         state='disabled', width=12)
-        self.boton_cancelar.grid(row=0, column=2, padx=(10, 0))
+                                         state='disabled')
+        # self.boton_cancelar.pack(side=tk.LEFT, padx=(0, 5)) <-- Se mostrará al iniciar
         
-        # Fila 2: Barra de progreso
-        self.progreso = ttk.Progressbar(frame_estado, mode='indeterminate')
-        self.progreso.grid(row=1, column=0, sticky=(tk.W, tk.E), pady=(0, 5))
+        # --- SECCIÓN DERECHA (Información) ---
+        # Frame contenedor para la información (inicialmente oculto)
+        self.frame_info_derecha = ttk.Frame(self.frame_estado)
+        # No hacemos pack() todavía
         
-        # Fila 3: Información de la red (en 3 columnas)
-        frame_info = ttk.Frame(frame_estado)
-        frame_info.grid(row=2, column=0, sticky=(tk.W, tk.E))
+        # Agregamos elementos de derecha a izquierda dentro del frame
         
-        # Columna 1: Nodos
-        frame_nodos = ttk.Frame(frame_info)
-        frame_nodos.pack(side=tk.LEFT, padx=(0, 20))
-        ttk.Label(frame_nodos, text="Nodos:", font=("Arial", 8)).pack(side=tk.LEFT, padx=(0, 5))
-        self.label_nodos = ttk.Label(frame_nodos, text="—", font=("Arial", 8, "bold"))
-        self.label_nodos.pack(side=tk.LEFT)
+        # Función helper para separadores
+        def add_separator():
+            ttk.Separator(self.frame_info_derecha, orient=tk.VERTICAL).pack(side=tk.RIGHT, fill=tk.Y, padx=10, pady=2)
         
-        # Columna 2: Aristas
-        frame_aristas = ttk.Frame(frame_info)
-        frame_aristas.pack(side=tk.LEFT, padx=(0, 20))
-        ttk.Label(frame_aristas, text="Aristas:", font=("Arial", 8)).pack(side=tk.LEFT, padx=(0, 5))
-        self.label_aristas = ttk.Label(frame_aristas, text="—", font=("Arial", 8, "bold"))
-        self.label_aristas.pack(side=tk.LEFT)
-        
-        # Columna 3: Red actual
-        frame_red = ttk.Frame(frame_info)
-        frame_red.pack(side=tk.LEFT)
-        ttk.Label(frame_red, text="Red:", font=("Arial", 8)).pack(side=tk.LEFT, padx=(0, 5))
-        self.label_red_actual = ttk.Label(frame_red, text="—", font=("Arial", 8, "bold"))
-        self.label_red_actual.pack(side=tk.LEFT)
-        
-        # Columna 4: Tiempo
-        frame_tiempo = ttk.Frame(frame_info)
-        frame_tiempo.pack(side=tk.LEFT, padx=(20, 0))
-        ttk.Label(frame_tiempo, text="Tiempo:", font=("Arial", 8)).pack(side=tk.LEFT, padx=(0, 5))
-        self.label_tiempo = ttk.Label(frame_tiempo, text="—", font=("Arial", 8, "bold"))
-        self.label_tiempo.pack(side=tk.LEFT)
-        
-        # Fila 4: Ruta del archivo
-        frame_ruta = ttk.Frame(frame_estado)
-        frame_ruta.grid(row=3, column=0, sticky=(tk.W, tk.E), pady=(5, 0))
-        ttk.Label(frame_ruta, text="Archivo:", font=("Arial", 8)).pack(side=tk.LEFT, padx=(0, 5))
-        self.label_ruta = ttk.Label(frame_ruta, text="—", font=("Arial", 8, "underline"), 
-                                   foreground="blue", cursor="hand2", wraplength=800)
-        self.label_ruta.pack(side=tk.LEFT, fill=tk.X, expand=True)
+        # 7. Archivo (Clickable)
+        self.label_ruta = ttk.Label(self.frame_info_derecha, text="—", foreground="blue", cursor="hand2")
+        self.label_ruta.pack(side=tk.RIGHT, padx=(5, 10))
         self.label_ruta.bind("<Button-1>", self.abrir_archivo)
+        
+        ttk.Label(self.frame_info_derecha, text="Archivo:", font=("Arial", 8, "bold")).pack(side=tk.RIGHT, padx=(5, 0))
+        
+        add_separator()
+        
+        # 6. Tiempo
+        self.label_tiempo = ttk.Label(self.frame_info_derecha, text="—")
+        self.label_tiempo.pack(side=tk.RIGHT, padx=(5, 0))
+        ttk.Label(self.frame_info_derecha, text="Tiempo:", font=("Arial", 8, "bold")).pack(side=tk.RIGHT, padx=(5, 0))
+        
+        add_separator()
+        
+        # 5. Red
+        self.label_red_actual = ttk.Label(self.frame_info_derecha, text="—")
+        self.label_red_actual.pack(side=tk.RIGHT, padx=(5, 0))
+        ttk.Label(self.frame_info_derecha, text="Red:", font=("Arial", 8, "bold")).pack(side=tk.RIGHT, padx=(5, 0))
+        
+        add_separator()
+        
+        # 4. Aristas
+        self.label_aristas = ttk.Label(self.frame_info_derecha, text="—")
+        self.label_aristas.pack(side=tk.RIGHT, padx=(5, 0))
+        ttk.Label(self.frame_info_derecha, text="Aristas:", font=("Arial", 8, "bold")).pack(side=tk.RIGHT, padx=(5, 0))
+        
+        add_separator()
+        
+        # 3. Nodos
+        self.label_nodos = ttk.Label(self.frame_info_derecha, text="—")
+        self.label_nodos.pack(side=tk.RIGHT, padx=(5, 0))
+        ttk.Label(self.frame_info_derecha, text="Nodos:", font=("Arial", 8, "bold")).pack(side=tk.RIGHT, padx=(5, 0))
 
     def abrir_archivo(self, event):
         """Abre el archivo o directorio mostrado en el label de ruta."""
@@ -377,9 +389,21 @@ class VentanaPrincipal:
         self.combo_ciudad.config(state='disabled')
         self.boton_cancelar.config(state='normal')
         
+        # Ocultar panel de información si estaba visible
+        self.frame_info_derecha.pack_forget()
+        
         # Mostrar progreso
-        self.label_estado.config(text=f"Procesando {ciudad}...")
-        self.progreso.start()
+        self.mensaje_estado_actual = f"Procesando {ciudad}..."
+        self.label_estado.config(text=self.mensaje_estado_actual)
+        self.canvas_progreso.pack(side=tk.LEFT, padx=(0, 5), fill=tk.X, expand=True)
+        self.boton_cancelar.pack(side=tk.LEFT, padx=(0, 5))
+        self.iniciar_animacion_progreso()
+        
+        self.tiempo_inicio_analisis = time.time()
+        
+        # Iniciar cronómetro en hilo separado
+        self.evento_stop_timer.clear()
+        threading.Thread(target=self.ejecutar_cronometro, daemon=True).start()
         
         # Ejecutar en thread separado
         self.thread_actual = threading.Thread(
@@ -388,13 +412,76 @@ class VentanaPrincipal:
             daemon=True
         )
         self.thread_actual.start()
-    
+
+    def ejecutar_cronometro(self):
+        """Hilo dedicado a actualizar el cronómetro cada segundo."""
+        while not self.evento_stop_timer.is_set():
+            time.sleep(1)
+            if self.evento_stop_timer.is_set():
+                break
+            tiempo_actual = time.time() - self.tiempo_inicio_analisis
+            self.cola_resultados.put(('tiempo', tiempo_actual))
+
+    def iniciar_animacion_progreso(self):
+        """Inicia la animación de la barra de progreso personalizada."""
+        self.progreso_animando = True
+        self.progreso_x = 0
+        self.progreso_direction = 1
+        self.animar_progreso()
+
+    def detener_animacion_progreso(self):
+        """Detiene la animación."""
+        self.progreso_animando = False
+        if self.progreso_timer_id:
+            self.ventana.after_cancel(self.progreso_timer_id)
+            self.progreso_timer_id = None
+
+    def animar_progreso(self):
+        """Dibuja el frame actual de la animación."""
+        if not self.progreso_animando:
+            return
+            
+        width = self.canvas_progreso.winfo_width()
+        if width <= 1: width = 200 # Fallback inicial
+        
+        # Limpiar canvas
+        self.canvas_progreso.delete("all")
+        
+        # Dibujar barra de fondo (opcional)
+        # self.canvas_progreso.create_rectangle(0, 0, width, 20, fill="#e0e0e0", width=0)
+        
+        # Dibujar bloque animado
+        x1 = self.progreso_x
+        x2 = x1 + self.progreso_width
+        self.canvas_progreso.create_rectangle(x1, 0, x2, 20, fill="#0078d7", width=0) # Azul Windows
+        
+        # Actualizar posición
+        step = 5
+        if self.progreso_direction == 1:
+            self.progreso_x += step
+            if self.progreso_x + self.progreso_width >= width:
+                self.progreso_direction = -1
+        else:
+            self.progreso_x -= step
+            if self.progreso_x <= 0:
+                self.progreso_direction = 1
+        
+        # Dibujar texto de tiempo (SIEMPRE ENCIMA)
+        tiempo_texto = self.mensaje_estado_actual.split('(')[-1].replace(')', '') if '(' in self.mensaje_estado_actual else "0s"
+        if "Análisis completado" in self.mensaje_estado_actual: tiempo_texto = "" # No mostrar en completado
+        
+        # Centrar texto
+        self.canvas_progreso.create_text(width/2, 10, text=tiempo_texto, fill="black", font=("Arial", 8))
+        
+        # Programar siguiente frame
+        self.progreso_timer_id = self.ventana.after(30, self.animar_progreso)
+
     def cancelar_analisis(self):
         """Cancela el análisis en curso."""
         self.cancelar_procesamiento = True
         self.label_estado.config(text="Cancelando...")
         self.boton_cancelar.config(state='disabled')
-    
+
     def procesar_red_thread(self, nombre_ciudad: str):
         """Procesa la red en un thread separado (no bloquea UI)."""
         try:
@@ -504,9 +591,18 @@ class VentanaPrincipal:
                 resultado = self.cola_resultados.get_nowait()
                 
                 if resultado[0] == 'estado':
-                    self.label_estado.config(text=resultado[1])
+                    self.mensaje_estado_actual = resultado[1]
+                    self.label_estado.config(text=self.mensaje_estado_actual)
+                
+                elif resultado[0] == 'tiempo':
+                    tiempo_actual = resultado[1]
+                    # Actualizamos el mensaje de estado para que el loop de animación lo recoja
+                    base_msg = self.mensaje_estado_actual.split('(')[0].strip()
+                    self.mensaje_estado_actual = f"{base_msg} ({int(tiempo_actual)}s)"
+                    # No actualizamos label_estado aquí para evitar parpadeo, solo el overlay en el canvas
                 
                 elif resultado[0] == 'exito':
+                    self.evento_stop_timer.set()  # Detener cronómetro
                     _, grafo, metricas, dir_salida, tiempo_total, ruta_archivo = resultado
                     self.actualizar_ui_con_resultados(grafo, metricas, dir_salida)
                     
@@ -517,33 +613,46 @@ class VentanaPrincipal:
                     self.label_tiempo.config(text=f"{tiempo_total:.2f} s")
                     self.label_ruta.config(text=ruta_archivo)
                     
-                    self.progreso.stop()
+                    # Mostrar panel de información
+                    self.frame_info_derecha.pack(side=tk.RIGHT, fill=tk.Y)
+                    
+                    self.detener_animacion_progreso()
+                    self.canvas_progreso.pack_forget()
+                    self.boton_cancelar.pack_forget()
                     self.boton_generar.config(state='normal')
                     self.combo_dataset.config(state='readonly')
                     self.combo_ciudad.config(state='readonly')
                     self.boton_cancelar.config(state='disabled')
-                    self.label_estado.config(text="Análisis completado")
-                    messagebox.showinfo("Éxito", f"Análisis completado\\nResultados guardados en:\\n{dir_salida}")
+                    mensaje_final = f"Análisis completado en {tiempo_total:.2f} segundos"
+                    self.label_estado.config(text=mensaje_final)
+                    self.mensaje_estado_actual = mensaje_final
+                    messagebox.showinfo("Éxito", f"{mensaje_final}\nResultados guardados en:\n{dir_salida}")
                 
                 elif resultado[0] == 'error':
-                    self.progreso.stop()
+                    self.evento_stop_timer.set()  # Detener cronómetro
+                    self.detener_animacion_progreso()
+                    self.canvas_progreso.pack_forget()
+                    self.boton_cancelar.pack_forget()
                     self.boton_generar.config(state='normal')
                     self.combo_dataset.config(state='readonly')
                     self.combo_ciudad.config(state='readonly')
                     self.boton_cancelar.config(state='disabled')
                     self.label_estado.config(text="Error en el análisis")
-                    messagebox.showerror("Error", f"Error al procesar la red:\\n{resultado[1]}")
+                    messagebox.showerror("Error", f"Error al procesar la red:\n{resultado[1]}")
                 
                 elif resultado[0] == 'cancelado':
+                    self.evento_stop_timer.set()  # Detener cronómetro
                     self.limpiar_paneles()  # Limpiar paneles al cancelar
-                    self.progreso.stop()
+                    self.detener_animacion_progreso()
+                    self.canvas_progreso.pack_forget()
+                    self.boton_cancelar.pack_forget()
                     self.boton_generar.config(state='normal')
                     self.combo_dataset.config(state='readonly')
                     self.combo_ciudad.config(state='readonly')
                     self.boton_cancelar.config(state='disabled')
                     self.label_estado.config(text="Listo")
                     messagebox.showinfo("Cancelado", resultado[1])
-        
+
         except queue.Empty:
             pass
         finally:

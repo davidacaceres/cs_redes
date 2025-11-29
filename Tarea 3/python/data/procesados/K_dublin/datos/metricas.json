@@ -1,0 +1,12 @@
+{
+  "n_nodos": 4571,
+  "n_aristas": 5534,
+  "grado_promedio": 2.421352001750164,
+  "fraccion_gigante": 0.9540581929555896,
+  "longitud_camino_promedio": 26.56034829146585,
+  "clustering_promedio": 0.04061494809809417,
+  "r_T": 0.21089477138481733,
+  "C_G": 6.107814750377962e-05,
+  "robustez_grado_20pct": 0.06169328374535113,
+  "robustez_aleatorio_20pct": 0.2662437103478451
+}
