@@ -2,23 +2,26 @@
 tarea3_module
 -------------------
 
-This module provides utilities for downloading, parsing and analysing
-public transport networks without relying on external graph libraries.
+Módulo principal para análisis de redes de transporte público sin depender
+de bibliotecas externas de grafos.
 
-The central class in this module is :class:`SimpleGraph`, a minimal
-graph structure implemented using adjacency sets.  It supports basic
-operations such as adding nodes and edges, copying, removing nodes,
-and computing degrees.  A suite of helper functions builds
-``SimpleGraph`` instances from common file formats (CSV, JSON,
-GraphML/GEXF converted to adjacency lists), computes robustness metrics
-including the cyclomatic index ``r_T``, effective graph conductance
-``C_G``, as well as basic structural metrics and a simple robustness
-proxy.
+La clase central en este módulo es :class:`SimpleGraph`, una estructura
+de grafo mínima implementada usando conjuntos de adyacencia. Soporta
+operaciones básicas como agregar nodos y aristas, copiar, eliminar nodos
+y calcular grados.
 
-These functions avoid dependencies on the ``networkx`` library,
-which may not be available in some execution environments.  They
-instead use ``numpy`` and ``scipy.sparse.csgraph`` where appropriate
-to perform graph analysis.
+Este módulo proporciona funciones para:
+- Construir grafos desde formatos comunes (CSV, JSON)
+- Calcular métricas de robustez (índice ciclomático r_T, conductancia C_G)
+- Calcular métricas estructurales básicas
+- Evaluar robustez mediante remoción de nodos
+
+Para funciones de descarga y preparación de datasets, ver el módulo
+:mod:`dataset_loader`.
+
+Estas funciones evitan dependencias en la biblioteca ``networkx``,
+que puede no estar disponible en algunos entornos de ejecución. En su lugar
+usan ``numpy`` y ``scipy.sparse.csgraph`` cuando es apropiado.
 """
 
 from __future__ import annotations
@@ -33,13 +36,15 @@ import pandas as pd
 from scipy.sparse import csr_matrix
 from scipy.sparse.csgraph import connected_components, shortest_path, laplacian
 
-try:
-    import gdown  # type: ignore
-    _HAS_GDOWN = True
-except Exception:
-    _HAS_GDOWN = False
-
-import requests
+# Importar funciones de descarga y preparación de datasets desde el módulo dedicado
+# Mantener nombres originales en inglés para compatibilidad con código existente
+from dataset_loader import (
+    descargar_archivo as download_file,
+    extraer_zip as extract_zip,
+    construir_grafo_desde_ciudad_kujala as build_graph_from_kujala_city,
+    cargar_dataset_kujala as load_kujala_dataset,
+    cargar_metros_desde_carpeta as load_metro51_from_folder,
+)
 
 
 class SimpleGraph:
@@ -168,220 +173,8 @@ class SimpleGraph:
         return comps
 
 
-def download_file(url: str, dest: Path, chunk_size: int = 2 ** 20) -> Path:
-    """Download a file via HTTP and write it to disk.
-
-    If the file already exists at the destination it is not downloaded again.
-    """
-    dest.parent.mkdir(parents=True, exist_ok=True)
-    if dest.exists():
-        return dest
-    response = requests.get(url, stream=True)
-    response.raise_for_status()
-    with open(dest, "wb") as fh:
-        for chunk in response.iter_content(chunk_size=chunk_size):
-            if chunk:
-                fh.write(chunk)
-    return dest
-
-
-def download_from_drive(file_id: str, dest: Path) -> Path:
-    """Download a file from Google Drive using gdown or requests.
-
-    Parameters
-    ----------
-    file_id : str
-        The ID part of the Google Drive sharing link.
-    dest : Path
-        Destination path on disk.
-
-    Returns
-    -------
-    Path
-        The path where the file was saved.
-    """
-    dest.parent.mkdir(parents=True, exist_ok=True)
-    if dest.exists():
-        return dest
-    if _HAS_GDOWN:
-        url = f"https://drive.google.com/uc?id={file_id}"
-        gdown.download(url, str(dest), quiet=False)
-        return dest
-    # Fallback: direct download may require confirmation token which we do not handle
-    url = f"https://drive.google.com/uc?export=download&id={file_id}"
-    return download_file(url, dest)
-
-
-def extract_zip(zip_path: Path, dest_dir: Path) -> None:
-    """Extract a ZIP archive into a directory."""
-    import zipfile
-    dest_dir.mkdir(parents=True, exist_ok=True)
-    if any(dest_dir.iterdir()):
-        return
-    with zipfile.ZipFile(zip_path, "r") as zf:
-        zf.extractall(dest_dir)
-
-
-def build_graph_from_kujala_city(city_dir: Path) -> Tuple[SimpleGraph, pd.DataFrame]:
-    """Construct a SimpleGraph from a Kujala city directory.
-
-    Each city directory must contain ``network_nodes.csv`` and
-    ``network_combined.csv`` separated with ``;``.  This function
-    reads the node file, maps columns according to a set of possible
-    names for the identifier, latitude, longitude and name, and
-    constructs an undirected graph of stops.  Node attributes are
-    preserved in a returned DataFrame.
-    """
-    nodes_csv = city_dir / "network_nodes.csv"
-    edges_csv = city_dir / "network_combined.csv"
-
-    print("Path nodo ",nodes_csv)
-    print("Path edges ", edges_csv)
-    if not nodes_csv.exists() or not edges_csv.exists():
-        print("Archivo no encontrado ", nodes_csv)
-        raise FileNotFoundError(f"Missing required files in {city_dir}")
-    nodes_df = pd.read_csv(nodes_csv, sep=";")
-    # Determine identifier and attribute columns
-    id_col = None
-    for cand in ["stop_I", "node_I", "node_id", "stop_id", "stop_i"]:
-        if cand in nodes_df.columns:
-            id_col = cand
-            break
-    if id_col is None:
-        raise ValueError(f"No identifier column found in {nodes_csv}")
-    lat_col = next((c for c in nodes_df.columns if c.lower() in {"lat", "latitude"}), None)
-    lon_col = next((c for c in nodes_df.columns if c.lower() in {"lon", "longitude"}), None)
-    name_col = next((c for c in nodes_df.columns if "name" in c.lower()), None)
-    G = SimpleGraph(name=f"kujala_{city_dir.name}")
-    node_attrs: List[Dict[str, Any]] = []
-    for _, row in nodes_df.iterrows():
-        nid = row[id_col]
-        attrs: Dict[str, Any] = {}
-        if lat_col is not None and pd.notna(row[lat_col]):
-            attrs["lat"] = float(row[lat_col])
-        if lon_col is not None and pd.notna(row[lon_col]):
-            attrs["lon"] = float(row[lon_col])
-        if name_col is not None and pd.notna(row[name_col]):
-            attrs["name"] = str(row[name_col])
-        G.add_node(nid, **attrs)
-        node_attrs.append({"node_id": nid, **attrs})
-    edges_df = pd.read_csv(edges_csv, sep=";")
-    from_col = None
-    to_col = None
-    for cand in ["from_stop_I", "from_node_I", "from_id", "from_stop", "u"]:
-        if cand in edges_df.columns:
-            from_col = cand
-            break
-    for cand in ["to_stop_I", "to_node_I", "to_id", "to_stop", "v"]:
-        if cand in edges_df.columns:
-            to_col = cand
-            break
-    if from_col is None or to_col is None:
-        raise ValueError(f"Could not find edge endpoints in {edges_csv}")
-    for _, row in edges_df.iterrows():
-        u = row[from_col]
-        v = row[to_col]
-        if pd.isna(u) or pd.isna(v):
-            continue
-        # Convert to int if possible
-        try:
-            u_int = int(u)
-            v_int = int(v)
-        except Exception:
-            u_int = u
-            v_int = v
-        G.add_edge(u_int, v_int)
-    nodes_df_out = pd.DataFrame(node_attrs)
-    return G, nodes_df_out
-
-
-def load_kujala_dataset(root: Path) -> Tuple[Dict[str, SimpleGraph], Dict[str, pd.DataFrame]]:
-    """Load all city networks from the Kujala dataset directory."""
-    graphs: Dict[str, SimpleGraph] = {}
-    nodes: Dict[str, pd.DataFrame] = {}
-    if not root.exists():
-        return graphs, nodes
-    for city_dir in sorted([p for p in root.iterdir() if p.is_dir()]):
-        print('Buscando ciudad ',city_dir)
-        try:
-            G, df_nodes = build_graph_from_kujala_city(city_dir)
-            graphs[city_dir.name] = G
-            nodes[city_dir.name] = df_nodes
-        except Exception:
-            continue
-    return graphs, nodes
-
-
-def load_metro51_from_folder(root: Path) -> Tuple[Dict[str, SimpleGraph], Dict[str, pd.DataFrame]]:
-    """Load all networks from the 51 metro dataset folder.
-
-    This function iterates over all files under ``root`` and attempts to
-    parse those that represent graphs.  JSON files must have ``nodes``
-    and ``edges`` lists with interpretable field names; GraphML and
-    GEXF files are ignored because we cannot parse them without
-    external libraries in this environment.  GPickle files are also
-    skipped.  Only JSON is supported by default.
-    """
-    graphs: Dict[str, SimpleGraph] = {}
-    nodes: Dict[str, pd.DataFrame] = {}
-    if not root.exists():
-        return graphs, nodes
-    files = [p for p in root.rglob("*") if p.is_file()]
-    for path in sorted(files):
-        name = path.stem
-        ext = path.suffix.lower()
-        try:
-            if ext == ".json":
-                with open(path, "r", encoding="utf-8") as f:
-                    data = json.load(f)
-                if not isinstance(data, dict):
-                    continue
-                nodes_list = data.get("nodes") or data.get("Nodes")
-                edges_list = data.get("edges") or data.get("Edges")
-                if not nodes_list or not edges_list:
-                    continue
-                # Determine node id key
-                node_id_key = None
-                sample_node = nodes_list[0]
-                for cand in ["id", "node_id", "node", "stop_id", "stop", "idNode", "key"]:
-                    if cand in sample_node:
-                        node_id_key = cand
-                        break
-                if node_id_key is None:
-                    continue
-                G = SimpleGraph(name=name)
-                node_attrs_rows: List[Dict[str, Any]] = []
-                for nd in nodes_list:
-                    nid = nd[node_id_key]
-                    attrs = {k: v for k, v in nd.items() if k != node_id_key}
-                    G.add_node(nid, **attrs)
-                    row = {"node_id": nid}
-                    row.update(attrs)
-                    node_attrs_rows.append(row)
-                # Determine edge keys
-                sample_edge = edges_list[0]
-                u_key = None
-                v_key = None
-                for cand in ["source", "from", "u", "from_id", "i"]:
-                    if cand in sample_edge:
-                        u_key = cand
-                        break
-                for cand in ["target", "to", "v", "to_id", "j"]:
-                    if cand in sample_edge:
-                        v_key = cand
-                        break
-                if u_key is None or v_key is None:
-                    continue
-                for e in edges_list:
-                    u = e[u_key]
-                    v = e[v_key]
-                    G.add_edge(u, v)
-                graphs[name] = G
-                nodes[name] = pd.DataFrame(node_attrs_rows)
-        except Exception:
-            # Skip files that cannot be parsed
-            continue
-    return graphs, nodes
+# Las funciones de descarga y preparación de datasets han sido movidas al módulo dataset_loader.
+# Se mantienen las importaciones con nombres en inglés arriba para compatibilidad con código existente.
 
 
 def robustness_indicator_rT(G: SimpleGraph) -> float:
