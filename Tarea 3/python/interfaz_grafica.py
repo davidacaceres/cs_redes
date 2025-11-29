@@ -707,6 +707,130 @@ class VentanaPrincipal:
         
         # Embeber en tkinter
         canvas = FigureCanvasTkAgg(fig, master=self.frame_canvas_robustez)
+        canvas.draw()
+        canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
+    
+    
+    def actualizar_tab_componentes(self, grafo):
+        """Actualiza el tab de componentes con gráficos mejorados."""
+        # Limpiar canvas anterior
+        for widget in self.frame_canvas_componentes.winfo_children():
+            widget.destroy()
+        
+        componentes = grafo.componentes_conectados()
+        
+        # Crear figura con subplots y más espacio
+        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(13, 6))
+        fig.suptitle('Análisis de Componentes Conectados', fontsize=14, fontweight='bold', y=0.98)
+        
+        if componentes:
+            # Ordenar por tamaño
+            componentes_ordenados = sorted(componentes, key=len, reverse=True)
+            
+            # 1. Gráfico de barras (top 10 componentes)
+            top_n = min(10, len(componentes_ordenados))
+            tamanos = [len(comp) for comp in componentes_ordenados[:top_n]]
+            etiquetas = [f'C{i+1}' for i in range(top_n)]
+            colores = plt.cm.viridis(np.linspace(0, 0.9, top_n))
+            
+            bars = ax1.barh(etiquetas[::-1], tamanos[::-1], color=colores[::-1], 
+                           alpha=0.8, edgecolor='black')
+            ax1.set_xlabel('Número de nodos', fontsize=10)
+            ax1.set_ylabel('Componente', fontsize=10)
+            ax1.set_title(f'Top {top_n} Componentes por Tamaño', fontsize=11, fontweight='bold')
+            ax1.grid(axis='x', alpha=0.3)
+            
+            # Agregar valores en las barras (más compactos)
+            for i, (bar, tam) in enumerate(zip(bars, tamanos[::-1])):
+                porcentaje = tam / grafo.numero_de_nodos() * 100
+                ax1.text(tam, bar.get_y() + bar.get_height()/2,
+                        f' {tam} ({porcentaje:.1f}%)',
+                        va='center', fontsize=8)
+            
+            # 2. Gráfico de pastel (distribución) - MEJORADO
+            if len(componentes_ordenados) > 1:
+                # Mostrar top 5 + "otros"
+                top_5 = min(5, len(componentes_ordenados))
+                tamanos_pie = [len(comp) for comp in componentes_ordenados[:top_5]]
+                
+                # Labels más compactos
+                labels_pie = [f'C{i+1}' for i in range(top_5)]
+                
+                if len(componentes_ordenados) > top_5:
+                    otros = sum(len(comp) for comp in componentes_ordenados[top_5:])
+                    tamanos_pie.append(otros)
+                    labels_pie.append(f'Otros')
+                
+                colores_pie = plt.cm.Set3(np.linspace(0, 1, len(tamanos_pie)))
+                
+                # Usar labels fuera del gráfico para evitar sobreposición
+                def make_autopct(values):
+                    def my_autopct(pct):
+                        total = sum(values)
+                        val = int(round(pct*total/100.0))
+                        return f'{pct:.1f}%\n({val})'
+                    return my_autopct
+                
+                wedges, texts, autotexts = ax2.pie(
+                    tamanos_pie, 
+                    labels=None,  # Sin labels en el gráfico
+                    autopct=make_autopct(tamanos_pie),
+                    colors=colores_pie,
+                    startangle=90,
+                    pctdistance=0.85,
+                    textprops={'fontsize': 8}
+                )
+                
+                # Mejorar legibilidad de porcentajes
+                for autotext in autotexts:
+                    autotext.set_color('white')
+                    autotext.set_fontweight('bold')
+                    autotext.set_fontsize(8)
+                
+                # Agregar leyenda fuera del gráfico
+                legend_labels = []
+                for i, (label, tam) in enumerate(zip(labels_pie, tamanos_pie)):
+                    pct = tam / grafo.numero_de_nodos() * 100
+                    if label.startswith('C'):
+                        legend_labels.append(f'{label}: {tam} nodos ({pct:.1f}%)')
+                    else:
+                        legend_labels.append(f'{label}: {tam} nodos ({pct:.1f}%)')
+                
+                ax2.legend(legend_labels, loc='center left', bbox_to_anchor=(1, 0.5), 
+                          fontsize=8, frameon=True)
+                ax2.set_title('Distribución de Nodos', fontsize=11, fontweight='bold')
+            else:
+                # Solo un componente
+                ax2.text(0.5, 0.5, f'Red completamente conectada\n{grafo.numero_de_nodos()} nodos',
+                        ha='center', va='center', transform=ax2.transAxes,
+                        fontsize=12, fontweight='bold',
+                        bbox=dict(boxstyle='round', facecolor='lightgreen', alpha=0.5))
+                ax2.set_title('Distribución de Nodos', fontsize=11, fontweight='bold')
+            
+            # Información adicional (más compacta)
+            info_text = f"Componentes: {len(componentes)} | "
+            info_text += f"Conectada: {'Sí' if grafo.esta_conectado() else 'No'} | "
+            info_text += f"Gigante: {len(componentes_ordenados[0])} nodos "
+            info_text += f"({len(componentes_ordenados[0])/grafo.numero_de_nodos()*100:.1f}%)"
+            
+            fig.text(0.5, 0.02, info_text, ha='center', fontsize=9,
+                    bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
+        else:
+            # No hay componentes
+            ax1.text(0.5, 0.5, 'No hay componentes\nen el grafo',
+                    ha='center', va='center', transform=ax1.transAxes,
+                    fontsize=12)
+            ax2.text(0.5, 0.5, 'No hay componentes\nen el grafo',
+                    ha='center', va='center', transform=ax2.transAxes,
+                    fontsize=12)
+        
+        plt.tight_layout(rect=[0, 0.05, 0.95, 0.96])  # Ajustar para leyenda
+        
+        # Embeber en tkinter
+        canvas = FigureCanvasTkAgg(fig, master=self.frame_canvas_componentes)
+        canvas.draw()
+        canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
+    
     def exportar_mapa(self):
         """Exporta el mapa como PNG."""
         if self.grafo_actual is None:
