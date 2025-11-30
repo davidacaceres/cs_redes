@@ -172,6 +172,31 @@ class VentanaPrincipal:
         self.combo_proveedor.current(0)
         self.combo_proveedor.pack(side=tk.LEFT, padx=5)
         self.combo_proveedor.bind("<<ComboboxSelected>>", self.cambiar_proveedor_mapa)
+        
+        # Separador
+        ttk.Separator(frame_controles_mapa, orient=tk.VERTICAL).pack(side=tk.LEFT, padx=5, fill=tk.Y)
+        
+        # Botones de control
+        self.btn_zoom_in = ttk.Button(frame_controles_mapa, text="+", width=3, command=self.zoom_in)
+        self.btn_zoom_in.pack(side=tk.LEFT, padx=2)
+        
+        self.btn_zoom_out = ttk.Button(frame_controles_mapa, text="-", width=3, command=self.zoom_out)
+        self.btn_zoom_out.pack(side=tk.LEFT, padx=2)
+        
+        self.btn_pan = ttk.Button(frame_controles_mapa, text="Pan", width=5, command=self.activar_pan)
+        self.btn_pan.pack(side=tk.LEFT, padx=2)
+        
+        self.btn_area = ttk.Button(frame_controles_mapa, text="Área", width=5, command=self.activar_zoom_area)
+        self.btn_area.pack(side=tk.LEFT, padx=2)
+        
+        self.btn_centrar = ttk.Button(frame_controles_mapa, text="Centrar", width=7, command=self.centrar_mapa)
+        self.btn_centrar.pack(side=tk.LEFT, padx=2)
+        
+        # Variables para zoom area
+        self.zoom_rect_id = None
+        self.start_x = None
+        self.start_y = None
+        self.original_bounds = None
 
         self.frame_canvas_mapa = ttk.Frame(frame_mapa)
         self.frame_canvas_mapa.grid(row=1, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
@@ -786,8 +811,8 @@ class VentanaPrincipal:
                         try:
                             first_tile = self.map_widget.canvas_tile_array[0][0]
                             if first_tile:
-                                widget_tile_width = first_tile.size
-                                widget_tile_height = first_tile.size
+                                widget_tile_width = first_tile.widget_tile_width
+                                widget_tile_height = first_tile.widget_tile_height
                             else:
                                 return
                         except (IndexError, AttributeError):
@@ -969,7 +994,7 @@ class VentanaPrincipal:
 
             # Usar FastNetworkOverlay para aristas
             if edges_coords:
-                self.network_overlay = FastNetworkOverlay(self.map_widget, edges_coords, color="blue", width=1)
+                self.network_overlay = FastNetworkOverlay(self.map_widget, edges_coords, color="blue", width=2)
                 self.map_widget.canvas_path_list.append(self.network_overlay)
                 print(f"[INFO] Agregadas {len(edges_coords)} aristas usando FastNetworkOverlay")
 
@@ -986,6 +1011,7 @@ class VentanaPrincipal:
                 max_lon = max(lons)
                 min_lon = min(lons)
                 self.map_widget.fit_bounding_box((max_lat, min_lon), (min_lat, max_lon))
+                self.original_bounds = ((max_lat, min_lon), (min_lat, max_lon))
             
         else:
             # No hay datos geográficos
@@ -997,6 +1023,107 @@ class VentanaPrincipal:
                             text=f"No hay datos geográficos para\n{grafo.nombre}",
                             font=("Arial", 12))
             label.pack(expand=True)
+
+    def zoom_in(self):
+        if hasattr(self, 'map_widget') and self.map_widget:
+            self.map_widget.set_zoom(self.map_widget.zoom + 1)
+
+    def zoom_out(self):
+        if hasattr(self, 'map_widget') and self.map_widget:
+            self.map_widget.set_zoom(self.map_widget.zoom - 1)
+
+    def centrar_mapa(self):
+        if hasattr(self, 'map_widget') and self.map_widget and self.original_bounds:
+            self.map_widget.fit_bounding_box(self.original_bounds[0], self.original_bounds[1])
+
+    def activar_pan(self):
+        if hasattr(self, 'map_widget') and self.map_widget:
+            # Restaurar bindings originales de tkintermapview
+            self.map_widget.canvas.bind("<Button-1>", self.map_widget.mouse_click)
+            self.map_widget.canvas.bind("<B1-Motion>", self.map_widget.mouse_move)
+            self.map_widget.canvas.bind("<ButtonRelease-1>", self.map_widget.mouse_release)
+            self.map_widget.canvas.config(cursor="arrow")
+            
+            # Limpiar rectangulo si quedo
+            if self.zoom_rect_id:
+                self.map_widget.canvas.delete(self.zoom_rect_id)
+                self.zoom_rect_id = None
+
+    def activar_zoom_area(self):
+        if hasattr(self, 'map_widget') and self.map_widget:
+            # Sobrescribir bindings para zoom area
+            self.map_widget.canvas.bind("<Button-1>", self.start_zoom_rect)
+            self.map_widget.canvas.bind("<B1-Motion>", self.drag_zoom_rect)
+            self.map_widget.canvas.bind("<ButtonRelease-1>", self.end_zoom_rect)
+            self.map_widget.canvas.config(cursor="crosshair")
+
+    def start_zoom_rect(self, event):
+        self.start_x = self.map_widget.canvas.canvasx(event.x)
+        self.start_y = self.map_widget.canvas.canvasy(event.y)
+        
+        if self.zoom_rect_id:
+            self.map_widget.canvas.delete(self.zoom_rect_id)
+        
+        self.zoom_rect_id = self.map_widget.canvas.create_rectangle(
+            self.start_x, self.start_y, self.start_x, self.start_y,
+            outline="red", width=2, dash=(4, 4)
+        )
+
+    def drag_zoom_rect(self, event):
+        cur_x = self.map_widget.canvas.canvasx(event.x)
+        cur_y = self.map_widget.canvas.canvasy(event.y)
+        
+        if self.zoom_rect_id:
+            self.map_widget.canvas.coords(self.zoom_rect_id, self.start_x, self.start_y, cur_x, cur_y)
+
+    def end_zoom_rect(self, event):
+        if not self.start_x or not self.start_y:
+            return
+            
+        end_x = self.map_widget.canvas.canvasx(event.x)
+        end_y = self.map_widget.canvas.canvasy(event.y)
+        
+        if self.zoom_rect_id:
+            self.map_widget.canvas.delete(self.zoom_rect_id)
+            self.zoom_rect_id = None
+        
+        # Evitar zoom en clicks simples
+        if abs(end_x - self.start_x) < 10 or abs(end_y - self.start_y) < 10:
+            return
+            
+        # Convertir a coordenadas lat/lon
+        # Necesitamos convertir (start_x, start_y) y (end_x, end_y)
+        # Usamos convert_canvas_coords_to_decimal_coords
+        
+        # Nota: canvasx/y devuelve coordenadas absolutas del canvas (incluyendo scroll si lo hubiera, 
+        # pero tkintermapview mueve los items, no scrollea el canvas usualmente).
+        # TkinterMapView usa coordenadas relativas al widget para sus eventos mouse_click.
+        # event.x e event.y son relativos al widget.
+        
+        try:
+            c1 = self.map_widget.convert_canvas_coords_to_decimal_coords(event.x - (end_x - self.start_x), event.y - (end_y - self.start_y))
+            # Espera, event.x es el final. start_x es el inicio.
+            # Mejor usar los valores crudos de event.x del inicio y fin si es posible.
+            # Pero start_x lo guardamos de event.x.
+            
+            # Re-calculo usando event.x/y directamente si no hay scroll
+            # TkinterMapView no usa scrollbars en el canvas, mueve los objetos.
+            # Así que event.x/y son correctos.
+            
+            # start_pos
+            lat1, lon1 = self.map_widget.convert_canvas_coords_to_decimal_coords(self.start_x, self.start_y)
+            # end_pos
+            lat2, lon2 = self.map_widget.convert_canvas_coords_to_decimal_coords(end_x, end_y)
+            
+            self.map_widget.fit_bounding_box((lat1, lon1), (lat2, lon2))
+            
+            # Volver a modo pan automáticamente? O quedarse en zoom area?
+            # Quedarse en zoom area suele ser confuso si no hay feedback visual persistente.
+            # Mejor volver a pan.
+            self.activar_pan()
+            
+        except Exception as e:
+            print(f"Error en zoom area: {e}")
 
     def cambiar_proveedor_mapa(self, event=None):
         """Cambia el proveedor de tiles del mapa interactivo."""
