@@ -45,6 +45,7 @@ import preparar_redes
 import procesar_redes
 import visualizacion
 from hmi.mapa import MapaWidget
+from hmi.grafo_interactivo import GrafoInteractivo
 
 class VentanaPrincipal:
     """Ventana principal de la aplicación GUI.
@@ -262,9 +263,20 @@ class VentanaPrincipal:
         self.tree_info.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
         scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
         
-        # 2. Frame Inferior: Visualización de grafo topológico
-        self.frame_canvas_info = ttk.LabelFrame(frame_info, text="Topología de Red", padding="5")
-        self.frame_canvas_info.grid(row=1, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
+        # 2. Frame Inferior: Visualización de grafo topológico interactivo
+        frame_grafo = ttk.LabelFrame(frame_info, text="Topología de Red (Interactivo)", padding="5")
+        frame_grafo.grid(row=1, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
+        
+        self.grafo_interactivo = GrafoInteractivo(frame_grafo)
+        self.grafo_interactivo.pack(fill=tk.BOTH, expand=True)
+        self.grafo_interactivo.set_callback_doble_clic(self.centrar_mapa_en_nodo)
+
+    def centrar_mapa_en_nodo(self, lat, lon):
+        """Centra el mapa en las coordenadas dadas."""
+        if hasattr(self, 'mapa_widget') and self.mapa_widget.map_widget:
+            self.mapa_widget.map_widget.set_position(lat, lon)
+            # Opcional: Hacer zoom in al centrar
+            # self.mapa_widget.map_widget.set_zoom(15)
     
     def crear_tab_robustez(self):
         """Crea el tab de métricas de robustez."""
@@ -797,24 +809,8 @@ class VentanaPrincipal:
             self.tree_info.insert("", tk.END, values=(clave, valor_str))
             
         # 2. Actualizar grafo topológico
-        # Limpiar canvas anterior
-        for widget in self.frame_canvas_info.winfo_children():
-            widget.destroy()
-            
         if self.grafo_actual:
-            # Crear figura
-            fig = plt.Figure(figsize=(5, 4), dpi=100)
-            ax = fig.add_subplot(111)
-            
-            # Generar visualización
-            visualizacion.generar_grafo_topologico(self.grafo_actual, ax)
-            
-            fig.tight_layout()
-            
-            # Embeber en tkinter
-            canvas = FigureCanvasTkAgg(fig, master=self.frame_canvas_info)
-            canvas.draw()
-            canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
+            self.grafo_interactivo.dibujar_grafo(self.grafo_actual)
     
     
     def actualizar_tab_robustez(self, metricas):
