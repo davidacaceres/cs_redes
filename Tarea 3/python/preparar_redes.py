@@ -64,6 +64,8 @@ class GrafoSimple:
         Diccionario de conjuntos de adyacencia.
     atributos_nodos : Dict[Any, Dict[str, Any]]
         Diccionario de atributos por nodo.
+    atributos_aristas : Dict[Tuple[Any, Any], Dict[str, Any]]
+        Diccionario de atributos por arista.
     """
 
     def __init__(self, nombre: str = "") -> None:
@@ -77,6 +79,7 @@ class GrafoSimple:
         self.nombre = nombre
         self._adj: Dict[Any, Set[Any]] = {}
         self.atributos_nodos: Dict[Any, Dict[str, Any]] = {}
+        self.atributos_aristas: Dict[Tuple[Any, Any], Dict[str, Any]] = {}
 
     def agregar_nodo(self, id_nodo: Any, **atributos: Any) -> None:
         """Agrega un nodo al grafo, opcionalmente con atributos.
@@ -95,8 +98,8 @@ class GrafoSimple:
         # Actualizar atributos
         self.atributos_nodos[id_nodo].update(atributos)
 
-    def agregar_arista(self, u: Any, v: Any) -> None:
-        """Agrega una arista no dirigida entre u y v.
+    def agregar_arista(self, u: Any, v: Any, **atributos: Any) -> None:
+        """Agrega una arista no dirigida entre u y v, opcionalmente con atributos.
         
         Parámetros
         ----------
@@ -104,12 +107,20 @@ class GrafoSimple:
             Primer nodo de la arista.
         v : Any
             Segundo nodo de la arista.
+        **atributos : Any
+            Atributos opcionales de la arista.
         """
         if u == v:
             # Los auto-bucles se ignoran
             return
         self._adj.setdefault(u, set()).add(v)
         self._adj.setdefault(v, set()).add(u)
+        
+        # Almacenar atributos usando una clave ordenada para no duplicar (u, v) y (v, u)
+        clave = tuple(sorted((u, v)))
+        if clave not in self.atributos_aristas:
+            self.atributos_aristas[clave] = {}
+        self.atributos_aristas[clave].update(atributos)
 
     def tiene_arista(self, u: Any, v: Any) -> bool:
         """Verifica si existe una arista entre u y v.
@@ -209,6 +220,8 @@ class GrafoSimple:
         # Copiar atributos
         for n, attrs in self.atributos_nodos.items():
             nuevo_g.atributos_nodos[n] = dict(attrs)
+        for edge, attrs in self.atributos_aristas.items():
+            nuevo_g.atributos_aristas[edge] = dict(attrs)
         return nuevo_g
 
     def remover_nodos(self, nodos: Iterable[Any]) -> None:
@@ -223,6 +236,9 @@ class GrafoSimple:
             if n in self._adj:
                 for nbr in list(self._adj[n]):
                     self._adj[nbr].discard(n)
+                    # Remover atributos de arista
+                    clave = tuple(sorted((n, nbr)))
+                    self.atributos_aristas.pop(clave, None)
                 del self._adj[n]
                 self.atributos_nodos.pop(n, None)
 
@@ -577,10 +593,10 @@ def _trabajador_construir_grafo_metro(argumentos: Tuple[Path, int, int]) -> Tupl
             return nombre, None, None, "JSON no contiene un diccionario"
         
         lista_nodos = datos.get("nodes") or datos.get("Nodes")
-        lista_aristas = datos.get("edges") or datos.get("Edges")
+        lista_aristas = datos.get("edges") or datos.get("Edges") or datos.get("links") or datos.get("Links")
         
         if not lista_nodos or not lista_aristas:
-            return nombre, None, None, "JSON no contiene 'nodes' y 'edges'"
+            return nombre, None, None, "JSON no contiene 'nodes' y 'edges'/'links'"
         
         # Determinar clave de ID de nodo
         nodo_muestra = lista_nodos[0]
@@ -624,7 +640,9 @@ def _trabajador_construir_grafo_metro(argumentos: Tuple[Path, int, int]) -> Tupl
         for e in lista_aristas:
             u = e[clave_u]
             v = e[clave_v]
-            G.agregar_arista(u, v)
+            # Extraer atributos de la arista (todo lo que no sea source/target)
+            attrs = {k: val for k, val in e.items() if k not in [clave_u, clave_v]}
+            G.agregar_arista(u, v, **attrs)
         
         return nombre, G, pd.DataFrame(filas_atributos_nodos), None
         

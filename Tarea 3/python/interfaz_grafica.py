@@ -44,7 +44,7 @@ import numpy as np
 import preparar_redes
 import procesar_redes
 import visualizacion
-
+from hmi.mapa import MapaWidget
 
 class VentanaPrincipal:
     """Ventana principal de la aplicación GUI.
@@ -155,7 +155,19 @@ class VentanaPrincipal:
         # Canvas para matplotlib
         # Canvas para matplotlib
         
-        # Frame controles mapa
+        # 1. Canvas del mapa (primero para poder pasar self.mapa_widget a los controles)
+        self.frame_canvas_mapa = ttk.Frame(frame_mapa)
+        self.frame_canvas_mapa.grid(row=1, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
+        
+        frame_mapa.rowconfigure(1, weight=1) # Expand map, not controls
+        
+        # Label inicial
+        self.label_mapa = ttk.Label(self.frame_canvas_mapa, text="Seleccione una red y presione 'Generar Análisis'", 
+                                     font=("Arial", 12))
+        self.label_mapa.pack(expand=True)
+        self.mapa_widget = MapaWidget(self.frame_canvas_mapa)
+
+        # 2. Frame controles mapa
         frame_controles_mapa = ttk.Frame(frame_mapa)
         frame_controles_mapa.grid(row=0, column=0, sticky=(tk.W, tk.E), padx=5, pady=5)
         
@@ -176,38 +188,28 @@ class VentanaPrincipal:
         # Separador
         ttk.Separator(frame_controles_mapa, orient=tk.VERTICAL).pack(side=tk.LEFT, padx=5, fill=tk.Y)
         
-        # Botones de control
-        self.btn_zoom_in = ttk.Button(frame_controles_mapa, text="+", width=3, command=self.zoom_in)
+        # Botones de control (vinculados directamente a self.mapa_widget)
+        self.btn_zoom_in = ttk.Button(frame_controles_mapa, text="+", width=3, command=self.mapa_widget.zoom_in)
         self.btn_zoom_in.pack(side=tk.LEFT, padx=2)
         
-        self.btn_zoom_out = ttk.Button(frame_controles_mapa, text="-", width=3, command=self.zoom_out)
+        self.btn_zoom_out = ttk.Button(frame_controles_mapa, text="-", width=3, command=self.mapa_widget.zoom_out)
         self.btn_zoom_out.pack(side=tk.LEFT, padx=2)
         
-        self.btn_pan = ttk.Button(frame_controles_mapa, text="Pan", width=5, command=self.activar_pan)
+        self.btn_pan = ttk.Button(frame_controles_mapa, text="Pan", width=5, command=self.mapa_widget.activar_pan)
         self.btn_pan.pack(side=tk.LEFT, padx=2)
         
-        self.btn_area = ttk.Button(frame_controles_mapa, text="Área", width=5, command=self.activar_zoom_area)
+        self.btn_area = ttk.Button(frame_controles_mapa, text="Área", width=5, command=self.mapa_widget.activar_zoom_area)
         self.btn_area.pack(side=tk.LEFT, padx=2)
         
-        self.btn_centrar = ttk.Button(frame_controles_mapa, text="Centrar", width=7, command=self.centrar_mapa)
+        self.btn_centrar = ttk.Button(frame_controles_mapa, text="Centrar", width=7, command=self.mapa_widget.centrar)
         self.btn_centrar.pack(side=tk.LEFT, padx=2)
         
-        # Variables para zoom area
-        self.zoom_rect_id = None
-        self.start_x = None
-        self.start_y = None
-        self.original_bounds = None
+        # Variables para zoom area (ya no se usan aquí, están en MapaWidget)
+        # self.zoom_rect_id = None
+        # self.start_x = None
+        # self.start_y = None
+        # self.original_bounds = None
 
-        self.frame_canvas_mapa = ttk.Frame(frame_mapa)
-        self.frame_canvas_mapa.grid(row=1, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
-        
-        frame_mapa.rowconfigure(1, weight=1) # Expand map, not controls
-        
-        # Label inicial
-        self.label_mapa = ttk.Label(self.frame_canvas_mapa, text="Seleccione una red y presione 'Generar Análisis'", 
-                                     font=("Arial", 12))
-        self.label_mapa.pack(expand=True)
-        
         # Panel derecho: Tabs
         frame_tabs = ttk.LabelFrame(paned, text="Análisis", padding="10")
         frame_tabs.columnconfigure(0, weight=1)
@@ -757,397 +759,21 @@ class VentanaPrincipal:
         # 5. Actualizar info de directorio
         self.label_directorio.config(text=f"Resultados guardados en:\\n{dir_salida}")
     
+    
     def actualizar_mapa(self, grafo, dir_salida):
-        """Actualiza el panel de mapa con visualización interactiva usando tkintermapview."""
-        # Limpiar canvas anterior (si existía matplotlib)
         for widget in self.frame_canvas_mapa.winfo_children():
-            # Si ya es el map_widget, no lo destruimos, solo lo limpiamos
-            if hasattr(self, 'map_widget') and widget == self.map_widget:
+            if hasattr(self.mapa_widget, 'map_widget') and self.mapa_widget.map_widget and widget == self.mapa_widget.map_widget:
                 continue
             widget.destroy()
         
-        # Verificar si hay datos geográficos
-        tiene_coords = False
-        for nodo in grafo.nodos():
-            attrs = grafo.atributos_nodos.get(nodo, {})
-            if 'lat' in attrs and 'lon' in attrs:
-                tiene_coords = True
-                break
-        
-        if tiene_coords:
-            try:
-                import tkintermapview
-                from tkintermapview.utility_functions import decimal_to_osm
-            except ImportError:
-                messagebox.showerror("Error", "La librería 'tkintermapview' no está instalada.")
-                return
-
-            # Definir clase FastNetworkOverlay interna o usarla si ya está definida
-            class FastNetworkOverlay:
-                def __init__(self, map_widget, edges_list, color="blue", width=1):
-                    self.map_widget = map_widget
-                    self.edges_list = edges_list
-                    self.color = color
-                    self.width = width
-                    self.tag_name = f"network_edges_{id(self)}"
-                    self.deleted = False
-                    self.last_upper_left_tile_pos = None
-                    
-                def delete(self):
-                    self.deleted = True
-                    self.map_widget.canvas.delete(self.tag_name)
-
-                def set_position_list(self, position_list):
-                    pass
-
-                def draw(self, move=False):
-                    if self.deleted:
-                        return
-                    
-                    # Obtener dimensiones de tile
-                    if hasattr(self.map_widget, 'canvas_tile_array') and self.map_widget.canvas_tile_array:
-                        # canvas_tile_array es una lista de listas (filas/columnas)
-                        # Accedemos al primer tile disponible
-                        try:
-                            first_tile = self.map_widget.canvas_tile_array[0][0]
-                            if first_tile:
-                                widget_tile_width = first_tile.widget_tile_width
-                                widget_tile_height = first_tile.widget_tile_height
-                            else:
-                                return
-                        except (IndexError, AttributeError):
-                            return
-                    else:
-                        return
-
-                    if move and self.last_upper_left_tile_pos is not None:
-                        # Calcular delta para mover el canvas
-                        diff_x = (self.last_upper_left_tile_pos[0] - self.map_widget.upper_left_tile_pos[0]) * widget_tile_width * self.map_widget.width / widget_tile_width # Wait, width is total width? No.
-                        # La fórmula de conversión es: x = ((tile_pos - upper_left) / tile_width) * widget_width
-                        # No, widget_width es self.map_widget.width (pixels)
-                        # tile_width es el rango de tiles que cubre el widget? No.
-                        # widget_tile_width es el tamaño en pixeles de un tile (ej 256).
-                        
-                        # Re-analizando get_canvas_pos:
-                        # canvas_pos_x = ((tile_position[0] - self.map_widget.upper_left_tile_pos[0]) / widget_tile_width) * self.map_widget.width
-                        # Esto parece asumir que widget_tile_width es el ancho del widget en unidades de tile? No.
-                        
-                        # Vamos a usar la lógica de redibujado completo si move es complejo, 
-                        # pero para optimizar, intentemos calcular el pixel delta.
-                        
-                        # x1 = (pos - old_ul) * scale
-                        # x2 = (pos - new_ul) * scale
-                        # delta = x2 - x1 = (old_ul - new_ul) * scale
-                        
-                        # scale_x = self.map_widget.width / widget_tile_width
-                        # scale_y = self.map_widget.height / widget_tile_height
-                        
-                        # diff_x = (self.last_upper_left_tile_pos[0] - self.map_widget.upper_left_tile_pos[0]) * scale_x
-                        # diff_y = (self.last_upper_left_tile_pos[1] - self.map_widget.upper_left_tile_pos[1]) * scale_y
-                        
-                        scale_x = self.map_widget.width / widget_tile_width
-                        scale_y = self.map_widget.height / widget_tile_height
-                        
-                        x_move = (self.last_upper_left_tile_pos[0] - self.map_widget.upper_left_tile_pos[0]) * scale_x
-                        y_move = (self.last_upper_left_tile_pos[1] - self.map_widget.upper_left_tile_pos[1]) * scale_y
-                        
-                        self.map_widget.canvas.move(self.tag_name, x_move, y_move)
-                    else:
-                        self.map_widget.canvas.delete(self.tag_name)
-                        
-                        zoom = round(self.map_widget.zoom)
-                        upper_left = self.map_widget.upper_left_tile_pos
-                        
-                        scale_x = self.map_widget.width / widget_tile_width
-                        scale_y = self.map_widget.height / widget_tile_height
-                        
-                        for p1, p2 in self.edges_list:
-                            tile_pos1 = decimal_to_osm(p1[0], p1[1], zoom)
-                            x1 = (tile_pos1[0] - upper_left[0]) * scale_x
-                            y1 = (tile_pos1[1] - upper_left[1]) * scale_y
-                            
-                            tile_pos2 = decimal_to_osm(p2[0], p2[1], zoom)
-                            x2 = (tile_pos2[0] - upper_left[0]) * scale_x
-                            y2 = (tile_pos2[1] - upper_left[1]) * scale_y
-                            
-                            # Culling simple
-                            if (x1 < 0 and x2 < 0) or (x1 > self.map_widget.width and x2 > self.map_widget.width) or \
-                               (y1 < 0 and y2 < 0) or (y1 > self.map_widget.height and y2 > self.map_widget.height):
-                                continue
-                            
-                            # Agregar tag "path" para que manage_z_order lo levante
-                            self.map_widget.canvas.create_line(x1, y1, x2, y2, fill=self.color, width=self.width, tag=(self.tag_name, "path"))
-                    
-                    self.last_upper_left_tile_pos = self.map_widget.upper_left_tile_pos
-
-            # Definir clase FastNodeOverlay
-            class FastNodeOverlay:
-                def __init__(self, map_widget, nodes_list, color="red", radius=3):
-                    self.map_widget = map_widget
-                    self.nodes_list = nodes_list # List of (lat, lon)
-                    self.color = color
-                    self.radius = radius
-                    self.tag_name = f"network_nodes_{id(self)}"
-                    self.deleted = False
-                    self.last_upper_left_tile_pos = None
-                    
-                def delete(self):
-                    self.deleted = True
-                    self.map_widget.canvas.delete(self.tag_name)
-
-                def set_position_list(self, position_list):
-                    pass
-
-                def draw(self, move=False):
-                    if self.deleted:
-                        return
-                    
-                    # Obtener dimensiones de tile
-                    if hasattr(self.map_widget, 'canvas_tile_array') and self.map_widget.canvas_tile_array:
-                        try:
-                            first_tile = self.map_widget.canvas_tile_array[0][0]
-                            if first_tile:
-                                # CanvasTile usa widget_tile_width/height
-                                widget_tile_width = first_tile.widget_tile_width
-                                widget_tile_height = first_tile.widget_tile_height
-                            else:
-                                return
-                        except (IndexError, AttributeError):
-                            return
-                    else:
-                        return
-
-                    if move and self.last_upper_left_tile_pos is not None:
-                        scale_x = self.map_widget.width / widget_tile_width
-                        scale_y = self.map_widget.height / widget_tile_height
-                        
-                        x_move = (self.last_upper_left_tile_pos[0] - self.map_widget.upper_left_tile_pos[0]) * scale_x
-                        y_move = (self.last_upper_left_tile_pos[1] - self.map_widget.upper_left_tile_pos[1]) * scale_y
-                        
-                        self.map_widget.canvas.move(self.tag_name, x_move, y_move)
-                    else:
-                        self.map_widget.canvas.delete(self.tag_name)
-                        
-                        zoom = round(self.map_widget.zoom)
-                        upper_left = self.map_widget.upper_left_tile_pos
-                        
-                        scale_x = self.map_widget.width / widget_tile_width
-                        scale_y = self.map_widget.height / widget_tile_height
-                        
-                        r = self.radius
-                        for lat, lon in self.nodes_list:
-                            tile_pos = decimal_to_osm(lat, lon, zoom)
-                            x = (tile_pos[0] - upper_left[0]) * scale_x
-                            y = (tile_pos[1] - upper_left[1]) * scale_y
-                            
-                            # Culling simple
-                            if (x < -r or x > self.map_widget.width + r) or \
-                               (y < -r or y > self.map_widget.height + r):
-                                continue
-                            
-                            # Agregar tag "marker" para que manage_z_order lo levante sobre los paths
-                            self.map_widget.canvas.create_oval(x-r, y-r, x+r, y+r, fill=self.color, outline="darkred", width=1, tag=(self.tag_name, "marker"))
-                    
-                    self.last_upper_left_tile_pos = self.map_widget.upper_left_tile_pos
-
-            # Crear widget de mapa si no existe
-            if not hasattr(self, 'map_widget') or self.map_widget is None or not self.map_widget.winfo_exists():
-                self.map_widget = tkintermapview.TkinterMapView(self.frame_canvas_mapa, corner_radius=0)
-                self.map_widget.pack(fill="both", expand=True)
-            
-            # Limpiar marcadores y rutas anteriores
-            self.map_widget.delete_all_marker()
-            self.map_widget.delete_all_path()
-            # Limpiar overlays anteriores
-            if hasattr(self, 'network_overlay') and self.network_overlay:
-                if self.network_overlay in self.map_widget.canvas_path_list:
-                    self.map_widget.canvas_path_list.remove(self.network_overlay)
-                self.network_overlay.delete()
-            if hasattr(self, 'nodes_overlay') and self.nodes_overlay:
-                if self.nodes_overlay in self.map_widget.canvas_path_list:
-                    self.map_widget.canvas_path_list.remove(self.nodes_overlay)
-                self.nodes_overlay.delete()
-            
-            # Extraer coordenadas para centrar el mapa
-            lats = []
-            lons = []
-            edges_coords = []
-            nodes_coords = []
-            
-            # Recopilar aristas
-            for u, v in grafo.aristas():
-                u_attrs = grafo.atributos_nodos.get(u, {})
-                v_attrs = grafo.atributos_nodos.get(v, {})
-                
-                if 'lat' in u_attrs and 'lon' in u_attrs and 'lat' in v_attrs and 'lon' in v_attrs:
-                    lats.append(u_attrs['lat'])
-                    lons.append(u_attrs['lon'])
-                    lats.append(v_attrs['lat'])
-                    lons.append(v_attrs['lon'])
-                    edges_coords.append([(u_attrs['lat'], u_attrs['lon']), (v_attrs['lat'], v_attrs['lon'])])
-            
-            # Recopilar nodos
-            for nodo in grafo.nodos():
-                attrs = grafo.atributos_nodos.get(nodo, {})
-                if 'lat' in attrs and 'lon' in attrs:
-                    nodes_coords.append((attrs['lat'], attrs['lon']))
-
-            # Usar FastNetworkOverlay para aristas
-            if edges_coords:
-                self.network_overlay = FastNetworkOverlay(self.map_widget, edges_coords, color="blue", width=2)
-                self.map_widget.canvas_path_list.append(self.network_overlay)
-                print(f"[INFO] Agregadas {len(edges_coords)} aristas usando FastNetworkOverlay")
-
-            # Usar FastNodeOverlay para nodos (estaciones)
-            if nodes_coords:
-                self.nodes_overlay = FastNodeOverlay(self.map_widget, nodes_coords, color="red", radius=3)
-                self.map_widget.canvas_path_list.append(self.nodes_overlay)
-                print(f"[INFO] Agregados {len(nodes_coords)} nodos usando FastNodeOverlay")
-
-            # Ajustar vista del mapa
-            if lats and lons:
-                max_lat = max(lats)
-                min_lat = min(lats)
-                max_lon = max(lons)
-                min_lon = min(lons)
-                self.map_widget.fit_bounding_box((max_lat, min_lon), (min_lat, max_lon))
-                self.original_bounds = ((max_lat, min_lon), (min_lat, max_lon))
-            
-        else:
-            # No hay datos geográficos
-            if hasattr(self, 'map_widget') and self.map_widget:
-                self.map_widget.destroy()
-                self.map_widget = None
-                
-            label = ttk.Label(self.frame_canvas_mapa, 
-                            text=f"No hay datos geográficos para\n{grafo.nombre}",
-                            font=("Arial", 12))
+        if not self.mapa_widget.actualizar_con_grafo(grafo):
+            label = ttk.Label(self.frame_canvas_mapa, text=f"No hay datos geográficos para\n{grafo.nombre}", font=("Arial", 12))
             label.pack(expand=True)
 
-    def zoom_in(self):
-        if hasattr(self, 'map_widget') and self.map_widget:
-            self.map_widget.set_zoom(self.map_widget.zoom + 1)
-
-    def zoom_out(self):
-        if hasattr(self, 'map_widget') and self.map_widget:
-            self.map_widget.set_zoom(self.map_widget.zoom - 1)
-
-    def centrar_mapa(self):
-        if hasattr(self, 'map_widget') and self.map_widget and self.original_bounds:
-            self.map_widget.fit_bounding_box(self.original_bounds[0], self.original_bounds[1])
-
-    def activar_pan(self):
-        if hasattr(self, 'map_widget') and self.map_widget:
-            # Restaurar bindings originales de tkintermapview
-            self.map_widget.canvas.bind("<Button-1>", self.map_widget.mouse_click)
-            self.map_widget.canvas.bind("<B1-Motion>", self.map_widget.mouse_move)
-            self.map_widget.canvas.bind("<ButtonRelease-1>", self.map_widget.mouse_release)
-            self.map_widget.canvas.config(cursor="arrow")
-            
-            # Limpiar rectangulo si quedo
-            if self.zoom_rect_id:
-                self.map_widget.canvas.delete(self.zoom_rect_id)
-                self.zoom_rect_id = None
-
-    def activar_zoom_area(self):
-        if hasattr(self, 'map_widget') and self.map_widget:
-            # Sobrescribir bindings para zoom area
-            self.map_widget.canvas.bind("<Button-1>", self.start_zoom_rect)
-            self.map_widget.canvas.bind("<B1-Motion>", self.drag_zoom_rect)
-            self.map_widget.canvas.bind("<ButtonRelease-1>", self.end_zoom_rect)
-            self.map_widget.canvas.config(cursor="crosshair")
-
-    def start_zoom_rect(self, event):
-        self.start_x = self.map_widget.canvas.canvasx(event.x)
-        self.start_y = self.map_widget.canvas.canvasy(event.y)
-        
-        if self.zoom_rect_id:
-            self.map_widget.canvas.delete(self.zoom_rect_id)
-        
-        self.zoom_rect_id = self.map_widget.canvas.create_rectangle(
-            self.start_x, self.start_y, self.start_x, self.start_y,
-            outline="red", width=2, dash=(4, 4)
-        )
-
-    def drag_zoom_rect(self, event):
-        cur_x = self.map_widget.canvas.canvasx(event.x)
-        cur_y = self.map_widget.canvas.canvasy(event.y)
-        
-        if self.zoom_rect_id:
-            self.map_widget.canvas.coords(self.zoom_rect_id, self.start_x, self.start_y, cur_x, cur_y)
-
-    def end_zoom_rect(self, event):
-        if not self.start_x or not self.start_y:
-            return
-            
-        end_x = self.map_widget.canvas.canvasx(event.x)
-        end_y = self.map_widget.canvas.canvasy(event.y)
-        
-        if self.zoom_rect_id:
-            self.map_widget.canvas.delete(self.zoom_rect_id)
-            self.zoom_rect_id = None
-        
-        # Evitar zoom en clicks simples
-        if abs(end_x - self.start_x) < 10 or abs(end_y - self.start_y) < 10:
-            return
-            
-        # Convertir a coordenadas lat/lon
-        # Necesitamos convertir (start_x, start_y) y (end_x, end_y)
-        # Usamos convert_canvas_coords_to_decimal_coords
-        
-        # Nota: canvasx/y devuelve coordenadas absolutas del canvas (incluyendo scroll si lo hubiera, 
-        # pero tkintermapview mueve los items, no scrollea el canvas usualmente).
-        # TkinterMapView usa coordenadas relativas al widget para sus eventos mouse_click.
-        # event.x e event.y son relativos al widget.
-        
-        try:
-            c1 = self.map_widget.convert_canvas_coords_to_decimal_coords(event.x - (end_x - self.start_x), event.y - (end_y - self.start_y))
-            # Espera, event.x es el final. start_x es el inicio.
-            # Mejor usar los valores crudos de event.x del inicio y fin si es posible.
-            # Pero start_x lo guardamos de event.x.
-            
-            # Re-calculo usando event.x/y directamente si no hay scroll
-            # TkinterMapView no usa scrollbars en el canvas, mueve los objetos.
-            # Así que event.x/y son correctos.
-            
-            # start_pos
-            lat1, lon1 = self.map_widget.convert_canvas_coords_to_decimal_coords(self.start_x, self.start_y)
-            # end_pos
-            lat2, lon2 = self.map_widget.convert_canvas_coords_to_decimal_coords(end_x, end_y)
-            
-            self.map_widget.fit_bounding_box((lat1, lon1), (lat2, lon2))
-            
-            # Volver a modo pan automáticamente? O quedarse en zoom area?
-            # Quedarse en zoom area suele ser confuso si no hay feedback visual persistente.
-            # Mejor volver a pan.
-            self.activar_pan()
-            
-        except Exception as e:
-            print(f"Error en zoom area: {e}")
-
     def cambiar_proveedor_mapa(self, event=None):
-        """Cambia el proveedor de tiles del mapa interactivo."""
-        if not hasattr(self, 'map_widget') or self.map_widget is None:
-            return
-            
-        seleccion = self.combo_proveedor.get()
-        
-        if seleccion == "OpenStreetMap (Default)":
-            self.map_widget.set_tile_server("https://a.tile.openstreetmap.org/{z}/{x}/{y}.png")
-            self.map_widget.set_overlay_tile_server(None)
-        elif seleccion == "Google Maps Normal":
-            self.map_widget.set_tile_server("https://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}&s=Ga")
-            self.map_widget.set_overlay_tile_server(None)
-        elif seleccion == "Google Maps Satélite":
-            self.map_widget.set_tile_server("https://mt0.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}&s=Ga")
-            self.map_widget.set_overlay_tile_server(None)
-        elif seleccion == "Google Maps Híbrido":
-            # Satélite base + Etiquetas overlay
-            self.map_widget.set_tile_server("https://mt0.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}&s=Ga")
-            self.map_widget.set_overlay_tile_server("https://mt0.google.com/vt/lyrs=h&hl=en&x={x}&y={y}&z={z}&s=Ga")
-        elif seleccion == "OpenTopoMap":
-            self.map_widget.set_tile_server("https://a.tile.opentopomap.org/{z}/{x}/{y}.png")
-            self.map_widget.set_overlay_tile_server(None)
+        if hasattr(self, 'mapa_widget') and self.mapa_widget:
+            self.mapa_widget.cambiar_proveedor(self.combo_proveedor.get())
+
 
     def actualizar_tab_info(self, metricas):
         """Actualiza el tab de información general."""
