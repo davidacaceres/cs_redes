@@ -44,6 +44,113 @@ matplotlib.use('Agg')  # Backend sin GUI para generación de imágenes
 
 # Importar GrafoSimple para type hints
 from preparar_redes import GrafoSimple
+import networkx as nx
+
+
+def generar_grafo_topologico(
+    grafo: GrafoSimple,
+    ax: plt.Axes,
+    max_nodos: int = 100
+) -> None:
+    """Genera una visualización topológica simplificada del grafo.
+    
+    Simplificación:
+    - Elimina nodos de grado 2 (estaciones intermedias).
+    - Mantiene Terminales (grado 1) y Transferencias (grado > 2).
+    
+    Colores:
+    - Terminales: Blanco
+    - Transferencias: Naranja
+    """
+    # Convertir a networkx
+    G = nx.Graph()
+    G.add_nodes_from(grafo.nodos())
+    G.add_edges_from(grafo.aristas())
+    
+    # Simplificación: Eliminar nodos de grado 2
+    # Iteramos hasta que no queden nodos de grado 2 o no se pueda reducir más
+    cambios = True
+    while cambios:
+        cambios = False
+        nodos_grado_2 = [n for n in G.nodes() if G.degree(n) == 2]
+        
+        for n in nodos_grado_2:
+            if G.has_node(n): # Verificar si sigue existiendo
+                vecinos = list(G.neighbors(n))
+                if len(vecinos) == 2:
+                    u, v = vecinos
+                    # Agregar arista directa entre vecinos
+                    if not G.has_edge(u, v):
+                        G.add_edge(u, v)
+                    # Eliminar nodo intermedio
+                    G.remove_node(n)
+                    cambios = True
+
+    n_nodos = G.number_of_nodes()
+    
+    if n_nodos == 0:
+        ax.text(0.5, 0.5, "Grafo vacío", ha='center', va='center')
+        ax.axis('off')
+        return
+
+    # Extraer posiciones geográficas (lon, lat) de los nodos originales
+    pos = {}
+    nodos_sin_pos = []
+    for n in G.nodes():
+        attrs = grafo.atributos_nodos.get(n, {})
+        if 'lon' in attrs and 'lat' in attrs:
+            pos[n] = (attrs['lon'], attrs['lat'])
+        else:
+            nodos_sin_pos.append(n)
+            
+    # Si faltan posiciones, usar layout automático para esos nodos (o todo si está vacío)
+    if not pos:
+        if n_nodos < 50:
+            pos = nx.spring_layout(G, k=0.5, iterations=50, seed=42)
+        else:
+            pos = nx.kamada_kawai_layout(G) if n_nodos < 200 else nx.spring_layout(G, k=0.2, iterations=20)
+    elif nodos_sin_pos:
+        # Mezcla de nodos con y sin posición (poco probable en este dataset)
+        pos_spring = nx.spring_layout(G, k=0.5, seed=42)
+        for n in nodos_sin_pos:
+            pos[n] = pos_spring[n]
+
+    # Renumerar nodos secuencialmente (1..N) para visualización
+    mapping = {node: i for i, node in enumerate(G.nodes(), 1)}
+    G = nx.relabel_nodes(G, mapping)
+    
+    # Actualizar claves del diccionario pos para coincidir con nuevos IDs
+    # Solo si pos tiene claves originales
+    if pos:
+        pos = {mapping.get(k, k): v for k, v in pos.items() if k in mapping}
+        
+    # Ajustar aspecto para no distorsionar mapa
+    ax.set_aspect('equal')
+
+    # Coloreado según grado en grafo simplificado
+    node_colors = []
+    for n in G.nodes():
+        grado = G.degree(n)
+        if grado == 1:
+            node_colors.append('white')   # Terminal
+        else:
+            node_colors.append('#FFC107') # Transferencia / Intersección (Naranja)
+    
+    # Estilo
+    edge_color = 'blue'
+    node_size = 500 if n_nodos < 50 else 300
+    font_size = 10 if n_nodos < 50 else 8
+    
+    # Dibujar
+    nx.draw_networkx_nodes(G, pos, ax=ax, node_color=node_colors, 
+                          node_size=node_size, edgecolors='black', linewidths=1)
+    nx.draw_networkx_edges(G, pos, ax=ax, edge_color=edge_color, width=1.5, alpha=0.7)
+    
+    if n_nodos < 100:
+        nx.draw_networkx_labels(G, pos, ax=ax, font_size=font_size, font_family='sans-serif')
+    
+    ax.axis('off')
+    ax.set_title("Representación Gráfica", fontsize=12, fontweight='bold')
 
 
 def exportar_resultados(

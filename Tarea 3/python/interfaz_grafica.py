@@ -236,27 +236,35 @@ class VentanaPrincipal:
         self.crear_tab_exportar()
     
     def crear_tab_info(self):
-        """Crea el tab de información general."""
+        """Crea el tab de información general con tabla y grafo."""
         frame_info = ttk.Frame(self.notebook, padding="10")
         self.notebook.add(frame_info, text="Info General")
         
-        # TreeView para mostrar métricas
+        # Configurar grid para división 40/60
+        frame_info.columnconfigure(0, weight=1)
+        frame_info.rowconfigure(0, weight=2)  # 40% aprox
+        frame_info.rowconfigure(1, weight=3)  # 60% aprox
+        
+        # 1. Frame Superior: Tabla de métricas
+        frame_tabla = ttk.Frame(frame_info)
+        frame_tabla.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S), pady=(0, 10))
+        
         columns = ("Métrica", "Valor")
-        self.tree_info = ttk.Treeview(frame_info, columns=columns, show="headings", height=15)
+        self.tree_info = ttk.Treeview(frame_tabla, columns=columns, show="headings", height=10)
         self.tree_info.heading("Métrica", text="Métrica")
         self.tree_info.heading("Valor", text="Valor")
         self.tree_info.column("Métrica", width=250)
         self.tree_info.column("Valor", width=200)
         
-        # Scrollbar
-        scrollbar = ttk.Scrollbar(frame_info, orient=tk.VERTICAL, command=self.tree_info.yview)
+        scrollbar = ttk.Scrollbar(frame_tabla, orient=tk.VERTICAL, command=self.tree_info.yview)
         self.tree_info.configure(yscroll=scrollbar.set)
         
-        self.tree_info.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
-        scrollbar.grid(row=0, column=1, sticky=(tk.N, tk.S))
+        self.tree_info.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+        scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
         
-        frame_info.columnconfigure(0, weight=1)
-        frame_info.rowconfigure(0, weight=1)
+        # 2. Frame Inferior: Visualización de grafo topológico
+        self.frame_canvas_info = ttk.LabelFrame(frame_info, text="Topología de Red", padding="5")
+        self.frame_canvas_info.grid(row=1, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
     
     def crear_tab_robustez(self):
         """Crea el tab de métricas de robustez."""
@@ -776,18 +784,37 @@ class VentanaPrincipal:
 
 
     def actualizar_tab_info(self, metricas):
-        """Actualiza el tab de información general."""
-        # Limpiar tree
+        """Actualiza el tab de información general con métricas y grafo."""
+        # 1. Actualizar tabla
         for item in self.tree_info.get_children():
             self.tree_info.delete(item)
         
-        # Agregar métricas
         for clave, valor in metricas.items():
             if isinstance(valor, float):
                 valor_str = f"{valor:.4e}"
             else:
                 valor_str = str(valor)
             self.tree_info.insert("", tk.END, values=(clave, valor_str))
+            
+        # 2. Actualizar grafo topológico
+        # Limpiar canvas anterior
+        for widget in self.frame_canvas_info.winfo_children():
+            widget.destroy()
+            
+        if self.grafo_actual:
+            # Crear figura
+            fig = plt.Figure(figsize=(5, 4), dpi=100)
+            ax = fig.add_subplot(111)
+            
+            # Generar visualización
+            visualizacion.generar_grafo_topologico(self.grafo_actual, ax)
+            
+            fig.tight_layout()
+            
+            # Embeber en tkinter
+            canvas = FigureCanvasTkAgg(fig, master=self.frame_canvas_info)
+            canvas.draw()
+            canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
     
     
     def actualizar_tab_robustez(self, metricas):
