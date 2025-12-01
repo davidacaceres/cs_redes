@@ -269,9 +269,77 @@ class FastNodeOverlay:
         self.deleted = False
         self.last_upper_left_tile_pos = None
         
+        # Tooltip
+        self.tooltip_label = None
+        self._setup_tooltip()
+        
+    def _setup_tooltip(self):
+        """Configura el label del tooltip."""
+        self.tooltip_label = tk.Label(
+            self.map_widget, 
+            text="", 
+            bg="#ffffe0", 
+            relief="solid", 
+            borderwidth=1,
+            font=("Arial", 8),
+            justify=tk.LEFT
+        )
+
+    def _on_enter(self, event):
+        """Maneja el evento de entrada del mouse sobre un nodo."""
+        item = self.map_widget.canvas.find_withtag("current")
+        if not item:
+            return
+            
+        tags = self.map_widget.canvas.gettags(item)
+        node_index = -1
+        
+        for tag in tags:
+            if tag.startswith("node_idx_"):
+                try:
+                    node_index = int(tag.split("_")[-1])
+                    break
+                except ValueError:
+                    pass
+        
+        if node_index >= 0 and node_index < len(self.nodes_list):
+            node_data = self.nodes_list[node_index]
+            # Extraer atributos si existen (3er elemento)
+            if len(node_data) >= 3:
+                attrs = node_data[2]
+                if attrs:
+                    text = ""
+                    for k, v in attrs.items():
+                        if k == 'name':
+                            text += f"Estación: {v}\n"
+                        elif k == 'lat':
+                            text += f"Latitud: {v}\n"
+                        elif k == 'lon':
+                            text += f"Longitud: {v}\n"
+                        if k not in ['geometry', 'osmid', 'y', 'x', 'street_count', 'highway','original_ids','lat','lon','name']: 
+                            text += f"{k}: {v}\n"
+                    
+                    self.tooltip_label.config(text=text.strip())
+                    
+                    x, y = event.x_root - self.map_widget.winfo_rootx() + 15, event.y_root - self.map_widget.winfo_rooty() + 15
+                    
+                    if x + self.tooltip_label.winfo_reqwidth() > self.map_widget.winfo_width():
+                        x -= self.tooltip_label.winfo_reqwidth() + 20
+                        
+                    self.tooltip_label.place(x=x, y=y)
+                    self.tooltip_label.lift()
+
+    def _on_leave(self, event):
+        """Maneja el evento de salida del mouse."""
+        if self.tooltip_label:
+            self.tooltip_label.place_forget()
+
     def delete(self):
         self.deleted = True
         self.map_widget.canvas.delete(self.tag_name)
+        if self.tooltip_label:
+            self.tooltip_label.destroy()
+            self.tooltip_label = None
 
     def set_position_list(self, position_list):
         pass
@@ -312,7 +380,13 @@ class FastNodeOverlay:
             scale_y = self.map_widget.height / widget_tile_height
             
             r = self.radius
-            for lat, lon in self.nodes_list:
+            for i, node_data in enumerate(self.nodes_list):
+                # Soportar formato (lat, lon) o (lat, lon, attrs)
+                if len(node_data) >= 2:
+                    lat, lon = node_data[0], node_data[1]
+                else:
+                    continue
+
                 tile_pos = decimal_to_osm(lat, lon, zoom)
                 x = (tile_pos[0] - upper_left[0]) * scale_x
                 y = (tile_pos[1] - upper_left[1]) * scale_y
@@ -322,10 +396,17 @@ class FastNodeOverlay:
                    (y < -r or y > self.map_widget.height + r):
                     continue
                 
-                self.map_widget.canvas.create_oval(x-r, y-r, x+r, y+r, fill=self.color, 
+                # Crear marcador con tags
+                marker_id = self.map_widget.canvas.create_oval(x-r, y-r, x+r, y+r, fill=self.color, 
                                                    outline="darkred", width=1, 
-                                                   tag=(self.tag_name, "marker"))
+                                                   tag=(self.tag_name, "marker", f"node_idx_{i}"))
+                
+                # Bindings para tooltip
+                if len(node_data) >= 3 and node_data[2]:
+                    self.map_widget.canvas.tag_bind(marker_id, "<Enter>", self._on_enter)
+                    self.map_widget.canvas.tag_bind(marker_id, "<Leave>", self._on_leave)
         
+        self.map_widget.canvas.tag_raise(self.tag_name)
         self.last_upper_left_tile_pos = self.map_widget.upper_left_tile_pos
 
 
@@ -460,7 +541,7 @@ class MapaWidget:
         for nodo in grafo.nodos():
             attrs = grafo.atributos_nodos.get(nodo, {})
             if 'lat' in attrs and 'lon' in attrs:
-                nodes_coords.append((attrs['lat'], attrs['lon']))
+                nodes_coords.append((attrs['lat'], attrs['lon'], attrs))
         
         # Crear overlays
         if edges_coords:
