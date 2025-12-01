@@ -272,11 +272,34 @@ class VentanaPrincipal:
         self.grafo_interactivo.set_callback_doble_clic(self.centrar_mapa_en_nodo)
 
     def centrar_mapa_en_nodo(self, lat, lon):
-        """Centra el mapa en las coordenadas dadas."""
+        """Centra el mapa en las coordenadas dadas si no están visibles."""
         if hasattr(self, 'mapa_widget') and self.mapa_widget.map_widget:
-            self.mapa_widget.map_widget.set_position(lat, lon)
-            # Opcional: Hacer zoom in al centrar
-            # self.mapa_widget.map_widget.set_zoom(15)
+            map_widget = self.mapa_widget.map_widget
+            
+            # Verificar si el punto está visible en el viewport actual
+            visible = False
+            try:
+                # Obtener coordenadas de las esquinas del viewport
+                top_left = map_widget.convert_canvas_coords_to_decimal_coords(0, 0)
+                bottom_right = map_widget.convert_canvas_coords_to_decimal_coords(map_widget.width, map_widget.height)
+                
+                # top_left es (lat_max, lon_min), bottom_right es (lat_min, lon_max)
+                lat_max, lon_min = top_left
+                lat_min, lon_max = bottom_right
+                
+                # Verificar si lat, lon está dentro
+                if lat_min <= lat <= lat_max and lon_min <= lon <= lon_max:
+                    visible = True
+            except Exception:
+                # Si falla el cálculo, asumir no visible
+                pass
+            
+            if not visible:
+                map_widget.set_position(lat, lon)
+                # Opcional: Hacer zoom in al centrar si está muy lejos? No, mantener zoom usuario.
+            
+            # Mostrar efecto sonar siempre
+            self.mapa_widget.mostrar_sonar(lat, lon)
     
     def crear_tab_robustez(self):
         """Crea el tab de métricas de robustez."""

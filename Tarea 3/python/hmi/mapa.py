@@ -350,6 +350,15 @@ class MapaWidget:
         """Centra el mapa en los bounds originales."""
         if self.map_widget and self.original_bounds:
             self.map_widget.fit_bounding_box(self.original_bounds[0], self.original_bounds[1])
+            
+    def mostrar_sonar(self, lat, lon, duracion_ms=2000):
+        """Muestra una animación de sonar en la ubicación especificada."""
+        if not self.map_widget:
+            return
+            
+        sonar = SonarOverlay(self.map_widget, lat, lon, duracion_ms)
+        self.map_widget.canvas_path_list.append(sonar)
+        sonar.iniciar_animacion()
     
     def activar_pan(self):
         """Activa el modo panorámico (navegación normal)."""
@@ -449,3 +458,92 @@ class MapaWidget:
         if self.map_widget:
             self.map_widget.destroy()
             self.map_widget = None
+
+
+class SonarOverlay:
+    """Overlay animado tipo sonar que se expande y desaparece."""
+    
+    def __init__(self, map_widget, lat, lon, duration_ms=2000):
+        self.map_widget = map_widget
+        self.lat = lat
+        self.lon = lon
+        self.duration_ms = duration_ms
+        self.start_time = None
+        self.tag_name = f"sonar_{id(self)}"
+        self.deleted = False
+        self.radius = 0
+        self.max_radius = 100 # Pixeles
+        self.steps = 50
+        self.current_step = 0
+        self.interval = duration_ms // self.steps
+        
+    def delete(self):
+        self.deleted = True
+        self.map_widget.canvas.delete(self.tag_name)
+        
+    def set_position_list(self, position_list):
+        pass
+        
+    def draw(self, move=False):
+        # Este método es llamado por el mapa cuando se mueve/zoomea.
+        if self.deleted:
+            return
+            
+        # Obtener dimensiones de tile (Lógica copiada de FastNetworkOverlay)
+        if hasattr(self.map_widget, 'canvas_tile_array') and self.map_widget.canvas_tile_array:
+            try:
+                first_tile = self.map_widget.canvas_tile_array[0][0]
+                if first_tile:
+                    widget_tile_width = first_tile.widget_tile_width
+                    widget_tile_height = first_tile.widget_tile_height
+                else:
+                    return
+            except (IndexError, AttributeError):
+                return
+        else:
+            return
+
+        # Calcular posición en pantalla manualmente
+        zoom = round(self.map_widget.zoom)
+        upper_left = self.map_widget.upper_left_tile_pos
+        scale_x = self.map_widget.width / widget_tile_width
+        scale_y = self.map_widget.height / widget_tile_height
+        
+        tile_pos = decimal_to_osm(self.lat, self.lon, zoom)
+        x = (tile_pos[0] - upper_left[0]) * scale_x
+        y = (tile_pos[1] - upper_left[1]) * scale_y
+            
+        r = self.radius
+        
+        # Si ya existe, moverlo/actualizarlo
+        if self.map_widget.canvas.find_withtag(self.tag_name):
+            self.map_widget.canvas.coords(self.tag_name, x-r, y-r, x+r, y+r)
+        else:
+            # Si no existe (primer draw o borrado por mapa), crearlo
+            self.map_widget.canvas.create_oval(x-r, y-r, x+r, y+r, 
+                                             outline="#0078D7", width=3, 
+                                             tags=self.tag_name)
+
+    def iniciar_animacion(self):
+        self.animate_step()
+        
+    def animate_step(self):
+        if self.deleted or self.current_step >= self.steps:
+            self.delete()
+            if self in self.map_widget.canvas_path_list:
+                self.map_widget.canvas_path_list.remove(self)
+            return
+            
+        # Actualizar radio
+        progress = self.current_step / self.steps
+        self.radius = self.max_radius * progress
+        
+        # Redibujar (actualizar coords)
+        self.draw()
+        
+        # Efecto de desvanecimiento (simulado reduciendo ancho)
+        width = max(1, int(5 * (1 - progress)))
+        self.map_widget.canvas.itemconfig(self.tag_name, width=width)
+        
+        self.current_step += 1
+        self.map_widget.after(self.interval, self.animate_step)
