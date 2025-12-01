@@ -190,19 +190,19 @@ class VentanaPrincipal:
         ttk.Separator(frame_controles_mapa, orient=tk.VERTICAL).pack(side=tk.LEFT, padx=5, fill=tk.Y)
         
         # Botones de control (vinculados directamente a self.mapa_widget)
-        self.btn_zoom_in = ttk.Button(frame_controles_mapa, text="+", width=3, command=self.mapa_widget.zoom_in)
-        self.btn_zoom_in.pack(side=tk.LEFT, padx=2)
+        # self.btn_zoom_in = ttk.Button(frame_controles_mapa, text="+", width=3, command=self.mapa_widget.zoom_in)
+        # self.btn_zoom_in.pack(side=tk.LEFT, padx=2)
         
-        self.btn_zoom_out = ttk.Button(frame_controles_mapa, text="-", width=3, command=self.mapa_widget.zoom_out)
-        self.btn_zoom_out.pack(side=tk.LEFT, padx=2)
+        # self.btn_zoom_out = ttk.Button(frame_controles_mapa, text="-", width=3, command=self.mapa_widget.zoom_out)
+        # self.btn_zoom_out.pack(side=tk.LEFT, padx=2)
         
-        self.btn_pan = ttk.Button(frame_controles_mapa, text="Pan", width=5, command=self.mapa_widget.activar_pan)
-        self.btn_pan.pack(side=tk.LEFT, padx=2)
+        # self.btn_pan = ttk.Button(frame_controles_mapa, text="Pan", width=5, command=self.mapa_widget.activar_pan)
+        # self.btn_pan.pack(side=tk.LEFT, padx=2)
         
-        self.btn_area = ttk.Button(frame_controles_mapa, text="Área", width=5, command=self.mapa_widget.activar_zoom_area)
+        self.btn_area = ttk.Button(frame_controles_mapa, text="⛶ Área", width=8, command=self.mapa_widget.activar_zoom_area)
         self.btn_area.pack(side=tk.LEFT, padx=2)
         
-        self.btn_centrar = ttk.Button(frame_controles_mapa, text="Centrar", width=7, command=self.mapa_widget.centrar)
+        self.btn_centrar = ttk.Button(frame_controles_mapa, text="🎯 Centrar", width=10, command=self.mapa_widget.centrar)
         self.btn_centrar.pack(side=tk.LEFT, padx=2)
         
         # Variables para zoom area (ya no se usan aquí, están en MapaWidget)

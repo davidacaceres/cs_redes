@@ -336,15 +336,15 @@ class MapaWidget:
         
         return True
     
-    def zoom_in(self):
-        """Acerca el zoom."""
-        if self.map_widget:
-            self.map_widget.set_zoom(self.map_widget.zoom + 1)
+    # def zoom_in(self):
+    #     """Acerca el zoom."""
+    #     if self.map_widget:
+    #         self.map_widget.set_zoom(self.map_widget.zoom + 1)
     
-    def zoom_out(self):
-        """Aleja el zoom."""
-        if self.map_widget:
-            self.map_widget.set_zoom(self.map_widget.zoom - 1)
+    # def zoom_out(self):
+    #     """Aleja el zoom."""
+    #     if self.map_widget:
+    #         self.map_widget.set_zoom(self.map_widget.zoom - 1)
     
     def centrar(self):
         """Centra el mapa en los bounds originales."""
@@ -360,17 +360,17 @@ class MapaWidget:
         self.map_widget.canvas_path_list.append(sonar)
         sonar.iniciar_animacion()
     
-    def activar_pan(self):
-        """Activa el modo panorámico (navegación normal)."""
-        if self.map_widget:
-            self.map_widget.canvas.bind("<Button-1>", self.map_widget.mouse_click)
-            self.map_widget.canvas.bind("<B1-Motion>", self.map_widget.mouse_move)
-            self.map_widget.canvas.bind("<ButtonRelease-1>", self.map_widget.mouse_release)
-            self.map_widget.canvas.config(cursor="arrow")
+    # def activar_pan(self):
+    #     """Activa el modo panorámico (navegación normal)."""
+    #     if self.map_widget:
+    #         self.map_widget.canvas.bind("<Button-1>", self.map_widget.mouse_click)
+    #         self.map_widget.canvas.bind("<B1-Motion>", self.map_widget.mouse_move)
+    #         self.map_widget.canvas.bind("<ButtonRelease-1>", self.map_widget.mouse_release)
+    #         self.map_widget.canvas.config(cursor="arrow")
             
-            if self.zoom_rect_id:
-                self.map_widget.canvas.delete(self.zoom_rect_id)
-                self.zoom_rect_id = None
+    #         if self.zoom_rect_id:
+    #             self.map_widget.canvas.delete(self.zoom_rect_id)
+    #             self.zoom_rect_id = None
     
     def activar_zoom_area(self):
         """Activa el modo zoom por área."""
