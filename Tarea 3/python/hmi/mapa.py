@@ -40,6 +40,140 @@ class FastNetworkOverlay:
         self.deleted = False
         self.last_upper_left_tile_pos = None
         
+        # Tooltip
+        self.tooltip_label = None
+        self._setup_tooltip()
+
+    def _setup_tooltip(self):
+        """Configura el label del tooltip."""
+        self.tooltip_label = tk.Label(
+            self.map_widget, 
+            text="", 
+            bg="#ffffe0", 
+            relief="solid", 
+            borderwidth=1,
+            font=("Arial", 8),
+            justify=tk.LEFT
+        )
+
+    def _on_enter(self, event):
+        """Maneja el evento de entrada del mouse sobre una arista."""
+        # Encontrar el ítem del canvas bajo el mouse
+        item = self.map_widget.canvas.find_withtag("current")
+        if not item:
+            return
+            
+        tags = self.map_widget.canvas.gettags(item)
+        edge_index = -1
+        
+        # Buscar tag de índice
+        for tag in tags:
+            if tag.startswith("edge_idx_"):
+                try:
+                    edge_index = int(tag.split("_")[-1])
+                    break
+                except ValueError:
+                    pass
+        
+        if edge_index >= 0 and edge_index < len(self.edges_list):
+            edge_data = self.edges_list[edge_index]
+            # Extraer atributos si existen (4to elemento)
+            if len(edge_data) >= 4:
+                attrs = edge_data[3]
+                if attrs:
+                    # Formatear texto del tooltip
+                    text = "Información de Arista:\n"
+                    for k, v in attrs.items():
+                        # Filtrar atributos internos o muy largos si es necesario
+                        if k not in ['geometry', 'osmid']: 
+                            text += f"{k}: {v}\n"
+                    
+                    self.tooltip_label.config(text=text.strip())
+                    
+                    # Posicionar tooltip cerca del mouse
+                    x, y = event.x_root - self.map_widget.winfo_rootx() + 15, event.y_root - self.map_widget.winfo_rooty() + 15
+                    
+                    # Ajustar si se sale de la pantalla (básico)
+                    if x + self.tooltip_label.winfo_reqwidth() > self.map_widget.winfo_width():
+                        x -= self.tooltip_label.winfo_reqwidth() + 20
+                        
+                    self.tooltip_label.place(x=x, y=y)
+                    self.tooltip_label.lift()
+
+    def _on_leave(self, event):
+        """Maneja el evento de salida del mouse."""
+        if self.tooltip_label:
+            self.tooltip_label.place_forget()
+        
+        # Tooltip
+        self.tooltip_label = None
+        self._setup_tooltip()
+
+    def _setup_tooltip(self):
+        """Configura el label del tooltip."""
+        self.tooltip_label = tk.Label(
+            self.map_widget, 
+            text="", 
+            bg="#ffffe0", 
+            relief="solid", 
+            borderwidth=1,
+            font=("Arial", 8),
+            justify=tk.LEFT
+        )
+
+    def _on_enter(self, event):
+        """Maneja el evento de entrada del mouse sobre una arista."""
+        # Encontrar el ítem del canvas bajo el mouse
+        item = self.map_widget.canvas.find_withtag("current")
+        if not item:
+            return
+            
+        tags = self.map_widget.canvas.gettags(item)
+        edge_index = -1
+        
+        # Buscar tag de índice
+        for tag in tags:
+            if tag.startswith("edge_idx_"):
+                try:
+                    edge_index = int(tag.split("_")[-1])
+                    break
+                except ValueError:
+                    pass
+        
+        if edge_index >= 0 and edge_index < len(self.edges_list):
+            edge_data = self.edges_list[edge_index]
+            # Extraer atributos si existen (4to elemento)
+            if len(edge_data) >= 4:
+                attrs = edge_data[3]
+                if attrs:
+                    # Formatear texto del tooltip
+                    text = ""
+                    for k, v in attrs.items():
+                        # Filtrar atributos internos o muy largos si es necesario
+                        if k == 'duration_avg':
+                            text += f"Tiempo promedio: {v} [seg]\n"
+                        elif k == 'd':
+                            text += f"Distancia: {v} mtrs.\n"
+                        elif k not in ['geometry', 'osmid','shape_id','n_vehicles','route_I_counts','direction_id','headsign']: 
+                            text += f"{k}: {v}\n"
+                    
+                    self.tooltip_label.config(text=text.strip())
+                    
+                    # Posicionar tooltip cerca del mouse
+                    x, y = event.x_root - self.map_widget.winfo_rootx() + 15, event.y_root - self.map_widget.winfo_rooty() + 15
+                    
+                    # Ajustar si se sale de la pantalla (básico)
+                    if x + self.tooltip_label.winfo_reqwidth() > self.map_widget.winfo_width():
+                        x -= self.tooltip_label.winfo_reqwidth() + 20
+                        
+                    self.tooltip_label.place(x=x, y=y)
+                    self.tooltip_label.lift()
+
+    def _on_leave(self, event):
+        """Maneja el evento de salida del mouse."""
+        if self.tooltip_label:
+            self.tooltip_label.place_forget()
+        
     def delete(self):
         self.deleted = True
         self.map_widget.canvas.delete(self.tag_name)
@@ -82,13 +216,17 @@ class FastNetworkOverlay:
             scale_x = self.map_widget.width / widget_tile_width
             scale_y = self.map_widget.height / widget_tile_height
             
-            for edge_data in self.edges_list:
-                # Soportar formato con o sin color
-                if len(edge_data) == 3:
-                    p1, p2, edge_color = edge_data
+            for i, edge_data in enumerate(self.edges_list):
+                # Soportar formato con o sin color y atributos
+                # Formatos: (p1, p2), (p1, p2, color), (p1, p2, color, attrs)
+                edge_color = self.default_color
+                
+                if len(edge_data) >= 3:
+                    p1 = edge_data[0]
+                    p2 = edge_data[1]
+                    edge_color = edge_data[2]
                 else:
                     p1, p2 = edge_data
-                    edge_color = self.default_color
                 
                 tile_pos1 = decimal_to_osm(p1[0], p1[1], zoom)
                 x1 = (tile_pos1[0] - upper_left[0]) * scale_x
@@ -103,11 +241,20 @@ class FastNetworkOverlay:
                    (y1 < 0 and y2 < 0) or (y1 > self.map_widget.height and y2 > self.map_widget.height):
                     continue
                 
-                self.map_widget.canvas.create_line(x1, y1, x2, y2, fill=edge_color, width=self.width, 
+                # Crear línea con tags para identificación
+                line_id = self.map_widget.canvas.create_line(x1, y1, x2, y2, fill=edge_color, width=self.width, 
                                                    capstyle="round", joinstyle="round",
-                                                   tag=(self.tag_name, "path"))
+                                                   tag=(self.tag_name, "path", f"edge_idx_{i}"))
+                
+                # Bindings para tooltip (solo si hay atributos)
+                if len(edge_data) >= 4 and edge_data[3]:
+                    self.map_widget.canvas.tag_bind(line_id, "<Enter>", self._on_enter)
+                    self.map_widget.canvas.tag_bind(line_id, "<Leave>", self._on_leave)
         
+        self.map_widget.canvas.tag_raise(self.tag_name)
         self.last_upper_left_tile_pos = self.map_widget.upper_left_tile_pos
+            
+
 
 
 class FastNodeOverlay:
@@ -306,7 +453,8 @@ class MapaWidget:
                 
                 edges_coords.append([(u_attrs['lat'], u_attrs['lon']), 
                                     (v_attrs['lat'], v_attrs['lon']),
-                                    color])
+                                    color,
+                                    edge_attrs]) # Pasar atributos completos
         
         # Recopilar nodos
         for nodo in grafo.nodos():
