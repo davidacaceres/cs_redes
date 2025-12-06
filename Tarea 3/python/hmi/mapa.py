@@ -260,9 +260,10 @@ class FastNetworkOverlay:
 class FastNodeOverlay:
     """Overlay optimizado para renderizar nodos de red."""
     
-    def __init__(self, map_widget, nodes_list, color="red", radius=3):
+    def __init__(self, map_widget, nodes_list, callback=None, color="red", radius=3):
         self.map_widget = map_widget
-        self.nodes_list = nodes_list
+        self.nodes_list = nodes_list # List of (lat, lon, attrs, node_id)
+        self.callback = callback
         self.color = color
         self.radius = radius
         self.tag_name = f"network_nodes_{id(self)}"
@@ -405,9 +406,36 @@ class FastNodeOverlay:
                 if len(node_data) >= 3 and node_data[2]:
                     self.map_widget.canvas.tag_bind(marker_id, "<Enter>", self._on_enter)
                     self.map_widget.canvas.tag_bind(marker_id, "<Leave>", self._on_leave)
+                
+                # Binding para clic (si hay callback)
+                self.map_widget.canvas.tag_bind(marker_id, "<Button-1>", self._on_click)
         
         self.map_widget.canvas.tag_raise(self.tag_name)
         self.last_upper_left_tile_pos = self.map_widget.upper_left_tile_pos
+
+    def _on_click(self, event):
+        """Maneja el clic en un nodo."""
+        if not self.callback:
+            return
+            
+        item = self.map_widget.canvas.find_withtag("current")
+        if not item: return
+
+        tags = self.map_widget.canvas.gettags(item)
+        node_index = -1
+        for tag in tags:
+            if tag.startswith("node_idx_"):
+                try:
+                    node_index = int(tag.split("_")[-1])
+                    break
+                except ValueError: pass
+        
+        if node_index >= 0 and node_index < len(self.nodes_list):
+            node_data = self.nodes_list[node_index]
+            # Intentar obtener ID del nodo (4to elemento si existe)
+            if len(node_data) >= 4:
+                node_id = node_data[3]
+                self.callback(node_id)
 
 
 class MapaWidget:
@@ -427,6 +455,7 @@ class MapaWidget:
         self.network_overlay = None
         self.nodes_overlay = None
         self.original_bounds = None
+        self.callback_clic_nodo = None
         
         # Variables para zoom por área
         self.zoom_rect_id = None
@@ -440,6 +469,11 @@ class MapaWidget:
             self.map_widget.pack(fill="both", expand=True)
             return True
         return False
+    
+    def set_callback_clic_nodo(self, callback):
+        """Define la función a llamar cuando se hace clic en un nodo del mapa.
+           El callback recibe el ID del nodo como argumento."""
+        self.callback_clic_nodo = callback
     
     def limpiar(self):
         """Limpia el mapa y sus overlays."""
@@ -541,7 +575,8 @@ class MapaWidget:
         for nodo in grafo.nodos():
             attrs = grafo.atributos_nodos.get(nodo, {})
             if 'lat' in attrs and 'lon' in attrs:
-                nodes_coords.append((attrs['lat'], attrs['lon'], attrs))
+                # Incluimos el ID 'nodo' como 4to elemento
+                nodes_coords.append((attrs['lat'], attrs['lon'], attrs, nodo))
         
         # Crear overlays
         if edges_coords:
@@ -552,6 +587,7 @@ class MapaWidget:
         
         if nodes_coords:
             self.nodes_overlay = FastNodeOverlay(self.map_widget, nodes_coords, 
+                                                 callback=self.callback_clic_nodo,
                                                  color="red", radius=3)
             self.map_widget.canvas_path_list.append(self.nodes_overlay)
             print(f"[INFO] Agregados {len(nodes_coords)} nodos usando FastNodeOverlay")

@@ -22,6 +22,7 @@ class GrafoInteractivo(tk.Canvas):
         self.drag_data = {"x": 0, "y": 0}
         self.callback_doble_clic = None
         self.pos_geo_cache = {} # Cache de coordenadas geográficas {nodo_id: (lon, lat)}
+        self.id_mapping = {} # Mapeo de Original -> Display ID
         
         # Bindings de Nodos
         self.tag_bind("nodo", "<Button-1>", self._on_click_nodo)
@@ -100,6 +101,7 @@ class GrafoInteractivo(tk.Canvas):
         
         # Renumerar nodos (1..N)
         mapping = {node: i for i, node in enumerate(G.nodes(), 1)}
+        self.id_mapping = mapping # Guardar para traducción inversa (Original -> Display)
         G = nx.relabel_nodes(G, mapping)
         
         # Actualizar claves de pos_geo y cache
@@ -340,3 +342,59 @@ class GrafoInteractivo(tk.Canvas):
                 print(f"[INFO] Doble clic en nodo {nodo_id}. Centrando mapa en ({lat}, {lon})")
             else:
                 print(f"[WARN] Nodo {nodo_id} no tiene coordenadas geográficas asociadas.")
+
+    def mostrar_sonar(self, nodo_id_input):
+        """Muestra una animación tipo sonar en el nodo especificado."""
+        nodo_id = nodo_id_input
+        
+        # Resolver ID: Si llega Original, convertir a Display
+        if nodo_id not in self.nodo_a_items:
+            # Buscar en mapping (Key=Original, Value=Display)
+            # Como nodo_id_input puede ser int o str, probamos directo
+            if nodo_id in self.id_mapping:
+                nodo_id = self.id_mapping[nodo_id]
+            else:
+                # Intentar conversión de tipos si es necesario
+                try:
+                    # Si el input es string pero el mapping tiene ints, o viceversa
+                    if str(nodo_id) in self.id_mapping:
+                         nodo_id = self.id_mapping[str(nodo_id)]
+                    elif int(nodo_id) in self.id_mapping:
+                         nodo_id = self.id_mapping[int(nodo_id)]
+                except (ValueError, TypeError):
+                    pass
+        
+        if nodo_id not in self.nodo_a_items:
+            print(f"[WARN] Nodo {nodo_id_input} no encontrado en topología.")
+            return
+            
+        x, y = self._get_nodo_center(nodo_id)
+        
+        # Crear circulo inicial
+        r = self.radio_nodo
+        sonar_id = self.create_oval(x-r, y-r, x+r, y+r, outline="#0078D7", width=3, stipple="gray50")
+        
+        self._animar_sonar(sonar_id, x, y, r, 0)
+
+    def _animar_sonar(self, item_id, x, y, radio_actual, paso):
+        """Anima el círculo de sonar expandiéndolo."""
+        max_pasos = 20
+        max_radio = 100
+        
+        if paso >= max_pasos:
+            self.delete(item_id)
+            return
+            
+        # Calcular nuevo radio (interpolación lineal simple)
+        progreso = paso / max_pasos
+        nuevo_radio = self.radio_nodo + (max_radio - self.radio_nodo) * progreso
+        
+        # Actualizar coordenadas
+        self.coords(item_id, x - nuevo_radio, y - nuevo_radio, x + nuevo_radio, y + nuevo_radio)
+        
+        # Desvanecer (simulado con ancho, ya que alpha no es directo en tkinter canvas items sin complicaciones)
+        width = max(1, int(4 * (1 - progreso)))
+        self.itemconfigure(item_id, width=width)
+        
+        # Próximo frame en 50ms
+        self.after(50, lambda: self._animar_sonar(item_id, x, y, nuevo_radio, paso + 1))

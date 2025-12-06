@@ -207,6 +207,9 @@ class VentanaPrincipal:
         self.btn_centrar = ttk.Button(frame_controles_mapa, text="🎯 Centrar", width=10, command=self.mapa_widget.centrar)
         self.btn_centrar.pack(side=tk.LEFT, padx=2)
         
+        # Callback de clic en nodo del mapa
+        self.mapa_widget.set_callback_clic_nodo(self.on_clic_nodo_mapa)
+        
         # Variables para zoom area (ya no se usan aquí, están en MapaWidget)
         # self.zoom_rect_id = None
         # self.start_x = None
@@ -248,8 +251,8 @@ class VentanaPrincipal:
         
         # Configurar grid para división 50/50
         frame_info.columnconfigure(0, weight=1)
-        frame_info.rowconfigure(0, weight=1)  # 50%
-        frame_info.rowconfigure(1, weight=1)  # 50%
+        frame_info.rowconfigure(0, weight=1, uniform="split")  # 50%
+        frame_info.rowconfigure(1, weight=1, uniform="split")  # 50%
         
         # 1. Frame Superior: Notebook con Tabla y Gráfico Radar
         self.notebook_info_top = ttk.Notebook(frame_info)
@@ -320,6 +323,12 @@ class VentanaPrincipal:
             
             # Mostrar efecto sonar siempre
             self.mapa_widget.mostrar_sonar(lat, lon)
+
+    def on_clic_nodo_mapa(self, nodo_id):
+        """Maneja el clic en un nodo del mapa geográfico."""
+        if self.grafo_interactivo:
+            self.grafo_interactivo.mostrar_sonar(nodo_id)
+            print(f"[INFO] Clic en mapa nodo {nodo_id}. Mostrando sonar en topología.")
     
     def crear_tab_robustez(self):
         """Crea el tab de métricas de robustez."""
