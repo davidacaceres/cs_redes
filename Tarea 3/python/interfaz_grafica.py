@@ -35,6 +35,7 @@ import queue
 import time
 import os
 import markdown
+import base64
 from tkhtmlview import HTMLText, HTMLLabel
 
 from utils.gemini_service import GeminiAnalyzer
@@ -49,7 +50,7 @@ import procesar_redes
 import visualizacion
 from hmi.mapa import MapaWidget
 from hmi.grafo_interactivo import GrafoInteractivo
-from PIL import ImageGrab
+from PIL import ImageGrab, Image, ImageTk
 
 class VentanaPrincipal:
     """Ventana principal de la aplicación GUI.
@@ -146,6 +147,14 @@ class VentanaPrincipal:
         style.map("AI.TButton",
                   foreground=[('active', '#7c43bd'), ('pressed', '#4a148c')],
                   background=[('active', '#f3e5f5')])
+                  
+        # Estilo para botón Acerca de (Azul discreto pero elegante)
+        style.configure("About.TButton", 
+                        font=("Segoe UI", 9),
+                        foreground="#0056b3")
+        style.map("About.TButton",
+                  foreground=[('active', '#003d80')],
+                  font=[('active', ("Segoe UI", 9, "underline"))])
 
     
     def crear_interfaz(self):
@@ -192,6 +201,11 @@ class VentanaPrincipal:
         # Botón Generar
         self.boton_generar = ttk.Button(frame_controles, text="Generar Análisis", command=self.generar_analisis)
         self.boton_generar.grid(row=0, column=4, padx=20)
+        
+        # Botón Acerca de (A la derecha)
+        # Usamos una columna vacía con peso para empujar a la derecha
+        frame_controles.columnconfigure(9, weight=1)
+        ttk.Button(frame_controles, text="Acerca de", style="About.TButton", command=self.mostrar_acerca_de).grid(row=0, column=10, padx=5, sticky=tk.E)
         
         # Cargar lista de ciudades inicial
         self.cargar_lista_ciudades()
@@ -1776,6 +1790,94 @@ class VentanaPrincipal:
 
 
     
+    def mostrar_acerca_de(self):
+        """Muestra un diálogo con información de la aplicación usando widgets nativos."""
+        popup = tk.Toplevel(self.ventana)
+        popup.title("Acerca de")
+        
+        w_p, h_p = 400, 520 
+        mw = self.ventana.winfo_width()
+        mh = self.ventana.winfo_height()
+        mx = self.ventana.winfo_rootx()
+        my = self.ventana.winfo_rooty()
+        x = mx + (mw - w_p) // 2
+        y = my + (mh - h_p) // 2
+        popup.geometry(f"{w_p}x{h_p}+{x}+{y}")
+        popup.transient(self.ventana)
+        popup.resizable(False, False)
+        
+        # Frame contenedor con padding
+        frame = ttk.Frame(popup, padding="20")
+        frame.pack(fill=tk.BOTH, expand=True)
+        
+        # 1. Imagen de Perfil Circular (Simulada o cuadrada redondeada)
+        # Usamos Canvas para mostrar la imagen
+        base_path = Path(__file__).parent.absolute()
+        ruta_perfil = base_path / "assets" / "perfil.png"
+        
+        if ruta_perfil.exists():
+            try:
+                pil_img = Image.open(ruta_perfil)
+                pil_img = pil_img.resize((100, 100), Image.Resampling.LANCZOS)
+                
+                # Crear máscara circular (opcional, por ahora cuadrada limpia se ve bien)
+                # self.photo_perfil debe persistir
+                self.photo_perfil = ImageTk.PhotoImage(pil_img)
+                
+                lbl_img = ttk.Label(frame, image=self.photo_perfil)
+                lbl_img.pack(pady=(0, 10))
+            except Exception as e:
+                print(f"Error cargando perfil: {e}")
+        
+        # 2. Título y Descripción
+        ttk.Label(frame, text="Redes de Transporte Público", font=("Segoe UI", 14, "bold"), foreground="#2c3e50").pack()
+        ttk.Label(frame, text="Tarea 3 - CS Redes", font=("Segoe UI", 10, "bold")).pack(pady=(0, 5))
+        
+        desc = "Analizador de robustez topológica y métricas de red.\nVisualización de grafos y cálculo de KPIs."
+        ttk.Label(frame, text=desc, justify=tk.CENTER, foreground="#666").pack(pady=(0, 15))
+        
+        ttk.Separator(frame, orient=tk.HORIZONTAL).pack(fill=tk.X, pady=10)
+        
+        # 3. Distribución Libre y GitHub
+        ttk.Label(frame, text="Distribución Libre", font=("Segoe UI", 9, "bold")).pack()
+        
+        # Botón/Link GitHub con Imagen
+        ruta_gh = base_path / "assets" / "github_logo.png"
+        if ruta_gh.exists():
+            try:
+                pil_gh = Image.open(ruta_gh)
+                pil_gh = pil_gh.resize((32, 32), Image.Resampling.LANCZOS)
+                self.photo_gh = ImageTk.PhotoImage(pil_gh)
+                
+                btn_gh = ttk.Button(frame, text=" Ver Repositorio", image=self.photo_gh, compound=tk.LEFT,
+                                  command=lambda: self.abrir_link("https://github.com/davidacaceres/cs_redes/tree/main/Tarea%203/python"))
+                btn_gh.pack(pady=5)
+            except Exception:
+                # Fallback texto
+                lbl_link = ttk.Label(frame, text="GitHub: davidacaceres/cs_redes", foreground="#0056b3", cursor="hand2")
+                lbl_link.pack(pady=5)
+                lbl_link.bind("<Button-1>", lambda e: self.abrir_link("https://github.com/davidacaceres/cs_redes/tree/main/Tarea%203/python"))
+        else:
+             lbl_link = ttk.Label(frame, text="GitHub: davidacaceres/cs_redes", foreground="#0056b3", cursor="hand2")
+             lbl_link.pack(pady=5)
+             lbl_link.bind("<Button-1>", lambda e: self.abrir_link("https://github.com/davidacaceres/cs_redes/tree/main/Tarea%203/python"))
+
+        
+        ttk.Separator(frame, orient=tk.HORIZONTAL).pack(fill=tk.X, pady=15)
+
+        # 4. Autor
+        ttk.Label(frame, text="Autor", font=("Segoe UI", 10, "bold")).pack()
+        ttk.Label(frame, text="David Alfonso Cáceres Ovalle", font=("Segoe UI", 11)).pack()
+        
+        # Email como link clickable
+        lbl_email = ttk.Label(frame, text="david.a.caceres@gmail.com", foreground="#0056b3", font=("Segoe UI", 9), cursor="hand2")
+        lbl_email.pack()
+        lbl_email.bind("<Button-1>", lambda e: self.abrir_link("mailto:david.a.caceres@gmail.com"))
+
+    def abrir_link(self, url):
+        import webbrowser
+        webbrowser.open_new(url)
+
     def ejecutar(self):
         """Ejecuta el loop principal de la aplicación."""
         self.ventana.mainloop()
