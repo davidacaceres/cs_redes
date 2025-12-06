@@ -27,20 +27,23 @@ Ejecutar la interfaz gráfica::
 from __future__ import annotations
 
 import tkinter as tk
-from tkinter import ttk, messagebox, filedialog
+from tkinter import ttk, messagebox, filedialog, simpledialog, scrolledtext
 from pathlib import Path
 from typing import Dict, Optional, List
 import threading
 import queue
 import time
 import os
+import markdown
+from tkhtmlview import HTMLText, HTMLLabel
+
+from utils.gemini_service import GeminiAnalyzer
 
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 import pandas as pd
 import numpy as np
 
-# Importar módulos del proyecto
 import preparar_redes
 import procesar_redes
 import visualizacion
@@ -90,16 +93,66 @@ class VentanaPrincipal:
         # Crear ventana
         self.ventana = tk.Tk()
         self.ventana.title("Análisis de Redes de Transporte Público")
-        self.ventana.geometry("1400x900")
+        self.ventana.geometry("1440x900")
+        self.ventana.minsize(1440, 900)
         
         # Crear interfaz
         self.crear_interfaz()
         
         # Iniciar verificación de cola
         self.ventana.after(100, self.verificar_cola)
+
+        # Descriptions for tooltips (Moved from summary tab)
+        self.cols_desc = {
+            "Country": "País de la red.",
+            "City": "Ciudad de la red.",
+            "N": "Número de nodos (estaciones).\nAlto: Red grande.\nBajo: Red pequeña.",
+            "L": "Número de enlaces (vías férreas).\nAlto: Red con muchas conexiones.",
+            "r_T": "Indicador de robustez normalizado r̄ᵀ.\nAlto: Alta robustez (muchas rutas alternativas).\nBajo: Baja robustez (estructura de árbol).",
+            "C_G": "Conductancia efectiva C_G.\nAlto: Alta conectividad y redundancia (difícil de embotellar).\nBajo: Pobre conectividad.",
+            "Efficiency": "Eficiencia global promedio E[1/H].\nAlto: Transporte eficiente (pocos saltos entre nodos).\nBajo: Red ineficiente o lineal.",
+            "Clustering": "Coeficiente de agrupamiento CC_G.\nAlto: Red con muchos triángulos (comunidades locales).\nBajo: Pocas conexiones entre vecinos.",
+            "Alg_Conn": "Conectividad algebraica normalizada μ̄ₙ₋₁.\nAlto: Muy difícil de desconectar (robusta).\nBajo: Fácil de partir en componentes (frágil).",
+            "Avg_Deg": "Grado promedio normalizado Ē[D].\nAlto: Red densa.\nBajo: Red dispersa.",
+            "Meshedness": "Coeficiente de mallado M_G.\nAlto: Estructura tipo malla con muchos ciclos.\nBajo: Estructura tipo árbol o lineal.",
+            "Rel_G": "Fiabilidad (Reliability).\nAlto (prox 1.0): Red confiable ante fallos aleatorios.\nBajo: Red propensa a desconectarse.",
+            "Nat_Conn": "Conectividad natural normalizada λ̄*.\nAlto: Alta redundancia de rutas y estabilidad.\nBajo: Baja redundancia.",
+            "Kappa": "Diversidad de grado κ.\nAlto: Red heterogénea (hub-and-spoke).\nBajo: Red homogénea (grados similares).",
+            "Inv_Kappa": "Inversa de diversidad 1/κ.\nAlto: Red homogénea (percolación difícil).\nBajo: Red heterogénea (hubs vulnerables a ataques).",
+            "f90_Targeted": "Umbral ataque grado (90% LCC).\nAlto: Se requiere eliminar muchos hubs para dañar la red (Robusta).\nBajo: Frágil ante ataques.",
+            "f90_Random": "Umbral fallo aleatorio (90% LCC).\nAlto: Soporta muchos fallos antes de degradarse.\nBajo: Se degrada rápido.",
+            "fc_Targeted": "Umbral colapso (Ataque Grado).\nAlto: Difícil de desintegrar completamente.\nBajo: Fácil de destruir atacando hubs.",
+            "fc_Random": "Umbral colapso (Fallo Aleatorio).\nAlto: Muy resiliente a fallos al azar.\nBajo: Se desintegra con pocos fallos.",
+            "Area": "Área del polígono de robustez.\nAlto: Red globalmente robusta en todas las métricas.\nBajo: Red frágil en general."
+        }
+        # Aliases
+        self.cols_desc["Metros"] = self.cols_desc["City"]
+        self.cols_desc["r̄ᵀ"] = self.cols_desc["r_T"]
+        self.cols_desc["μ̄ₙ₋₁"] = self.cols_desc["Alg_Conn"]
+        self.cols_desc["λ̄*"] = self.cols_desc["Nat_Conn"]
+        self.cols_desc["E[1/H]"] = self.cols_desc["Efficiency"]
+        
+        # Configurar estilos visuales
+        self.configurar_estilos()
+
+    def configurar_estilos(self):
+        """Configura estilos personalizados para widgets ttk."""
+        style = ttk.Style()
+        
+        # Estilo para botón de IA
+        style.configure("AI.TButton", 
+                        font=("Segoe UI", 9, "bold"), 
+                        foreground="#4a148c") # Púrpura oscuro
+        style.map("AI.TButton",
+                  foreground=[('active', '#7c43bd'), ('pressed', '#4a148c')],
+                  background=[('active', '#f3e5f5')])
+
     
     def crear_interfaz(self):
         """Crea todos los componentes de la interfaz."""
+        # Estado análisis flag
+        self.analisis_completado_flag = False
+        
         # Frame principal
         frame_principal = ttk.Frame(self.ventana, padding="10")
         frame_principal.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
@@ -128,7 +181,7 @@ class VentanaPrincipal:
         ttk.Label(frame_controles, text="Dataset:").grid(row=0, column=0, sticky=tk.W, padx=5)
         self.combo_dataset = ttk.Combobox(frame_controles, values=["Kujala", "Metro51"], state="readonly", width=15)
         self.combo_dataset.grid(row=0, column=1, sticky=tk.W, padx=5)
-        self.combo_dataset.current(0)
+        self.combo_dataset.current(1)
         self.combo_dataset.bind("<<ComboboxSelected>>", self.on_dataset_changed)
         
         # Ciudad/Red
@@ -146,23 +199,21 @@ class VentanaPrincipal:
     def crear_paneles(self, parent):
         """Crea los paneles de mapa y tabs con divisor redimensionable."""
         # Crear PanedWindow para permitir redimensionamiento
-        paned = ttk.PanedWindow(parent, orient=tk.HORIZONTAL)
+        # Usamos tk.PanedWindow en lugar de ttk para tener control de 'width' inicial (sash placement)
+        paned = tk.PanedWindow(parent, orient=tk.HORIZONTAL, sashrelief=tk.RAISED, sashwidth=4)
         paned.grid(row=1, column=0, columnspan=2, sticky=(tk.W, tk.E, tk.N, tk.S))
         
         # Panel izquierdo: Mapa
-        frame_mapa = ttk.LabelFrame(paned, text="Mapa Geográfico", padding="10")
+        frame_mapa = ttk.LabelFrame(paned, text="Espacio Geográfico", padding="10")
         frame_mapa.columnconfigure(0, weight=1)
 
         # frame_mapa.rowconfigure(0, weight=1) # Removed to prevent controls from expanding
         
-        # Canvas para matplotlib
-        # Canvas para matplotlib
-        
-        # 1. Canvas del mapa (primero para poder pasar self.mapa_widget a los controles)
+        # 1. Canvas del mapa
         self.frame_canvas_mapa = ttk.Frame(frame_mapa)
         self.frame_canvas_mapa.grid(row=1, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
         
-        frame_mapa.rowconfigure(1, weight=1) # Expand map, not controls
+        frame_mapa.rowconfigure(1, weight=1)
         
         # Label inicial
         self.label_mapa = ttk.Label(self.frame_canvas_mapa, text="Seleccione una red y presione 'Generar Análisis'", 
@@ -174,32 +225,18 @@ class VentanaPrincipal:
         frame_controles_mapa = ttk.Frame(frame_mapa)
         frame_controles_mapa.grid(row=0, column=0, sticky=(tk.W, tk.E), padx=5, pady=5)
         
-        ttk.Label(frame_controles_mapa, text="Proveedor de Mapa:").pack(side=tk.LEFT, padx=5)
+        ttk.Label(frame_controles_mapa, text="Base:").pack(side=tk.LEFT, padx=5)
         
-        self.combo_proveedor = ttk.Combobox(frame_controles_mapa, state="readonly", width=30)
-        self.combo_proveedor["values"] = [
-            "OpenStreetMap (Default)",
-            "Google Maps Normal",
-            "Google Maps Satélite",
-            "Google Maps Híbrido",
-            "OpenTopoMap"
-        ]
-        self.combo_proveedor.current(0)
+        self.combo_proveedor = ttk.Combobox(frame_controles_mapa, values=["Google Normal", "Google Satélite", "OpenStreetMap", "OpenTopoMap", "Google Híbrido"], state="readonly", width=15)
+        self.combo_proveedor.current(2)
         self.combo_proveedor.pack(side=tk.LEFT, padx=5)
         self.combo_proveedor.bind("<<ComboboxSelected>>", self.cambiar_proveedor_mapa)
-        
+
         # Separador
         ttk.Separator(frame_controles_mapa, orient=tk.VERTICAL).pack(side=tk.LEFT, padx=5, fill=tk.Y)
         
+        
         # Botones de control (vinculados directamente a self.mapa_widget)
-        # self.btn_zoom_in = ttk.Button(frame_controles_mapa, text="+", width=3, command=self.mapa_widget.zoom_in)
-        # self.btn_zoom_in.pack(side=tk.LEFT, padx=2)
-        
-        # self.btn_zoom_out = ttk.Button(frame_controles_mapa, text="-", width=3, command=self.mapa_widget.zoom_out)
-        # self.btn_zoom_out.pack(side=tk.LEFT, padx=2)
-        
-        # self.btn_pan = ttk.Button(frame_controles_mapa, text="Pan", width=5, command=self.mapa_widget.activar_pan)
-        # self.btn_pan.pack(side=tk.LEFT, padx=2)
         
         self.btn_area = ttk.Button(frame_controles_mapa, text="⛶ Área", width=8, command=self.mapa_widget.activar_zoom_area)
         self.btn_area.pack(side=tk.LEFT, padx=2)
@@ -210,11 +247,7 @@ class VentanaPrincipal:
         # Callback de clic en nodo del mapa
         self.mapa_widget.set_callback_clic_nodo(self.on_clic_nodo_mapa)
         
-        # Variables para zoom area (ya no se usan aquí, están en MapaWidget)
-        # self.zoom_rect_id = None
-        # self.start_x = None
-        # self.start_y = None
-        # self.original_bounds = None
+
 
         # Panel derecho: Tabs
         frame_tabs = ttk.LabelFrame(paned, text="Análisis", padding="10")
@@ -226,8 +259,9 @@ class VentanaPrincipal:
         self.notebook.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
         
         # Agregar paneles al PanedWindow
-        paned.add(frame_mapa, weight=1)
-        paned.add(frame_tabs, weight=1)
+        # Ancho inicial del mapa aprox. 30%
+        paned.add(frame_mapa, minsize=350, width=700, stretch="always") 
+        paned.add(frame_tabs, minsize=600, stretch="always")
         
         # Tab 1: Información General
         self.crear_tab_info()
@@ -238,8 +272,7 @@ class VentanaPrincipal:
         # Tab 3: Componentes
         self.crear_tab_componentes()
         
-        # Tab 3.5: Resumen (Tabla)
-        self.crear_tab_resumen()
+
 
         # Tab 4: Exportar
         self.crear_tab_exportar()
@@ -262,6 +295,18 @@ class VentanaPrincipal:
         frame_tabla = ttk.Frame(self.notebook_info_top, padding="5")
         self.notebook_info_top.add(frame_tabla, text="Métricas")
         
+        # Header con botón de IA (ahora arriba)
+        frame_header_tabla = ttk.Frame(frame_tabla)
+        frame_header_tabla.pack(side=tk.TOP, fill=tk.X, pady=(0, 5))
+        
+        ttk.Label(frame_header_tabla, text="Resumen de Métricas", font=("Segoe UI", 10, "bold")).pack(side=tk.LEFT, pady=2)
+        
+        btn_ia = ttk.Button(frame_header_tabla, 
+                           text="✨ Generar Análisis con IA", 
+                           command=self.abrir_analisis_gemini,
+                           style="AI.TButton")
+        btn_ia.pack(side=tk.RIGHT)
+        
         columns = ("Métrica", "Valor")
         self.tree_info = ttk.Treeview(frame_tabla, columns=columns, show="headings", height=8) # Height reducido
         self.tree_info.heading("Métrica", text="Métrica")
@@ -275,11 +320,18 @@ class VentanaPrincipal:
         self.tree_info.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
         scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
         
+        # Botones de la tabla (Frame inferior) - REMOVIDO
+        # frame_btn_tabla = ttk.Frame(frame_tabla)
+        # frame_btn_tabla.pack(side=tk.BOTTOM, fill=tk.X, pady=5)
+        # ttk.Button(frame_btn_tabla, text="✨ Analizar con IA", command=self.abrir_analisis_gemini).pack(side=tk.RIGHT, padx=5)
+        
         # Tooltips para tree_info
+        self.tooltip_window = None
+        self.tooltip_label = None
         self.tree_info.bind("<Motion>", self._on_info_tree_motion)
         self.tree_info.bind("<Leave>", self._hide_tooltip)
         
-        # Tab 1.2: Gráfico Radar (Como en la foto)
+        # Tab 1.2: Gráfico Radar
         self.frame_radar = ttk.Frame(self.notebook_info_top, padding="5")
         self.notebook_info_top.add(self.frame_radar, text="Gráfico Radial")
         
@@ -354,203 +406,7 @@ class VentanaPrincipal:
         frame_componentes.columnconfigure(0, weight=1)
         frame_componentes.rowconfigure(0, weight=1)
 
-    def crear_tab_resumen(self):
-        """Crea el tab de resumen (Tabla General)."""
-        frame_resumen = ttk.Frame(self.notebook, padding="10")
-        self.notebook.add(frame_resumen, text="Resumen")
-        
-        # Botón cargar
-        # ttk.Button(frame_resumen, text="Recargar Tabla", command=self.cargar_tabla_resumen).pack(pady=(0, 10))
-        
-        # Treeview Container
-        frame_tabla = ttk.Frame(frame_resumen)
-        frame_tabla.pack(fill=tk.BOTH, expand=True)
-        
-        # Scrollbars
-        scroll_y = ttk.Scrollbar(frame_tabla, orient=tk.VERTICAL)
-        scroll_x = ttk.Scrollbar(frame_tabla, orient=tk.HORIZONTAL)
-        
-        # Treeview
-        self.tree_resumen = ttk.Treeview(
-            frame_tabla, 
-            yscrollcommand=scroll_y.set, 
-            xscrollcommand=scroll_x.set,
-            selectmode="browse"
-        )
-        
-        scroll_y.config(command=self.tree_resumen.yview)
-        scroll_x.config(command=self.tree_resumen.xview)
-        
-        scroll_y.pack(side=tk.RIGHT, fill=tk.Y)
-        scroll_x.pack(side=tk.BOTTOM, fill=tk.X)
-        self.tree_resumen.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
-        
-        # Tooltip setup
-        self.tooltip_label = None
-        self.tooltip_window = None
-        self.tree_resumen.bind("<Motion>", self._on_tree_motion)
-        self.tree_resumen.bind("<Leave>", self._hide_tooltip)
-        
-        # Descriptions (Hardcoded for simplicity and speed)
-        # Descriptions with Interpretations
-        self.cols_desc = {
-            "Country": "País de la red.",
-            "City": "Ciudad de la red.",
-            "N": "Número de nodos (estaciones).\nAlto: Red grande.\nBajo: Red pequeña.",
-            "L": "Número de enlaces (vías férreas).\nAlto: Red con muchas conexiones.",
-            "r_T": "Indicador de robustez normalizado r̄ᵀ.\nAlto: Alta robustez (muchas rutas alternativas).\nBajo: Baja robustez (estructura de árbol).",
-            "C_G": "Conductancia efectiva C_G.\nAlto: Alta conectividad y redundancia (difícil de embotellar).\nBajo: Pobre conectividad.",
-            "Efficiency": "Eficiencia global promedio E[1/H].\nAlto: Transporte eficiente (pocos saltos entre nodos).\nBajo: Red ineficiente o lineal.",
-            "Clustering": "Coeficiente de agrupamiento CC_G.\nAlto: Red con muchos triángulos (comunidades locales).\nBajo: Pocas conexiones entre vecinos.",
-            "Alg_Conn": "Conectividad algebraica normalizada μ̄ₙ₋₁.\nAlto: Muy difícil de desconectar (robusta).\nBajo: Fácil de partir en componentes (frágil).",
-            "Avg_Deg": "Grado promedio normalizado Ē[D].\nAlto: Red densa.\nBajo: Red dispersa.",
-            "Meshedness": "Coeficiente de mallado M_G.\nAlto: Estructura tipo malla con muchos ciclos.\nBajo: Estructura tipo árbol o lineal.",
-            "Rel_G": "Fiabilidad (Reliability).\nAlto (prox 1.0): Red confiable ante fallos aleatorios.\nBajo: Red propensa a desconectarse.",
-            "Nat_Conn": "Conectividad natural normalizada λ̄*.\nAlto: Alta redundancia de rutas y estabilidad.\nBajo: Baja redundancia.",
-            "Kappa": "Diversidad de grado κ.\nAlto: Red heterogénea (hub-and-spoke).\nBajo: Red homogénea (grados similares).",
-            "Inv_Kappa": "Inversa de diversidad 1/κ.\nAlto: Red homogénea (percolación difícil).\nBajo: Red heterogénea (hubs vulnerables a ataques).",
-            "f90_Targeted": "Umbral ataque grado (90% LCC).\nAlto: Se requiere eliminar muchos hubs para dañar la red (Robusta).\nBajo: Frágil ante ataques.",
-            "f90_Random": "Umbral fallo aleatorio (90% LCC).\nAlto: Soporta muchos fallos antes de degradarse.\nBajo: Se degrada rápido.",
-            "fc_Targeted": "Umbral colapso (Ataque Grado).\nAlto: Difícil de desintegrar completamente.\nBajo: Fácil de destruir atacando hubs.",
-            "fc_Random": "Umbral colapso (Fallo Aleatorio).\nAlto: Muy resiliente a fallos al azar.\nBajo: Se desintegra con pocos fallos.",
-            "Area": "Área del polígono de robustez.\nAlto: Red globalmente robusta en todas las métricas.\nBajo: Red frágil en general."
-        }
-        
-        # Aliases para compatibilidad con Tab Análisis (que usa símbolos científicos)
-        # y Tab Resumen (que usa claves CSV internas)
-        self.cols_desc["Metros"] = self.cols_desc["City"]
-        self.cols_desc["r̄ᵀ"] = self.cols_desc["r_T"]
-        self.cols_desc["μ̄ₙ₋₁"] = self.cols_desc["Alg_Conn"]
-        self.cols_desc["λ̄*"] = self.cols_desc["Nat_Conn"]
-        self.cols_desc["E[1/H]"] = self.cols_desc["Efficiency"]
-        self.cols_desc["CC_G"] = self.cols_desc["Clustering"]
-        self.cols_desc["Ē[D]"] = self.cols_desc["Avg_Deg"]
-        self.cols_desc["M_G"] = self.cols_desc["Meshedness"]
-        self.cols_desc["1/κ"] = self.cols_desc["Inv_Kappa"]
-        self.cols_desc["f₉₀%-degree"] = self.cols_desc["f90_Targeted"]
-        self.cols_desc["f₉₀%-random"] = self.cols_desc["f90_Random"]
-        self.cols_desc["f_c-degree"] = self.cols_desc["fc_Targeted"]
-        self.cols_desc["f_c-random"] = self.cols_desc["fc_Random"]
 
-    def _on_info_tree_motion(self, event):
-        """Muestra tooltip en el tree_info (Tab Análisis)."""
-        # Identificar item bajo el mouse
-        item_id = self.tree_info.identify_row(event.y)
-        if not item_id:
-            self._hide_tooltip()
-            return
-
-        # Obtener valores del item (Métrica, Valor)
-        vals = self.tree_info.item(item_id, "values")
-        if not vals:
-            self._hide_tooltip()
-            return
-            
-        metrica_key = vals[0] # Primera columna es el nombre de la métrica
-        
-        if hasattr(self, 'cols_desc'):
-            desc = self.cols_desc.get(metrica_key, "")
-            if desc:
-                self._show_tooltip(event.x_root, event.y_root, f"{metrica_key}\n{desc}")
-            else:
-                self._hide_tooltip()
-        else:
-            self._hide_tooltip()
-        
-        # Cargar datos automágicamente
-        self.ventana.after(100, self.cargar_tabla_resumen)
-
-    def cargar_tabla_resumen(self):
-        """Carga el CSV de resumen en el Treeview."""
-        # Ruta hardcoded según solicitud: utils/resultados_metro_robustez_completo.csv
-        # Asumiendo estructura de proyecto: python/interfaz_grafica.py -> python/utils/...
-        # self.directorio_datos apunta a 'data'
-        # El script está en 'python'. utils está en 'python/utils'.
-        
-        try:
-            ruta_csv = Path(__file__).parent / "utils" / "resultados_metro_robustez_completo.csv"
-            if not ruta_csv.exists():
-                # Fallback: intentar en CWD
-                ruta_csv = Path("utils") / "resultados_metro_robustez_completo.csv"
-            
-            if not ruta_csv.exists():
-                print(f"[WARN] No se encontró CSV resumen en {ruta_csv}")
-                return
-
-            df = pd.read_csv(ruta_csv)
-            
-            # Limpiar tree
-            self.tree_resumen.delete(*self.tree_resumen.get_children())
-            
-            # Configurar columnas
-            cols = list(df.columns)
-            self.tree_resumen["columns"] = cols
-            self.tree_resumen["show"] = "headings" # Ocultar columna fantasma #0
-            
-            # Mapa de nombres CSV a Símbolos Científicos
-            header_map = {
-                "r_T": "r̄ᵀ",
-                "Alg_Conn": "μ̄ₙ₋₁",
-                "Nat_Conn": "λ̄*",
-                "Efficiency": "E[1/H]",
-                "Clustering": "CC_G",
-                "Avg_Deg": "Ē[D]",
-                "Meshedness": "M_G",
-                "Inv_Kappa": "1/κ",
-                "f90_Targeted": "f₉₀%-degree",
-                "f90_Random": "f₉₀%-random",
-                "fc_Targeted": "f_c-degree",
-                "fc_Random": "f_c-random"
-            }
-            
-            for col in cols:
-                display_name = header_map.get(col, col)
-                self.tree_resumen.heading(col, text=display_name)
-                # Ajustar ancho (básico)
-                width = 80 if len(col) < 5 else 120
-                if col in ["Country", "City"]: width = 100
-                self.tree_resumen.column(col, width=width, minwidth=50, stretch=False)
-            
-            # Insertar datos
-            for index, row in df.iterrows():
-                vals = []
-                for v in row:
-                    if isinstance(v, float):
-                        vals.append(f"{v:.3f}")
-                    else:
-                        vals.append(str(v))
-                self.tree_resumen.insert("", "end", values=vals)
-                
-        except Exception as e:
-            print(f"Error cargando tabla: {e}")
-
-    def _on_tree_motion(self, event):
-        """Muestra tooltip basado en la columna bajo el cursor."""
-        region = self.tree_resumen.identify("region", event.x, event.y)
-        if region == "heading":
-            col_id = self.tree_resumen.identify_column(event.x)
-            # col_id es '#1', '#2', etc.
-            if not col_id: return
-            idx = int(col_id.replace("#", "")) - 1
-            cols = self.tree_resumen["columns"]
-            if 0 <= idx < len(cols):
-                col_name = cols[idx]
-                desc = self.cols_desc.get(col_name, col_name)
-                self._show_tooltip(event.x_root, event.y_root, f"{col_name}\n{desc}")
-        elif region == "cell":
-            # Opcional: mostrar valor completo o descripción de columna también
-            col_id = self.tree_resumen.identify_column(event.x)
-            if not col_id: return
-            idx = int(col_id.replace("#", "")) - 1
-            cols = self.tree_resumen["columns"]
-            if 0 <= idx < len(cols):
-                col_name = cols[idx]
-                desc = self.cols_desc.get(col_name, "")
-                # item = self.tree_resumen.identify_row(event.y)
-                # Opcional: obtener valor celda
-                self._show_tooltip(event.x_root, event.y_root, f"{col_name}\n{desc}")
-        else:
-            self._hide_tooltip()
 
     def _show_tooltip(self, x, y, text):
         if self.tooltip_window:
@@ -571,6 +427,46 @@ class VentanaPrincipal:
         if self.tooltip_window:
             self.tooltip_window.destroy()
             self.tooltip_window = None
+
+    def _mostrar_mensaje_centro(self, titulo, mensaje, tipo="info"):
+        """Muestra un mensaje modal centrado en la ventana principal."""
+        dialog = tk.Toplevel(self.ventana)
+        dialog.title(titulo)
+        dialog.transient(self.ventana) # Relativo a la ventana principal
+        dialog.overrideredirect(False) # Mantener decoraciones pero controlar posición? O quitar para estilo moderno
+        # Usamos withdraw para calcular tamaño sin mostrar
+        dialog.withdraw()
+        
+        # Widgets
+        frame = ttk.Frame(dialog, padding=20)
+        frame.pack(fill=tk.BOTH, expand=True)
+        
+        # Icono (simulado con texto por ahora)
+        icon = "ℹ️" if tipo == "info" else "✅" if tipo == "success" else "⚠️" 
+        ttk.Label(frame, text=icon, font=("Arial", 24)).pack(side=tk.TOP, pady=(0, 10))
+        
+        ttk.Label(frame, text=mensaje, justify=tk.CENTER, wraplength=400).pack(side=tk.TOP, pady=(0, 20))
+        
+        ttk.Button(frame, text="Aceptar", command=dialog.destroy).pack(side=tk.BOTTOM)
+        
+        # Calcular geometría
+        dialog.update_idletasks() # Actualizar layout
+        w = dialog.winfo_reqwidth()
+        h = dialog.winfo_reqheight()
+        
+        # Centro de la ventana principal
+        mw = self.ventana.winfo_width()
+        mh = self.ventana.winfo_height()
+        mx = self.ventana.winfo_rootx()
+        my = self.ventana.winfo_rooty()
+        
+        x = mx + (mw - w) // 2
+        y = my + (mh - h) // 2
+        
+        dialog.geometry(f"{w}x{h}+{x}+{y}")
+        dialog.deiconify() # Mostrar
+        dialog.grab_set() # Modal
+        # dialog.wait_window() # Bloquear ejecución si se desea (opcional en loop)
 
     def crear_tab_exportar(self):
         """Crea el tab de exportación."""
@@ -727,6 +623,9 @@ class VentanaPrincipal:
             messagebox.showwarning("Advertencia", "Por favor seleccione una ciudad/red válida")
             return
         
+        # Resetear flag
+        self.analisis_completado_flag = False
+        
         # Resetear flag de cancelación
         self.cancelar_procesamiento = False
         
@@ -815,7 +714,7 @@ class VentanaPrincipal:
         
         # Dibujar texto de tiempo (SIEMPRE ENCIMA)
         tiempo_texto = self.mensaje_estado_actual.split('(')[-1].replace(')', '') if '(' in self.mensaje_estado_actual else "0s"
-        if "Análisis completado" in self.mensaje_estado_actual: tiempo_texto = "" # No mostrar en completado
+        if self.analisis_completado_flag: tiempo_texto = "" # No mostrar en completado
         
         # Centrar texto
         self.canvas_progreso.create_text(width/2, 10, text=tiempo_texto, fill="black", font=("Arial", 8))
@@ -934,7 +833,6 @@ class VentanaPrincipal:
                     # Actualizamos el mensaje de estado para que el loop de animación lo recoja
                     base_msg = self.mensaje_estado_actual.split('(')[0].strip()
                     self.mensaje_estado_actual = f"{base_msg} ({int(tiempo_actual)}s)"
-                    # No actualizamos label_estado aquí para evitar parpadeo, solo el overlay en el canvas
                 
                 elif resultado[0] == 'exito':
                     self.evento_stop_timer.set()  # Detener cronómetro
@@ -942,7 +840,6 @@ class VentanaPrincipal:
                     self.actualizar_ui_con_resultados(grafo, metricas, dir_salida)
                     
                     # Actualizar panel de estado con información de la red
-                    # Formato solicitado: Total (Simplificados)
                     self.label_nodos.config(text=f"{grafo.numero_de_nodos()} ({n_nodos_simp})")
                     self.label_aristas.config(text=f"{grafo.numero_de_aristas()} ({n_aristas_simp})")
                     self.label_red_actual.config(text=grafo.nombre)
@@ -962,7 +859,8 @@ class VentanaPrincipal:
                     mensaje_final = f"Análisis completado en {tiempo_total:.2f} segundos"
                     self.label_estado.config(text=mensaje_final)
                     self.mensaje_estado_actual = mensaje_final
-                    messagebox.showinfo("Éxito", f"{mensaje_final}\nResultados guardados en:\n{dir_salida}")
+                    # Reemplazo de messagebox por ventana centrada
+                    self._mostrar_mensaje_centro("Éxito", f"{mensaje_final}\nResultados guardados en:\n{dir_salida}", tipo="success")
                 
                 elif resultado[0] == 'error':
                     self.evento_stop_timer.set()  # Detener cronómetro
@@ -1052,6 +950,7 @@ class VentanaPrincipal:
     
     def actualizar_ui_con_resultados(self, grafo, metricas, dir_salida):
         """Actualiza la UI con los resultados del análisis."""
+        self.analisis_completado_flag = True
         self.grafo_actual = grafo
         self.metricas_actuales = metricas
         self.dir_salida_actual = dir_salida
@@ -1154,7 +1053,6 @@ class VentanaPrincipal:
         
         for clave, valor in metricas.items():
             if isinstance(valor, float):
-                # Usar notación científica solo para valores muy pequeños
                 if abs(valor) < 0.001 and valor != 0:
                     valor_str = f"{valor:.3e}"
                 else:
@@ -1162,8 +1060,7 @@ class VentanaPrincipal:
             else:
                 valor_str = str(valor)
             self.tree_info.insert("", tk.END, values=(clave, valor_str))
-            
-        # 2. Actualizar grafo topológico
+
         # 2. Actualizar grafo topológico
         if self.grafo_actual:
             self.grafo_interactivo.dibujar_grafo(self.grafo_actual)
@@ -1171,19 +1068,93 @@ class VentanaPrincipal:
         # 3. Actualizar Gráfico Radar
         self.actualizar_grafico_radar(metricas)
 
+    def abrir_analisis_gemini(self):
+        """Abre un popup para analizar métricas con Gemini."""
+        metricas = self.metricas_actuales
+        if not metricas:
+            messagebox.showwarning("Atención", "Primero genere un análisis de red.")
+            return
+
+        # 1. Obtener API Key
+        api_key = os.environ.get("GEMINI_API_KEY")
+        if not api_key:
+            api_key = simpledialog.askstring("API Key Requerida", 
+                "Ingrese su Google Gemini API Key:\n(Puede obtenerla en aistudio.google.com)",
+                parent=self.ventana)
+            if not api_key: return # Cancelado
+            os.environ["GEMINI_API_KEY"] = api_key
+        
+        # 2. Crear Popup
+        popup = tk.Toplevel(self.ventana)
+        popup.title("Análisis con Google Gemini")
+        
+        # Geometría y Centrado
+        w_p, h_p = 600, 500
+        mw = self.ventana.winfo_width()
+        mh = self.ventana.winfo_height()
+        mx = self.ventana.winfo_rootx()
+        my = self.ventana.winfo_rooty()
+        x = mx + (mw - w_p) // 2
+        y = my + (mh - h_p) // 2
+        
+        popup.geometry(f"{w_p}x{h_p}+{x}+{y}")
+        popup.transient(self.ventana) # Relativo a la principal
+        popup.grab_set() # Modal
+        
+        lbl_status = ttk.Label(popup, text="Consultando a Gemini... esto puede tardar unos segundos.", font=("Arial", 10, "italic"))
+        lbl_status.pack(pady=10)
+        
+        progres_bar = ttk.Progressbar(popup, mode='indeterminate')
+        progres_bar.pack(fill=tk.X, padx=20, pady=5)
+        progres_bar.start(10)
+        
+        # Reemplazo por HTMLText de tkhtmlview
+        txt_area = HTMLText(popup, html="<h3 style='font-family: Arial;'>Esperando resultados...</h3>", padx=10, pady=10)
+        txt_area.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
+        
+        # 3. Función Thread
+        def run_query():
+            try:
+                analyzer = GeminiAnalyzer(api_key=api_key)
+                # Obtener nombre de ciudad
+                ciudad = self.combo_ciudad.get()
+                
+                # Ejecutar análisis
+                resultado = analyzer.analyze_network(metricas, ciudad)
+                
+                # Update UI from thread
+                def update_ui():
+                    progres_bar.stop()
+                    progres_bar.pack_forget()
+                    lbl_status.config(text=f"Análisis para {ciudad}:")
+                    
+                    # Liberar modalidad para permitir interacción
+                    popup.grab_release()
+                    
+                    # Convertir Markdown a HTML
+                    html_content = markdown.markdown(resultado)
+                    
+                    # tkhtmlview no soporta <style> tags bien, usamos inline o default.
+                    # Envolvemos en un div para la fuente base.
+                    final_html = f"<div style='font-family: Segoe UI, Arial; font-size: 14px;'>{html_content}</div>"
+                    txt_area.set_html(final_html)
+                    
+                popup.after(0, update_ui)
+            except Exception as e:
+                 def show_error():
+                     progres_bar.stop()
+                     lbl_status.config(text=f"Error: {str(e)}")
+                     popup.grab_release()
+                 popup.after(0, show_error)
+
+        threading.Thread(target=run_query, daemon=True).start()
+
     def actualizar_grafico_radar(self, metricas):
         """Genera el gráfico radial de robustez con normalización global."""
         # Limpiar canvas anterior
         for widget in self.frame_radar.winfo_children():
             widget.destroy()
             
-        # Definir claves internas y mapeo a columnas CSV (Colab / Paper)
-        # Claves internas (GUI/Backend) -> Columnas CSV (Global Stats)
-        # Orden del Colab: Avg_Deg, Nat_Conn, Kappa, r_T, Clustering, Meshedness, C_G, Rel_G, Efficiency, Alg_Conn
-        
-        # Mapeo de nuestras claves retornadas por backend a columnas del CSV
-        # Backend returns: Ē[D], λ̄*, Kappa, r̄ᵀ, CC_G, M_G, C_G, Rel_G, E[1/H], μ̄ₙ₋₁
-        # CSV columns:     Avg_Deg, Nat_Conn, Kappa, r_T, Clustering, Meshedness, C_G, Rel_G, Efficiency, Alg_Conn
         
         map_gui_to_csv = {
             "Ē[D]": "Avg_Deg",
@@ -1198,21 +1169,18 @@ class VentanaPrincipal:
             "μ̄ₙ₋₁": "Alg_Conn"
         }
 
-        # Orden de visualización (según Colab)
+        # Orden de visualización segun paper
         orden_keys = ["Ē[D]", "λ̄*", "Kappa", "r̄ᵀ", "CC_G", "M_G", "C_G", "Rel_G", "E[1/H]", "μ̄ₙ₋₁"]
         
-        # Etiquetas (según Colab)
+        # Etiquetas segun paper
         labels_display = [
             r"$\overline{E[D]}$", r"$\overline{\lambda}^*$", r"$\kappa$", 
             r"${r^T}$", r"$CC_G$", r"$M_G$", 
             r"$C_G$", r"$Rel_G$", r"$E[\frac{1}{H}]$", r"$\overline{\mu_{N-1}}$"
         ]
         
-        # Cargar datos globales para normalización
-        try:
-            df_global = pd.read_csv("utils/resultados_metro_robustez_completo.csv")
-        except Exception:
-            df_global = None
+        # Cargar datos globales para normalización (ARCHIVO ELIMINADO)
+        df_global = None
 
         valores = []
         for k in orden_keys:
@@ -1220,32 +1188,11 @@ class VentanaPrincipal:
             if not isinstance(val, (int, float)):
                 val = 0.0
             
-            # Normalización Global
-            col_csv = map_gui_to_csv.get(k)
-            if df_global is not None and col_csv in df_global.columns:
-                min_val = df_global[col_csv].min()
-                max_val = df_global[col_csv].max()
-                
-                # Caso especial: Si el valor actual está fuera de rango (ej: nueva red), clamp?
-                # O recalculamos min/max incluyendo el valor actual? 
-                # El Colab usa el dataset completo. Si estamos viendo una red QUE ESTÁ en el dataset, todo bien.
-                # Si es una red nueva, deberíamos idealmente proyectarla en el rango existente o actualizarlo.
-                # Por simplicidad y consistencia visual con el "Atlas", usamos el rango del dataset fijo.
-                
-                # Update bounds with current value just in case
-                min_val = min(min_val, val)
-                max_val = max(max_val, val)
-                
-                if max_val - min_val > 0:
-                    val_norm = (val - min_val) / (max_val - min_val)
-                else:
-                    val_norm = 0.5
-                valores.append(val_norm)
-            else:
-                # Fallback si no hay CSV: asumir 0-1 si parece estar en rango, o dejar raw?
-                # La mayoría de métricas NO son 0-1 (Kappa, Avg_Deg). 
-                # Sin CSV, el gráfico se verá mal.
-                valores.append(val if val <= 1.0 else 1.0) # Clipping simple fallback
+            # Normalización Local / Fallback (Sin archivo global)
+            # Asumimos rango 0-1 para la mayoría.
+            # Para valores > 1 (ej: Grado promedio), se clippean a 1 visualmente 
+            # o requerirían un máximo hardcoreado.
+            valores.append(val if val <= 1.0 else 1.0)
         
         # Cerrar el polígono
         valores_plot = valores + [valores[0]]
@@ -1263,7 +1210,7 @@ class VentanaPrincipal:
         
         # Dibujar líneas y relleno
         ax.plot(angles, valores_plot, linewidth=2, linestyle='solid', color='#1f77b4') # Color Colab
-        ax.fill(angles, valores_plot, 'b', alpha=0.3, color='#1f77b4')
+        ax.fill(angles, valores_plot, alpha=0.3, color='#1f77b4')
         
         # Etiquetas
         ax.set_xticks(angles[:-1])
@@ -1272,25 +1219,25 @@ class VentanaPrincipal:
         # Ajustar grid y límites
         ax.set_ylim(0, 1)
         ax.set_rlabel_position(0)
-        # Quitar etiquetas radiales internas para limpiar como en Colab
         ax.set_yticklabels([]) 
         ax.set_yticks([])
-        
-        # Título con nombre de ciudad
-        ciudad = metricas.get("Metros", "Red")
-        if "argentina" in ciudad.lower(): ciudad = "Buenos Aires" 
-        else: ciudad = ciudad.replace("-", " ").title()
-        
-        ax.set_title(ciudad, va='bottom', fontweight='bold', fontsize=14, y=1.08)
+    
         
         plt.tight_layout()
         
         self.fig_radar = fig # Guardar referencia para exportación
+        self.ax_radar = ax   # Guardar referencia para tooltip
+        
+
         
         # Embeber
         canvas = FigureCanvasTkAgg(fig, master=self.frame_radar)
         canvas.draw()
         canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
+        
+
+
+
     
     
     def actualizar_tab_robustez(self, metricas):
@@ -1304,8 +1251,6 @@ class VentanaPrincipal:
         fig.suptitle('Métricas de Robustez', fontsize=16, fontweight='bold')
         
         # 1. Indicadores teóricos (barras)
-        # 1. Indicadores teóricos (barras)
-        # Claves nuevas: r̄ᵀ, C_G, Rel_G
         keys_teoricas = ['r̄ᵀ', 'C_G', 'Rel_G']
         vals_teoricas = []
         labels_teoricas = []
@@ -1317,7 +1262,6 @@ class VentanaPrincipal:
         
         if vals_teoricas:
             colores = ['#2ecc71', '#3498db', '#9b59b6']
-            # Asegurar que colores alcance
             colores = colores[:len(vals_teoricas)]
             
             bars = ax1.bar(labels_teoricas, vals_teoricas, color=colores, alpha=0.7, edgecolor='black')
@@ -1359,11 +1303,7 @@ class VentanaPrincipal:
             ax2.grid(True, linestyle='--', alpha=0.7)
             ax2.legend(loc='best', frameon=True, fancybox=True, framealpha=0.9)
             
-            # Línea punteada de referencia (opcional, ej: 90% del tamaño original)
-            # ax2.axhline(y=metricas['n_nodos']*0.9, color='black', linestyle=':', label='f_90%')
-            
         elif 'robustez_grado_20pct' in metricas and 'robustez_aleatorio_20pct' in metricas:
-            # Fallback a gráfico de barras si no hay curvas calculadas (compatibilidad)
             estrategias = ['Por Grado\n(20%)', 'Aleatoria\n(20%)']
             valores_rob = [metricas['robustez_grado_20pct'], metricas['robustez_aleatorio_20pct']]
             colores_rob = ['#e74c3c', '#f39c12']
@@ -1433,8 +1373,33 @@ class VentanaPrincipal:
         canvas.draw()
         canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
     
+
+    def _on_info_tree_motion(self, event):
+        """Muestra tooltip en el tree_info (Tab Análisis)."""
+        # Identificar item bajo el mouse
+        item_id = self.tree_info.identify_row(event.y)
+        if not item_id:
+            self._hide_tooltip()
+            return
+
+        # Obtener valores del item (Métrica, Valor)
+        vals = self.tree_info.item(item_id, "values")
+        if not vals:
+            self._hide_tooltip()
+            return
+            
+        metrica_key = vals[0] # Primera columna es el nombre de la métrica
+        
+        if hasattr(self, 'cols_desc'):
+            desc = self.cols_desc.get(metrica_key, "")
+            if desc:
+                self._show_tooltip(event.x_root, event.y_root, f"{metrica_key}\n{desc}")
+            else:
+                self._hide_tooltip()
+        else:
+            self._hide_tooltip()
+
     def actualizar_tab_componentes(self, grafo):
-        """Actualiza el tab de componentes con gráficos mejorados."""
         # Limpiar canvas anterior
         for widget in self.frame_canvas_componentes.winfo_children():
             widget.destroy()
@@ -1462,7 +1427,7 @@ class VentanaPrincipal:
             ax1.set_title(f'Top {top_n} Componentes por Tamaño', fontsize=11, fontweight='bold')
             ax1.grid(axis='x', alpha=0.3)
             
-            # Agregar valores en las barras (más compactos)
+            # Agregar valores en las barras
             for i, (bar, tam) in enumerate(zip(bars, tamanos[::-1])):
                 porcentaje = tam / grafo.numero_de_nodos() * 100
                 ax1.text(tam, bar.get_y() + bar.get_height()/2,
@@ -1475,7 +1440,6 @@ class VentanaPrincipal:
                 top_5 = min(5, len(componentes_ordenados))
                 tamanos_pie = [len(comp) for comp in componentes_ordenados[:top_5]]
                 
-                # Labels más compactos
                 labels_pie = [f'C{i+1}' for i in range(top_5)]
                 
                 if len(componentes_ordenados) > top_5:
@@ -1485,7 +1449,6 @@ class VentanaPrincipal:
                 
                 colores_pie = plt.cm.Set3(np.linspace(0, 1, len(tamanos_pie)))
                 
-                # Usar labels fuera del gráfico para evitar sobreposición
                 def make_autopct(values):
                     def my_autopct(pct):
                         total = sum(values)
@@ -1569,7 +1532,12 @@ class VentanaPrincipal:
             fig = visualizacion.generar_mapa_geografico(self.grafo_actual, Path(archivo))
             if fig:
                 plt.close(fig)
-                messagebox.showinfo("Éxito", f"Mapa guardado en:\\n{archivo}")
+                messagebox.showinfo("Éxito", f"Mapa guardado en:\n{archivo}")
+                # Abrir archivo
+                try:
+                    os.startfile(archivo)
+                except Exception:
+                    pass
             else:
                 messagebox.showwarning("Advertencia", "No hay datos geográficos para exportar")
     
@@ -1587,7 +1555,12 @@ class VentanaPrincipal:
         if archivo:
             df = pd.DataFrame([self.metricas_actuales])
             df.to_csv(archivo, index=False)
-            messagebox.showinfo("Éxito", f"Métricas guardadas en:\\n{archivo}")
+            messagebox.showinfo("Éxito", f"Métricas guardadas en:\n{archivo}")
+            # Abrir archivo (Excel o editor de texto predeterminado)
+            try:
+                os.startfile(archivo)
+            except Exception:
+                pass
     
     def exportar_metricas_json(self):
         """Exporta métricas a JSON."""
@@ -1604,7 +1577,12 @@ class VentanaPrincipal:
             import json
             with open(archivo, 'w', encoding='utf-8') as f:
                 json.dump(self.metricas_actuales, f, indent=2, ensure_ascii=False, default=str)
-            messagebox.showinfo("Éxito", f"Métricas guardadas en:\\n{archivo}")
+            messagebox.showinfo("Éxito", f"Métricas guardadas en:\n{archivo}")
+            # Abrir archivo 
+            try:
+                os.startfile(archivo)
+            except Exception:
+                pass
     
     def exportar_reporte_html(self):
         """Genera reporte HTML."""
@@ -1749,9 +1727,8 @@ class VentanaPrincipal:
             dir_analisis = base_sitio / "analisis"
             dir_analisis.mkdir(parents=True, exist_ok=True)
             
-            from hmi.mapa import MapaWidget # Ensure import if needed generally, usually at top
+            from hmi.mapa import MapaWidget 
             
-            # Copiar assets si es necesario? visualizacion lo maneja?
             
             # Generar reporte HTML global
             visualizacion.generar_reporte_html(
@@ -1797,93 +1774,7 @@ class VentanaPrincipal:
             traceback.print_exc()
             self.cola_resultados.put(('error', f"Error en proceso batch: {str(e)}"))
 
-    def generar_tabla_resumen_batch(self):
-        """Genera una tabla HTML con resumen de todas las redes."""
-        if hasattr(self, 'procesando_batch') and self.procesando_batch:
-             messagebox.showwarning("Busy", "Ya hay un proceso en ejecución.")
-             return
-             
-        # Preguntar ubicación
-        path_salida = filedialog.asksaveasfilename(
-            defaultextension=".html",
-            filetypes=[("HTML File", "*.html")],
-            initialfile="tabla_metricas.html",
-            title="Guardar Tabla Resumen"
-        )
-        if not path_salida:
-            return
-            
-        self.procesando_batch = True
-        self.boton_generar.config(state='disabled')
-        self.boton_cancelar.config(state='normal')
-        self.cancelar_procesamiento = False
-        
-        # UI
-        self.label_estado.config(text="Cargando redes para tabla resumen...")
-        self.canvas_progreso.pack(side=tk.LEFT, padx=(0, 5), fill=tk.X, expand=True)
-        self.boton_cancelar.pack(side=tk.LEFT, padx=(0, 5))
-        self.iniciar_animacion_progreso()
-        
-        # Thread
-        threading.Thread(target=self._thread_generar_tabla, args=(path_salida,), daemon=True).start()
 
-    def _thread_generar_tabla(self, path_salida):
-        try:
-            inicio = time.time()
-            grafos = {}
-            
-            # Cargar Kujala
-            dir_kujala = self.directorio_datos / "kujala" / "procesado"
-            if dir_kujala.exists():
-                for d in dir_kujala.iterdir():
-                     if self.cancelar_procesamiento: break
-                     if d.is_dir():
-                         self.cola_resultados.put(('estado', f'Cargando {d.name}...'))
-                         try:
-                             G, _ = preparar_redes.construir_grafo_desde_ciudad_kujala(d)
-                             grafos[G.nombre] = G
-                         except Exception as e:
-                             print(f"Skip {d.name}: {e}")
-            
-            # Cargar Metro51
-            dir_metro = self.directorio_datos / "51_metro_networks"
-            if dir_metro.exists():
-                 archivos = list(dir_metro.rglob("*.json"))
-                 if archivos:
-                     self.cola_resultados.put(('estado', 'Cargando Metro51...'))
-                     g_metros, _ = preparar_redes.cargar_metros_desde_carpeta(dir_metro, usar_paralelo=False)
-                     grafos.update(g_metros)
-            
-            if not grafos:
-                self.cola_resultados.put(('error', "No se encontraron redes."))
-                return
-
-            if self.cancelar_procesamiento:
-                self.cola_resultados.put(('cancelado', "Cancelado por usuario"))
-                return
-                
-            self.cola_resultados.put(('estado', f'Calculando métricas para {len(grafos)} redes...'))
-            
-            # Calcular resumen (usa paralelo internamente en procesar_redes que ya usa nuestra func actualizada)
-            df = procesar_redes.calcular_resumen_dataset(grafos, usar_paralelo=True)
-            
-            if self.cancelar_procesamiento:
-                self.cola_resultados.put(('cancelado', "Cancelado"))
-                return
-                
-            self.cola_resultados.put(('estado', 'Generando HTML...'))
-            visualizacion.generar_tabla_resumen_html(df, Path(path_salida))
-            
-            tiempo = time.time() - inicio
-            # Usamos batch_exito para notificar
-            self.cola_resultados.put(('batch_exito', str(path_salida), len(grafos)))
-            
-        except Exception as e:
-            import traceback
-            traceback.print_exc()
-            self.cola_resultados.put(('error', f"Error generando tabla: {str(e)}"))
-        finally:
-            self.procesando_batch = False
     
     def ejecutar(self):
         """Ejecuta el loop principal de la aplicación."""

@@ -446,17 +446,12 @@ def _trabajador_calcular_metricas(argumentos: Tuple[str, GrafoSimple, float, int
     print(f"[INFO] Calculando métricas para: {nombre}")
     
     # Usar metodología simplificada (L-Space) y las 18 métricas estándar
-    # Ojo: G viene "crudo" o ya simplificado?
-    # calcular_resumen_dataset recibe 'grafos', que asumimos son crudos.
-    # Debemos simplificar aquí para consistencia
     
     G_simp = G.obtener_topologia_simplificada()
     
     fila = calcular_todas_metricas_robustez(G_simp)
     
-    # Asegurar que el nombre de red esté en la fila (la función devuelve 'Metros' como nombre de ciudad, pero necesitamos 'nombre' para el DF?)
-    # La función devuelve "Metros": ciudad.
-    # Agregamos el nombre original del archivo/key por si acaso
+    # Asegurar que el nombre de red esté en la fila
     fila["nombre_archivo"] = nombre
     
     print(f"[INFO] Métricas calculadas para: {nombre}")
@@ -538,7 +533,7 @@ def calcular_resumen_dataset(
     return pd.DataFrame(filas)
 
 
-# --- Nuevas Métricas Solicitadas (Colab User Code + Adaptation) ---
+# --- Métricas Teóricas y de Robustez ---
 
 def calculate_theoretical_metrics(G: nx.Graph) -> Dict[str, float]:
     """Calcula métricas teóricas usando networkx y scipy, basado en código de usuario."""
@@ -695,12 +690,7 @@ def calcular_todas_metricas_robustez(grafo: GrafoSimple) -> Dict[str, Union[str,
     curve_targeted = run_attack_simulation(G_nx, 'targeted')
     f90_targeted, fc_targeted = calculate_thresholds(curve_targeted, metrics["N"])
     
-    # Random (User code runs once. To match stability we might want avg, but user asked for strict code use.
-    # However, 'f90' from a single random run is very noisy. 
-    # Current codebase used 10 runs avg for scalars? No, codebase ran 10 times for curve? 
-    # Let's run 10 times and average the f90/fc thresholds? Or average the curves?
-    # User's code returns a single history.
-    # Let's stick to doing 5 runs and averaging the thresholds to be safe but respectful of logic.)
+    # Robustez ante fallos aleatorios (promedio de 5 ejecuciones)
     f90_rand_sum = 0
     fc_rand_sum = 0
     n_runs = 5

@@ -44,70 +44,7 @@ class FastNetworkOverlay:
         self.tooltip_label = None
         self._setup_tooltip()
 
-    def _setup_tooltip(self):
-        """Configura el label del tooltip."""
-        self.tooltip_label = tk.Label(
-            self.map_widget, 
-            text="", 
-            bg="#ffffe0", 
-            relief="solid", 
-            borderwidth=1,
-            font=("Arial", 8),
-            justify=tk.LEFT
-        )
 
-    def _on_enter(self, event):
-        """Maneja el evento de entrada del mouse sobre una arista."""
-        # Encontrar el ítem del canvas bajo el mouse
-        item = self.map_widget.canvas.find_withtag("current")
-        if not item:
-            return
-            
-        tags = self.map_widget.canvas.gettags(item)
-        edge_index = -1
-        
-        # Buscar tag de índice
-        for tag in tags:
-            if tag.startswith("edge_idx_"):
-                try:
-                    edge_index = int(tag.split("_")[-1])
-                    break
-                except ValueError:
-                    pass
-        
-        if edge_index >= 0 and edge_index < len(self.edges_list):
-            edge_data = self.edges_list[edge_index]
-            # Extraer atributos si existen (4to elemento)
-            if len(edge_data) >= 4:
-                attrs = edge_data[3]
-                if attrs:
-                    # Formatear texto del tooltip
-                    text = "Información de Arista:\n"
-                    for k, v in attrs.items():
-                        # Filtrar atributos internos o muy largos si es necesario
-                        if k not in ['geometry', 'osmid']: 
-                            text += f"{k}: {v}\n"
-                    
-                    self.tooltip_label.config(text=text.strip())
-                    
-                    # Posicionar tooltip cerca del mouse
-                    x, y = event.x_root - self.map_widget.winfo_rootx() + 15, event.y_root - self.map_widget.winfo_rooty() + 15
-                    
-                    # Ajustar si se sale de la pantalla (básico)
-                    if x + self.tooltip_label.winfo_reqwidth() > self.map_widget.winfo_width():
-                        x -= self.tooltip_label.winfo_reqwidth() + 20
-                        
-                    self.tooltip_label.place(x=x, y=y)
-                    self.tooltip_label.lift()
-
-    def _on_leave(self, event):
-        """Maneja el evento de salida del mouse."""
-        if self.tooltip_label:
-            self.tooltip_label.place_forget()
-        
-        # Tooltip
-        self.tooltip_label = None
-        self._setup_tooltip()
 
     def _setup_tooltip(self):
         """Configura el label del tooltip."""
@@ -601,15 +538,7 @@ class MapaWidget:
         
         return True
     
-    # def zoom_in(self):
-    #     """Acerca el zoom."""
-    #     if self.map_widget:
-    #         self.map_widget.set_zoom(self.map_widget.zoom + 1)
-    
-    # def zoom_out(self):
-    #     """Aleja el zoom."""
-    #     if self.map_widget:
-    #         self.map_widget.set_zoom(self.map_widget.zoom - 1)
+
     
     def centrar(self):
         """Centra el mapa en los bounds originales."""
@@ -625,17 +554,17 @@ class MapaWidget:
         self.map_widget.canvas_path_list.append(sonar)
         sonar.iniciar_animacion()
     
-    # def activar_pan(self):
-    #     """Activa el modo panorámico (navegación normal)."""
-    #     if self.map_widget:
-    #         self.map_widget.canvas.bind("<Button-1>", self.map_widget.mouse_click)
-    #         self.map_widget.canvas.bind("<B1-Motion>", self.map_widget.mouse_move)
-    #         self.map_widget.canvas.bind("<ButtonRelease-1>", self.map_widget.mouse_release)
-    #         self.map_widget.canvas.config(cursor="arrow")
+    def activar_pan(self):
+        """Activa el modo panorámico (navegación normal)."""
+        if self.map_widget:
+            self.map_widget.canvas.bind("<Button-1>", self.map_widget.mouse_click)
+            self.map_widget.canvas.bind("<B1-Motion>", self.map_widget.mouse_move)
+            self.map_widget.canvas.bind("<ButtonRelease-1>", self.map_widget.mouse_release)
+            self.map_widget.canvas.config(cursor="arrow")
             
-    #         if self.zoom_rect_id:
-    #             self.map_widget.canvas.delete(self.zoom_rect_id)
-    #             self.zoom_rect_id = None
+            if self.zoom_rect_id:
+                self.map_widget.canvas.delete(self.zoom_rect_id)
+                self.zoom_rect_id = None
     
     def activar_zoom_area(self):
         """Activa el modo zoom por área."""
@@ -702,19 +631,24 @@ class MapaWidget:
         if not self.map_widget:
             return
         
-        if proveedor == "OpenStreetMap (Default)":
+        if proveedor == "OpenStreetMap":
+            print("Cartografia OpenStreetMap")
             self.map_widget.set_tile_server("https://a.tile.openstreetmap.org/{z}/{x}/{y}.png")
             self.map_widget.set_overlay_tile_server(None)
-        elif proveedor == "Google Maps Normal":
+        elif proveedor == "Google Normal":
+            print("Cartografia Google Normal")
             self.map_widget.set_tile_server("https://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}&s=Ga")
             self.map_widget.set_overlay_tile_server(None)
-        elif proveedor == "Google Maps Satélite":
+        elif proveedor == "Google Satélite":
+            print("Cartografia Google Satélite")
             self.map_widget.set_tile_server("https://mt0.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}&s=Ga")
             self.map_widget.set_overlay_tile_server(None)
-        elif proveedor == "Google Maps Híbrido":
-            self.map_widget.set_tile_server("https://mt0.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}&s=Ga")
-            self.map_widget.set_overlay_tile_server("https://mt0.google.com/vt/lyrs=h&hl=en&x={x}&y={y}&z={z}&s=Ga")
+        elif proveedor == "Google Híbrido":
+            print("Cartografia Google Híbrido")
+            self.map_widget.set_tile_server("https://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}&s=Ga")
+            self.map_widget.set_overlay_tile_server(None)
         elif proveedor == "OpenTopoMap":
+            print("Cartografia OpenTopoMap")
             self.map_widget.set_tile_server("https://a.tile.opentopomap.org/{z}/{x}/{y}.png")
             self.map_widget.set_overlay_tile_server(None)
     
@@ -754,7 +688,8 @@ class SonarOverlay:
         if self.deleted:
             return
             
-        # Obtener dimensiones de tile (Lógica copiada de FastNetworkOverlay)
+        # Obtener dimensiones de tile
+
         if hasattr(self.map_widget, 'canvas_tile_array') and self.map_widget.canvas_tile_array:
             try:
                 first_tile = self.map_widget.canvas_tile_array[0][0]

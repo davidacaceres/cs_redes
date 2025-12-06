@@ -777,12 +777,7 @@ def guardar_resultados_red(
     print(f"[INFO] Mapa topológico guardado en: {ruta_topologia}")
 
     # 1.2 Guardar gráfico de robustez (si las métricas lo incluyen)
-    # Necesitamos recalcular o extraer los datos de robustez si no están en 'metricas'
-    # En este diseño actual, 'metricas' es un dict plano. 
-    # Para el gráfico necesitamos los arrays completos.
-    # SOLUCIÓN: Calcular la curva aquí si no se pasa.
-    # Idealmente, deberíamos pasar los datos de la curva a esta función.
-    # Por ahora, lo calculamos de nuevo para asegurar que el gráfico exista.
+    # Calculamos la curva de robustez explícitamente para asegurar que el gráfico se genere
     from procesar_redes import calcular_curva_robustez
     print(f"[INFO] Calculando curva de robustez para gráfico...")
     datos_robustez = calcular_curva_robustez(grafo_metricas)
@@ -1123,6 +1118,14 @@ def _generar_reporte_individual(
     with open(ruta_salida, "w", encoding="utf-8") as f:
         f.write("\n".join(html))
     print(f"[INFO] Reporte individual generado: {ruta_salida}")
+    
+    # Abrir automáticamente en el navegador
+    try:
+        import webbrowser
+        webbrowser.open(ruta_salida.as_uri())
+        print(f"[INFO] Abriendo reporte en navegador...")
+    except Exception as e:
+        print(f"[WARN] No se pudo abrir el navegador automáticamente: {e}")
 
 
 def generar_tabla_resumen_html(df: pd.DataFrame, ruta_salida: Path):

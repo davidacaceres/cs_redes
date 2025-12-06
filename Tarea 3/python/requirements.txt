@@ -1,0 +1,11 @@
+pandas
+matplotlib
+numpy
+scipy
+networkx
+tkintermapview
+pillow
+markdown
+tkhtmlview
+google-generativeai
+requests
