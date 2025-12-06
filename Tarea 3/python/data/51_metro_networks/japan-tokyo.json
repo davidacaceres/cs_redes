@@ -1,0 +1,2918 @@
+{
+  "directed": true,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "id": 0,
+      "name": "Nishi-magome",
+      "lat": 35.5872987,
+      "lon": 139.7063115,
+      "color": null,
+      "original_ids": [
+        "A01"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "Magome",
+      "lat": 35.5967788,
+      "lon": 139.7119274,
+      "color": null,
+      "original_ids": [
+        "A02"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Nakanobu",
+      "lat": 35.605254,
+      "lon": 139.7136531,
+      "color": null,
+      "original_ids": [
+        "A03"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Togoshi",
+      "lat": 35.614502,
+      "lon": 139.7163642,
+      "color": null,
+      "original_ids": [
+        "A04"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Gotando",
+      "lat": 35.6270895,
+      "lon": 139.7242137,
+      "color": null,
+      "original_ids": [
+        "A05"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Takanawadai",
+      "lat": 35.6317345,
+      "lon": 139.7304256,
+      "color": null,
+      "original_ids": [
+        "A06"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Sengakuji",
+      "lat": 35.6386825,
+      "lon": 139.7400118,
+      "color": null,
+      "original_ids": [
+        "A07"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Mita",
+      "lat": 35.6476619,
+      "lon": 139.7483983,
+      "color": null,
+      "original_ids": [
+        "A08"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Daimon",
+      "lat": 35.6569261,
+      "lon": 139.7547098,
+      "color": null,
+      "original_ids": [
+        "A09"
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Shimbashi",
+      "lat": 35.6654012,
+      "lon": 139.759388,
+      "color": null,
+      "original_ids": [
+        "A10"
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Higashi-ginza",
+      "lat": 35.6698189,
+      "lon": 139.7672583,
+      "color": null,
+      "original_ids": [
+        "A11"
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Takaracho",
+      "lat": 35.6754339,
+      "lon": 139.7718846,
+      "color": null,
+      "original_ids": [
+        "A12"
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Nihombashi",
+      "lat": 35.6818307,
+      "lon": 139.7758101,
+      "color": null,
+      "original_ids": [
+        "A13"
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Ningyocho",
+      "lat": 35.6862799,
+      "lon": 139.7821879,
+      "color": null,
+      "original_ids": [
+        "A14"
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Higashi-Nihombashi",
+      "lat": 35.6921239,
+      "lon": 139.7848848,
+      "color": null,
+      "original_ids": [
+        "A15"
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Asakusabashi",
+      "lat": 35.6973915,
+      "lon": 139.7863101,
+      "color": null,
+      "original_ids": [
+        "A16"
+      ]
+    },
+    {
+      "id": 16,
+      "name": "Kuramae",
+      "lat": 35.7032122,
+      "lon": 139.790939,
+      "color": null,
+      "original_ids": [
+        "A17"
+      ]
+    },
+    {
+      "id": 17,
+      "name": "Asakusa",
+      "lat": 35.708959,
+      "lon": 139.7965668,
+      "color": null,
+      "original_ids": [
+        "A18"
+      ]
+    },
+    {
+      "id": 18,
+      "name": "Honjo-azumabashi",
+      "lat": 35.7085609,
+      "lon": 139.8043487,
+      "color": null,
+      "original_ids": [
+        "A19"
+      ]
+    },
+    {
+      "id": 19,
+      "name": "Oshiage <SKYTREE>",
+      "lat": 35.7102863,
+      "lon": 139.8132943,
+      "color": null,
+      "original_ids": [
+        "A20"
+      ]
+    },
+    {
+      "id": 20,
+      "name": "Yoyogi-uehara",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "C01"
+      ]
+    },
+    {
+      "id": 21,
+      "name": "Yoyogi-koen",
+      "lat": 35.6690323,
+      "lon": 139.6901224,
+      "color": "green",
+      "original_ids": [
+        "C02"
+      ]
+    },
+    {
+      "id": 22,
+      "name": "Meiji-jingumae <Harajuku>",
+      "lat": 35.6689704,
+      "lon": 139.7043604,
+      "color": "green",
+      "original_ids": [
+        "C03"
+      ]
+    },
+    {
+      "id": 23,
+      "name": "Omote-sando",
+      "lat": 35.6651609,
+      "lon": 139.7125432,
+      "color": null,
+      "original_ids": [
+        "C04"
+      ]
+    },
+    {
+      "id": 24,
+      "name": "Nogizaka",
+      "lat": 35.6666651,
+      "lon": 139.726365,
+      "color": "green",
+      "original_ids": [
+        "C05"
+      ]
+    },
+    {
+      "id": 25,
+      "name": "Akasaka",
+      "lat": 35.672224,
+      "lon": 139.736388,
+      "color": "green",
+      "original_ids": [
+        "C06"
+      ]
+    },
+    {
+      "id": 26,
+      "name": "Kokkai-gijidomae",
+      "lat": 35.6736889,
+      "lon": 139.7434262,
+      "color": "green",
+      "original_ids": [
+        "C07"
+      ]
+    },
+    {
+      "id": 27,
+      "name": "Kasumigaseki",
+      "lat": 35.6725014,
+      "lon": 139.7516221,
+      "color": "green",
+      "original_ids": [
+        "C08"
+      ]
+    },
+    {
+      "id": 28,
+      "name": "Hibiya",
+      "lat": 35.6737302,
+      "lon": 139.7583499,
+      "color": null,
+      "original_ids": [
+        "C09"
+      ]
+    },
+    {
+      "id": 29,
+      "name": "Nijubashimae <Marunouchi>",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "C10"
+      ]
+    },
+    {
+      "id": 30,
+      "name": "Otemachi",
+      "lat": 35.686757,
+      "lon": 139.7636157,
+      "color": "green",
+      "original_ids": [
+        "C11"
+      ]
+    },
+    {
+      "id": 31,
+      "name": "Shin-ochanomizu",
+      "lat": 35.6972185,
+      "lon": 139.7656264,
+      "color": "green",
+      "original_ids": [
+        "C12"
+      ]
+    },
+    {
+      "id": 32,
+      "name": "Yushima",
+      "lat": 35.7073329,
+      "lon": 139.7700104,
+      "color": "green",
+      "original_ids": [
+        "C13"
+      ]
+    },
+    {
+      "id": 33,
+      "name": "Nezu",
+      "lat": 35.7173914,
+      "lon": 139.7657175,
+      "color": "green",
+      "original_ids": [
+        "C14"
+      ]
+    },
+    {
+      "id": 34,
+      "name": "Sendagi",
+      "lat": 35.7255677,
+      "lon": 139.7632458,
+      "color": "green",
+      "original_ids": [
+        "C15"
+      ]
+    },
+    {
+      "id": 35,
+      "name": "Nishi-nippori",
+      "lat": 35.7325841,
+      "lon": 139.7672175,
+      "color": null,
+      "original_ids": [
+        "C16"
+      ]
+    },
+    {
+      "id": 36,
+      "name": "Machiya",
+      "lat": 35.7421779,
+      "lon": 139.7800901,
+      "color": "green",
+      "original_ids": [
+        "C17"
+      ]
+    },
+    {
+      "id": 37,
+      "name": "Kita-senju",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "C18"
+      ]
+    },
+    {
+      "id": 38,
+      "name": "Ayase",
+      "lat": 35.7621283,
+      "lon": 139.8248669,
+      "color": "green",
+      "original_ids": [
+        "C19"
+      ]
+    },
+    {
+      "id": 39,
+      "name": "Kita-ayase",
+      "lat": 35.7768999,
+      "lon": 139.832145,
+      "color": "green",
+      "original_ids": [
+        "C20"
+      ]
+    },
+    {
+      "id": 40,
+      "name": "Shinjuku-nishiguchi",
+      "lat": 35.6931366,
+      "lon": 139.6991763,
+      "color": null,
+      "original_ids": [
+        "E01"
+      ]
+    },
+    {
+      "id": 41,
+      "name": "Hagashi-shinjuku",
+      "lat": 35.6978967,
+      "lon": 139.7075443,
+      "color": null,
+      "original_ids": [
+        "E02"
+      ]
+    },
+    {
+      "id": 42,
+      "name": "Wakamatsu-kawada",
+      "lat": 35.6992849,
+      "lon": 139.7184084,
+      "color": null,
+      "original_ids": [
+        "E03"
+      ]
+    },
+    {
+      "id": 43,
+      "name": "Ushigome-Yanagicho",
+      "lat": 35.6994561,
+      "lon": 139.7255744,
+      "color": "violet",
+      "original_ids": [
+        "E04"
+      ]
+    },
+    {
+      "id": 44,
+      "name": "Ushigome-kagurazaka",
+      "lat": 35.7009139,
+      "lon": 139.7359501,
+      "color": "violet",
+      "original_ids": [
+        "E05"
+      ]
+    },
+    {
+      "id": 45,
+      "name": "Lidabashi",
+      "lat": 35.7031331,
+      "lon": 139.7457081,
+      "color": null,
+      "original_ids": [
+        "E06"
+      ]
+    },
+    {
+      "id": 46,
+      "name": "Kasuga",
+      "lat": 35.7084896,
+      "lon": 139.7527409,
+      "color": null,
+      "original_ids": [
+        "E07"
+      ]
+    },
+    {
+      "id": 47,
+      "name": "Hongo-sanchome",
+      "lat": 35.7075159,
+      "lon": 139.7605489,
+      "color": null,
+      "original_ids": [
+        "E08"
+      ]
+    },
+    {
+      "id": 48,
+      "name": "Ueno-okachimachi",
+      "lat": 35.7079766,
+      "lon": 139.7732996,
+      "color": null,
+      "original_ids": [
+        "E09"
+      ]
+    },
+    {
+      "id": 49,
+      "name": "Shin-okachimachi",
+      "lat": 35.7070597,
+      "lon": 139.7818428,
+      "color": null,
+      "original_ids": [
+        "E10"
+      ]
+    },
+    {
+      "id": 50,
+      "name": "Kuramae",
+      "lat": 35.7055187,
+      "lon": 139.7924102,
+      "color": "violet",
+      "original_ids": [
+        "E11"
+      ]
+    },
+    {
+      "id": 51,
+      "name": "Ryogoku",
+      "lat": 35.6968538,
+      "lon": 139.7974284,
+      "color": "violet",
+      "original_ids": [
+        "E12"
+      ]
+    },
+    {
+      "id": 52,
+      "name": "Morishita",
+      "lat": 35.6879977,
+      "lon": 139.7970443,
+      "color": null,
+      "original_ids": [
+        "E13"
+      ]
+    },
+    {
+      "id": 53,
+      "name": "Kiyosumi",
+      "lat": 35.6820504,
+      "lon": 139.7987644,
+      "color": null,
+      "original_ids": [
+        "E14"
+      ]
+    },
+    {
+      "id": 54,
+      "name": "Monzen-nakacho",
+      "lat": 35.6726188,
+      "lon": 139.7950012,
+      "color": "violet",
+      "original_ids": [
+        "E15"
+      ]
+    },
+    {
+      "id": 55,
+      "name": "Tsukishima",
+      "lat": 35.6641695,
+      "lon": 139.7844793,
+      "color": "violet",
+      "original_ids": [
+        "E16"
+      ]
+    },
+    {
+      "id": 56,
+      "name": "Kachidoki",
+      "lat": 35.6589623,
+      "lon": 139.7771747,
+      "color": null,
+      "original_ids": [
+        "E17"
+      ]
+    },
+    {
+      "id": 57,
+      "name": "Tsukijishijo",
+      "lat": 35.6648789,
+      "lon": 139.7668843,
+      "color": "violet",
+      "original_ids": [
+        "E18"
+      ]
+    },
+    {
+      "id": 58,
+      "name": "Shiodome",
+      "lat": 35.6632377,
+      "lon": 139.7602718,
+      "color": null,
+      "original_ids": [
+        "E19"
+      ]
+    },
+    {
+      "id": 59,
+      "name": "Daimon",
+      "lat": 35.6567438,
+      "lon": 139.7553648,
+      "color": null,
+      "original_ids": [
+        "E20"
+      ]
+    },
+    {
+      "id": 60,
+      "name": "Akabanebashi",
+      "lat": 35.6550406,
+      "lon": 139.7439828,
+      "color": "violet",
+      "original_ids": [
+        "E21"
+      ]
+    },
+    {
+      "id": 61,
+      "name": "Azabu-juban",
+      "lat": 35.6565014,
+      "lon": 139.7361613,
+      "color": null,
+      "original_ids": [
+        "E22"
+      ]
+    },
+    {
+      "id": 62,
+      "name": "Roppongi",
+      "lat": 35.6635758,
+      "lon": 139.7319706,
+      "color": "violet",
+      "original_ids": [
+        "E23"
+      ]
+    },
+    {
+      "id": 63,
+      "name": "Aoyama-itchome",
+      "lat": 35.6727797,
+      "lon": 139.7240186,
+      "color": "violet",
+      "original_ids": [
+        "E24"
+      ]
+    },
+    {
+      "id": 64,
+      "name": "Kokuritsu-kyogijo",
+      "lat": 35.6801003,
+      "lon": 139.7139442,
+      "color": null,
+      "original_ids": [
+        "E25"
+      ]
+    },
+    {
+      "id": 65,
+      "name": "Yoyogi",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "E26"
+      ]
+    },
+    {
+      "id": 66,
+      "name": "Shinjuku",
+      "lat": 35.751398,
+      "lon": 139.6403755,
+      "color": "violet",
+      "original_ids": [
+        "E27"
+      ]
+    },
+    {
+      "id": 67,
+      "name": "Tochomae",
+      "lat": 35.6906065,
+      "lon": 139.692814,
+      "color": null,
+      "original_ids": [
+        "E28"
+      ]
+    },
+    {
+      "id": 68,
+      "name": "Nishi-shinjuku-gochome",
+      "lat": 35.6898839,
+      "lon": 139.6845183,
+      "color": "violet",
+      "original_ids": [
+        "E29"
+      ]
+    },
+    {
+      "id": 69,
+      "name": "Nakano-sakaue",
+      "lat": 35.6972839,
+      "lon": 139.6829208,
+      "color": null,
+      "original_ids": [
+        "E30"
+      ]
+    },
+    {
+      "id": 70,
+      "name": "Higashi-nakano",
+      "lat": 35.7073477,
+      "lon": 139.6832315,
+      "color": "violet",
+      "original_ids": [
+        "E31"
+      ]
+    },
+    {
+      "id": 71,
+      "name": "Nakai",
+      "lat": 35.714067,
+      "lon": 139.6863482,
+      "color": "violet",
+      "original_ids": [
+        "E32"
+      ]
+    },
+    {
+      "id": 72,
+      "name": "Ochiai-minami-nagasaki",
+      "lat": 35.7232248,
+      "lon": 139.6835782,
+      "color": "violet",
+      "original_ids": [
+        "E33"
+      ]
+    },
+    {
+      "id": 73,
+      "name": "Shin-egato",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "E34"
+      ]
+    },
+    {
+      "id": 74,
+      "name": "Netima",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "E35"
+      ]
+    },
+    {
+      "id": 75,
+      "name": "Toshimaen",
+      "lat": 35.7421722,
+      "lon": 139.6490783,
+      "color": "violet",
+      "original_ids": [
+        "E36"
+      ]
+    },
+    {
+      "id": 76,
+      "name": "Naerima-kasugacho",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "E37"
+      ]
+    },
+    {
+      "id": 77,
+      "name": "Hikarigaoka",
+      "lat": 35.7585523,
+      "lon": 139.6293801,
+      "color": null,
+      "original_ids": [
+        "E38"
+      ]
+    },
+    {
+      "id": 78,
+      "name": "Wakoshi",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "F01"
+      ]
+    },
+    {
+      "id": 79,
+      "name": "Chikatetsu-narimasu",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "F02"
+      ]
+    },
+    {
+      "id": 80,
+      "name": "Chikatetsu-akatsuka",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "F03"
+      ]
+    },
+    {
+      "id": 81,
+      "name": "Heiwadai",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "F04"
+      ]
+    },
+    {
+      "id": 82,
+      "name": "Hikawadai",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "F05"
+      ]
+    },
+    {
+      "id": 83,
+      "name": "Kotake-mukaihara",
+      "lat": 35.7433734,
+      "lon": 139.6795267,
+      "color": null,
+      "original_ids": [
+        "F06"
+      ]
+    },
+    {
+      "id": 84,
+      "name": "Senkawa",
+      "lat": 35.7383242,
+      "lon": 139.689366,
+      "color": null,
+      "original_ids": [
+        "F07"
+      ]
+    },
+    {
+      "id": 85,
+      "name": "Kanamecho",
+      "lat": 35.7332405,
+      "lon": 139.6986842,
+      "color": "yellow",
+      "original_ids": [
+        "F08"
+      ]
+    },
+    {
+      "id": 86,
+      "name": "Ikebukuro",
+      "lat": 35.7311425,
+      "lon": 139.7089439,
+      "color": null,
+      "original_ids": [
+        "F09"
+      ]
+    },
+    {
+      "id": 87,
+      "name": "Zoshigaya",
+      "lat": 35.7202465,
+      "lon": 139.7147782,
+      "color": null,
+      "original_ids": [
+        "F10"
+      ]
+    },
+    {
+      "id": 88,
+      "name": "Nishi-waseda",
+      "lat": 35.7079347,
+      "lon": 139.7090404,
+      "color": null,
+      "original_ids": [
+        "F11"
+      ]
+    },
+    {
+      "id": 89,
+      "name": "Higashi-shinjuku",
+      "lat": 35.698933,
+      "lon": 139.707695,
+      "color": null,
+      "original_ids": [
+        "F12"
+      ]
+    },
+    {
+      "id": 90,
+      "name": "Shinjuku-sanchome",
+      "lat": 35.6907365,
+      "lon": 139.7047597,
+      "color": null,
+      "original_ids": [
+        "F13"
+      ]
+    },
+    {
+      "id": 91,
+      "name": "Kita-sando",
+      "lat": 35.6784974,
+      "lon": 139.705414,
+      "color": null,
+      "original_ids": [
+        "F14"
+      ]
+    },
+    {
+      "id": 92,
+      "name": "Meiji-jingumae <Harajuku>",
+      "lat": 35.6684209,
+      "lon": 139.705341,
+      "color": "brown",
+      "original_ids": [
+        "F15"
+      ]
+    },
+    {
+      "id": 93,
+      "name": "Shibuya",
+      "lat": 35.6584501,
+      "lon": 139.7028426,
+      "color": "brown",
+      "original_ids": [
+        "F16"
+      ]
+    },
+    {
+      "id": 94,
+      "name": "Shibuya",
+      "lat": 35.658999,
+      "lon": 139.7024447,
+      "color": "orange",
+      "original_ids": [
+        "G01"
+      ]
+    },
+    {
+      "id": 95,
+      "name": "Ometo-sando",
+      "lat": 35.6651609,
+      "lon": 139.7125432,
+      "color": null,
+      "original_ids": [
+        "G02"
+      ]
+    },
+    {
+      "id": 96,
+      "name": "Gaiemmae",
+      "lat": 35.6704649,
+      "lon": 139.7178823,
+      "color": "orange",
+      "original_ids": [
+        "G03"
+      ]
+    },
+    {
+      "id": 97,
+      "name": "Aoyama-itchome",
+      "lat": 35.6727797,
+      "lon": 139.7240186,
+      "color": "violet",
+      "original_ids": [
+        "G04"
+      ]
+    },
+    {
+      "id": 98,
+      "name": "Akasaka-mitsuke",
+      "lat": 35.6763213,
+      "lon": 139.7375253,
+      "color": null,
+      "original_ids": [
+        "G05"
+      ]
+    },
+    {
+      "id": 99,
+      "name": "Tameiki-sanno",
+      "lat": 35.6715337,
+      "lon": 139.741961,
+      "color": "orange",
+      "original_ids": [
+        "G06"
+      ]
+    },
+    {
+      "id": 100,
+      "name": "Toranomon Hills",
+      "lat": 35.6701871,
+      "lon": 139.750056,
+      "color": "orange",
+      "original_ids": [
+        "G07"
+      ]
+    },
+    {
+      "id": 101,
+      "name": "Shimbashi",
+      "lat": 35.6671895,
+      "lon": 139.7588592,
+      "color": "orange",
+      "original_ids": [
+        "G08"
+      ]
+    },
+    {
+      "id": 102,
+      "name": "Ginza",
+      "lat": 35.6714622,
+      "lon": 139.7652995,
+      "color": "orange",
+      "original_ids": [
+        "G09"
+      ]
+    },
+    {
+      "id": 103,
+      "name": "Kyobashi",
+      "lat": 35.676696,
+      "lon": 139.7700412,
+      "color": "orange",
+      "original_ids": [
+        "G10"
+      ]
+    },
+    {
+      "id": 104,
+      "name": "Nihombashi",
+      "lat": 35.6820843,
+      "lon": 139.7733976,
+      "color": "orange",
+      "original_ids": [
+        "G11"
+      ]
+    },
+    {
+      "id": 105,
+      "name": "Mitsukoshimae",
+      "lat": 35.687054,
+      "lon": 139.7736283,
+      "color": "orange",
+      "original_ids": [
+        "G12"
+      ]
+    },
+    {
+      "id": 106,
+      "name": "Kanda",
+      "lat": 35.6937148,
+      "lon": 139.7708898,
+      "color": "orange",
+      "original_ids": [
+        "G13"
+      ]
+    },
+    {
+      "id": 107,
+      "name": "Suehirocho",
+      "lat": 35.7029361,
+      "lon": 139.7716793,
+      "color": "orange",
+      "original_ids": [
+        "G14"
+      ]
+    },
+    {
+      "id": 108,
+      "name": "Ueno-hirokoji",
+      "lat": 35.7078328,
+      "lon": 139.7729909,
+      "color": "orange",
+      "original_ids": [
+        "G15"
+      ]
+    },
+    {
+      "id": 109,
+      "name": "Ueno",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "G16"
+      ]
+    },
+    {
+      "id": 110,
+      "name": "Inaricho",
+      "lat": 35.7113867,
+      "lon": 139.7826851,
+      "color": "orange",
+      "original_ids": [
+        "G17"
+      ]
+    },
+    {
+      "id": 111,
+      "name": "Tawaramachi",
+      "lat": 35.709842,
+      "lon": 139.7907747,
+      "color": "orange",
+      "original_ids": [
+        "G18"
+      ]
+    },
+    {
+      "id": 112,
+      "name": "Asakusa",
+      "lat": 35.7108423,
+      "lon": 139.7978163,
+      "color": "orange",
+      "original_ids": [
+        "G19"
+      ]
+    },
+    {
+      "id": 113,
+      "name": "Naka-meguro",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "H01"
+      ]
+    },
+    {
+      "id": 114,
+      "name": "Ebisu",
+      "lat": 35.6469738,
+      "lon": 139.7086461,
+      "color": "gray",
+      "original_ids": [
+        "H02"
+      ]
+    },
+    {
+      "id": 115,
+      "name": "Hiro-o",
+      "lat": 35.6520629,
+      "lon": 139.7222033,
+      "color": "gray",
+      "original_ids": [
+        "H03"
+      ]
+    },
+    {
+      "id": 116,
+      "name": "Roppongi",
+      "lat": 35.6628364,
+      "lon": 139.7313268,
+      "color": "gray",
+      "original_ids": [
+        "H04"
+      ]
+    },
+    {
+      "id": 117,
+      "name": "Kamiyacho",
+      "lat": 35.662964,
+      "lon": 139.7450477,
+      "color": "gray",
+      "original_ids": [
+        "H05"
+      ]
+    },
+    {
+      "id": 118,
+      "name": "Toranomon-hills",
+      "lat": 35.6674688,
+      "lon": 139.7477648,
+      "color": "silver",
+      "original_ids": [
+        "H06"
+      ]
+    },
+    {
+      "id": 119,
+      "name": "Kasumigaseki",
+      "lat": 35.6744172,
+      "lon": 139.760332,
+      "color": null,
+      "original_ids": [
+        "H07"
+      ]
+    },
+    {
+      "id": 120,
+      "name": "Hibiya",
+      "lat": 35.6720707,
+      "lon": 139.7638932,
+      "color": "gray",
+      "original_ids": [
+        "H08"
+      ]
+    },
+    {
+      "id": 121,
+      "name": "Ginza",
+      "lat": 35.6696837,
+      "lon": 139.7669476,
+      "color": null,
+      "original_ids": [
+        "H09"
+      ]
+    },
+    {
+      "id": 122,
+      "name": "Higashi-ginza",
+      "lat": 35.6680848,
+      "lon": 139.7725918,
+      "color": "gray",
+      "original_ids": [
+        "H10"
+      ]
+    },
+    {
+      "id": 123,
+      "name": "Tsukiji",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "H11"
+      ]
+    },
+    {
+      "id": 124,
+      "name": "Hatchobori",
+      "lat": 35.6750004,
+      "lon": 139.7770726,
+      "color": "gray",
+      "original_ids": [
+        "H12"
+      ]
+    },
+    {
+      "id": 125,
+      "name": "Kayabacho",
+      "lat": 35.6792567,
+      "lon": 139.779738,
+      "color": null,
+      "original_ids": [
+        "H13"
+      ]
+    },
+    {
+      "id": 126,
+      "name": "Ningyocho",
+      "lat": 35.6861848,
+      "lon": 139.7824162,
+      "color": null,
+      "original_ids": [
+        "H14"
+      ]
+    },
+    {
+      "id": 127,
+      "name": "Kodemmacho",
+      "lat": 35.6907525,
+      "lon": 139.7784526,
+      "color": "gray",
+      "original_ids": [
+        "H15"
+      ]
+    },
+    {
+      "id": 128,
+      "name": "Akihabara",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "H16"
+      ]
+    },
+    {
+      "id": 129,
+      "name": "Naka-okachimachi",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "H17"
+      ]
+    },
+    {
+      "id": 130,
+      "name": "Ueno",
+      "lat": 35.7118212,
+      "lon": 139.7775694,
+      "color": null,
+      "original_ids": [
+        "H18"
+      ]
+    },
+    {
+      "id": 131,
+      "name": "Iriya",
+      "lat": 35.720709,
+      "lon": 139.7845821,
+      "color": "gray",
+      "original_ids": [
+        "H19"
+      ]
+    },
+    {
+      "id": 132,
+      "name": "Minowa",
+      "lat": 35.7295502,
+      "lon": 139.7913004,
+      "color": "gray",
+      "original_ids": [
+        "H20"
+      ]
+    },
+    {
+      "id": 133,
+      "name": "Minami-senju",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "H21"
+      ]
+    },
+    {
+      "id": 134,
+      "name": "Kita-senju",
+      "lat": 35.7495017,
+      "lon": 139.8054115,
+      "color": null,
+      "original_ids": [
+        "H22"
+      ]
+    },
+    {
+      "id": 135,
+      "name": "Meguro",
+      "lat": 35.6325078,
+      "lon": 139.7157717,
+      "color": null,
+      "original_ids": [
+        "I01"
+      ]
+    },
+    {
+      "id": 136,
+      "name": "Shirokanedai",
+      "lat": 35.6381027,
+      "lon": 139.7265652,
+      "color": null,
+      "original_ids": [
+        "I02"
+      ]
+    },
+    {
+      "id": 137,
+      "name": "Shirokane-takanawa",
+      "lat": 35.6429531,
+      "lon": 139.734168,
+      "color": null,
+      "original_ids": [
+        "I03"
+      ]
+    },
+    {
+      "id": 138,
+      "name": "Mita",
+      "lat": 35.6476619,
+      "lon": 139.7483983,
+      "color": null,
+      "original_ids": [
+        "I04"
+      ]
+    },
+    {
+      "id": 139,
+      "name": "Shibakoen",
+      "lat": 35.654237,
+      "lon": 139.7498924,
+      "color": "blue",
+      "original_ids": [
+        "I05"
+      ]
+    },
+    {
+      "id": 140,
+      "name": "Onairimon",
+      "lat": 35.6608011,
+      "lon": 139.7513591,
+      "color": "blue",
+      "original_ids": [
+        "I06"
+      ]
+    },
+    {
+      "id": 141,
+      "name": "Uchisaiwaicho",
+      "lat": 35.6694556,
+      "lon": 139.7553799,
+      "color": "blue",
+      "original_ids": [
+        "I07"
+      ]
+    },
+    {
+      "id": 142,
+      "name": "Hibiya",
+      "lat": 35.6762399,
+      "lon": 139.7601969,
+      "color": null,
+      "original_ids": [
+        "I08"
+      ]
+    },
+    {
+      "id": 143,
+      "name": "Otemachi",
+      "lat": 35.6840162,
+      "lon": 139.7626637,
+      "color": null,
+      "original_ids": [
+        "I09"
+      ]
+    },
+    {
+      "id": 144,
+      "name": "Jimbocho",
+      "lat": 35.695008,
+      "lon": 139.7582694,
+      "color": null,
+      "original_ids": [
+        "I10"
+      ]
+    },
+    {
+      "id": 145,
+      "name": "Suidobashi",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "I11"
+      ]
+    },
+    {
+      "id": 146,
+      "name": "Kasuga",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "I12"
+      ]
+    },
+    {
+      "id": 147,
+      "name": "Hakusan",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "I13"
+      ]
+    },
+    {
+      "id": 148,
+      "name": "Sengoku",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "I14"
+      ]
+    },
+    {
+      "id": 149,
+      "name": "Sugamo",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "I15"
+      ]
+    },
+    {
+      "id": 150,
+      "name": "Nishi-sugamo",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "I16"
+      ]
+    },
+    {
+      "id": 151,
+      "name": "Shin-itabashi",
+      "lat": 35.7487966,
+      "lon": 139.7199032,
+      "color": null,
+      "original_ids": [
+        "I17"
+      ]
+    },
+    {
+      "id": 152,
+      "name": "Itabashi-kuyakushomae",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "I18"
+      ]
+    },
+    {
+      "id": 153,
+      "name": "Itabashihoncho",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "I19"
+      ]
+    },
+    {
+      "id": 154,
+      "name": "Motohasunuma",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "I20"
+      ]
+    },
+    {
+      "id": 155,
+      "name": "Shinmura-sakaue",
+      "lat": 35.7756688,
+      "lon": 139.6955288,
+      "color": null,
+      "original_ids": [
+        "I21"
+      ]
+    },
+    {
+      "id": 156,
+      "name": "Shgimura-sanchome",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "I22"
+      ]
+    },
+    {
+      "id": 157,
+      "name": "Hasuna",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "I23"
+      ]
+    },
+    {
+      "id": 158,
+      "name": "Nishidai",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "I24"
+      ]
+    },
+    {
+      "id": 159,
+      "name": "Takashimadaira",
+      "lat": 35.7889131,
+      "lon": 139.6612548,
+      "color": null,
+      "original_ids": [
+        "I25"
+      ]
+    },
+    {
+      "id": 160,
+      "name": "Shin-takashimadaira",
+      "lat": 35.7902142,
+      "lon": 139.6544258,
+      "color": null,
+      "original_ids": [
+        "I26"
+      ]
+    },
+    {
+      "id": 161,
+      "name": "Nishi-takashimadaira",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "I27"
+      ]
+    },
+    {
+      "id": 162,
+      "name": "Ogikubo",
+      "lat": 35.7042744,
+      "lon": 139.6200267,
+      "color": null,
+      "original_ids": [
+        "M01"
+      ]
+    },
+    {
+      "id": 163,
+      "name": "Minami-asagaya",
+      "lat": 35.6993987,
+      "lon": 139.6357088,
+      "color": null,
+      "original_ids": [
+        "M02"
+      ]
+    },
+    {
+      "id": 164,
+      "name": "Sin-koenji",
+      "lat": 35.6978735,
+      "lon": 139.648688,
+      "color": null,
+      "original_ids": [
+        "M03"
+      ]
+    },
+    {
+      "id": 165,
+      "name": "Higashi-koenji",
+      "lat": 35.6979717,
+      "lon": 139.6581601,
+      "color": null,
+      "original_ids": [
+        "M04"
+      ]
+    },
+    {
+      "id": 166,
+      "name": "Shin-nakano",
+      "lat": 35.6974599,
+      "lon": 139.6686428,
+      "color": null,
+      "original_ids": [
+        "M05"
+      ]
+    },
+    {
+      "id": 167,
+      "name": "Nakano-sakaue",
+      "lat": 35.6971173,
+      "lon": 139.6817498,
+      "color": null,
+      "original_ids": [
+        "M06"
+      ]
+    },
+    {
+      "id": 168,
+      "name": "Nishi-shinjuku",
+      "lat": 35.6944315,
+      "lon": 139.6927667,
+      "color": null,
+      "original_ids": [
+        "M07"
+      ]
+    },
+    {
+      "id": 169,
+      "name": "Shinjuku-nishiguchi",
+      "lat": 35.6922273,
+      "lon": 139.7006009,
+      "color": "red",
+      "original_ids": [
+        "M08"
+      ]
+    },
+    {
+      "id": 170,
+      "name": "Shinjuku-sanchome",
+      "lat": 35.6911965,
+      "lon": 139.7040936,
+      "color": null,
+      "original_ids": [
+        "M09"
+      ]
+    },
+    {
+      "id": 171,
+      "name": "Shinjuku-gyoemmae",
+      "lat": 35.6885735,
+      "lon": 139.7107396,
+      "color": null,
+      "original_ids": [
+        "M10"
+      ]
+    },
+    {
+      "id": 172,
+      "name": "Yotsuya-sanchome",
+      "lat": 35.687988,
+      "lon": 139.7205752,
+      "color": null,
+      "original_ids": [
+        "M11"
+      ]
+    },
+    {
+      "id": 173,
+      "name": "Yotasuya",
+      "lat": 35.6849915,
+      "lon": 139.7299237,
+      "color": null,
+      "original_ids": [
+        "M12"
+      ]
+    },
+    {
+      "id": 174,
+      "name": "Akasaka-mutsuke",
+      "lat": 35.6763213,
+      "lon": 139.7375253,
+      "color": null,
+      "original_ids": [
+        "M13"
+      ]
+    },
+    {
+      "id": 175,
+      "name": "Kokki-gijidomae",
+      "lat": 35.6745485,
+      "lon": 139.7455534,
+      "color": "red",
+      "original_ids": [
+        "M14"
+      ]
+    },
+    {
+      "id": 176,
+      "name": "Kasumigaseki",
+      "lat": 35.674217,
+      "lon": 139.7527174,
+      "color": "red",
+      "original_ids": [
+        "M15"
+      ]
+    },
+    {
+      "id": 177,
+      "name": "Ginza",
+      "lat": 35.6728411,
+      "lon": 139.7631029,
+      "color": null,
+      "original_ids": [
+        "M16"
+      ]
+    },
+    {
+      "id": 178,
+      "name": "Tokyo",
+      "lat": 35.6820173,
+      "lon": 139.7649584,
+      "color": null,
+      "original_ids": [
+        "M17"
+      ]
+    },
+    {
+      "id": 179,
+      "name": "Otemachi",
+      "lat": 35.6867882,
+      "lon": 139.7662244,
+      "color": null,
+      "original_ids": [
+        "M18"
+      ]
+    },
+    {
+      "id": 180,
+      "name": "Awajicho",
+      "lat": 35.6950614,
+      "lon": 139.767473,
+      "color": null,
+      "original_ids": [
+        "M19"
+      ]
+    },
+    {
+      "id": 181,
+      "name": "Ochanomizu",
+      "lat": 35.7005755,
+      "lon": 139.764082,
+      "color": "red",
+      "original_ids": [
+        "M20"
+      ]
+    },
+    {
+      "id": 182,
+      "name": "Hongo-sanchome",
+      "lat": 35.7066386,
+      "lon": 139.7599627,
+      "color": "red",
+      "original_ids": [
+        "M21"
+      ]
+    },
+    {
+      "id": 183,
+      "name": "Korakuen",
+      "lat": 35.7073372,
+      "lon": 139.7512155,
+      "color": null,
+      "original_ids": [
+        "M22"
+      ]
+    },
+    {
+      "id": 184,
+      "name": "Myogadani",
+      "lat": 35.7171896,
+      "lon": 139.7369396,
+      "color": null,
+      "original_ids": [
+        "M23"
+      ]
+    },
+    {
+      "id": 185,
+      "name": "Shin-otsuka",
+      "lat": 35.7257823,
+      "lon": 139.7299234,
+      "color": null,
+      "original_ids": [
+        "M24"
+      ]
+    },
+    {
+      "id": 186,
+      "name": "Ikebukuro",
+      "lat": 35.7302282,
+      "lon": 139.7114846,
+      "color": null,
+      "original_ids": [
+        "M25"
+      ]
+    },
+    {
+      "id": 187,
+      "name": "Nonancho",
+      "lat": 35.6835007,
+      "lon": 139.6576888,
+      "color": null,
+      "original_ids": [
+        "Mb03"
+      ]
+    },
+    {
+      "id": 188,
+      "name": "Nakano-fujimicho",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "Mb04"
+      ]
+    },
+    {
+      "id": 189,
+      "name": "Nakano-shimbashi",
+      "lat": 35.692021,
+      "lon": 139.6738042,
+      "color": null,
+      "original_ids": [
+        "Mb05"
+      ]
+    },
+    {
+      "id": 190,
+      "name": "Meguro",
+      "lat": 35.6325078,
+      "lon": 139.7157717,
+      "color": null,
+      "original_ids": [
+        "N01"
+      ]
+    },
+    {
+      "id": 191,
+      "name": "Shirokanedai",
+      "lat": 35.6381027,
+      "lon": 139.7265652,
+      "color": null,
+      "original_ids": [
+        "N02"
+      ]
+    },
+    {
+      "id": 192,
+      "name": "Shirokane-takanawa",
+      "lat": 35.6429263,
+      "lon": 139.7341529,
+      "color": null,
+      "original_ids": [
+        "N03"
+      ]
+    },
+    {
+      "id": 193,
+      "name": "Azabu-juban",
+      "lat": 35.6551789,
+      "lon": 139.7371506,
+      "color": null,
+      "original_ids": [
+        "N04"
+      ]
+    },
+    {
+      "id": 194,
+      "name": "Roppongi-itchome",
+      "lat": 35.6649728,
+      "lon": 139.738849,
+      "color": null,
+      "original_ids": [
+        "N05"
+      ]
+    },
+    {
+      "id": 195,
+      "name": "Tameike-sanno",
+      "lat": 35.6729903,
+      "lon": 139.741424,
+      "color": null,
+      "original_ids": [
+        "N06"
+      ]
+    },
+    {
+      "id": 196,
+      "name": "Nagatacho",
+      "lat": 35.6779456,
+      "lon": 139.7415775,
+      "color": null,
+      "original_ids": [
+        "N07"
+      ]
+    },
+    {
+      "id": 197,
+      "name": "Yotsuya",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "N08"
+      ]
+    },
+    {
+      "id": 198,
+      "name": "Ichigaya",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "N09"
+      ]
+    },
+    {
+      "id": 199,
+      "name": "Iidabashi",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "N10"
+      ]
+    },
+    {
+      "id": 200,
+      "name": "Korakuen",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "N11"
+      ]
+    },
+    {
+      "id": 201,
+      "name": "Todaimae",
+      "lat": 35.7173365,
+      "lon": 139.7581767,
+      "color": null,
+      "original_ids": [
+        "N12"
+      ]
+    },
+    {
+      "id": 202,
+      "name": "Hon-komagome",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "N13"
+      ]
+    },
+    {
+      "id": 203,
+      "name": "Komagome",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "N14"
+      ]
+    },
+    {
+      "id": 204,
+      "name": "Nishigahara",
+      "lat": 35.7460496,
+      "lon": 139.7421722,
+      "color": null,
+      "original_ids": [
+        "N15"
+      ]
+    },
+    {
+      "id": 205,
+      "name": "Oji",
+      "lat": 35.7539617,
+      "lon": 139.7375243,
+      "color": null,
+      "original_ids": [
+        "N16"
+      ]
+    },
+    {
+      "id": 206,
+      "name": "Oji-kamiya",
+      "lat": 35.7650552,
+      "lon": 139.7357178,
+      "color": null,
+      "original_ids": [
+        "N17"
+      ]
+    },
+    {
+      "id": 207,
+      "name": "Shimo",
+      "lat": 35.7779045,
+      "lon": 139.7325256,
+      "color": null,
+      "original_ids": [
+        "N18"
+      ]
+    },
+    {
+      "id": 208,
+      "name": "Akabane-iwabuchi",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "N19"
+      ]
+    },
+    {
+      "id": 209,
+      "name": "Shinjuku",
+      "lat": 35.6886028,
+      "lon": 139.699177,
+      "color": "lightgreen",
+      "original_ids": [
+        "S01"
+      ]
+    },
+    {
+      "id": 210,
+      "name": "Shinjuku-sanchome",
+      "lat": 35.6906011,
+      "lon": 139.70626,
+      "color": "lightgreen",
+      "original_ids": [
+        "S02"
+      ]
+    },
+    {
+      "id": 211,
+      "name": "Akebonobashi",
+      "lat": 35.6924146,
+      "lon": 139.7228634,
+      "color": "lightgreen",
+      "original_ids": [
+        "S03"
+      ]
+    },
+    {
+      "id": 212,
+      "name": "Ichigaya",
+      "lat": 35.6915471,
+      "lon": 139.7376683,
+      "color": null,
+      "original_ids": [
+        "S04"
+      ]
+    },
+    {
+      "id": 213,
+      "name": "Kudanshita",
+      "lat": 35.6953694,
+      "lon": 139.7503783,
+      "color": null,
+      "original_ids": [
+        "S05"
+      ]
+    },
+    {
+      "id": 214,
+      "name": "Jimbocho",
+      "lat": 35.6959719,
+      "lon": 139.7583937,
+      "color": null,
+      "original_ids": [
+        "S06"
+      ]
+    },
+    {
+      "id": 215,
+      "name": "Ogawamachi",
+      "lat": 35.6949465,
+      "lon": 139.7662986,
+      "color": "lightgreen",
+      "original_ids": [
+        "S07"
+      ]
+    },
+    {
+      "id": 216,
+      "name": "Iwamotocho",
+      "lat": 35.695614,
+      "lon": 139.7753176,
+      "color": "lightgreen",
+      "original_ids": [
+        "S08"
+      ]
+    },
+    {
+      "id": 217,
+      "name": "Bakuro yokoyama",
+      "lat": 35.6921222,
+      "lon": 139.7827937,
+      "color": "lightgreen",
+      "original_ids": [
+        "S09"
+      ]
+    },
+    {
+      "id": 218,
+      "name": "Hamacho",
+      "lat": 35.6884743,
+      "lon": 139.7881422,
+      "color": "lightgreen",
+      "original_ids": [
+        "S10"
+      ]
+    },
+    {
+      "id": 219,
+      "name": "Morishita",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "S11"
+      ]
+    },
+    {
+      "id": 220,
+      "name": "Kikukawa",
+      "lat": 35.6884156,
+      "lon": 139.806123,
+      "color": "lightgreen",
+      "original_ids": [
+        "S12"
+      ]
+    },
+    {
+      "id": 221,
+      "name": "Sumiyoshi",
+      "lat": 35.6889959,
+      "lon": 139.8156854,
+      "color": null,
+      "original_ids": [
+        "S13"
+      ]
+    },
+    {
+      "id": 222,
+      "name": "Nishi-ojima",
+      "lat": 35.6893724,
+      "lon": 139.8266345,
+      "color": "lightgreen",
+      "original_ids": [
+        "S14"
+      ]
+    },
+    {
+      "id": 223,
+      "name": "Ojima",
+      "lat": 35.6897695,
+      "lon": 139.835076,
+      "color": "lightgreen",
+      "original_ids": [
+        "S15"
+      ]
+    },
+    {
+      "id": 224,
+      "name": "Higashi-ojima",
+      "lat": 35.6902967,
+      "lon": 139.8459524,
+      "color": "lightgreen",
+      "original_ids": [
+        "S16"
+      ]
+    },
+    {
+      "id": 225,
+      "name": "Funabori",
+      "lat": 35.6838309,
+      "lon": 139.864297,
+      "color": "lightgreen",
+      "original_ids": [
+        "S17"
+      ]
+    },
+    {
+      "id": 226,
+      "name": "Ichinoe",
+      "lat": 35.6860437,
+      "lon": 139.8831198,
+      "color": "lightgreen",
+      "original_ids": [
+        "S18"
+      ]
+    },
+    {
+      "id": 227,
+      "name": "Mizue",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "S19"
+      ]
+    },
+    {
+      "id": 228,
+      "name": "Shinozaki",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "S20"
+      ]
+    },
+    {
+      "id": 229,
+      "name": "Motoyawata",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "S21"
+      ]
+    },
+    {
+      "id": 230,
+      "name": "Nakano",
+      "lat": 35.6584501,
+      "lon": 139.7028426,
+      "color": "brown",
+      "original_ids": [
+        "T01"
+      ]
+    },
+    {
+      "id": 231,
+      "name": "Ochiai",
+      "lat": 35.7106637,
+      "lon": 139.6859133,
+      "color": null,
+      "original_ids": [
+        "T02"
+      ]
+    },
+    {
+      "id": 232,
+      "name": "Takadanobaba",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "T03"
+      ]
+    },
+    {
+      "id": 233,
+      "name": "Waseda",
+      "lat": 35.7058028,
+      "lon": 139.721191,
+      "color": null,
+      "original_ids": [
+        "T04"
+      ]
+    },
+    {
+      "id": 234,
+      "name": "Kagurazaka",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "T05"
+      ]
+    },
+    {
+      "id": 235,
+      "name": "Iidabashi",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "T06"
+      ]
+    },
+    {
+      "id": 236,
+      "name": "Kudanshita",
+      "lat": 35.6959079,
+      "lon": 139.7512822,
+      "color": null,
+      "original_ids": [
+        "T07"
+      ]
+    },
+    {
+      "id": 237,
+      "name": "Takebashi",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "T08"
+      ]
+    },
+    {
+      "id": 238,
+      "name": "Otemachi",
+      "lat": 35.6846087,
+      "lon": 139.7664613,
+      "color": null,
+      "original_ids": [
+        "T09"
+      ]
+    },
+    {
+      "id": 239,
+      "name": "Nihombashi",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "T10"
+      ]
+    },
+    {
+      "id": 240,
+      "name": "Kayabacho",
+      "lat": 35.6802291,
+      "lon": 139.7794236,
+      "color": null,
+      "original_ids": [
+        "T11"
+      ]
+    },
+    {
+      "id": 241,
+      "name": "Monzen-nakacho",
+      "lat": 35.6722878,
+      "lon": 139.7950674,
+      "color": null,
+      "original_ids": [
+        "T12"
+      ]
+    },
+    {
+      "id": 242,
+      "name": "Kiba",
+      "lat": 35.669416,
+      "lon": 139.8065455,
+      "color": null,
+      "original_ids": [
+        "T13"
+      ]
+    },
+    {
+      "id": 243,
+      "name": "Toyocho",
+      "lat": 35.6695961,
+      "lon": 139.8174761,
+      "color": null,
+      "original_ids": [
+        "T14"
+      ]
+    },
+    {
+      "id": 244,
+      "name": "Minami-sunamachi",
+      "lat": 35.6683446,
+      "lon": 139.8318642,
+      "color": null,
+      "original_ids": [
+        "T15"
+      ]
+    },
+    {
+      "id": 245,
+      "name": "Nishi-kasai",
+      "lat": 35.6645795,
+      "lon": 139.8593173,
+      "color": null,
+      "original_ids": [
+        "T16"
+      ]
+    },
+    {
+      "id": 246,
+      "name": "Kasai",
+      "lat": 35.6636282,
+      "lon": 139.8726921,
+      "color": null,
+      "original_ids": [
+        "T17"
+      ]
+    },
+    {
+      "id": 247,
+      "name": "Urayasu",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "T18"
+      ]
+    },
+    {
+      "id": 248,
+      "name": "Minami-gyotoku",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "T19"
+      ]
+    },
+    {
+      "id": 249,
+      "name": "Gyotoku",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "T20"
+      ]
+    },
+    {
+      "id": 250,
+      "name": "Myoden",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "T21"
+      ]
+    },
+    {
+      "id": 251,
+      "name": "Baraki-nakayama",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "T22"
+      ]
+    },
+    {
+      "id": 252,
+      "name": "Nishi-funabashi",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "T23"
+      ]
+    },
+    {
+      "id": 253,
+      "name": "Wakoshi",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "Y01"
+      ]
+    },
+    {
+      "id": 254,
+      "name": "Chikatetsu-narimasu",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "Y02"
+      ]
+    },
+    {
+      "id": 255,
+      "name": "Chikatetsu-akatsuka",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "Y03"
+      ]
+    },
+    {
+      "id": 256,
+      "name": "Heiwadai",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "Y04"
+      ]
+    },
+    {
+      "id": 257,
+      "name": "Hikawadai",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "Y05"
+      ]
+    },
+    {
+      "id": 258,
+      "name": "Kotake-mukaihara",
+      "lat": 35.7433734,
+      "lon": 139.6795267,
+      "color": null,
+      "original_ids": [
+        "Y06"
+      ]
+    },
+    {
+      "id": 259,
+      "name": "Senkawa",
+      "lat": 35.7383242,
+      "lon": 139.689366,
+      "color": null,
+      "original_ids": [
+        "Y07"
+      ]
+    },
+    {
+      "id": 260,
+      "name": "Kanamecho",
+      "lat": 35.7332405,
+      "lon": 139.6986842,
+      "color": "yellow",
+      "original_ids": [
+        "Y08"
+      ]
+    },
+    {
+      "id": 261,
+      "name": "Ikebukuro",
+      "lat": 35.729643,
+      "lon": 139.7096856,
+      "color": null,
+      "original_ids": [
+        "Y09"
+      ]
+    },
+    {
+      "id": 262,
+      "name": "Higashi-ikebukuro",
+      "lat": 35.7256214,
+      "lon": 139.7193857,
+      "color": "yellow",
+      "original_ids": [
+        "Y10"
+      ]
+    },
+    {
+      "id": 263,
+      "name": "Gokokuji",
+      "lat": 35.7190787,
+      "lon": 139.7274629,
+      "color": "yellow",
+      "original_ids": [
+        "Y11"
+      ]
+    },
+    {
+      "id": 264,
+      "name": "Edogawabashi",
+      "lat": 35.7095155,
+      "lon": 139.7335636,
+      "color": "yellow",
+      "original_ids": [
+        "Y12"
+      ]
+    },
+    {
+      "id": 265,
+      "name": "Iidabashi",
+      "lat": 35.7015405,
+      "lon": 139.7436346,
+      "color": "yellow",
+      "original_ids": [
+        "Y13"
+      ]
+    },
+    {
+      "id": 266,
+      "name": "Ichigaya",
+      "lat": 35.6923805,
+      "lon": 139.736689,
+      "color": "yellow",
+      "original_ids": [
+        "Y14"
+      ]
+    },
+    {
+      "id": 267,
+      "name": "Kojimachi",
+      "lat": 35.6840244,
+      "lon": 139.7376514,
+      "color": "yellow",
+      "original_ids": [
+        "Y15"
+      ]
+    },
+    {
+      "id": 268,
+      "name": "Nagatacho",
+      "lat": 35.6779456,
+      "lon": 139.7415775,
+      "color": null,
+      "original_ids": [
+        "Y16"
+      ]
+    },
+    {
+      "id": 269,
+      "name": "Sakuradamon",
+      "lat": 35.6774009,
+      "lon": 139.7515757,
+      "color": "yellow",
+      "original_ids": [
+        "Y17"
+      ]
+    },
+    {
+      "id": 270,
+      "name": "Yurakucho",
+      "lat": 35.6759691,
+      "lon": 139.7621359,
+      "color": "yellow",
+      "original_ids": [
+        "Y18"
+      ]
+    },
+    {
+      "id": 271,
+      "name": "Ginza-itchome",
+      "lat": 35.6743469,
+      "lon": 139.7670332,
+      "color": "yellow",
+      "original_ids": [
+        "Y19"
+      ]
+    },
+    {
+      "id": 272,
+      "name": "Shintomicho",
+      "lat": 35.6706344,
+      "lon": 139.7734197,
+      "color": "yellow",
+      "original_ids": [
+        "Y20"
+      ]
+    },
+    {
+      "id": 273,
+      "name": "Tsukishima",
+      "lat": 35.664645,
+      "lon": 139.7845639,
+      "color": "yellow",
+      "original_ids": [
+        "Y21"
+      ]
+    },
+    {
+      "id": 274,
+      "name": "Toyosu",
+      "lat": 35.6549298,
+      "lon": 139.796174,
+      "color": null,
+      "original_ids": [
+        "Y22"
+      ]
+    },
+    {
+      "id": 275,
+      "name": "Tatsumi",
+      "lat": 35.6454772,
+      "lon": 139.8107392,
+      "color": null,
+      "original_ids": [
+        "Y23"
+      ]
+    },
+    {
+      "id": 276,
+      "name": "Shin-kiba",
+      "lat": 35.6459052,
+      "lon": 139.8266597,
+      "color": "yellow",
+      "original_ids": [
+        "Y24"
+      ]
+    },
+    {
+      "id": 277,
+      "name": "Shibuya",
+      "lat": 35.659501,
+      "lon": 139.701972,
+      "color": "purple",
+      "original_ids": [
+        "Z01"
+      ]
+    },
+    {
+      "id": 278,
+      "name": "Omote-sando",
+      "lat": 35.6651609,
+      "lon": 139.7125432,
+      "color": null,
+      "original_ids": [
+        "Z02"
+      ]
+    },
+    {
+      "id": 279,
+      "name": "Aoyama-itchome",
+      "lat": 35.6727797,
+      "lon": 139.7240186,
+      "color": "violet",
+      "original_ids": [
+        "Z03"
+      ]
+    },
+    {
+      "id": 280,
+      "name": "Nagatacho",
+      "lat": 35.6779456,
+      "lon": 139.7415775,
+      "color": null,
+      "original_ids": [
+        "Z04"
+      ]
+    },
+    {
+      "id": 281,
+      "name": "Hanzomon",
+      "lat": 35.6852213,
+      "lon": 139.7415832,
+      "color": null,
+      "original_ids": [
+        "Z05"
+      ]
+    },
+    {
+      "id": 282,
+      "name": "Kudanshita",
+      "lat": 35.6952299,
+      "lon": 139.7505069,
+      "color": null,
+      "original_ids": [
+        "Z06"
+      ]
+    },
+    {
+      "id": 283,
+      "name": "Jimbocho",
+      "lat": 0.0,
+      "lon": 0.0,
+      "color": null,
+      "original_ids": [
+        "Z07"
+      ]
+    },
+    {
+      "id": 284,
+      "name": "Otemachi",
+      "lat": 35.6866919,
+      "lon": 139.7650376,
+      "color": null,
+      "original_ids": [
+        "Z08"
+      ]
+    },
+    {
+      "id": 285,
+      "name": "Mitsukoshimae",
+      "lat": 35.6849516,
+      "lon": 139.7730743,
+      "color": null,
+      "original_ids": [
+        "Z09"
+      ]
+    },
+    {
+      "id": 286,
+      "name": "Suitengumae",
+      "lat": 35.6825235,
+      "lon": 139.7856405,
+      "color": null,
+      "original_ids": [
+        "Z10"
+      ]
+    },
+    {
+      "id": 287,
+      "name": "Kiyosumi-shirakawa",
+      "lat": 35.6820504,
+      "lon": 139.7987644,
+      "color": null,
+      "original_ids": [
+        "Z11"
+      ]
+    },
+    {
+      "id": 288,
+      "name": "Sumiyoshi",
+      "lat": 35.6889959,
+      "lon": 139.8156854,
+      "color": null,
+      "original_ids": [
+        "Z12"
+      ]
+    },
+    {
+      "id": 289,
+      "name": "Kinshicho",
+      "lat": 35.6963122,
+      "lon": 139.8150431,
+      "color": null,
+      "original_ids": [
+        "Z13"
+      ]
+    },
+    {
+      "id": 290,
+      "name": "Oshiage <SKYTREE>",
+      "lat": 35.7102863,
+      "lon": 139.8132943,
+      "color": null,
+      "original_ids": [
+        "Z14"
+      ]
+    }
+  ],
+  "links": []
+}

@@ -1,4 +1,0 @@
-### Sobre la Ciudad: Hyderabad (India)
-
-Hyderabad hispanizado Haiderabad, es la capital compartida por los estados indios de Telangana y de Andhra Pradesh. Con una altitud promedio de 542 m, gran parte de Hyderabad está situada en un terreno montañoso alrededor de lagos artificiales, incluido el lago Hussain Sagar, anterior a la fundación de la ciudad, en el norte del centro de la ciudad. Según el censo de la India de 2011, Hyderabad es la cuarta ciudad más poblada de la India con una población de 6,9 millones de residentes dentro de los límites de la ciudad, y tiene una población de 9,7 millones de residentes en la región metropolitana, lo que la convierte en la sexta ciudad más poblada considerando el área metropolitana de la India. Se cree que por su alto crecimiento poblacional pueda ser una megaciudad antes de 2030. Con un producto bruto de US $74 mil millones, Hyderabad tiene la quinta economía urbana más grande de la India.
-

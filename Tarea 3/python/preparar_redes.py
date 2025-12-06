@@ -311,6 +311,63 @@ class GrafoSimple:
             comps[lbl].add(nodo)
         return comps
 
+    def obtener_topologia_simplificada(self) -> "GrafoSimple":
+        """Retorna una versión simplificada del grafo (topología L-Space).
+        
+        Elimina iterativamente los nodos de grado 2 (estaciones de paso),
+        manteniendo solo terminales (grado 1) e intersecciones (grado > 2).
+        Preserva la conectividad añadiendo aristas directas entre los vecinos
+        de los nodos eliminados.
+        
+        Retorna
+        -------
+        GrafoSimple
+            Nuevo grafo simplificado.
+        """
+        G = self.copiar()
+        cambios = True
+        
+        while cambios:
+            cambios = False
+            # Identificar nodos de grado 2 actuales
+            # Es importante hacer una lista copia porque modificaremos el grafo
+            nodos_grado_2 = [n for n, vecinos in G._adj.items() if len(vecinos) == 2]
+            
+            for n in nodos_grado_2:
+                # Verificar si el nodo sigue existiendo y sigue teniendo grado 2
+                # (podría haber cambiado al eliminar un vecino vecino)
+                if n in G._adj and len(G._adj[n]) == 2:
+                    vecinos = list(G._adj[n])
+                    u, v = vecinos[0], vecinos[1]
+                    
+                    # Agregar arista directa entre vecinos (atajo)
+                    # Si ya existe arista u-v, esto no hace nada (set), lo cual está bien 
+                    # para topología simple, aunque perdemos info de multigrafo si la hubiera.
+                    G.agregar_arista(u, v)
+                    
+                    # Remover el nodo intermedio n
+                    # Esto elimina n y sus aristas (n, u) y (n, v)
+                    G.remover_nodos([n])
+                    
+                    cambios = True
+        
+        return G
+
+
+    def to_networkx(self) -> "nx.Graph":
+        """Convierte el GrafoSimple a un grafo de NetworkX.
+        
+        Retorna
+        -------
+        nx.Graph
+            Grafo de NetworkX equivalente.
+        """
+        import networkx as nx
+        G = nx.Graph()
+        G.add_nodes_from(self.nodos())
+        G.add_edges_from(self.aristas())
+        return G
+
 
 def construir_grafo_desde_ciudad_kujala(
     directorio_ciudad: Path

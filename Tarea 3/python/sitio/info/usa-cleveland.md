@@ -1,0 +1,4 @@
+<h3>Sobre la Ciudad: Cleveland</h3>
+<p>
+Cleveland, oficialmente City of Cleveland, es una ciudad en el estado estadounidense de Ohio y la sede del condado de Cuyahoga. Ubicado en la parte noreste del estado, está situado a lo largo de la costa sur del lago Erie, al otro lado de la frontera marítima de Estados Unidos con Canadá y aproximadamente 97 km al oeste de Pensilvania. La ciudad más grande en el lago Erie y una de las principales ciudades de la región de los Grandes Lagos, Cleveland se ubica como la 54.ª ciudad más grande de los Estados Unidos con una población en 2020 de 372 624 habitantes. La ciudad ancla tanto el área estadística metropolitana (MSA) del Gran Cleveland como el área estadística combinada (CSA) más grande de Cleveland-Akron-Canton. La CSA es la más poblada de Ohio y la 17 más grande del país, con una población de 3,63 millones en 2020, mientras que la MSA ocupa el puesto 34 con 2,09 millones.
+</p>

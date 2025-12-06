@@ -1,0 +1,8 @@
+<h3>Sobre la Ciudad: Nueva York</h3>
+<p>
+Nueva York, usualmente llamada Ciudad de Nueva York, es la ciudad más poblada y visitada de los Estados Unidos y una de las más densamente pobladas a nivel mundial. Desde finales del siglo xix es uno de los centros de la política y la economía mundial, albergando la sede de la Organización de las Naciones Unidas y de numerosas empresas e instituciones financieras de importancia global. Nueva York es considerada una ciudad global, debido a que ejerce influencia a escala mundial en los medios de comunicación, la política, la educación, la arquitectura, el entretenimiento, las artes y la moda. Por todo ello, se considera una de las ciudades más globalizadas del planeta, con una gran diversidad cultural.
+</p>
+<h3>Sobre la Red de Metro: Metro de Nueva York</h3>
+<p>
+El Metro de Nueva York es el sistema de transporte ferroviario urbano más grande en los Estados Unidos y uno de los más grandes del mundo, con entre 420 y 472 estaciones y 660 millas de vías primarias en servicio. Si se cuentan las vías secundarias en talleres y cocheras el total asciende a 846 millas. Este metro lo explota la Autoridad de Tránsito de la Ciudad de Nueva York, denominándose coloquialmente MTA New York City Transit por parte de la Autoridad Metropolitana de Transporte de la que es una agencia afiliada. Ambas son agencias creadas por el legislativo del Estado de Nueva York, en 1953 y 1968, respectivamente, para explotar los transportes de titularidad pública de la ciudad de Nueva York en el caso de MTA New York City Transit por un lado y para supervisar el transporte público de masas en la Región de la Ciudad de Nueva York en el caso de MTA.
+</p>
